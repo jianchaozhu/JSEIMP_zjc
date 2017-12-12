@@ -1,0 +1,38 @@
+//
+//  JSEIMPServerInfo.h
+//  loginTest
+//
+//  Created by 朱建超 on 2017/11/2.
+//  Copyright © 2017年 朱建超. All rights reserved.
+//
+
+//测试API
+//#define IP @"192.168.2.53:8002"
+//正式API
+#define IP @"192.168.2.55:6002"
+//登录
+#define API_LOGIN @"http://sso.jaso.com.cn:83/connect/token"
+//获取投标项目列表
+#define API_TOUBIAOLIST @"http://"IP"/api/Bidding/Project/GetList"
+//获取投标项目明细
+#define API_TOUBIAODETAIL @"http://"IP"/api/Bidding/Project/GetDetails"
+//获得投标保证金列表
+#define API_TOUBIAOBAOZHENJIN @"http://"IP"/api/Bidding/Deposit/GetList"
+//获得投标保证金明细
+#define API_TOUBIAOBAOZHENJINDETAIL @"http://"IP"/api/Bidding/Deposit/GetDetails"
+//获得农名工保证金列表
+#define API_FARMERBAOZHENJIN @"http://"IP"/api/Bidding/Deposit/GetList"
+//获得农名工保证金明细
+#define API_FARMERBAOZHENJINDETAIL @"http://"IP"/api/Bidding/Deposit/GetDetails"
+//获得项目奖项列表
+#define API_PROJECTJIANGXIANG @"http://"IP"/api/Bidding/Award/GetList"
+//获得项目奖项明细
+#define API_PROJECTJIANGXIANGDETAIL @"http://"IP"/api/Bidding/Award/GetDetails"
+//获得总承包合同列表
+#define API_ALLCHENGBAOHETONG @"http://"IP"/api/Contract/Contract/GetList"
+//获得总承包合同详情
+#define API_ALLCHENGBAOHETONGDETAIL @"http://"IP"/api/Contract/Contract/GetDetails"
+//获得专业承包合同列表
+#define API_ZHUANTECHENGBAOHETONG @"http://"IP"/api/Contract/Contract/GetList"
+//获得专业承包合同详情
+#define API_ZHUANTECHENGBAOHETONGDETAIL @"http://"IP"/api/Contract/Contract/GetDetails"

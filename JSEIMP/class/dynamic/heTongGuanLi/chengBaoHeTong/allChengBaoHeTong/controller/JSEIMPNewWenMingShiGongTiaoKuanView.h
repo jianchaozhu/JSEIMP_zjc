@@ -1,0 +1,15 @@
+//
+//  JSEIMPNewWenMingShiGongTiaoKuanView.h
+//  JSEIMP
+//
+//  Created by 朱建超 on 2017/11/16.
+//  Copyright © 2017年 朱建超. All rights reserved.
+//
+
+#import <UIKit/UIKit.h>
+
+@interface JSEIMPNewWenMingShiGongTiaoKuanView : UIView
+
+@property(nonatomic,strong)UITextView *shiGongTiaoKuanTextView;
+
+@end
