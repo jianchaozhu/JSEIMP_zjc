@@ -66,6 +66,8 @@ static NSString *cellID = @"cellID";
 //UISearchBar作为tableview的头部
 -(UIView *)headView{
     
+    NSLog(@"再次测试远程管理");
+    
     UISearchBar *searchBar = [[UISearchBar alloc]initWithFrame:CGRectMake(0, 64, 100, 44)];
     searchBar.keyboardType = UIKeyboardAppearanceDefault;
     searchBar.placeholder = @"请输入搜索关键字";
