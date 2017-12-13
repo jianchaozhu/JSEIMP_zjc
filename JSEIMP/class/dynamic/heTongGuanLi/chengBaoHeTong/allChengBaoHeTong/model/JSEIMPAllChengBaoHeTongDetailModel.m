@@ -12,12 +12,16 @@
 
 +(NSDictionary *)mj_objectClassInArray{
     
-    return @{@"ContractDetails":[AllChengBaoHeTongDetaillModel class]};
+    return @{@"ContractDetails":[AllChengBaoHeTongDetaillModel class],@"Files":[AllChengBaoHeTongDetailArraylModel class]};
     
 }
 
 @end
 
 @implementation AllChengBaoHeTongDetaillModel
+
+@end
+
+@implementation AllChengBaoHeTongDetailArraylModel
 
 @end

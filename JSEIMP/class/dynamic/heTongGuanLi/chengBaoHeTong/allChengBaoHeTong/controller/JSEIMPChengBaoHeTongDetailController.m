@@ -62,6 +62,12 @@
 @property(nonatomic,strong)NSString *shiGongTiaoKuan;
 //其他条款
 @property(nonatomic,strong)NSString *otherTiaoKuan;
+//附件类型
+@property(nonatomic,strong)NSMutableArray *fileTypeMArray;
+//附件名称
+@property(nonatomic,strong)NSMutableArray *fileNameMArray;
+//附件路径
+@property(nonatomic,strong)NSMutableArray *filePathMArray;
 
 @end
 
@@ -240,7 +246,7 @@
 -(void)getData{
     
     NSLog(@"%@",_contractId);
-    [JSEIMPNetWorking getAllChengBaoHeTongDetailWithContractId:_contractId OnSuccess:^(NSString *contractCode,NSString *projectName,NSString *jiaFangName,NSString *yiFangName,NSString *contractType,NSString *amount,NSString *qianYueDate,NSString *startDate,NSString *endDate,NSString *days,NSString *wenMingShiGongMoney,NSString *creator,NSString *chengBaoFanWei,NSString *qualityTiaoKuan,NSString *shiGongTiaoKuan,NSString *otherTiaoKuan){
+    [JSEIMPNetWorking getAllChengBaoHeTongDetailWithContractId:_contractId OnSuccess:^(NSString *contractCode,NSString *projectName,NSString *jiaFangName,NSString *yiFangName,NSString *contractType,NSString *amount,NSString *qianYueDate,NSString *startDate,NSString *endDate,NSString *days,NSString *wenMingShiGongMoney,NSString *creator,NSString *chengBaoFanWei,NSString *qualityTiaoKuan,NSString *shiGongTiaoKuan,NSString *otherTiaoKuan,NSMutableArray *fileTypeMArray,NSMutableArray *fileNameMArray,NSMutableArray *filePathMArray){
         
         _contractCode = contractCode.copy;
         _projectName = projectName.copy;
@@ -258,6 +264,9 @@
         _qualityTiaoKuan = qualityTiaoKuan.copy;
         _shiGongTiaoKuan = shiGongTiaoKuan.copy;
         _otherTiaoKuan = otherTiaoKuan.copy;
+        _fileTypeMArray = fileTypeMArray.copy;
+        _fileNameMArray = fileNameMArray.copy;
+        _filePathMArray = filePathMArray.copy;
         
         dispatch_async(dispatch_get_main_queue(), ^{
             
@@ -273,6 +282,9 @@
     [[NSNotificationCenter defaultCenter] postNotificationName:@"qualityTiaoKuan" object:_qualityTiaoKuan];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"shiGongTiaoKuan" object:_shiGongTiaoKuan];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"otherTiaoKuan" object:_otherTiaoKuan];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"fileNameMArray" object:_fileNameMArray];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"filePathMArray" object:_filePathMArray];
+    
     
 }
 
@@ -791,8 +803,9 @@
 
 -(void)setupCursor{
 
-    _titles = [NSMutableArray arrayWithObjects:@"承包范围",@"收款节点",@"支付条款",@"质量条款",@"施工条款",@"其他条款",@"附件", nil];
-    
+//    _titles = [NSMutableArray arrayWithObjects:@"承包范围",@"收款节点",@"支付条款",@"质量条款",@"施工条款",@"其他条款",@"附件", nil];
+
+    _titles = [NSMutableArray arrayWithObjects:@"承包范围",@"质量条款",@"施工条款",@"其他条款",@"附件", nil];
     _cursor = [[HACursor alloc]init];
 //    _cursor.backgroundColor = [UIColor colorWithRed:56.0 / 255.0 green:135.0 / 255.0 blue:250.0 / 255.0 alpha:1];
     _cursor.backgroundColor = [UIColor lightGrayColor];
@@ -856,45 +869,47 @@
             
             [pageViews addObject:_scrollView1];
             
-        }else if (i == 1){
-            
-            _cursor.rootScrollView.bounces = NO;
-            
-            _scrollView2 = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, self.view.width, self.view.height / 2)];
-            
-            _shouKuanJieDianView = [[JSEIMPShouKuanJieDianView alloc] init];
-            
-            [_scrollView2 addSubview:_shouKuanJieDianView];
-            
-            [_shouKuanJieDianView mas_makeConstraints:^(MASConstraintMaker *make) {
-                
-                make.edges.mas_equalTo(_scrollView2);
-                make.width.mas_equalTo(UIScreenW);
-                make.bottom.mas_equalTo(_shouKuanJieDianView.lineView.mas_bottom).offset(8);
-                
-            }];
-            
-            [pageViews addObject:_scrollView2];
-            
-        }else if (i == 2){
-        
-            _cursor.rootScrollView.bounces = NO;
-            
-            _scrollView3 = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, self.view.width, self.view.height / 2)];
-            
-            _heTongZhiFuTiaoKuanView = [[JSEIMPHeTongZhiFuTiaoKuanView alloc] init];
-            
-            [_scrollView3 addSubview:_heTongZhiFuTiaoKuanView];
-            
-            [_heTongZhiFuTiaoKuanView mas_makeConstraints:^(MASConstraintMaker *make) {
-                
-                make.edges.mas_equalTo(_scrollView3);
-                make.width.mas_equalTo(UIScreenW);
-                make.bottom.mas_equalTo(_heTongZhiFuTiaoKuanView.zhiFuTiaoKuanLabel.mas_bottom).offset(16);
-            }];
-            
-            [pageViews addObject:_scrollView3];
-        }else if (i == 3){
+        }
+//        else if (i == 1){
+//
+//            _cursor.rootScrollView.bounces = NO;
+//
+//            _scrollView2 = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, self.view.width, self.view.height / 2)];
+//
+//            _shouKuanJieDianView = [[JSEIMPShouKuanJieDianView alloc] init];
+//
+//            [_scrollView2 addSubview:_shouKuanJieDianView];
+//
+//            [_shouKuanJieDianView mas_makeConstraints:^(MASConstraintMaker *make) {
+//
+//                make.edges.mas_equalTo(_scrollView2);
+//                make.width.mas_equalTo(UIScreenW);
+//                make.bottom.mas_equalTo(_shouKuanJieDianView.lineView.mas_bottom).offset(8);
+//
+//            }];
+//
+//            [pageViews addObject:_scrollView2];
+//
+//        }else if (i == 2){
+//
+//            _cursor.rootScrollView.bounces = NO;
+//
+//            _scrollView3 = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, self.view.width, self.view.height / 2)];
+//
+//            _heTongZhiFuTiaoKuanView = [[JSEIMPHeTongZhiFuTiaoKuanView alloc] init];
+//
+//            [_scrollView3 addSubview:_heTongZhiFuTiaoKuanView];
+//
+//            [_heTongZhiFuTiaoKuanView mas_makeConstraints:^(MASConstraintMaker *make) {
+//
+//                make.edges.mas_equalTo(_scrollView3);
+//                make.width.mas_equalTo(UIScreenW);
+//                make.bottom.mas_equalTo(_heTongZhiFuTiaoKuanView.zhiFuTiaoKuanLabel.mas_bottom).offset(16);
+//            }];
+//
+//            [pageViews addObject:_scrollView3];
+//        }
+        else if (i == 1){
         
             _cursor.rootScrollView.bounces = NO;
             
@@ -914,7 +929,7 @@
             }];
             
             [pageViews addObject:_scrollView4];
-        }else if (i == 4){
+        }else if (i == 2){
         
             _cursor.rootScrollView.bounces = NO;
             
@@ -935,7 +950,7 @@
             
             [pageViews addObject:_scrollView5];
             
-        }else if(i == 5){
+        }else if(i == 3){
             
             _cursor.rootScrollView.bounces = NO;
             
@@ -955,9 +970,11 @@
             }];
             
             [pageViews addObject:_scrollView6];
-        }else if(i == 6){
+        }else if(i == 4){
             
             JSEIMPFuJianView *fuJianView = [JSEIMPFuJianView new];
+            
+            [self postNotification];
             
             [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(filePath:) name:@"filePath" object:nil];
             [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(exisFilePath:) name:@"exisFilePath" object:nil];

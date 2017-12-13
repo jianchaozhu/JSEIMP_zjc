@@ -20,11 +20,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "JSEIMP/class/other/other/JSEIMPNetWorking.m"
-            timestampString = "534681310.231489"
+            timestampString = "534847728.701588"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "622"
-            endingLineNumber = "622"
+            startingLineNumber = "663"
+            endingLineNumber = "663"
             landmarkName = "+getAllChengBaoHeTongDetailWithContractId:OnSuccess:onErrorInfo:"
             landmarkType = "7">
          </BreakpointContent>
@@ -35,13 +35,61 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "JSEIMP/class/other/other/JSEIMPNetWorking.m"
-            timestampString = "534681454.547254"
+            filePath = "JSEIMP/class/dynamic/heTongGuanLi/chengBaoHeTong/allChengBaoHeTong/controller/JSEIMPFuJianView.m"
+            timestampString = "534847728.701676"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "617"
-            endingLineNumber = "617"
-            landmarkName = "+getAllChengBaoHeTongDetailWithContractId:OnSuccess:onErrorInfo:"
+            startingLineNumber = "71"
+            endingLineNumber = "71"
+            landmarkName = "-tableView:didSelectRowAtIndexPath:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "JSEIMP/class/dynamic/heTongGuanLi/chengBaoHeTong/allChengBaoHeTong/controller/JSEIMPFuJianView.m"
+            timestampString = "534847728.701737"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "119"
+            endingLineNumber = "119"
+            landmarkName = "-downloadWithURLString:fileName:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "JSEIMP/class/dynamic/heTongGuanLi/chengBaoHeTong/allChengBaoHeTong/controller/JSEIMPFuJianView.m"
+            timestampString = "534847728.701786"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "95"
+            endingLineNumber = "95"
+            landmarkName = "-downloadWithURLString:fileName:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "JSEIMP/class/dynamic/touBiaoGuanli/beforeTouBiao/projectInformation/controller/JSEIMPTouBiaoController.m"
+            timestampString = "534847728.701847"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "228"
+            endingLineNumber = "228"
+            landmarkName = "-searchBar:textDidChange:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

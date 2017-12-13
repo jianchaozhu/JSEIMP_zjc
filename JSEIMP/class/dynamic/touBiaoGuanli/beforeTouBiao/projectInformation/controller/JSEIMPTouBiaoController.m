@@ -28,6 +28,8 @@ static NSString *cellID = @"cellID";
 
 @property(nonatomic,strong)NSMutableArray *finalResultMArray;
 
+@property(nonatomic,assign)NSInteger lenght;
+
 @end
 
 
@@ -39,7 +41,8 @@ static NSString *cellID = @"cellID";
     UITableViewCell *_cell;
     
     UIView *_view;
-
+    
+    UISearchBar *_searchBar;
 }
 
 -(NSMutableArray *)resultArray{
@@ -68,14 +71,14 @@ static NSString *cellID = @"cellID";
     
     NSLog(@"再次测试远程管理");
     
-    UISearchBar *searchBar = [[UISearchBar alloc]initWithFrame:CGRectMake(0, 64, 100, 44)];
-    searchBar.keyboardType = UIKeyboardAppearanceDefault;
-    searchBar.placeholder = @"请输入搜索关键字";
-    searchBar.delegate = self;
+    _searchBar = [[UISearchBar alloc]initWithFrame:CGRectMake(0, 64, 100, 44)];
+    _searchBar.keyboardType = UIKeyboardAppearanceDefault;
+    _searchBar.placeholder = @"请输入搜索关键字";
+    _searchBar.delegate = self;
     //底部的颜色
-    searchBar.searchBarStyle = UISearchBarStyleDefault;
-    searchBar.barStyle = UIBarStyleDefault;
-    return searchBar;
+    _searchBar.searchBarStyle = UISearchBarStyleDefault;
+    _searchBar.barStyle = UIBarStyleDefault;
+    return _searchBar;
 }
 
 //在搜索框中修改搜索内容时，自动触发下面的方法
@@ -85,29 +88,30 @@ static NSString *cellID = @"cellID";
 
 -(void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar{
     
-    _view = [[UIView alloc] initWithFrame:_tableView.bounds];
-    
-    _view.backgroundColor = [UIColor lightGrayColor];
-    _view.alpha = 0.2;
-    //点击手势
-    UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(touchEvent)];
-    [_view addGestureRecognizer:tapGestureRecognizer];
-    
-    [_tableView addSubview:_view];
-    
-    //滑动效果（动画）
-    NSTimeInterval animationDuration = 0.30f;
-    [UIView beginAnimations:@ "ResizeForKeyboard"  context:nil];
-    [UIView setAnimationDuration:animationDuration];
-    //将视图的Y坐标向上移动，以使下面腾出地方用于软键盘的显示
-    self.view.frame = CGRectMake(0.0f, -64.0f, self.view.frame.size.width, self.view.frame.size.height); //64-216
-    [UIView commitAnimations];
-    
-    self.navigationController.navigationBarHidden = YES;
-    
-    NSLog(@"开始输入搜索内容");
-    searchBar.showsCancelButton = YES;//取消的字体颜色，
+    if (searchBar.text.length == 0) {
+        
+        self.navigationController.navigationBarHidden = YES;
+        
+        _view = [[UIView alloc] initWithFrame:_tableView.bounds];
+        _view.backgroundColor = [UIColor lightGrayColor];
+        _view.alpha = 0.3;
+        
+        //点击手势
+        UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(touchEvent)];
+        [_view addGestureRecognizer:tapGestureRecognizer];
+        
+        _tableView.scrollEnabled = NO;
+        [_tableView addSubview:_view];
+    }
+    searchBar.showsCancelButton = YES;
     [searchBar setShowsCancelButton:YES animated:YES];
+//    //滑动效果（动画）
+//    NSTimeInterval animationDuration = 0.30f;
+//    [UIView beginAnimations:@ "ResizeForKeyboard"  context:nil];
+//    [UIView setAnimationDuration:animationDuration];
+//    //将视图的Y坐标向上移动，以使下面腾出地方用于软键盘的显示
+//    self.view.frame = CGRectMake(0.0f, -64.0f, self.view.frame.size.width, self.view.frame.size.height); //64-216
+//    [UIView commitAnimations];
     
     //改变取消的文本
     for(UIView *view in [[[searchBar subviews] objectAtIndex:0] subviews]) {
@@ -119,11 +123,28 @@ static NSString *cellID = @"cellID";
     }
 }
 
+#pragma mark - 滚动事件
+-(void)scrollViewWillBeginDragging:(UIScrollView *)scrollView{
+    
+    if (_searchBar.text.length > 0) {
+        
+        self.navigationController.navigationBarHidden = YES;
+        [_searchBar resignFirstResponder];
+        
+        UIButton *cancelBtn = [_searchBar valueForKey:@"cancelButton"]; //首先取出cancelBtn
+        cancelBtn.enabled = YES; //把enabled设置为yes
+    }
+}
+
+
 #pragma mark - 触摸事件
 -(void)touchEvent{
     
+    _tableView.scrollEnabled = YES;
     [_view removeFromSuperview];
     [self.view endEditing:YES];
+    [_searchBar setShowsCancelButton:NO animated:YES];
+    [_searchBar resignFirstResponder];
     
 }
 
@@ -137,6 +158,11 @@ static NSString *cellID = @"cellID";
     self.view.frame = CGRectMake(0.0f, 0.0f, self.view.frame.size.width, self.view.frame.size.height); //64-216
     [UIView commitAnimations];
     
+    if (searchBar.text.length == 0) {
+        self.navigationController.navigationBarHidden = NO;
+        [searchBar setShowsCancelButton:NO animated:YES];
+    }
+    
     self.navigationController.navigationBarHidden = NO;
     NSLog(@"输入搜索内容完毕");
 }
@@ -145,6 +171,32 @@ static NSString *cellID = @"cellID";
 -(void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText{
     
     NSLog(@"输入的关键字是---%@---%lu",searchText,(unsigned long)searchText.length);
+    
+    _tableView.scrollEnabled = YES;
+    _lenght = searchText.length;
+    
+    if (_lenght == 0) {
+        
+        _view.backgroundColor = [UIColor lightGrayColor];
+        _view.alpha = 0.3;
+        
+        //点击手势
+        UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(touchEvent)];
+        
+        [_view addGestureRecognizer:tapGestureRecognizer];
+        
+        _tableView.scrollEnabled = NO;
+        [_tableView addSubview:_view];
+        
+        [searchBar resignFirstResponder];
+        //滑动效果（动画）
+        NSTimeInterval animationDuration = 0.30f;
+        [UIView beginAnimations:@ "ResizeForKeyboard"  context:nil];
+        [UIView setAnimationDuration:animationDuration];
+        //将视图的Y坐标向上移动，以使下面腾出地方用于软键盘的显示
+        self.view.frame = CGRectMake(0.0f, 0.0f, self.view.frame.size.width, self.view.frame.size.height); //64-216
+        [UIView commitAnimations];
+    }
     
     [_view removeFromSuperview];
     
@@ -203,6 +255,7 @@ static NSString *cellID = @"cellID";
 //取消的响应事件
 -(void)searchBarCancelButtonClicked:(UISearchBar *)searchBar{
     
+    self.navigationController.navigationBarHidden = NO;
     searchBar.text = @"";
     [searchBar setShowsCancelButton:NO animated:YES];
     [searchBar resignFirstResponder];
@@ -343,7 +396,7 @@ static NSString *cellID = @"cellID";
     
     CGSize size = [str sizeWithFont:[UIFont systemFontOfSize:15] constrainedToSize:CGSizeMake(280, 999) lineBreakMode:NSLineBreakByWordWrapping];
     
-    return size.height + 40;
+    return size.height + 50;
 
 }
 

@@ -27,8 +27,6 @@ static NSString *cellID = @"cellID";
 
 @property(nonatomic,strong)NSMutableArray *finalMArray;
 
-@property(nonatomic,assign)NSInteger searchTextLength;
-
 @property(nonatomic,assign)NSInteger lenght;
 
 @end
@@ -42,8 +40,6 @@ static NSString *cellID = @"cellID";
     UIView *_view;
     
     UISearchBar *_searchBar;
-    
-    UIButton *_cancel;
 }
 
 -(NSMutableArray *)resultArray{

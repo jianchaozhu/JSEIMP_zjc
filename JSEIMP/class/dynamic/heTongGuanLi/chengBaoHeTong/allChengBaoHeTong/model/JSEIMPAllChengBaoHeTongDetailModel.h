@@ -8,6 +8,16 @@
 
 #import <Foundation/Foundation.h>
 
+@interface AllChengBaoHeTongDetailArraylModel : NSObject
+//文件格式
+@property(nonatomic,strong)NSString *FILEEXT;
+//文件名
+@property(nonatomic,strong)NSString *FILENAME;
+//文件路径
+@property(nonatomic,strong)NSString *FILEPATH;
+
+@end
+
 @interface AllChengBaoHeTongDetaillModel : NSObject
 //合同编号
 @property(nonatomic,strong)NSString *CONTRACTCODE;
@@ -51,5 +61,7 @@
 @property(nonatomic,strong)AllChengBaoHeTongDetaillModel *ContractDetails;
 
 @property(nonatomic,assign)NSInteger Code;
+
+@property(nonatomic,strong)NSMutableArray<AllChengBaoHeTongDetailArraylModel *> *Files;
 
 @end

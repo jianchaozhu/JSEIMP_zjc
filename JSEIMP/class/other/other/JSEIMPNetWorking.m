@@ -62,7 +62,7 @@
                                  @"password":password,
                                  @"client_id":@"ro.client",
                                  @"client_secret":@"secret",
-                                 @"scope":@"api1"};
+                                 @"scope":@"openid"};
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.responseSerializer = [AFJSONResponseSerializer serializer];
     //manager.requestSerializer = [AFJSONRequestSerializer serializer];
@@ -647,7 +647,22 @@
             NSString *finalQianYueDate = [qianYueDate stringByReplacingOccurrencesOfString:@"T00:00:00" withString:@""];
             NSString *finalStartDate = [startDate stringByReplacingOccurrencesOfString:@"T00:00:00" withString:@""];
             NSString *finalEndDate = [endDate stringByReplacingOccurrencesOfString:@"T00:00:00" withString:@""];
-            response(contractCode,projectName,jiaFangName,yiFangName,contractType,amount,finalQianYueDate,finalStartDate,finalEndDate,days,wenMingShiGongMoney,creator,chengBaoFanWei,qualityTiaoKuan,shiGongTiaoKuan,otherTiaoKuan);
+           
+            NSMutableArray *fileTypeMArray = [NSMutableArray array];
+            NSMutableArray *fileNameMArray = [NSMutableArray array];
+            NSMutableArray *filePathMArray = [NSMutableArray array];
+            NSString *api = @"http://nimp.jaso.com.cn:6001/";
+            for (int i = 0; i < model.Files.count; i++) {
+                
+                NSString *fileType = model.Files[i].FILEEXT;
+                NSString *fileName = model.Files[i].FILENAME;
+                NSString *filePath = [api stringByAppendingString:model.Files[i].FILEPATH];
+                
+                [fileTypeMArray addObject:fileType];
+                [fileNameMArray addObject:fileName];
+                [filePathMArray addObject:filePath];
+            }
+            response(contractCode,projectName,jiaFangName,yiFangName,contractType,amount,finalQianYueDate,finalStartDate,finalEndDate,days,wenMingShiGongMoney,creator,chengBaoFanWei,qualityTiaoKuan,shiGongTiaoKuan,otherTiaoKuan,fileTypeMArray,fileNameMArray,filePathMArray);
             
         } else {
             errorInfo();

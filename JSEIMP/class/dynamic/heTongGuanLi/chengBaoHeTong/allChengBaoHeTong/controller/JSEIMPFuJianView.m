@@ -15,9 +15,9 @@ static NSString *cellID = @"cellID";
 
 @property(nonatomic,strong)NSMutableArray *fileNameMArray;
 
-@property(nonatomic,strong)NSMutableArray *urlMArray;
+@property(nonatomic,strong)NSMutableArray *filePathMArray;
 
-@property(nonatomic,strong)NSString *fileNameString;
+@property(nonatomic,assign)NSInteger row;
 
 @end
 
@@ -42,17 +42,33 @@ static NSString *cellID = @"cellID";
 
 -(void)setupUI{
 
-    _fileNameMArray = [NSMutableArray arrayWithObjects:@"招标文件一标段(修改2014.10.7)",@" 无锡东北塘合同", nil];
-    
-    NSString *urlString1 = @"http://192.168.2.55:8080/Upload/2017/8/17/zhaobiao.doc";
-    NSString *urlString2 = @"http://192.168.2.55:8080/Upload/2017/8/17/wuxi.doc";
-    _urlMArray = [NSMutableArray arrayWithObjects:urlString1,urlString2, nil];
+    //注册通知
+    [self setNotification];
 
+}
+
+-(void)setNotification{
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(fileNameMArray:) name:@"fileNameMArray" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(filePathMArray:) name:@"filePathMArray" object:nil];
+    
+}
+
+-(void)fileNameMArray:(NSNotification *)notification{
+    
+    _fileNameMArray = notification.object;
+
+}
+
+-(void)filePathMArray:(NSNotification *)notification{
+    
+    _filePathMArray = notification.object;
+    
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    [self downloadWithURLString:_urlMArray[indexPath.row] fileName:_fileNameMArray[indexPath.row]];
+    [self downloadWithURLString:_filePathMArray[indexPath.row] fileName:_fileNameMArray[indexPath.row]];
     
 }
 
@@ -66,12 +82,10 @@ static NSString *cellID = @"cellID";
     NSURL *url=[NSURL URLWithString:urlString];
     //创建请求对象
     NSURLRequest *request=[NSURLRequest requestWithURL:url];
-    
-    _fileNameString = [fileName stringByAppendingString:@".doc"];
-    
+
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *path = [paths objectAtIndex:0];
-    NSString *filePath = [path stringByAppendingPathComponent:_fileNameString];
+    NSString *filePath = [path stringByAppendingPathComponent:fileName];
     NSFileManager *fileManager = [NSFileManager defaultManager];
     BOOL result = [fileManager fileExistsAtPath:filePath];
     
@@ -79,7 +93,7 @@ static NSString *cellID = @"cellID";
         
 //        [[NSFileManager defaultManager] removeItemAtPath:filePath error:nil];
         [[NSNotificationCenter defaultCenter] postNotificationName:@"exisFilePath" object:filePath];
-//        
+//
     }else if (result == NO){
         
         //封装下载任务
@@ -90,7 +104,7 @@ static NSString *cellID = @"cellID";
         } destination:^NSURL * _Nonnull(NSURL * _Nonnull targetPath, NSURLResponse * _Nonnull response) {
             //拼接安全的文件路径
             
-            _path=[[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)lastObject]stringByAppendingPathComponent:_fileNameString];
+            _path=[[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)lastObject]stringByAppendingPathComponent:fileName];
             //返回路径的url
             
             return [NSURL fileURLWithPath:_path];
@@ -132,7 +146,7 @@ static NSString *cellID = @"cellID";
         _cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
         
     }
-    
+
     _cell.selectionStyle = UITableViewCellSelectionStyleNone;
     _cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     [_cell.imageView setImage:[UIImage imageNamed:@"word"]];
