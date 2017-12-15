@@ -157,21 +157,7 @@
             
             JSEIMPTouBiaoProjectListModel *model = [JSEIMPTouBiaoProjectListModel mj_objectWithKeyValues:dict];
             
-            NSMutableArray *projectNameMArray = [NSMutableArray array];
-            NSMutableArray *projectCodeMArray = [NSMutableArray array];
-            NSMutableArray *projectIdMArray = [NSMutableArray array];
-            for (int i = 0; i < model.ProjectList.count; i++) {
-                
-                NSString *projectName = model.ProjectList[i].ProjectName;
-                NSString *projectCode = model.ProjectList[i].ProjectCode;
-                NSString *projectID = model.ProjectList[i].ProjectId;
-                
-                [projectNameMArray addObject:projectName];
-                [projectCodeMArray addObject:projectCode];
-                [projectIdMArray addObject:projectID];
-            }
-            
-            response(projectNameMArray,projectCodeMArray,projectIdMArray);
+            response(model);
             
         } else {
             errorInfo(noError);

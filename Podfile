@@ -12,5 +12,6 @@ target 'JSEIMP' do
   pod 'FMDB'
   pod 'MJExtension'
   pod 'SVProgressHUD'
+  pod 'MJRefresh'
 
 end

@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '38A756A166ACA44D99E02468D4014321'
+               BlueprintIdentifier = 'F6C78339860002616CD5925E2DDFAEB1'
                BlueprintName = 'Pods-JSEIMP'
                ReferencedContainer = 'container:Pods.xcodeproj'
                BuildableName = 'libPods-JSEIMP.a'>

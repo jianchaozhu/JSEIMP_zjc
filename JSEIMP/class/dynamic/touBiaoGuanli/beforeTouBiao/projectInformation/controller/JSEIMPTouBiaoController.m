@@ -11,6 +11,8 @@
 #import "JSEIMPNewTouBiaoController.h"
 #import "JSEIMPProjectInfoController.h"
 #import "JSEIMPNetWorking.h"
+#import "JSEIMPTouBiaoProjectListModel.h"
+#import <MJRefresh.h>
 
 static NSString *cellID = @"cellID";
 
@@ -21,8 +23,6 @@ static NSString *cellID = @"cellID";
 @property(nonatomic,strong)NSMutableArray *projectCodeMArray;
 
 @property(nonatomic,strong)NSMutableArray *projectIDMArray;
-
-@property(nonatomic,strong)NSMutableArray *finalMArray;
 
 @property(nonatomic,strong)NSMutableArray *resultArray;
 
@@ -64,7 +64,42 @@ static NSString *cellID = @"cellID";
     
     [self setupUI];
     
+    [self refreshData];
+    
 }
+
+//刷新
+-(void)refreshData{
+    
+    //下拉刷新
+    _tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        
+        [self.resultArray removeAllObjects];
+        
+        [self getData];
+        
+        [_tableView.mj_header endRefreshing];
+        
+        [_tableView reloadData];
+        
+    }];
+    
+    //上拉加载更多
+    _tableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
+        
+        [self.resultArray removeAllObjects];
+        
+        [self getData];
+        
+        [_tableView.mj_footer endRefreshing];
+        
+        NSLog(@"%@",_resultArray);
+        
+        [_tableView reloadData];
+    }];
+    
+}
+
 
 //UISearchBar作为tableview的头部
 -(UIView *)headView{
@@ -317,26 +352,29 @@ static NSString *cellID = @"cellID";
 }
 
 -(void)getData{
-
-    [JSEIMPNetWorking getTouBiaoListOnSuccess:^(NSMutableArray *projectNameMArray,NSMutableArray *projectCodeMArray,NSMutableArray *projectIDMArray){
+    
+    [JSEIMPNetWorking getTouBiaoListOnSuccess:^(JSEIMPTouBiaoProjectListModel *model){
+        
+        NSMutableArray *projectNameMArray = [NSMutableArray array];
+        NSMutableArray *projectCodeMArray = [NSMutableArray array];
+        NSMutableArray *projectIdMArray = [NSMutableArray array];
+        for (int i = 0; i < model.ProjectList.count; i++) {
+            
+            NSString *projectName = model.ProjectList[i].ProjectName;
+            NSString *projectCode = [NSString stringWithFormat:@"编号:%@",model.ProjectList[i].ProjectCode] ;
+            NSString *projectID = model.ProjectList[i].ProjectId;
+            
+            [projectNameMArray addObject:projectName];
+            [projectCodeMArray addObject:projectCode];
+            [projectIdMArray addObject:projectID];
+        }
         
         _projectNameMArray = projectNameMArray.copy;
         _projectCodeMArray = projectCodeMArray.copy;
-        _projectIDMArray = projectIDMArray.copy;
+        _projectIDMArray = projectIdMArray.copy;
         
-        NSString *string1 = @"编号:";
-        NSString *string2;
+        [self.resultArray addObjectsFromArray:_projectNameMArray];
         
-        _finalMArray = [NSMutableArray array];
-        for (int i = 0; i < _projectCodeMArray.count; i++) {
-            
-            string2 = [string1 stringByAppendingString:_projectCodeMArray[i]];
-            
-            [_finalMArray addObject:string2];
-            
-            [self.resultArray addObject:_projectNameMArray[i]];
-        }
-
         [_tableView reloadData];
         
     } onErrorInfo:nil];
@@ -423,7 +461,7 @@ static NSString *cellID = @"cellID";
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-
+    
     _cell= [tableView cellForRowAtIndexPath:indexPath];
     
     if (_cell == nil) {
@@ -432,12 +470,8 @@ static NSString *cellID = @"cellID";
         
     }
     
-//    for (UIView *view in _cell.contentView.subviews) {
-//        [view removeFromSuperview];
-//    }
-    
     _cell.textLabel.text = self.resultArray[indexPath.row];
-    _cell.detailTextLabel.text = _finalMArray[indexPath.row];
+    _cell.detailTextLabel.text = _projectCodeMArray[indexPath.row];
     _cell.detailTextLabel.textColor = [UIColor darkGrayColor];
     _cell.selectionStyle = UITableViewCellSelectionStyleNone;
     _cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;

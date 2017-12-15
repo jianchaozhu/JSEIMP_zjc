@@ -68,11 +68,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "JSEIMP/class/dynamic/touBiaoGuanli/beforeTouBiao/projectInformation/controller/JSEIMPTouBiaoController.m"
-            timestampString = "534996238.709539"
+            timestampString = "535011435.006774"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "228"
-            endingLineNumber = "228"
+            startingLineNumber = "263"
+            endingLineNumber = "263"
             landmarkName = "-searchBar:textDidChange:"
             landmarkType = "7">
          </BreakpointContent>
@@ -100,7 +100,7 @@
                   moduleName = "JSEIMP"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/zhujianchao/Desktop/JSEIMP2/JSEIMP/class/workDesktop/daiBanItems/controller/JSEIMPDaiBanItemsController.m"
-                  timestampString = "534996238.91559"
+                  timestampString = "535011401.96682"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "30"
@@ -115,7 +115,7 @@
                   moduleName = "JSEIMP"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/zhujianchao/Desktop/JSEIMP2/JSEIMP/class/workDesktop/daiBanItems/controller/JSEIMPDaiBanItemsController.m"
-                  timestampString = "534996238.91848"
+                  timestampString = "535011401.970232"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "32"
@@ -132,11 +132,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "JSEIMP/class/other/other/JSEIMPNetWorking.m"
-            timestampString = "534996238.709772"
+            timestampString = "535011435.007376"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "253"
-            endingLineNumber = "253"
+            startingLineNumber = "239"
+            endingLineNumber = "239"
             landmarkName = "+getTouBiaoDetailListWithProjectID:OnSuccess:onErrorInfo:"
             landmarkType = "7">
          </BreakpointContent>
@@ -148,11 +148,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "JSEIMP/class/other/other/JSEIMPNetWorking.m"
-            timestampString = "534996238.709871"
+            timestampString = "535011435.007452"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "710"
-            endingLineNumber = "710"
+            startingLineNumber = "696"
+            endingLineNumber = "696"
             landmarkName = "+getZhuanYeChengBaoHeTongOnSuccess:onErrorInfo:"
             landmarkType = "7">
          </BreakpointContent>
@@ -164,11 +164,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "JSEIMP/class/other/other/JSEIMPNetWorking.m"
-            timestampString = "534996238.709927"
+            timestampString = "535011435.007516"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "579"
-            endingLineNumber = "579"
+            startingLineNumber = "565"
+            endingLineNumber = "565"
             landmarkName = "+getAllChengBaoHeTongOnSuccess:onErrorInfo:"
             landmarkType = "7">
          </BreakpointContent>
@@ -180,11 +180,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "JSEIMP/class/other/other/JSEIMPNetWorking.m"
-            timestampString = "534996238.71003"
+            timestampString = "535011435.007579"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "822"
-            endingLineNumber = "822"
+            startingLineNumber = "808"
+            endingLineNumber = "808"
             landmarkName = "+getZhuanYeFenBaoHeTongOnSuccess:onErrorInfo:"
             landmarkType = "7">
          </BreakpointContent>
@@ -212,7 +212,7 @@
                   moduleName = "JSEIMP"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/zhujianchao/Desktop/JSEIMP2/JSEIMP/class/dynamic/heTongGuanLi/fenBaoHeTong/zhuanYeFenBaoHeTong/controller/JSEIMPZhuanYeFenBaoHeTongController.m"
-                  timestampString = "534996238.954918"
+                  timestampString = "535011401.995423"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "308"
@@ -227,7 +227,7 @@
                   moduleName = "JSEIMP"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/zhujianchao/Desktop/JSEIMP2/JSEIMP/class/dynamic/heTongGuanLi/fenBaoHeTong/zhuanYeFenBaoHeTong/controller/JSEIMPZhuanYeFenBaoHeTongController.m"
-                  timestampString = "534996238.957471"
+                  timestampString = "535011401.997666"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "308"
@@ -244,44 +244,76 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "JSEIMP/class/other/other/JSEIMPNetWorking.m"
-            timestampString = "534996238.710608"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "855"
-            endingLineNumber = "855"
-            landmarkName = "+getZhuanYeFenBaoHeTongOnSuccess:onErrorInfo:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "JSEIMP/class/other/other/JSEIMPNetWorking.m"
-            timestampString = "534996238.71067"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "840"
-            endingLineNumber = "840"
-            landmarkName = "+getZhuanYeFenBaoHeTongOnSuccess:onErrorInfo:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "JSEIMP/class/other/other/JSEIMPNetWorking.m"
-            timestampString = "534996238.710735"
+            timestampString = "535011435.007673"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "841"
             endingLineNumber = "841"
             landmarkName = "+getZhuanYeFenBaoHeTongOnSuccess:onErrorInfo:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "JSEIMP/class/other/other/JSEIMPNetWorking.m"
+            timestampString = "535011435.007737"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "826"
+            endingLineNumber = "826"
+            landmarkName = "+getZhuanYeFenBaoHeTongOnSuccess:onErrorInfo:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "JSEIMP/class/other/other/JSEIMPNetWorking.m"
+            timestampString = "535011435.007797"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "827"
+            endingLineNumber = "827"
+            landmarkName = "+getZhuanYeFenBaoHeTongOnSuccess:onErrorInfo:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "JSEIMP/class/dynamic/touBiaoGuanli/beforeTouBiao/projectInformation/controller/JSEIMPTouBiaoController.m"
+            timestampString = "535011435.007864"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "373"
+            endingLineNumber = "373"
+            landmarkName = "-getData"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "JSEIMP/class/dynamic/touBiaoGuanli/beforeTouBiao/projectInformation/controller/JSEIMPTouBiaoController.m"
+            timestampString = "535011435.008196"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "423"
+            endingLineNumber = "423"
+            landmarkName = "-tableView:numberOfRowsInSection:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
