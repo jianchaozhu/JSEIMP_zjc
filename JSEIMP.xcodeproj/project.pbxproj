@@ -139,6 +139,10 @@
 		C1F8237A1FDE51DA00EAF37C /* JSEIMPZhuanYeChengBaoHeTongController.m in Sources */ = {isa = PBXBuildFile; fileRef = C1F823761FDE51D900EAF37C /* JSEIMPZhuanYeChengBaoHeTongController.m */; };
 		C1F8237D1FDE520500EAF37C /* JSEIMPZhuanYeChengBaoHeTongModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C1F8237C1FDE520500EAF37C /* JSEIMPZhuanYeChengBaoHeTongModel.m */; };
 		C1F823801FDE6AFC00EAF37C /* JSEIMPZhuanYeChengBaoHeTongDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = C1F8237F1FDE6AFC00EAF37C /* JSEIMPZhuanYeChengBaoHeTongDetailController.m */; };
+		C1F823881FE2108000EAF37C /* JSEIMPDaiBanItemsController.m in Sources */ = {isa = PBXBuildFile; fileRef = C1F823871FE2108000EAF37C /* JSEIMPDaiBanItemsController.m */; };
+		C1F823901FE359E000EAF37C /* JSEIMPFenBaoHeTongController.m in Sources */ = {isa = PBXBuildFile; fileRef = C1F8238F1FE359E000EAF37C /* JSEIMPFenBaoHeTongController.m */; };
+		C1F823931FE35BFE00EAF37C /* JSEIMPZhuanYeFenBaoHeTongController.m in Sources */ = {isa = PBXBuildFile; fileRef = C1F823921FE35BFE00EAF37C /* JSEIMPZhuanYeFenBaoHeTongController.m */; };
+		C1F823961FE361F800EAF37C /* JSEIMPZhuanYeFenBaoHeTongModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C1F823951FE361F800EAF37C /* JSEIMPZhuanYeFenBaoHeTongModel.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -400,6 +404,14 @@
 		C1F8237C1FDE520500EAF37C /* JSEIMPZhuanYeChengBaoHeTongModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JSEIMPZhuanYeChengBaoHeTongModel.m; sourceTree = "<group>"; };
 		C1F8237E1FDE6AFC00EAF37C /* JSEIMPZhuanYeChengBaoHeTongDetailController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JSEIMPZhuanYeChengBaoHeTongDetailController.h; sourceTree = "<group>"; };
 		C1F8237F1FDE6AFC00EAF37C /* JSEIMPZhuanYeChengBaoHeTongDetailController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JSEIMPZhuanYeChengBaoHeTongDetailController.m; sourceTree = "<group>"; };
+		C1F823861FE2108000EAF37C /* JSEIMPDaiBanItemsController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JSEIMPDaiBanItemsController.h; sourceTree = "<group>"; };
+		C1F823871FE2108000EAF37C /* JSEIMPDaiBanItemsController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JSEIMPDaiBanItemsController.m; sourceTree = "<group>"; };
+		C1F8238E1FE359E000EAF37C /* JSEIMPFenBaoHeTongController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JSEIMPFenBaoHeTongController.h; sourceTree = "<group>"; };
+		C1F8238F1FE359E000EAF37C /* JSEIMPFenBaoHeTongController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JSEIMPFenBaoHeTongController.m; sourceTree = "<group>"; };
+		C1F823911FE35BFE00EAF37C /* JSEIMPZhuanYeFenBaoHeTongController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JSEIMPZhuanYeFenBaoHeTongController.h; sourceTree = "<group>"; };
+		C1F823921FE35BFE00EAF37C /* JSEIMPZhuanYeFenBaoHeTongController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JSEIMPZhuanYeFenBaoHeTongController.m; sourceTree = "<group>"; };
+		C1F823941FE361F800EAF37C /* JSEIMPZhuanYeFenBaoHeTongModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JSEIMPZhuanYeFenBaoHeTongModel.h; sourceTree = "<group>"; };
+		C1F823951FE361F800EAF37C /* JSEIMPZhuanYeFenBaoHeTongModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JSEIMPZhuanYeFenBaoHeTongModel.m; sourceTree = "<group>"; };
 		E49184B2F529332E524E6306 /* Pods-JSEIMP.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JSEIMP.debug.xcconfig"; path = "Pods/Target Support Files/Pods-JSEIMP/Pods-JSEIMP.debug.xcconfig"; sourceTree = "<group>"; };
 		E6C22083F882A16F454660EA /* Pods-JSEIMP.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JSEIMP.release.xcconfig"; path = "Pods/Target Support Files/Pods-JSEIMP/Pods-JSEIMP.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -1235,6 +1247,7 @@
 		C12E45A31FAAEFC100D95D7C /* fenBaoHeTong */ = {
 			isa = PBXGroup;
 			children = (
+				C1F823891FE3592100EAF37C /* zhuanYeFenBaoHeTong */,
 				C12E45A41FAAEFC100D95D7C /* controller */,
 				C12E45A51FAAEFC100D95D7C /* model */,
 				C12E45A61FAAEFC100D95D7C /* view */,
@@ -1245,6 +1258,8 @@
 		C12E45A41FAAEFC100D95D7C /* controller */ = {
 			isa = PBXGroup;
 			children = (
+				C1F8238E1FE359E000EAF37C /* JSEIMPFenBaoHeTongController.h */,
+				C1F8238F1FE359E000EAF37C /* JSEIMPFenBaoHeTongController.m */,
 			);
 			path = controller;
 			sourceTree = "<group>";
@@ -1450,6 +1465,7 @@
 		C1C6EC2C1FC4208300FDA439 /* workDesktop */ = {
 			isa = PBXGroup;
 			children = (
+				C1F823811FE2106C00EAF37C /* daiBanItems */,
 				C1C6EC2D1FC4208300FDA439 /* controller */,
 				C1C6EC2E1FC4208300FDA439 /* model */,
 				C1C6EC2F1FC4208300FDA439 /* other */,
@@ -1996,6 +2012,90 @@
 			path = other;
 			sourceTree = "<group>";
 		};
+		C1F823811FE2106C00EAF37C /* daiBanItems */ = {
+			isa = PBXGroup;
+			children = (
+				C1F823821FE2106C00EAF37C /* controller */,
+				C1F823831FE2106C00EAF37C /* model */,
+				C1F823841FE2106C00EAF37C /* other */,
+				C1F823851FE2106C00EAF37C /* view */,
+			);
+			path = daiBanItems;
+			sourceTree = "<group>";
+		};
+		C1F823821FE2106C00EAF37C /* controller */ = {
+			isa = PBXGroup;
+			children = (
+				C1F823861FE2108000EAF37C /* JSEIMPDaiBanItemsController.h */,
+				C1F823871FE2108000EAF37C /* JSEIMPDaiBanItemsController.m */,
+			);
+			path = controller;
+			sourceTree = "<group>";
+		};
+		C1F823831FE2106C00EAF37C /* model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = model;
+			sourceTree = "<group>";
+		};
+		C1F823841FE2106C00EAF37C /* other */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = other;
+			sourceTree = "<group>";
+		};
+		C1F823851FE2106C00EAF37C /* view */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = view;
+			sourceTree = "<group>";
+		};
+		C1F823891FE3592100EAF37C /* zhuanYeFenBaoHeTong */ = {
+			isa = PBXGroup;
+			children = (
+				C1F8238A1FE3592100EAF37C /* controller */,
+				C1F8238B1FE3592100EAF37C /* model */,
+				C1F8238C1FE3592100EAF37C /* other */,
+				C1F8238D1FE3592100EAF37C /* view */,
+			);
+			path = zhuanYeFenBaoHeTong;
+			sourceTree = "<group>";
+		};
+		C1F8238A1FE3592100EAF37C /* controller */ = {
+			isa = PBXGroup;
+			children = (
+				C1F823911FE35BFE00EAF37C /* JSEIMPZhuanYeFenBaoHeTongController.h */,
+				C1F823921FE35BFE00EAF37C /* JSEIMPZhuanYeFenBaoHeTongController.m */,
+			);
+			path = controller;
+			sourceTree = "<group>";
+		};
+		C1F8238B1FE3592100EAF37C /* model */ = {
+			isa = PBXGroup;
+			children = (
+				C1F823941FE361F800EAF37C /* JSEIMPZhuanYeFenBaoHeTongModel.h */,
+				C1F823951FE361F800EAF37C /* JSEIMPZhuanYeFenBaoHeTongModel.m */,
+			);
+			path = model;
+			sourceTree = "<group>";
+		};
+		C1F8238C1FE3592100EAF37C /* other */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = other;
+			sourceTree = "<group>";
+		};
+		C1F8238D1FE3592100EAF37C /* view */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = view;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -2136,6 +2236,7 @@
 				C1047F941F7F7E23005412FB /* JSEIMPNewTouBiaoController.m in Sources */,
 				C1047FC71F8B48EF005412FB /* HACursor.m in Sources */,
 				C1C6EC521FCCF49700FDA439 /* JSEIMPProjectJiangXiangModel.m in Sources */,
+				C1F823901FE359E000EAF37C /* JSEIMPFenBaoHeTongController.m in Sources */,
 				C1EB2E941F8B65D7005D9F2F /* HATestView.m in Sources */,
 				C1047F9A1F7F7E23005412FB /* JSEIMPNewTouBiaoZhaiYaoController.m in Sources */,
 				C1EB2EBE1F8E0C70005D9F2F /* JSEIMPTouBiaoBaoZhengJinController.m in Sources */,
@@ -2149,6 +2250,7 @@
 				C1A668471F7108FC00A7F11E /* LMJDropdownMenu.m in Sources */,
 				C1F8235A1FD63E0F00EAF37C /* JSEIMPNewShouKuanJieDianView.m in Sources */,
 				C1C6EC331FC4209A00FDA439 /* JSEIMPWorkDesktopController.m in Sources */,
+				C1F823881FE2108000EAF37C /* JSEIMPDaiBanItemsController.m in Sources */,
 				C1EB2F1E1F984367005D9F2F /* JSEIMPNewZhiJianShouXuView.m in Sources */,
 				C1047FA81F7F809E005412FB /* JSEIMPTouBiaoGuanLiController.m in Sources */,
 				C1047FD01F8B48EF005412FB /* UIColor+RGBA.m in Sources */,
@@ -2180,6 +2282,7 @@
 				C1EB2ED51F8EF714005D9F2F /* JSEIMPLvYueBaoZhengJinController.m in Sources */,
 				C1F8235E1FD63E0F00EAF37C /* JSEIMPPropjectChengBaoFanWeiView.m in Sources */,
 				C1C6EC431FC7FC5400FDA439 /* JSEIMPProjectDetailModel.m in Sources */,
+				C1F823961FE361F800EAF37C /* JSEIMPZhuanYeFenBaoHeTongModel.m in Sources */,
 				C1EB2F321F99CF68005D9F2F /* JSEIMPNewStaffBeiAnController.m in Sources */,
 				C1EB2F4B1F9ED72C005D9F2F /* JSEIMPBiaoHouAnalyzeDetailController.m in Sources */,
 				C1F823561FD63E0F00EAF37C /* JSEIMPNewChengBaoHeTongController.m in Sources */,
@@ -2204,6 +2307,7 @@
 				C1EB2EBF1F8E0C70005D9F2F /* JSEIMPTouBiaoBaoZhengJinDetailController.m in Sources */,
 				C1C6EC371FC7ACB900FDA439 /* JSEIMPNetWorking.m in Sources */,
 				C1EB2F2F1F99934D005D9F2F /* JSEIMPStaffBeiAnDetailController.m in Sources */,
+				C1F823931FE35BFE00EAF37C /* JSEIMPZhuanYeFenBaoHeTongController.m in Sources */,
 				C1C6EC5E1FD0F0E100FDA439 /* JSEIMPLoginController.m in Sources */,
 				C1EB2F181F973EC5005D9F2F /* JSEIMPNewFaBaoShouXuView.m in Sources */,
 				C1EB2EBD1F8E0C70005D9F2F /* JSEIMPNewTouBiaoBaoZhengJinController.m in Sources */,

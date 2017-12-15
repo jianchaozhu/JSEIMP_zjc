@@ -8,6 +8,7 @@
 
 #import "JSEIMPHeTongGuanLiController.h"
 #import "JSEIMPChengBaoHeTongController.h"
+#import "JSEIMPFenBaoHeTongController.h"
 
 static NSString *cellID = @"cellID";
 
@@ -70,7 +71,7 @@ static NSString *cellID = @"cellID";
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     
-    return 1;
+    return 2;
     
 //    return 8;
     
@@ -84,6 +85,11 @@ static NSString *cellID = @"cellID";
         
         [self.navigationController pushViewController:chengBaoHeTongController animated:YES];
         
+    }else if (indexPath.row == 1){
+        
+        JSEIMPFenBaoHeTongController *fenBaoHeTongController = [JSEIMPFenBaoHeTongController new];
+        
+        [self.navigationController pushViewController:fenBaoHeTongController animated:YES];
     }
     
 }
@@ -101,6 +107,9 @@ static NSString *cellID = @"cellID";
     if (indexPath.row == 0) {
         
         [self setImageViewWithName:@"chengBaoHeTong" Text:@"承包合同"];
+    }else if (indexPath.row == 1){
+        
+        [self setImageViewWithName:@"fenBaoHeTong" Text:@"分包合同"];
     }
     
 //    if (indexPath.section == 0) {

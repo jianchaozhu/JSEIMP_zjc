@@ -99,24 +99,28 @@
     UIViewController* myvc = [[UIViewController alloc] initWithNibName:nil bundle:nil];
     self.window.rootViewController = myvc;
     
+//    JSEIMPTabBarController *tabbarController = [JSEIMPTabBarController new];
+//    
+//    [self restoreRootViewController:tabbarController];
+    
     [JSEIMPNetWorking loginWithUserDefaults:^(NSString *username){
-        
+
         [SVProgressHUD showSuccessWithStatus:@"登陆成功"];
-        
+
         JSEIMPTabBarController *tabbarController = [JSEIMPTabBarController new];
-        
+
         [self restoreRootViewController:tabbarController];
-        
+
     } onError:^(JSEIMPError code) {
-        
+
         if (code == noUserData || code == error_500 || code == noNet) {
-            
+
             JSEIMPLoginController *loginViewController = [JSEIMPLoginController new];
 
             [self restoreRootViewController:loginViewController];
-            
+
         }
-        
+
     }];
     
 }

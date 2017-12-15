@@ -20,6 +20,7 @@
 #import "JSEIMPAllChengBaoHeTongModel.h"
 #import "JSEIMPAllChengBaoHeTongDetailModel.h"
 #import "JSEIMPZhuanYeChengBaoHeTongModel.h"
+#import "JSEIMPZhuanYeFenBaoHeTongModel.h"
 #import "JSEIMPError.h"
 
 @implementation JSEIMPNetWorking
@@ -30,6 +31,7 @@
         NSHTTPURLResponse *resp = error.userInfo[AFNetworkingOperationFailingURLResponseErrorKey];
         
         NSLog(@"%@",error);
+        
         NSLog(@"%zd",resp.statusCode);
         if (error.code == -1009) {
             return noNet; //无网络访问
@@ -42,6 +44,16 @@
         }
     }
     return noError;
+}
+
+//生成请求统一header
++(void)setPublicHeader:(AFHTTPSessionManager *)manager{
+    
+    NSUserDefaults *data = [NSUserDefaults standardUserDefaults];
+    
+    NSString *string = [NSString stringWithFormat:@"Bearer %@",[data objectForKey:@"userToken"]];
+    
+    [manager.requestSerializer setValue:string forHTTPHeaderField:@"Authorization"];
 }
 
 //系统登录
@@ -69,6 +81,7 @@
     //转换content-Type要用下面的request
     manager.requestSerializer = [AFHTTPRequestSerializer serializer];
     [manager.requestSerializer setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
+    [self setPublicHeader:manager];
     [manager POST:API_LOGIN parameters:parameters progress:^(NSProgress * _Nonnull uploadProgress) {
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         
@@ -98,7 +111,7 @@
             errorCode(noData);
         }
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        errorCode([self transErrorTask:error]);
+        NSLog(@"%@",error);
     }];
 }
 
@@ -128,10 +141,11 @@
 
 //获得投标项目列表
 +(void)getTouBiaoListOnSuccess:(void (^)())response onErrorInfo:(void (^)())errorInfo{
-
+    
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.responseSerializer = [AFJSONResponseSerializer serializer];
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
+    [self setPublicHeader:manager];
     [manager GET:API_TOUBIAOLIST parameters:nil progress:^(NSProgress * _Nonnull uploadProgress) {
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
     
@@ -165,7 +179,8 @@
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         
-        NSLog(@"%@",error);
+        NSLog(@"error:%@",error);
+        
     }];
 
 }
@@ -178,6 +193,7 @@
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.responseSerializer = [AFJSONResponseSerializer serializer];
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
+    [self setPublicHeader:manager];
     [manager GET:url parameters:nil progress:^(NSProgress * _Nonnull uploadProgress) {
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         
@@ -234,7 +250,7 @@
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         
-        NSLog(@"%@",error);
+        errorInfo([self transErrorTask:error]);
     }];
     
 }
@@ -248,7 +264,7 @@
 //    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json", nil];
     
     NSDictionary *paramaters = @{@"DepositType":@"0"};
-    
+    [self setPublicHeader:manager];
     [manager POST:API_TOUBIAOBAOZHENJIN parameters:paramaters progress:^(NSProgress * _Nonnull uploadProgress) {
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         
@@ -303,7 +319,7 @@
     
     NSDictionary *paramaters = @{@"DepositType":@"0",
                                  @"DepositId":depositId};
-    
+    [self setPublicHeader:manager];
     [manager POST:API_TOUBIAOBAOZHENJINDETAIL parameters:paramaters progress:^(NSProgress * _Nonnull uploadProgress) {
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         
@@ -353,7 +369,7 @@
     //    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json", nil];
     
     NSDictionary *paramaters = @{@"DepositType":@"1"};
-    
+    [self setPublicHeader:manager];
     [manager POST:API_FARMERBAOZHENJIN parameters:paramaters progress:^(NSProgress * _Nonnull uploadProgress) {
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
 
@@ -408,7 +424,7 @@
     
     NSDictionary *paramaters = @{@"DepositType":@"1",
                                  @"DepositId":depositId};
-    
+    [self setPublicHeader:manager];
     [manager POST:API_FARMERBAOZHENJINDETAIL parameters:paramaters progress:^(NSProgress * _Nonnull uploadProgress) {
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         
@@ -455,6 +471,7 @@
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.responseSerializer = [AFJSONResponseSerializer serializer];
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
+    [self setPublicHeader:manager];
     [manager POST:API_PROJECTJIANGXIANG parameters:nil progress:^(NSProgress * _Nonnull uploadProgress) {
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         
@@ -508,6 +525,7 @@
     
     NSDictionary *paramaters = @{@"ProjectId":projectId};
     
+    [self setPublicHeader:manager];
     [manager POST:API_PROJECTJIANGXIANGDETAIL parameters:paramaters progress:^(NSProgress * _Nonnull uploadProgress) {
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         
@@ -554,6 +572,7 @@
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.responseSerializer = [AFJSONResponseSerializer serializer];
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
+    [self setPublicHeader:manager];
     [manager POST:API_ALLCHENGBAOHETONG parameters:parameters progress:^(NSProgress * _Nonnull uploadProgress) {
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         
@@ -598,12 +617,13 @@
             response(contractIdMArray,contractNameMArray,statusMArray);
             
         } else {
-            errorInfo(noData);
+            
         }
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         
         NSLog(@"%@",error);
+        
     }];
 }
 
@@ -616,6 +636,7 @@
     
     NSDictionary *paramaters = @{@"ContractId":contractId};
     
+    [self setPublicHeader:manager];
     [manager POST:API_ALLCHENGBAOHETONGDETAIL parameters:paramaters progress:^(NSProgress * _Nonnull uploadProgress) {
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         
@@ -674,7 +695,7 @@
     }];
 }
 
-//获得专业包合同列表
+//获得专业承包合同列表
 +(void)getZhuanYeChengBaoHeTongOnSuccess:(void (^)())response onErrorInfo:(void (^)(JSEIMPError))errorInfo{
     
     NSArray *parameters = @[@{@"ContractType":@"CONTRACTA1"}];
@@ -682,7 +703,8 @@
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.responseSerializer = [AFJSONResponseSerializer serializer];
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
-    [manager POST:API_ZHUANTECHENGBAOHETONG parameters:parameters progress:^(NSProgress * _Nonnull uploadProgress) {
+    [self setPublicHeader:manager];
+    [manager POST:API_ZHUANYECHENGBAOHETONG parameters:parameters progress:^(NSProgress * _Nonnull uploadProgress) {
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         
         NSLog(@"%@",responseObject);
@@ -733,7 +755,7 @@
     }];
 }
 
-//获得专业包合同明细
+//获得专业承包合同明细
 +(void)getZhuanYeChengBaoHeTongDetailWithContractId:(NSString *)contractId OnSuccess:(void (^)())response onErrorInfo:(void (^)())errorInfo{
     
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
@@ -741,8 +763,8 @@
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
     
     NSDictionary *paramaters = @{@"ContractId":contractId};
-    
-    [manager POST:API_ZHUANTECHENGBAOHETONGDETAIL parameters:paramaters progress:^(NSProgress * _Nonnull uploadProgress) {
+    [self setPublicHeader:manager];
+    [manager POST:API_ZHUANYECHENGBAOHETONGDETAIL parameters:paramaters progress:^(NSProgress * _Nonnull uploadProgress) {
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         
         NSLog(@"%@",responseObject);
@@ -777,6 +799,94 @@
             
         } else {
             errorInfo();
+        }
+        
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        
+        NSLog(@"%@",error);
+    }];
+}
+
+//获得专业分包合同列表
++(void)getZhuanYeFenBaoHeTongOnSuccess:(void (^)())response onErrorInfo:(void (^)(JSEIMPError))errorInfo{
+    
+    NSArray *parameters = @[@{@"ContractType":@"CONTRACTB"}];
+    
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    manager.responseSerializer = [AFJSONResponseSerializer serializer];
+    manager.requestSerializer = [AFJSONRequestSerializer serializer];
+    [self setPublicHeader:manager];
+    [manager POST:API_ZHUANYEFENBAOHETONG parameters:parameters progress:^(NSProgress * _Nonnull uploadProgress) {
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        
+        NSLog(@"%@",responseObject);
+        
+        if (responseObject != nil) {
+            
+            NSDictionary *dict = (NSDictionary *)responseObject;
+            
+            JSEIMPZhuanYeFenBaoHeTongModel *model = [JSEIMPZhuanYeFenBaoHeTongModel mj_objectWithKeyValues:dict];
+            
+            NSMutableArray *contractIdMArray = [NSMutableArray array];
+            NSMutableArray *contractNameMArray = [NSMutableArray array];
+            NSMutableArray *statusMArray = [NSMutableArray array];
+            for (int i = 0; i < model.ContractList.count; i++) {
+                
+                NSString *contractId = model.ContractList[i].ContractId;
+                NSString *contractName = model.ContractList[i].ContractName;
+                NSInteger status = model.ContractList[i].Status;
+                NSString *heTongStatus;
+                
+                [contractIdMArray addObject:contractId];
+                [contractNameMArray addObject:contractName];
+                if (status == 0) {
+                    heTongStatus = @"待审";
+                }else if (status == 1){
+                    heTongStatus = @"审批中";
+                }else if (status == 2){
+                    heTongStatus = @"已审";
+                }else if (status == 3){
+                    heTongStatus = @"作废";
+                }else if (status == 4){
+                    heTongStatus = @"已决算";
+                }else if (status == 5){
+                    heTongStatus = @"终止";
+                }
+                [statusMArray addObject:heTongStatus];
+            }
+            
+            response(contractIdMArray,contractNameMArray,statusMArray);
+            
+        } else {
+            errorInfo(noData);
+        }
+        
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        
+        NSLog(@"%@",error);
+    }];
+}
+
+//获得待办事项列表
++(void)getDaiBanItemOnSuccess:(void (^)())response onErrorInfo:(void (^)(JSEIMPError))errorInfo{
+    
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    manager.responseSerializer = [AFJSONResponseSerializer serializer];
+    manager.requestSerializer = [AFJSONRequestSerializer serializer];
+    
+    [self setPublicHeader:manager];
+    
+    [manager GET:API_DAIBANITEM parameters:nil progress:^(NSProgress * _Nonnull uploadProgress) {
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        
+        NSLog(@"%@",responseObject);
+        
+        if (responseObject != nil) {
+            
+            
+        } else {
+            
+            errorInfo(noData);
         }
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {

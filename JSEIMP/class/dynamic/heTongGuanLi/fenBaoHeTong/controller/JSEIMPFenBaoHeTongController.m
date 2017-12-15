@@ -1,21 +1,21 @@
 //
-//  JSEIMPWorkDesktopController.m
+//  JSEIMPFenBaoHeTongController.m
 //  JSEIMP
 //
-//  Created by 朱建超 on 2017/11/21.
+//  Created by 朱建超 on 2017/12/15.
 //  Copyright © 2017年 朱建超. All rights reserved.
 //
 
-#import "JSEIMPWorkDesktopController.h"
-#import "JSEIMPDaiBanItemsController.h"
+#import "JSEIMPFenBaoHeTongController.h"
+#import "JSEIMPZhuanYeFenBaoHeTongController.h"
 
 static NSString *cellID = @"cellID";
 
-@interface JSEIMPWorkDesktopController ()<UITableViewDelegate,UITableViewDataSource>
+@interface JSEIMPFenBaoHeTongController ()<UITableViewDelegate,UITableViewDataSource>
 
 @end
 
-@implementation JSEIMPWorkDesktopController{
+@implementation JSEIMPFenBaoHeTongController{
     
     UITableView *_tableView;
     
@@ -28,7 +28,7 @@ static NSString *cellID = @"cellID";
     
     self.view.backgroundColor = [UIColor whiteColor];
     
-    self.title = @"工作台";
+    self.title = @"分包合同";
     
     [self setupUI];
     
@@ -58,29 +58,30 @@ static NSString *cellID = @"cellID";
 
 -(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
     
+    if (section == 0) {
+        
+        return 10;
+    }
+    
     return 5;
     
 }
 
--(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    
-    return 3;
-    
-}
-
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-
+    
     return 1;
+    
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
     if (indexPath.row == 0) {
         
-        JSEIMPDaiBanItemsController *daiBanItemsController = [JSEIMPDaiBanItemsController new];
+        JSEIMPZhuanYeFenBaoHeTongController *zhuanYeFenBaoHeTongController = [JSEIMPZhuanYeFenBaoHeTongController new];
         
-        [self.navigationController pushViewController:daiBanItemsController animated:YES];
+        [self.navigationController pushViewController:zhuanYeFenBaoHeTongController animated:YES];
     }
+    
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -90,18 +91,12 @@ static NSString *cellID = @"cellID";
     if (_cell == nil) {
         
         _cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellID];
+        
     }
     
-    if (indexPath.section == 0) {
-            
-        [self setImageViewWithName:@"waitForDo" Text:@"待办事项" TextColor:[UIColor darkTextColor]];
-
-    }else if (indexPath.section == 1){
+    if (indexPath.row == 0) {
         
-        [self setImageViewWithName:@"isDoing" Text:@"在办事项" TextColor:[UIColor darkTextColor]];
-    }else if (indexPath.section == 2){
-    
-        [self setImageViewWithName:@"isDone" Text:@"已办事项" TextColor:[UIColor darkTextColor]];
+        [self setImageViewWithName:@"zhuanYeFenBaoHeTong" Text:@"专业分包合同"];
     }
     
     _cell.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -111,11 +106,10 @@ static NSString *cellID = @"cellID";
     
 }
 
--(void)setImageViewWithName:(NSString *)name Text:(NSString *)text TextColor:(UIColor *)textColor{
+-(void)setImageViewWithName:(NSString *)name Text:(NSString *)text{
     
     _cell.imageView.image = [UIImage imageNamed:name];
     _cell.textLabel.text = text;
-    _cell.textLabel.textColor = textColor;
     
 }
 

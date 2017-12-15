@@ -8,10 +8,16 @@
 
 //测试API
 //#define IP @"192.168.2.53:8002"
+//周军本地API
+//#define IP @"api.jaso.com"
 //正式API
 #define IP @"192.168.2.55:6002"
+//hamazon登录API
+#define HALOGINIP @"192.168.2.55:83"
+//hamazon工作流API
+#define HAWORKIP @"192.168.2.55:84"
 //登录
-#define API_LOGIN @"http://sso.jaso.com.cn:83/connect/token"
+#define API_LOGIN @"http://"HALOGINIP"/connect/token"
 //获取投标项目列表
 #define API_TOUBIAOLIST @"http://"IP"/api/Bidding/Project/GetList"
 //获取投标项目明细
@@ -33,6 +39,10 @@
 //获得总承包合同详情
 #define API_ALLCHENGBAOHETONGDETAIL @"http://"IP"/api/Contract/Contract/GetDetails"
 //获得专业承包合同列表
-#define API_ZHUANTECHENGBAOHETONG @"http://"IP"/api/Contract/Contract/GetList"
+#define API_ZHUANYECHENGBAOHETONG @"http://"IP"/api/Contract/Contract/GetList"
 //获得专业承包合同详情
-#define API_ZHUANTECHENGBAOHETONGDETAIL @"http://"IP"/api/Contract/Contract/GetDetails"
+#define API_ZHUANYECHENGBAOHETONGDETAIL @"http://"IP"/api/Contract/Contract/GetDetails"
+//获得专业分包合同列表
+#define API_ZHUANYEFENBAOHETONG @"http://"IP"/api/Contract/Contract/GetList"
+//获得待办事项列表
+#define API_DAIBANITEM @"http://"HAWORKIP"/api/services/wf/Instance/GetPendingWorkItems"
