@@ -44,5 +44,7 @@
 #define API_ZHUANYECHENGBAOHETONGDETAIL @"http://"IP"/api/Contract/Contract/GetDetails"
 //获得专业分包合同列表
 #define API_ZHUANYEFENBAOHETONG @"http://"IP"/api/Contract/Contract/GetList"
+//获得专业分包合同详情
+#define API_ZHUANYEFENBAOHETONGDETAIL @"http://"IP"/api/Contract/Contract/GetDetails"
 //获得待办事项列表
 #define API_DAIBANITEM @"http://"HAWORKIP"/api/services/wf/Instance/GetPendingWorkItems"

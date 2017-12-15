@@ -21,6 +21,7 @@
 #import "JSEIMPAllChengBaoHeTongDetailModel.h"
 #import "JSEIMPZhuanYeChengBaoHeTongModel.h"
 #import "JSEIMPZhuanYeFenBaoHeTongModel.h"
+#import "JSEIMPZhuanYeFenBaoHeTongDetailModel.h"
 #import "JSEIMPError.h"
 
 @implementation JSEIMPNetWorking
@@ -644,6 +645,7 @@
             NSString *startDate = model.ContractDetails.STARTDATE;
             NSString *endDate = model.ContractDetails.ENDDATE;
             NSString *days = model.ContractDetails.DAYS;
+            NSString *qualityBaoXiuMoney = [NSString stringWithFormat:@"%@ %%",model.ContractDetails.REPAIEFEE];
             NSString *wenMingShiGongMoney = model.ContractDetails.CIVILIZATIONFEE;
             NSString *creator = model.ContractDetails.CREATOR;
             NSString *chengBaoFanWei = model.ContractDetails.CONTENTTERM;
@@ -669,7 +671,7 @@
                 [fileNameMArray addObject:fileName];
                 [filePathMArray addObject:filePath];
             }
-            response(contractCode,projectName,jiaFangName,yiFangName,contractType,amount,finalQianYueDate,finalStartDate,finalEndDate,days,wenMingShiGongMoney,creator,chengBaoFanWei,qualityTiaoKuan,shiGongTiaoKuan,otherTiaoKuan,fileTypeMArray,fileNameMArray,filePathMArray);
+            response(contractCode,projectName,jiaFangName,yiFangName,contractType,amount,finalQianYueDate,finalStartDate,finalEndDate,days,qualityBaoXiuMoney,wenMingShiGongMoney,creator,chengBaoFanWei,qualityTiaoKuan,shiGongTiaoKuan,otherTiaoKuan,fileTypeMArray,fileNameMArray,filePathMArray);
             
         } else {
             errorInfo();
@@ -771,6 +773,7 @@
             NSString *startDate = model.ContractDetails.STARTDATE;
             NSString *endDate = model.ContractDetails.ENDDATE;
             NSString *days = model.ContractDetails.DAYS;
+            NSString *qualityBaoXiuMoney = [NSString stringWithFormat:@"%@ %%",model.ContractDetails.REPAIEFEE];
             NSString *wenMingShiGongMoney = model.ContractDetails.CIVILIZATIONFEE;
             NSString *creator = model.ContractDetails.CREATOR;
             NSString *chengBaoFanWei = model.ContractDetails.CONTENTTERM;
@@ -781,7 +784,7 @@
             NSString *finalQianYueDate = [qianYueDate stringByReplacingOccurrencesOfString:@"T00:00:00" withString:@""];
             NSString *finalStartDate = [startDate stringByReplacingOccurrencesOfString:@"T00:00:00" withString:@""];
             NSString *finalEndDate = [endDate stringByReplacingOccurrencesOfString:@"T00:00:00" withString:@""];
-            response(contractCode,projectName,jiaFangName,yiFangName,contractType,amount,finalQianYueDate,finalStartDate,finalEndDate,days,wenMingShiGongMoney,creator,chengBaoFanWei,qualityTiaoKuan,shiGongTiaoKuan,otherTiaoKuan);
+            response(contractCode,projectName,jiaFangName,yiFangName,contractType,amount,finalQianYueDate,finalStartDate,finalEndDate,days,qualityBaoXiuMoney,wenMingShiGongMoney,creator,chengBaoFanWei,qualityTiaoKuan,shiGongTiaoKuan,otherTiaoKuan);
             
         } else {
             errorInfo();
@@ -845,6 +848,55 @@
             
         } else {
             errorInfo(noData);
+        }
+        
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        
+        NSLog(@"%@",error);
+    }];
+}
+
+//获得专业分包合同明细
++(void)getZhuanYeFenBaoHeTongDetailWithContractId:(NSString *)contractId OnSuccess:(void (^)())response onErrorInfo:(void (^)())errorInfo{
+    
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    manager.responseSerializer = [AFJSONResponseSerializer serializer];
+    manager.requestSerializer = [AFJSONRequestSerializer serializer];
+    
+    NSDictionary *paramaters = @{@"ContractId":contractId};
+    [self setPublicHeader:manager];
+    [manager POST:API_ZHUANYEFENBAOHETONGDETAIL parameters:paramaters progress:^(NSProgress * _Nonnull uploadProgress) {
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        
+        NSLog(@"%@",responseObject);
+        
+        if (responseObject != nil) {
+            
+            NSDictionary *dict = (NSDictionary *)responseObject;
+            
+            JSEIMPZhuanYeFenBaoHeTongDetailModel *model = [JSEIMPZhuanYeFenBaoHeTongDetailModel mj_objectWithKeyValues:dict];
+            
+            NSString *contractCode = model.ContractDetails.CONTRACTCODE;
+            NSString *projectName = model.ContractDetails.PROJECTNAME;
+            NSString *jiaFangName = model.ContractDetails.PARTYAName;
+            NSString *yiFangName = model.ContractDetails.PARTYBName;
+            NSString *contractType = model.ContractDetails.CONTRACTTYPE;
+            NSString *amount = model.ContractDetails.AMOUNT;
+            NSString *qianYueDate = model.ContractDetails.CONTRACTDATE;
+            NSString *startDate = model.ContractDetails.STARTDATE;
+            NSString *endDate = model.ContractDetails.ENDDATE;
+            NSString *days = model.ContractDetails.DAYS;
+            NSString *qualityBaoXiuMoney = [NSString stringWithFormat:@"%@ %%",model.ContractDetails.REPAIEFEE];
+            NSString *creator = model.ContractDetails.CREATOR;
+            NSString *chengBaoFanWei = model.ContractDetails.CONTENTTERM;
+            
+            NSString *finalQianYueDate = [qianYueDate stringByReplacingOccurrencesOfString:@"T00:00:00" withString:@""];
+            NSString *finalStartDate = [startDate stringByReplacingOccurrencesOfString:@"T00:00:00" withString:@""];
+            NSString *finalEndDate = [endDate stringByReplacingOccurrencesOfString:@"T00:00:00" withString:@""];
+            response(contractCode,projectName,jiaFangName,yiFangName,contractType,amount,finalQianYueDate,finalStartDate,finalEndDate,days,qualityBaoXiuMoney,creator,chengBaoFanWei);
+            
+        } else {
+            errorInfo();
         }
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {

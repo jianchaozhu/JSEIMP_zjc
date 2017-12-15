@@ -61,11 +61,14 @@
 //获得专业承包合同列表
 +(void)getZhuanYeChengBaoHeTongOnSuccess:(void(^)())response onErrorInfo:(void(^)(JSEIMPError))errorInfo;
 
-//获得专业包合同明细
+//获得专业承包合同明细
 +(void)getZhuanYeChengBaoHeTongDetailWithContractId:(NSString *)contractId OnSuccess:(void(^)())response onErrorInfo:(void(^)())errorInfo;
 
 //获得专业分包合同列表
 +(void)getZhuanYeFenBaoHeTongOnSuccess:(void(^)())response onErrorInfo:(void(^)(JSEIMPError))errorInfo;
+
+//获得专业分包合同明细
++(void)getZhuanYeFenBaoHeTongDetailWithContractId:(NSString *)contractId OnSuccess:(void(^)())response onErrorInfo:(void(^)())errorInfo;
 
 //获得待办事项列表
 +(void)getDaiBanItemOnSuccess:(void(^)())response onErrorInfo:(void(^)(JSEIMPError error))errorInfo;

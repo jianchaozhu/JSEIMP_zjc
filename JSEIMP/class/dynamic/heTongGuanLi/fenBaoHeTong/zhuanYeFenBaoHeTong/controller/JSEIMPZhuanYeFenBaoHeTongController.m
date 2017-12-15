@@ -8,6 +8,7 @@
 
 #import "JSEIMPZhuanYeFenBaoHeTongController.h"
 #import "JSEIMPNetWorking.h"
+#import "JSEIMPZhuanYeFenBaoHeTongDetailController.h"
 
 static NSString *cellID = @"cellID";
 
@@ -362,6 +363,13 @@ static NSString *cellID = @"cellID";
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
+    JSEIMPZhuanYeFenBaoHeTongDetailController *zhuanYeFenBaoHeTongDetailController = [JSEIMPZhuanYeFenBaoHeTongDetailController new];
+    
+    zhuanYeFenBaoHeTongDetailController.contractName = _contractNameMArray[indexPath.row];
+    zhuanYeFenBaoHeTongDetailController.status = _statusMArray[indexPath.row];
+    zhuanYeFenBaoHeTongDetailController.contractId = _contractIdMArray[indexPath.row];
+    
+    [self.navigationController pushViewController:zhuanYeFenBaoHeTongDetailController animated:YES];
     
 }
 

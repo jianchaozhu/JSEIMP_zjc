@@ -1,29 +1,23 @@
 //
-//  JSEIMPZhuanYeChengBaoHeTongDetailController.m
+//  JSEIMPZhuanYeFenBaoHeTongDetailController.m
 //  JSEIMP
 //
-//  Created by 朱建超 on 2017/12/11.
+//  Created by 朱建超 on 2017/12/15.
 //  Copyright © 2017年 朱建超. All rights reserved.
 //
 
-#import "JSEIMPZhuanYeChengBaoHeTongDetailController.h"
+#import "JSEIMPZhuanYeFenBaoHeTongDetailController.h"
+#import "JSEIMPNetWorking.h"
 #import <Masonry.h>
 #import "HACursor.h"
 #import "HATestView.h"
 #import "UIView+Extension.h"
 #import "JSEIMPPropjectChengBaoFanWeiView.h"
-#import "JSEIMPShouKuanJieDianView.h"
-#import "JSEIMPHeTongZhiFuTiaoKuanView.h"
-#import "JSEIMPProjectQuailtyTiaoKuanView.h"
-#import "JSEIMPWenMingSHiGongTiaoKuanView.h"
-#import "JSEIMPOtherTiaoKuanView.h"
-#import "JSEIMPFuJianView.h"
-#import "JSEIMPNetWorking.h"
 
 #define UIScreenW [UIScreen mainScreen].bounds.size.width
 #define UIScreenH [UIScreen mainScreen].bounds.size.height
 
-@interface JSEIMPZhuanYeChengBaoHeTongDetailController ()<UIDocumentInteractionControllerDelegate>
+@interface JSEIMPZhuanYeFenBaoHeTongDetailController ()<UIDocumentInteractionControllerDelegate>
 
 @property(nonatomic,strong)NSMutableArray *titles;
 
@@ -58,16 +52,10 @@
 @property(nonatomic,strong)NSString *creator;
 //承包范围
 @property(nonatomic,strong)NSString *chengBaoFanWei;
-//质量条款
-@property(nonatomic,strong)NSString *qualityTiaoKuan;
-//施工条款
-@property(nonatomic,strong)NSString *shiGongTiaoKuan;
-//其他条款
-@property(nonatomic,strong)NSString *otherTiaoKuan;
 
 @end
 
-@implementation JSEIMPZhuanYeChengBaoHeTongDetailController{
+@implementation JSEIMPZhuanYeFenBaoHeTongDetailController{
     
     UIScrollView *_scrollView;
     
@@ -121,10 +109,6 @@
     
     UILabel *_heTongGongQiLabel;
     
-    UILabel *_label22;
-    
-    UILabel *_wenMingShiGongMoneyLabel;
-    
     UILabel *_label25;
     
     UILabel *_faQiRenLabel;
@@ -149,18 +133,7 @@
     
     JSEIMPPropjectChengBaoFanWeiView *_propjectChengBaoFanWeiView;
     
-    JSEIMPShouKuanJieDianView *_shouKuanJieDianView;
-    
-    JSEIMPHeTongZhiFuTiaoKuanView *_heTongZhiFuTiaoKuanView;
-    
-    JSEIMPProjectQuailtyTiaoKuanView *_projectQuailtyTiaoKuanView;
-    
-    JSEIMPWenMingSHiGongTiaoKuanView *_wenMingSHiGongTiaoKuanView;
-    
-    JSEIMPOtherTiaoKuanView *_otherTiaoKuanView;
-    
     NSInteger number;
-    
 }
 
 - (void)viewDidLoad {
@@ -186,8 +159,6 @@
     //监听是否重新进入程序程序.
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(someMethod1:) name:UIApplicationDidBecomeActiveNotification object:nil];
     
-    //    [self setupUI];
-    
 }
 
 - (void)returnAction {
@@ -195,10 +166,16 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
+#pragma mark - 监听后台进入前台
+-(void)someMethod1:(NSNotification *)notification{
+    
+    _scrollView.frame = CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height - 44);
+}
+
 -(void)getData{
     
     NSLog(@"%@",_contractId);
-    [JSEIMPNetWorking getZhuanYeChengBaoHeTongDetailWithContractId:_contractId OnSuccess:^(NSString *contractCode,NSString *projectName,NSString *jiaFangName,NSString *yiFangName,NSString *contractType,NSString *amount,NSString *qianYueDate,NSString *startDate,NSString *endDate,NSString *days,NSString *qualityBaoXiuMoney,NSString *wenMingShiGongMoney,NSString *creator,NSString *chengBaoFanWei,NSString *qualityTiaoKuan,NSString *shiGongTiaoKuan,NSString *otherTiaoKuan){
+    [JSEIMPNetWorking getZhuanYeFenBaoHeTongDetailWithContractId:_contractId OnSuccess:^(NSString *contractCode,NSString *projectName,NSString *jiaFangName,NSString *yiFangName,NSString *contractType,NSString *amount,NSString *qianYueDate,NSString *startDate,NSString *endDate,NSString *days,NSString *qualityBaoXiuMoney,NSString *creator,NSString *chengBaoFanWei){
         
         _contractCode = contractCode.copy;
         _projectName = projectName.copy;
@@ -211,12 +188,8 @@
         _endDate = endDate.copy;
         _days = days.copy;
         _qualityBaoXiuMoney = qualityBaoXiuMoney.copy;
-        _wenMingShiGongMoney = wenMingShiGongMoney.copy;
         _creator = creator.copy;
         _chengBaoFanWei = chengBaoFanWei.copy;
-        _qualityTiaoKuan = qualityTiaoKuan.copy;
-        _shiGongTiaoKuan = shiGongTiaoKuan.copy;
-        _otherTiaoKuan = otherTiaoKuan.copy;
         
         dispatch_async(dispatch_get_main_queue(), ^{
             
@@ -224,21 +197,6 @@
         });
         
     } onErrorInfo:nil];
-}
-
--(void)postNotification{
-    
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"chengBaoFanWei" object:_chengBaoFanWei];
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"qualityTiaoKuan" object:_qualityTiaoKuan];
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"shiGongTiaoKuan" object:_shiGongTiaoKuan];
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"otherTiaoKuan" object:_otherTiaoKuan];
-    
-}
-
-#pragma mark - 监听后台进入前台
--(void)someMethod1:(NSNotification *)notification{
-    
-    _scrollView.frame = CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height - 44);
 }
 
 -(void)setupUI{
@@ -305,10 +263,6 @@
     _label13 = [self setupLabelWithText:@"合同工期(日历天)" TextColor:[UIColor darkTextColor] Font:[UIFont systemFontOfSize:20]];
     _heTongGongQiLabel = [self setupLabelWithText:_days TextColor:[UIColor darkGrayColor] Font:[UIFont systemFontOfSize:16]];
     _heTongGongQiLabel.textAlignment = NSTextAlignmentRight;
-    
-    _label22 = [self setupLabelWithText:@"文明施工费(元)" TextColor:[UIColor darkTextColor] Font:[UIFont systemFontOfSize:20]];
-    _wenMingShiGongMoneyLabel = [self setupLabelWithText:_wenMingShiGongMoney TextColor:[UIColor darkGrayColor] Font:[UIFont systemFontOfSize:16]];
-    _wenMingShiGongMoneyLabel.textAlignment = NSTextAlignmentRight;
     
     _label25 = [self setupLabelWithText:@"发起人" TextColor:[UIColor darkTextColor] Font:[UIFont systemFontOfSize:20]];
     _faQiRenLabel = [self setupLabelWithText:_creator TextColor:[UIColor darkGrayColor] Font:[UIFont systemFontOfSize:16]];
@@ -502,31 +456,17 @@
         
     }];
     
-    [_label22 mas_makeConstraints:^(MASConstraintMaker *make) {
-        
-        make.top.mas_equalTo(_label13.mas_bottom).offset(16);
-        make.left.mas_equalTo(_label13.mas_left);
-        make.width.mas_equalTo(138);
-    }];
-    [_wenMingShiGongMoneyLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        
-        make.left.mas_equalTo(_label22.mas_right).offset(16);
-        make.centerY.mas_equalTo(_label22.mas_centerY);
-        make.right.mas_equalTo(_heTongGongQiLabel.mas_right);
-        
-    }];
-    
     [_label25 mas_makeConstraints:^(MASConstraintMaker *make) {
         
-        make.top.mas_equalTo(_label22.mas_bottom).offset(16);
-        make.left.mas_equalTo(_label22);
+        make.top.mas_equalTo(_label13.mas_bottom).offset(16);
+        make.left.mas_equalTo(_label13);
         make.width.mas_equalTo(62);
     }];
     [_faQiRenLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         
         make.left.mas_equalTo(_label25.mas_right).offset(16);
         make.centerY.mas_equalTo(_label25.mas_centerY);
-        make.right.mas_equalTo(_wenMingShiGongMoneyLabel.mas_right);
+        make.right.mas_equalTo(_heTongGongQiLabel.mas_right);
         
     }];
     
@@ -558,7 +498,7 @@
 
 -(void)setupCursor{
     
-    _titles = [NSMutableArray arrayWithObjects:@"承包范围",@"收款节点",@"支付条款",@"质量条款",@"施工条款",@"其他条款",@"附件", nil];
+    _titles = [NSMutableArray arrayWithObjects:@"承包范围", nil];
     
     _cursor = [[HACursor alloc]init];
     //    _cursor.backgroundColor = [UIColor colorWithRed:56.0 / 255.0 green:135.0 / 255.0 blue:250.0 / 255.0 alpha:1];
@@ -566,11 +506,14 @@
     
     if (_heTongNameLabel.text.length > 26 && _heTongNameLabel.text.length < 39) {
         _cursor.frame = CGRectMake(0, 645, self.view.width, 45);
-    }else if(_heTongNameLabel.text.length > 13 && _heTongNameLabel.text.length <= 26){
-        _cursor.frame = CGRectMake(0, 600, self.view.width, 45);
+    }else if(_heTongNameLabel.text.length > 13 && _heTongNameLabel.text.length <= 26 && _projectNameLabel.text.length > 26 && _projectNameLabel.text.length < 39){
+        _cursor.frame = CGRectMake(0, 610, self.view.width, 45);
+    }else if (_heTongNameLabel.text.length <= 13 && _projectNameLabel.text.length > 26 && _projectNameLabel.text.length < 39){
+        _cursor.frame = CGRectMake(0, 650, self.view.width, 45);
     }else if (_heTongNameLabel.text.length <= 13){
         _cursor.frame = CGRectMake(0, 580, self.view.width, 45);
     }
+    
     _cursor.titles = self.titles;
     _cursor.pageViews = [self createPageViews];
     //设置根滚动视图的高度
@@ -600,7 +543,6 @@
         
         if (i == 0) {
             
-            
             _cursor.rootScrollView.bounces = NO;
             
             _scrollView1 = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, self.view.width, self.view.height / 2)];
@@ -622,134 +564,15 @@
             
             [pageViews addObject:_scrollView1];
             
-        }else if (i == 1){
-            
-            _cursor.rootScrollView.bounces = NO;
-            
-            _scrollView2 = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, self.view.width, self.view.height / 2)];
-            
-            _shouKuanJieDianView = [[JSEIMPShouKuanJieDianView alloc] init];
-            
-            [_scrollView2 addSubview:_shouKuanJieDianView];
-            
-            [_shouKuanJieDianView mas_makeConstraints:^(MASConstraintMaker *make) {
-                
-                make.edges.mas_equalTo(_scrollView2);
-                make.width.mas_equalTo(UIScreenW);
-                make.bottom.mas_equalTo(_shouKuanJieDianView.lineView.mas_bottom).offset(8);
-                
-            }];
-            
-            [pageViews addObject:_scrollView2];
-            
-        }else if (i == 2){
-            
-            _cursor.rootScrollView.bounces = NO;
-            
-            _scrollView3 = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, self.view.width, self.view.height / 2)];
-            
-            _heTongZhiFuTiaoKuanView = [[JSEIMPHeTongZhiFuTiaoKuanView alloc] init];
-            
-            [_scrollView3 addSubview:_heTongZhiFuTiaoKuanView];
-            
-            [_heTongZhiFuTiaoKuanView mas_makeConstraints:^(MASConstraintMaker *make) {
-                
-                make.edges.mas_equalTo(_scrollView3);
-                make.width.mas_equalTo(UIScreenW);
-                make.bottom.mas_equalTo(_heTongZhiFuTiaoKuanView.zhiFuTiaoKuanLabel.mas_bottom).offset(16);
-            }];
-            
-            [pageViews addObject:_scrollView3];
-        }else if (i == 3){
-            
-            _cursor.rootScrollView.bounces = NO;
-            
-            _scrollView4 = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, self.view.width, self.view.height / 2)];
-            
-            _projectQuailtyTiaoKuanView = [[JSEIMPProjectQuailtyTiaoKuanView alloc] init];
-            
-            [self postNotification];
-            
-            [_scrollView4 addSubview:_projectQuailtyTiaoKuanView];
-            
-            [_projectQuailtyTiaoKuanView mas_makeConstraints:^(MASConstraintMaker *make) {
-                
-                make.edges.mas_equalTo(_scrollView4);
-                make.width.mas_equalTo(UIScreenW);
-                make.bottom.mas_equalTo(_projectQuailtyTiaoKuanView.qualityTiaoKuanLabel.mas_bottom).offset(16);
-            }];
-            
-            [pageViews addObject:_scrollView4];
-        }else if (i == 4){
-            
-            _cursor.rootScrollView.bounces = NO;
-            
-            _scrollView5 = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, self.view.width, self.view.height / 2)];
-            
-            _wenMingSHiGongTiaoKuanView = [[JSEIMPWenMingSHiGongTiaoKuanView alloc] init];
-            
-            [self postNotification];
-            
-            [_scrollView5 addSubview:_wenMingSHiGongTiaoKuanView];
-            
-            [_wenMingSHiGongTiaoKuanView mas_makeConstraints:^(MASConstraintMaker *make) {
-                
-                make.edges.mas_equalTo(_scrollView5);
-                make.width.mas_equalTo(UIScreenW);
-                make.bottom.mas_equalTo(_wenMingSHiGongTiaoKuanView.wenMingShiGongTiaoKuanLabel.mas_bottom).offset(16);
-            }];
-            
-            [pageViews addObject:_scrollView5];
-            
-        }else if(i == 5){
-            
-            _cursor.rootScrollView.bounces = NO;
-            
-            _scrollView6 = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, self.view.width, self.view.height / 2)];
-            
-            _otherTiaoKuanView = [[JSEIMPOtherTiaoKuanView alloc] init];
-            
-            [self postNotification];
-            
-            [_scrollView6 addSubview:_otherTiaoKuanView];
-            
-            [_otherTiaoKuanView mas_makeConstraints:^(MASConstraintMaker *make) {
-                
-                make.edges.mas_equalTo(_scrollView6);
-                make.width.mas_equalTo(UIScreenW);
-                make.bottom.mas_equalTo(_otherTiaoKuanView.otherTiaoKuanLabel.mas_bottom).offset(16);
-            }];
-            
-            [pageViews addObject:_scrollView6];
-        }else if(i == 6){
-            
-            JSEIMPFuJianView *fuJianView = [JSEIMPFuJianView new];
-            
-            [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(filePath:) name:@"filePath" object:nil];
-            [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(exisFilePath:) name:@"exisFilePath" object:nil];
-            
-            [pageViews addObject:fuJianView];
-            
-            
         }
     }
     
     return pageViews;
 }
 
--(void)filePath:(NSNotification *)notification{
+-(void)postNotification{
     
-    _filePath = notification.object;
-    
-    [self setupLookViewWithPath:_filePath];
-    
-}
-
--(void)exisFilePath:(NSNotification *)notification{
-    
-    _exisFilePath = notification.object;
-    
-    [self setupLookViewWithPath:_exisFilePath];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"chengBaoFanWei" object:_chengBaoFanWei];
     
 }
 
@@ -794,5 +617,6 @@
     return label;
     
 }
+
 
 @end

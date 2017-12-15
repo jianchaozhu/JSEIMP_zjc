@@ -50,6 +50,8 @@
 @property(nonatomic,strong)NSString *endDate;
 
 @property(nonatomic,strong)NSString *days;
+//质量保修金
+@property(nonatomic,strong)NSString *qualityBaoXiuMoney;
 
 @property(nonatomic,strong)NSString *wenMingShiGongMoney;
 
@@ -99,11 +101,7 @@
     
     UILabel *_label6;
     
-    UILabel *_projectLocateLabel;
-    
-    UILabel *_label7;
-    
-    UILabel *_jieGouStyleLabel;
+    UILabel *_qualityBaoXiuMoneyLabel;
     
     UILabel *_label8;
     
@@ -129,49 +127,9 @@
     
     UILabel *_heTongGongQiLabel;
     
-    UILabel *_label14;
-    
-    UILabel *_heTongJiJiaStyleLabel;
-    
-    UILabel *_label15;
-    
-    UILabel *_zhiLiangBiaoZhunLabel;
-    
-    UILabel *_label16;
-    
-    UILabel *_yuGuHeTongValueLabel;
-    
-    UILabel *_label17;
-    
-    UILabel *_leiJiChangeYuGuLabel;
-    
-    UILabel *_label18;
-    
-    UILabel *_duLiJieSuanYuGuLabel;
-    
-    UILabel *_label19;
-    
-    UILabel *_moneyFromLabel;
-    
-    UILabel *_label20;
-    
-    UILabel *_buildMianJiLabel;
-    
-    UILabel *_label21;
-    
-    UILabel *_projectQualityBaoXiuJinLabel;
-    
     UILabel *_label22;
     
     UILabel *_wenMingShiGongMoneyLabel;
-    
-    UILabel *_label23;
-    
-    UILabel *_jueSuanMoneyLabel;
-    
-    UILabel *_label24;
-    
-    UILabel *_shouKuanMoneyLabel;
     
     UILabel *_label25;
     
@@ -246,7 +204,7 @@
 -(void)getData{
     
     NSLog(@"%@",_contractId);
-    [JSEIMPNetWorking getAllChengBaoHeTongDetailWithContractId:_contractId OnSuccess:^(NSString *contractCode,NSString *projectName,NSString *jiaFangName,NSString *yiFangName,NSString *contractType,NSString *amount,NSString *qianYueDate,NSString *startDate,NSString *endDate,NSString *days,NSString *wenMingShiGongMoney,NSString *creator,NSString *chengBaoFanWei,NSString *qualityTiaoKuan,NSString *shiGongTiaoKuan,NSString *otherTiaoKuan,NSMutableArray *fileTypeMArray,NSMutableArray *fileNameMArray,NSMutableArray *filePathMArray){
+    [JSEIMPNetWorking getAllChengBaoHeTongDetailWithContractId:_contractId OnSuccess:^(NSString *contractCode,NSString *projectName,NSString *jiaFangName,NSString *yiFangName,NSString *contractType,NSString *amount,NSString *qianYueDate,NSString *startDate,NSString *endDate,NSString *days,NSString *qualityBaoXiuMoney,NSString *wenMingShiGongMoney,NSString *creator,NSString *chengBaoFanWei,NSString *qualityTiaoKuan,NSString *shiGongTiaoKuan,NSString *otherTiaoKuan,NSMutableArray *fileTypeMArray,NSMutableArray *fileNameMArray,NSMutableArray *filePathMArray){
         
         _contractCode = contractCode.copy;
         _projectName = projectName.copy;
@@ -258,6 +216,7 @@
         _startDate = startDate.copy;
         _endDate = endDate.copy;
         _days = days.copy;
+        _qualityBaoXiuMoney = qualityBaoXiuMoney.copy;
         _wenMingShiGongMoney = wenMingShiGongMoney.copy;
         _creator = creator.copy;
         _chengBaoFanWei = chengBaoFanWei.copy;
@@ -330,16 +289,6 @@
     _yiFangLabel.textAlignment = NSTextAlignmentRight;
     _yiFangLabel.numberOfLines = 0;
     
-//    _label6 = [self setupLabelWithText:@"工程地点" TextColor:[UIColor darkTextColor] Font:[UIFont systemFontOfSize:20]];
-//    _projectLocateLabel = [self setupLabelWithText:@"张家港市杨舍镇东苑路南侧" TextColor:[UIColor darkGrayColor] Font:[UIFont systemFontOfSize:16]];
-//    _projectLocateLabel.textAlignment = NSTextAlignmentRight;
-//    _projectLocateLabel.numberOfLines = 0;
-//
-//    _label7 = [self setupLabelWithText:@"结构形式" TextColor:[UIColor darkTextColor] Font:[UIFont systemFontOfSize:20]];
-//    _jieGouStyleLabel = [self setupLabelWithText:@"混凝土框剪结构" TextColor:[UIColor darkGrayColor] Font:[UIFont systemFontOfSize:16]];
-//    _jieGouStyleLabel.textAlignment = NSTextAlignmentRight;
-//    _jieGouStyleLabel.numberOfLines = 0;
-    
     _label8 = [self setupLabelWithText:@"合同类型" TextColor:[UIColor darkTextColor] Font:[UIFont systemFontOfSize:20]];
     _heTongStyleLabel = [self setupLabelWithText:_contractType TextColor:[UIColor darkGrayColor] Font:[UIFont systemFontOfSize:16]];
     _heTongStyleLabel.textAlignment = NSTextAlignmentRight;
@@ -353,6 +302,10 @@
     _qianYueDateLabel = [self setupLabelWithText:_qianYueDate TextColor:[UIColor darkGrayColor] Font:[UIFont systemFontOfSize:16]];
     _qianYueDateLabel.textAlignment = NSTextAlignmentRight;
     
+    _label6 = [self setupLabelWithText:@"质量保修金" TextColor:[UIColor darkTextColor] Font:[UIFont systemFontOfSize:20]];
+    _qualityBaoXiuMoneyLabel = [self setupLabelWithText:_qualityBaoXiuMoney TextColor:[UIColor darkGrayColor] Font:[UIFont systemFontOfSize:16]];
+    _qualityBaoXiuMoneyLabel.textAlignment = NSTextAlignmentRight;
+    
     _label11 = [self setupLabelWithText:@"计划开工日期" TextColor:[UIColor darkTextColor] Font:[UIFont systemFontOfSize:20]];
     _planStartDateLabel = [self setupLabelWithText:_startDate TextColor:[UIColor darkGrayColor] Font:[UIFont systemFontOfSize:16]];
     _planStartDateLabel.textAlignment = NSTextAlignmentRight;
@@ -365,49 +318,9 @@
     _heTongGongQiLabel = [self setupLabelWithText:_days TextColor:[UIColor darkGrayColor] Font:[UIFont systemFontOfSize:16]];
     _heTongGongQiLabel.textAlignment = NSTextAlignmentRight;
     
-//    _label14 = [self setupLabelWithText:@"合同计价方式" TextColor:[UIColor darkTextColor] Font:[UIFont systemFontOfSize:20]];
-//    _heTongJiJiaStyleLabel = [self setupLabelWithText:@"固定总价合同" TextColor:[UIColor darkGrayColor] Font:[UIFont systemFontOfSize:16]];
-//    _heTongJiJiaStyleLabel.textAlignment = NSTextAlignmentRight;
-//
-//    _label15 = [self setupLabelWithText:@"质量标准" TextColor:[UIColor darkTextColor] Font:[UIFont systemFontOfSize:20]];
-//    _zhiLiangBiaoZhunLabel = [self setupLabelWithText:@"质量标准是xxx" TextColor:[UIColor darkGrayColor] Font:[UIFont systemFontOfSize:16]];
-//    _zhiLiangBiaoZhunLabel.textAlignment = NSTextAlignmentRight;
-//
-//    _label16 = [self setupLabelWithText:@"预估合同总价(元)" TextColor:[UIColor darkTextColor] Font:[UIFont systemFontOfSize:20]];
-//    _yuGuHeTongValueLabel = [self setupLabelWithText:@"78,470,000.00" TextColor:[UIColor darkGrayColor] Font:[UIFont systemFontOfSize:15]];
-//    _yuGuHeTongValueLabel.textAlignment = NSTextAlignmentRight;
-//
-//    _label17 = [self setupLabelWithText:@"累计变更预估(元)" TextColor:[UIColor darkTextColor] Font:[UIFont systemFontOfSize:20]];
-//    _leiJiChangeYuGuLabel = [self setupLabelWithText:@"0.00" TextColor:[UIColor darkGrayColor] Font:[UIFont systemFontOfSize:16]];
-//    _leiJiChangeYuGuLabel.textAlignment = NSTextAlignmentRight;
-//
-//    _label18 = [self setupLabelWithText:@"独立结算预估(元)" TextColor:[UIColor darkTextColor] Font:[UIFont systemFontOfSize:20]];
-//    _duLiJieSuanYuGuLabel = [self setupLabelWithText:@"0.00" TextColor:[UIColor darkGrayColor] Font:[UIFont systemFontOfSize:16]];
-//    _duLiJieSuanYuGuLabel.textAlignment = NSTextAlignmentRight;
-//
-//    _label19 = [self setupLabelWithText:@"资金来源" TextColor:[UIColor darkTextColor] Font:[UIFont systemFontOfSize:20]];
-//    _moneyFromLabel = [self setupLabelWithText:@"自筹" TextColor:[UIColor darkGrayColor] Font:[UIFont systemFontOfSize:16]];
-//    _moneyFromLabel.textAlignment = NSTextAlignmentRight;
-//
-//    _label20 = [self setupLabelWithText:@"建筑面积(平方米)" TextColor:[UIColor darkTextColor] Font:[UIFont systemFontOfSize:20]];
-//    _buildMianJiLabel = [self setupLabelWithText:@"0.00" TextColor:[UIColor darkGrayColor] Font:[UIFont systemFontOfSize:16]];
-//    _buildMianJiLabel.textAlignment = NSTextAlignmentRight;
-//
-//    _label21 = [self setupLabelWithText:@"工程质量保修金(%)" TextColor:[UIColor darkTextColor] Font:[UIFont systemFontOfSize:20]];
-//    _projectQualityBaoXiuJinLabel = [self setupLabelWithText:@"0" TextColor:[UIColor darkGrayColor] Font:[UIFont systemFontOfSize:16]];
-//    _projectQualityBaoXiuJinLabel.textAlignment = NSTextAlignmentRight;
-    
     _label22 = [self setupLabelWithText:@"文明施工费(元)" TextColor:[UIColor darkTextColor] Font:[UIFont systemFontOfSize:20]];
     _wenMingShiGongMoneyLabel = [self setupLabelWithText:_wenMingShiGongMoney TextColor:[UIColor darkGrayColor] Font:[UIFont systemFontOfSize:16]];
     _wenMingShiGongMoneyLabel.textAlignment = NSTextAlignmentRight;
-    
-//    _label23 = [self setupLabelWithText:@"决算金额(元)" TextColor:[UIColor darkTextColor] Font:[UIFont systemFontOfSize:20]];
-//    _jueSuanMoneyLabel = [self setupLabelWithText:@"0" TextColor:[UIColor darkGrayColor] Font:[UIFont systemFontOfSize:16]];
-//    _jueSuanMoneyLabel.textAlignment = NSTextAlignmentRight;
-//
-//    _label24 = [self setupLabelWithText:@"收款金额(元)" TextColor:[UIColor darkTextColor] Font:[UIFont systemFontOfSize:20]];
-//    _shouKuanMoneyLabel = [self setupLabelWithText:@"0" TextColor:[UIColor darkGrayColor] Font:[UIFont systemFontOfSize:16]];
-//    _shouKuanMoneyLabel.textAlignment = NSTextAlignmentRight;
     
     _label25 = [self setupLabelWithText:@"发起人" TextColor:[UIColor darkTextColor] Font:[UIFont systemFontOfSize:20]];
     _faQiRenLabel = [self setupLabelWithText:_creator TextColor:[UIColor darkGrayColor] Font:[UIFont systemFontOfSize:16]];
@@ -503,34 +416,6 @@
         
     }];
     
-//    [_label6 mas_makeConstraints:^(MASConstraintMaker *make) {
-//
-//        make.top.mas_equalTo(_yiFangLabel.mas_bottom).offset(16);
-//        make.left.mas_equalTo(_label5);
-//
-//    }];
-//    [_projectLocateLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-//
-//        make.left.mas_equalTo(_heTongNameLabel.mas_left);
-//        make.top.mas_equalTo(_label6.mas_top);
-//        make.right.mas_equalTo(_heTongNameLabel.mas_right);
-//
-//    }];
-//
-//    [_label7 mas_makeConstraints:^(MASConstraintMaker *make) {
-//
-//        make.top.mas_equalTo(_projectLocateLabel.mas_bottom).offset(16);
-//        make.left.mas_equalTo(_label6);
-//
-//    }];
-//    [_jieGouStyleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-//
-//        make.left.mas_equalTo(_projectLocateLabel.mas_left);
-//        make.top.mas_equalTo(_label7.mas_top);
-//        make.right.mas_equalTo(_projectLocateLabel.mas_right);
-//
-//    }];
-    
     [_label8 mas_makeConstraints:^(MASConstraintMaker *make) {
         
         make.top.mas_equalTo(_yiFangLabel.mas_bottom).offset(16);
@@ -574,17 +459,31 @@
         
     }];
     
-    [_label11 mas_makeConstraints:^(MASConstraintMaker *make) {
+    [_label6 mas_makeConstraints:^(MASConstraintMaker *make) {
         
         make.top.mas_equalTo(_label10.mas_bottom).offset(16);
         make.left.mas_equalTo(_label10);
+        make.width.mas_equalTo(110);
+    }];
+    [_qualityBaoXiuMoneyLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        
+        make.left.mas_equalTo(_label6.mas_right).offset(16);
+        make.centerY.mas_equalTo(_label6.mas_centerY);
+        make.right.mas_equalTo(_qianYueDateLabel.mas_right);
+        
+    }];
+    
+    [_label11 mas_makeConstraints:^(MASConstraintMaker *make) {
+        
+        make.top.mas_equalTo(_label6.mas_bottom).offset(16);
+        make.left.mas_equalTo(_label6);
         make.width.mas_equalTo(124);
     }];
     [_planStartDateLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         
         make.left.mas_equalTo(_label11.mas_right).offset(16);
         make.centerY.mas_equalTo(_label11.mas_centerY);
-        make.right.mas_equalTo(_qianYueDateLabel.mas_right);
+        make.right.mas_equalTo(_qualityBaoXiuMoneyLabel.mas_right);
         
     }];
     
@@ -615,111 +514,6 @@
         
     }];
     
-//    [_label14 mas_makeConstraints:^(MASConstraintMaker *make) {
-//
-//        make.top.mas_equalTo(_label13.mas_bottom).offset(16);
-//        make.left.mas_equalTo(_label13);
-//    }];
-//    [_heTongJiJiaStyleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-//
-//        make.left.mas_equalTo(_planFinishDateLabel.mas_left);
-//        make.centerY.mas_equalTo(_label14.mas_centerY);
-//        make.right.mas_equalTo(_planFinishDateLabel.mas_right);
-//
-//    }];
-//
-//    [_label15 mas_makeConstraints:^(MASConstraintMaker *make) {
-//
-//        make.top.mas_equalTo(_label14.mas_bottom).offset(16);
-//        make.left.mas_equalTo(_label14);
-//    }];
-//    [_zhiLiangBiaoZhunLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-//
-//        make.left.mas_equalTo(_qianYueDateLabel.mas_left);
-//        make.centerY.mas_equalTo(_label15.mas_centerY);
-//        make.right.mas_equalTo(_qianYueDateLabel.mas_right);
-//
-//    }];
-//
-//    [_label16 mas_makeConstraints:^(MASConstraintMaker *make) {
-//
-//        make.top.mas_equalTo(_label15.mas_bottom).offset(16);
-//        make.left.mas_equalTo(_label15);
-//    }];
-//    [_yuGuHeTongValueLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-//
-//        make.left.mas_equalTo(_heTongGongQiLabel.mas_left);
-//        make.centerY.mas_equalTo(_label16.mas_centerY);
-//        make.right.mas_equalTo(_heTongGongQiLabel.mas_right);
-//
-//    }];
-//
-//    [_label17 mas_makeConstraints:^(MASConstraintMaker *make) {
-//
-//        make.top.mas_equalTo(_label16.mas_bottom).offset(16);
-//        make.left.mas_equalTo(_label16);
-//    }];
-//    [_leiJiChangeYuGuLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-//
-//        make.left.mas_equalTo(_yuGuHeTongValueLabel.mas_left);
-//        make.centerY.mas_equalTo(_label17.mas_centerY);
-//        make.right.mas_equalTo(_yuGuHeTongValueLabel.mas_right);
-//
-//    }];
-//
-//    [_label18 mas_makeConstraints:^(MASConstraintMaker *make) {
-//
-//        make.top.mas_equalTo(_label17.mas_bottom).offset(16);
-//        make.left.mas_equalTo(_label17);
-//    }];
-//    [_duLiJieSuanYuGuLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-//
-//        make.left.mas_equalTo(_leiJiChangeYuGuLabel.mas_left);
-//        make.centerY.mas_equalTo(_label18.mas_centerY);
-//        make.right.mas_equalTo(_leiJiChangeYuGuLabel.mas_right);
-//
-//    }];
-//
-//    [_label19 mas_makeConstraints:^(MASConstraintMaker *make) {
-//
-//        make.top.mas_equalTo(_label18.mas_bottom).offset(16);
-//        make.left.mas_equalTo(_label18);
-//    }];
-//    [_moneyFromLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-//
-//        make.left.mas_equalTo(_zhiLiangBiaoZhunLabel.mas_left);
-//        make.centerY.mas_equalTo(_label19.mas_centerY);
-//        make.right.mas_equalTo(_zhiLiangBiaoZhunLabel.mas_right);
-//
-//    }];
-//
-//    [_label20 mas_makeConstraints:^(MASConstraintMaker *make) {
-//
-//        make.top.mas_equalTo(_label19.mas_bottom).offset(16);
-//        make.left.mas_equalTo(_label19);
-//    }];
-//    [_buildMianJiLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-//
-//        make.left.mas_equalTo(_duLiJieSuanYuGuLabel.mas_left);
-//        make.centerY.mas_equalTo(_label20.mas_centerY);
-//        make.right.mas_equalTo(_duLiJieSuanYuGuLabel.mas_right);
-//
-//    }];
-//
-//    [_label21 mas_makeConstraints:^(MASConstraintMaker *make) {
-//
-//        make.top.mas_equalTo(_label20.mas_bottom).offset(16);
-//        make.left.mas_equalTo(_label20);
-//        make.width.mas_equalTo(172);
-//    }];
-//    [_projectQualityBaoXiuJinLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-//
-//        make.left.mas_equalTo(_label21.mas_right).offset(16);
-//        make.centerY.mas_equalTo(_label21.mas_centerY);
-//        make.right.mas_equalTo(_buildMianJiLabel.mas_right);
-//
-//    }];
-    
     [_label22 mas_makeConstraints:^(MASConstraintMaker *make) {
         
         make.top.mas_equalTo(_label13.mas_bottom).offset(16);
@@ -733,34 +527,7 @@
         make.right.mas_equalTo(_heTongGongQiLabel.mas_right);
         
     }];
-    
-//    [_label23 mas_makeConstraints:^(MASConstraintMaker *make) {
-//
-//        make.top.mas_equalTo(_label22.mas_bottom).offset(16);
-//        make.left.mas_equalTo(_label22);
-//        make.width.mas_equalTo(116);
-//    }];
-//    [_jueSuanMoneyLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-//
-//        make.left.mas_equalTo(_label23.mas_right).offset(16);
-//        make.centerY.mas_equalTo(_label23.mas_centerY);
-//        make.right.mas_equalTo(_wenMingShiGongMoneyLabel.mas_right);
-//
-//    }];
-//
-//    [_label24 mas_makeConstraints:^(MASConstraintMaker *make) {
-//
-//        make.top.mas_equalTo(_label23.mas_bottom).offset(16);
-//        make.left.mas_equalTo(_label23);
-//    }];
-//    [_shouKuanMoneyLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-//
-//        make.left.mas_equalTo(_jueSuanMoneyLabel.mas_left);
-//        make.centerY.mas_equalTo(_label24.mas_centerY);
-//        make.right.mas_equalTo(_jueSuanMoneyLabel.mas_right);
-//
-//    }];
-    
+
     [_label25 mas_makeConstraints:^(MASConstraintMaker *make) {
         
         make.top.mas_equalTo(_label22.mas_bottom).offset(16);
@@ -815,7 +582,7 @@
     }else if(_heTongNameLabel.text.length > 13 && _heTongNameLabel.text.length <= 26){
         _cursor.frame = CGRectMake(0, 600, self.view.width, 45);
     }else if (_heTongNameLabel.text.length <= 13 && _projectNameLabel.text.length > 26 && _projectNameLabel.text.length < 39){
-        _cursor.frame = CGRectMake(0, 620, self.view.width, 45);
+        _cursor.frame = CGRectMake(0, 650, self.view.width, 45);
     }else if (_heTongNameLabel.text.length <= 13){
         _cursor.frame = CGRectMake(0, 580, self.view.width, 45);
     }
