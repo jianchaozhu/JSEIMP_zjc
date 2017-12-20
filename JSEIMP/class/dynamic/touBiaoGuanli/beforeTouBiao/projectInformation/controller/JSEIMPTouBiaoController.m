@@ -93,8 +93,6 @@ static NSString *cellID = @"cellID";
         
         [_tableView.mj_footer endRefreshing];
         
-        NSLog(@"%@",_resultArray);
-        
         [_tableView reloadData];
     }];
     
@@ -420,7 +418,7 @@ static NSString *cellID = @"cellID";
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
 
-    NSLog(@"%@",_resultArray);
+//    [self.resultArray removeAllObjects];
     
     return self.resultArray.count;
     

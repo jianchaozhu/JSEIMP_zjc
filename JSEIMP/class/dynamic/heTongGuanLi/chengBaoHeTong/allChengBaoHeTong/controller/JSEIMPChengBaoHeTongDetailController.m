@@ -155,8 +155,6 @@
     
     JSEIMPPropjectChengBaoFanWeiView *_propjectChengBaoFanWeiView;
     
-    JSEIMPShouKuanJieDianView *_shouKuanJieDianView;
-    
     JSEIMPHeTongZhiFuTiaoKuanView *_heTongZhiFuTiaoKuanView;
     
     JSEIMPProjectQuailtyTiaoKuanView *_projectQuailtyTiaoKuanView;
@@ -164,6 +162,8 @@
     JSEIMPWenMingSHiGongTiaoKuanView *_wenMingSHiGongTiaoKuanView;
     
     JSEIMPOtherTiaoKuanView *_otherTiaoKuanView;
+    
+    JSEIMPFuJianView *_fuJianView;
     
     NSInteger number;
     
@@ -234,17 +234,11 @@
         
     } onErrorInfo:nil];
 }
-
+#pragma mark - 发送通知
 -(void)postNotification{
     
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"chengBaoFanWei" object:_chengBaoFanWei];
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"qualityTiaoKuan" object:_qualityTiaoKuan];
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"shiGongTiaoKuan" object:_shiGongTiaoKuan];
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"otherTiaoKuan" object:_otherTiaoKuan];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"fileNameMArray" object:_fileNameMArray];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"filePathMArray" object:_filePathMArray];
-    
-    
 }
 
 #pragma mark - 监听后台进入前台
@@ -600,7 +594,7 @@
     _cursor.minFontSize = 13;
     //默认的最大值是25，小于默认值的话按默认值设置，大于默认值按设置的值处理
     _cursor.maxFontSize = 16;
-    //cursor.isGraduallyChangFont = NO;
+    //_cursor.isGraduallyChangFont = NO;
     //在isGraduallyChangFont为NO的时候，isGraduallyChangColor不会有效果
     //cursor.isGraduallyChangColor = NO;
     [_view addSubview:_cursor];
@@ -616,24 +610,20 @@
         if (i == 0) {
 
             _cursor.rootScrollView.bounces = NO;
-            
             _scrollView1 = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, self.view.width, self.view.height / 2)];
-            
             _propjectChengBaoFanWeiView = [[JSEIMPPropjectChengBaoFanWeiView alloc] init];
             
-            //发送通知
-            [self postNotification];
-            
             [_scrollView1 addSubview:_propjectChengBaoFanWeiView];
+            
+            //发送通知
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"chengBaoFanWei" object:_chengBaoFanWei];
             
             [_propjectChengBaoFanWeiView mas_makeConstraints:^(MASConstraintMaker *make) {
                 
                 make.edges.mas_equalTo(_scrollView1);
                 make.width.mas_equalTo(UIScreenW);
                 make.bottom.mas_equalTo(_propjectChengBaoFanWeiView.projectContentLabel.mas_bottom).offset(16);
-                
             }];
-            
             [pageViews addObject:_scrollView1];
             
         }
@@ -684,7 +674,8 @@
             
             _projectQuailtyTiaoKuanView = [[JSEIMPProjectQuailtyTiaoKuanView alloc] init];
             
-            [self postNotification];
+            //发送通知
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"qualityTiaoKuan" object:_qualityTiaoKuan];
             
             [_scrollView4 addSubview:_projectQuailtyTiaoKuanView];
             
@@ -704,7 +695,8 @@
             
             _wenMingSHiGongTiaoKuanView = [[JSEIMPWenMingSHiGongTiaoKuanView alloc] init];
             
-            [self postNotification];
+            //发送通知
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"shiGongTiaoKuan" object:_shiGongTiaoKuan];
             
             [_scrollView5 addSubview:_wenMingSHiGongTiaoKuanView];
             
@@ -725,7 +717,8 @@
             
             _otherTiaoKuanView = [[JSEIMPOtherTiaoKuanView alloc] init];
             
-            [self postNotification];
+            //发送通知
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"otherTiaoKuan" object:_otherTiaoKuan];
             
             [_scrollView6 addSubview:_otherTiaoKuanView];
             
@@ -739,15 +732,14 @@
             [pageViews addObject:_scrollView6];
         }else if(i == 4){
             
-            JSEIMPFuJianView *fuJianView = [JSEIMPFuJianView new];
+            _fuJianView = [JSEIMPFuJianView new];
             
             [self postNotification];
             
             [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(filePath:) name:@"filePath" object:nil];
             [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(exisFilePath:) name:@"exisFilePath" object:nil];
             
-            [pageViews addObject:fuJianView];
-
+            [pageViews addObject:_fuJianView];
             
         }
     }

@@ -49,6 +49,18 @@
 @property(nonatomic,strong)NSString *CREATOR;
 //承包范围
 @property(nonatomic,strong)NSString *CONTENTTERM;
+//计算方法
+@property(nonatomic,strong)NSString *FUNDTERM;
+//质量标准
+@property(nonatomic,strong)NSString *QUALITYTERM;
+//文明施工
+@property(nonatomic,strong)NSString *CIVILTERM;
+//付款条款
+@property(nonatomic,strong)NSString *PAYMENTTERM;
+//保证金交付退还
+@property(nonatomic,strong)NSString *DEPOSITTERM;
+//其他条款
+@property(nonatomic,strong)NSString *OTHERTERM;
 
 @end
 

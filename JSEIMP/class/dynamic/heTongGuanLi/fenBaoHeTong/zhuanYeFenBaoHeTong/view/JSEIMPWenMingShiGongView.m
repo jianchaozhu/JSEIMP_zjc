@@ -1,32 +1,30 @@
 //
-//  JSEIMPPropjectChengBaoFanWeiView.m
+//  JSEIMPWenMingShiGongView.m
 //  JSEIMP
 //
-//  Created by 朱建超 on 2017/11/6.
+//  Created by 朱建超 on 2017/12/18.
 //  Copyright © 2017年 朱建超. All rights reserved.
 //
 
-#import "JSEIMPPropjectChengBaoFanWeiView.h"
+#import "JSEIMPWenMingShiGongView.h"
 #import <Masonry.h>
 
-@interface JSEIMPPropjectChengBaoFanWeiView ()
+@interface JSEIMPWenMingShiGongView ()
 
-@property(nonatomic,strong)NSString *chengBaoFanWei;
+@property(nonatomic,strong)NSString *wenMingShiGong;
 
 @end
 
-@implementation JSEIMPPropjectChengBaoFanWeiView{
-
+@implementation JSEIMPWenMingShiGongView{
+    
     UILabel *_label1;
-
 }
 
 -(instancetype)init{
-
+    
     if (self = [super init]) {
         
         [self setupUI];
-        
     }
     
     return self;
@@ -37,26 +35,26 @@
     //注册通知
     [self setNotification];
     
-    _label1 = [self setupLabelWithText:@"承包工程内容及范围" Font:[UIFont systemFontOfSize:20] TextColor:[UIColor darkTextColor]];
-    
+    _label1 = [self setupLabelWithText:@"安全及文明施工" Font:[UIFont systemFontOfSize:20] TextColor:[UIColor darkTextColor]];
 }
 
 -(void)setNotification{
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(chengBaoFanWei:) name:@"chengBaoFanWei" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(wenMingShiGong:) name:@"wenMingShiGong" object:nil];
     
 }
 
--(void)chengBaoFanWei:(NSNotification *)notification{
+-(void)wenMingShiGong:(NSNotification *)notification{
     
-    _chengBaoFanWei = notification.object;
+    _wenMingShiGong = notification.object;
     
-    _projectContentLabel = [self setupLabelWithText:_chengBaoFanWei Font:[UIFont systemFontOfSize:16] TextColor:[UIColor darkGrayColor]];
-    _projectContentLabel.numberOfLines = 0;
+    _wenMingShiGongLabel = [self setupLabelWithText:_wenMingShiGong Font:[UIFont systemFontOfSize:16] TextColor:[UIColor darkGrayColor]];
+    _wenMingShiGongLabel.numberOfLines = 0;
 }
+
 
 -(void)layoutSubviews{
-
+    
     [super layoutSubviews];
     
     [_label1 mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -66,7 +64,7 @@
         
     }];
     
-    [_projectContentLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+    [_wenMingShiGongLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         
         make.top.mas_equalTo(_label1.mas_bottom).offset(16);
         make.centerX.mas_equalTo(_label1.mas_centerX);
@@ -74,7 +72,6 @@
         make.right.mas_equalTo(self.mas_right).offset(-16);
         
     }];
-
 }
 
 -(UILabel *)setupLabelWithText:(NSString *)text Font:(UIFont *)font TextColor:(UIColor *)textColor{

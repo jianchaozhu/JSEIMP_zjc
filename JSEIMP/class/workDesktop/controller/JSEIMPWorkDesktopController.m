@@ -75,7 +75,7 @@ static NSString *cellID = @"cellID";
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    if (indexPath.row == 0) {
+    if (indexPath.section == 0) {
         
         JSEIMPDaiBanItemsController *daiBanItemsController = [JSEIMPDaiBanItemsController new];
         

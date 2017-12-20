@@ -784,7 +784,22 @@
             NSString *finalQianYueDate = [qianYueDate stringByReplacingOccurrencesOfString:@"T00:00:00" withString:@""];
             NSString *finalStartDate = [startDate stringByReplacingOccurrencesOfString:@"T00:00:00" withString:@""];
             NSString *finalEndDate = [endDate stringByReplacingOccurrencesOfString:@"T00:00:00" withString:@""];
-            response(contractCode,projectName,jiaFangName,yiFangName,contractType,amount,finalQianYueDate,finalStartDate,finalEndDate,days,qualityBaoXiuMoney,wenMingShiGongMoney,creator,chengBaoFanWei,qualityTiaoKuan,shiGongTiaoKuan,otherTiaoKuan);
+           
+            NSMutableArray *fileTypeMArray = [NSMutableArray array];
+            NSMutableArray *fileNameMArray = [NSMutableArray array];
+            NSMutableArray *filePathMArray = [NSMutableArray array];
+            NSString *api = @"http://nimp.jaso.com.cn:6001/";
+            for (int i = 0; i < model.Files.count; i++) {
+                
+                NSString *fileType = model.Files[i].FILEEXT;
+                NSString *fileName = model.Files[i].FILENAME;
+                NSString *filePath = [api stringByAppendingString:model.Files[i].FILEPATH];
+                
+                [fileTypeMArray addObject:fileType];
+                [fileNameMArray addObject:fileName];
+                [filePathMArray addObject:filePath];
+            }
+            response(contractCode,projectName,jiaFangName,yiFangName,contractType,amount,finalQianYueDate,finalStartDate,finalEndDate,days,qualityBaoXiuMoney,wenMingShiGongMoney,creator,chengBaoFanWei,qualityTiaoKuan,shiGongTiaoKuan,otherTiaoKuan,fileTypeMArray,fileNameMArray,filePathMArray);
             
         } else {
             errorInfo();
@@ -889,11 +904,32 @@
             NSString *qualityBaoXiuMoney = [NSString stringWithFormat:@"%@ %%",model.ContractDetails.REPAIEFEE];
             NSString *creator = model.ContractDetails.CREATOR;
             NSString *chengBaoFanWei = model.ContractDetails.CONTENTTERM;
+            NSString *calculateMethod = model.ContractDetails.FUNDTERM;
+            NSString *qualityBiaoZhun = model.ContractDetails.QUALITYTERM;
+            NSString *wenMingShiGong = model.ContractDetails.CIVILTERM;
+            NSString *fuKuanTiaoKuan = model.ContractDetails.PAYMENTTERM;
+            NSString *jiaoFuTuiHuan = model.ContractDetails.DEPOSITTERM;
+            NSString *otherTiaoKuan = model.ContractDetails.OTHERTERM;
             
             NSString *finalQianYueDate = [qianYueDate stringByReplacingOccurrencesOfString:@"T00:00:00" withString:@""];
             NSString *finalStartDate = [startDate stringByReplacingOccurrencesOfString:@"T00:00:00" withString:@""];
             NSString *finalEndDate = [endDate stringByReplacingOccurrencesOfString:@"T00:00:00" withString:@""];
-            response(contractCode,projectName,jiaFangName,yiFangName,contractType,amount,finalQianYueDate,finalStartDate,finalEndDate,days,qualityBaoXiuMoney,creator,chengBaoFanWei);
+           
+            NSMutableArray *fileTypeMArray = [NSMutableArray array];
+            NSMutableArray *fileNameMArray = [NSMutableArray array];
+            NSMutableArray *filePathMArray = [NSMutableArray array];
+            NSString *api = @"http://nimp.jaso.com.cn:6001/";
+            for (int i = 0; i < model.Files.count; i++) {
+                
+                NSString *fileType = model.Files[i].FILEEXT;
+                NSString *fileName = model.Files[i].FILENAME;
+                NSString *filePath = [api stringByAppendingString:model.Files[i].FILEPATH];
+                
+                [fileTypeMArray addObject:fileType];
+                [fileNameMArray addObject:fileName];
+                [filePathMArray addObject:filePath];
+            }
+            response(contractCode,projectName,jiaFangName,yiFangName,contractType,amount,finalQianYueDate,finalStartDate,finalEndDate,days,qualityBaoXiuMoney,creator,chengBaoFanWei,calculateMethod,qualityBiaoZhun,wenMingShiGong,fuKuanTiaoKuan,jiaoFuTuiHuan,otherTiaoKuan,fileTypeMArray,fileNameMArray,filePathMArray);
             
         } else {
             errorInfo();

@@ -145,6 +145,11 @@
 		C1F823961FE361F800EAF37C /* JSEIMPZhuanYeFenBaoHeTongModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C1F823951FE361F800EAF37C /* JSEIMPZhuanYeFenBaoHeTongModel.m */; };
 		C1F823991FE3A15F00EAF37C /* JSEIMPZhuanYeFenBaoHeTongDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = C1F823981FE3A15E00EAF37C /* JSEIMPZhuanYeFenBaoHeTongDetailController.m */; };
 		C1F8239C1FE3A2AA00EAF37C /* JSEIMPZhuanYeFenBaoHeTongDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C1F8239B1FE3A2AA00EAF37C /* JSEIMPZhuanYeFenBaoHeTongDetailModel.m */; };
+		C1F8239F1FE7556900EAF37C /* JSEIMPCalculateMethodView.m in Sources */ = {isa = PBXBuildFile; fileRef = C1F8239E1FE7556900EAF37C /* JSEIMPCalculateMethodView.m */; };
+		C1F823A21FE7622100EAF37C /* JSEIMPQualityBiaoZhunView.m in Sources */ = {isa = PBXBuildFile; fileRef = C1F823A11FE7622100EAF37C /* JSEIMPQualityBiaoZhunView.m */; };
+		C1F823A51FE7A03B00EAF37C /* JSEIMPWenMingShiGongView.m in Sources */ = {isa = PBXBuildFile; fileRef = C1F823A41FE7A03B00EAF37C /* JSEIMPWenMingShiGongView.m */; };
+		C1F823A81FE8ADC300EAF37C /* JSEIMPFuKuanTiaoKuanView.m in Sources */ = {isa = PBXBuildFile; fileRef = C1F823A71FE8ADC200EAF37C /* JSEIMPFuKuanTiaoKuanView.m */; };
+		C1F823AB1FE8AFCC00EAF37C /* JSEIMPJiaoFuTuiHuanView.m in Sources */ = {isa = PBXBuildFile; fileRef = C1F823AA1FE8AFCB00EAF37C /* JSEIMPJiaoFuTuiHuanView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -418,6 +423,16 @@
 		C1F823981FE3A15E00EAF37C /* JSEIMPZhuanYeFenBaoHeTongDetailController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JSEIMPZhuanYeFenBaoHeTongDetailController.m; sourceTree = "<group>"; };
 		C1F8239A1FE3A2AA00EAF37C /* JSEIMPZhuanYeFenBaoHeTongDetailModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JSEIMPZhuanYeFenBaoHeTongDetailModel.h; sourceTree = "<group>"; };
 		C1F8239B1FE3A2AA00EAF37C /* JSEIMPZhuanYeFenBaoHeTongDetailModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JSEIMPZhuanYeFenBaoHeTongDetailModel.m; sourceTree = "<group>"; };
+		C1F8239D1FE7556900EAF37C /* JSEIMPCalculateMethodView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JSEIMPCalculateMethodView.h; sourceTree = "<group>"; };
+		C1F8239E1FE7556900EAF37C /* JSEIMPCalculateMethodView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JSEIMPCalculateMethodView.m; sourceTree = "<group>"; };
+		C1F823A01FE7622100EAF37C /* JSEIMPQualityBiaoZhunView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JSEIMPQualityBiaoZhunView.h; sourceTree = "<group>"; };
+		C1F823A11FE7622100EAF37C /* JSEIMPQualityBiaoZhunView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JSEIMPQualityBiaoZhunView.m; sourceTree = "<group>"; };
+		C1F823A31FE7A03B00EAF37C /* JSEIMPWenMingShiGongView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JSEIMPWenMingShiGongView.h; sourceTree = "<group>"; };
+		C1F823A41FE7A03B00EAF37C /* JSEIMPWenMingShiGongView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JSEIMPWenMingShiGongView.m; sourceTree = "<group>"; };
+		C1F823A61FE8ADC200EAF37C /* JSEIMPFuKuanTiaoKuanView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JSEIMPFuKuanTiaoKuanView.h; sourceTree = "<group>"; };
+		C1F823A71FE8ADC200EAF37C /* JSEIMPFuKuanTiaoKuanView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JSEIMPFuKuanTiaoKuanView.m; sourceTree = "<group>"; };
+		C1F823A91FE8AFCB00EAF37C /* JSEIMPJiaoFuTuiHuanView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JSEIMPJiaoFuTuiHuanView.h; sourceTree = "<group>"; };
+		C1F823AA1FE8AFCB00EAF37C /* JSEIMPJiaoFuTuiHuanView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JSEIMPJiaoFuTuiHuanView.m; sourceTree = "<group>"; };
 		E49184B2F529332E524E6306 /* Pods-JSEIMP.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JSEIMP.debug.xcconfig"; path = "Pods/Target Support Files/Pods-JSEIMP/Pods-JSEIMP.debug.xcconfig"; sourceTree = "<group>"; };
 		E6C22083F882A16F454660EA /* Pods-JSEIMP.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JSEIMP.release.xcconfig"; path = "Pods/Target Support Files/Pods-JSEIMP/Pods-JSEIMP.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -1916,6 +1931,31 @@
 				C1F8232F1FD63E0E00EAF37C /* JSEIMPAllChengBaoHeTongController.m */,
 				C1F823301FD63E0E00EAF37C /* JSEIMPChengBaoHeTongDetailController.h */,
 				C1F823311FD63E0E00EAF37C /* JSEIMPChengBaoHeTongDetailController.m */,
+			);
+			path = controller;
+			sourceTree = "<group>";
+		};
+		C1F8234E1FD63E0E00EAF37C /* model */ = {
+			isa = PBXGroup;
+			children = (
+				C1F823651FD6456D00EAF37C /* JSEIMPAllChengBaoHeTongModel.h */,
+				C1F823661FD6456D00EAF37C /* JSEIMPAllChengBaoHeTongModel.m */,
+				C1F823681FD7CEE400EAF37C /* JSEIMPAllChengBaoHeTongDetailModel.h */,
+				C1F823691FD7CEE400EAF37C /* JSEIMPAllChengBaoHeTongDetailModel.m */,
+			);
+			path = model;
+			sourceTree = "<group>";
+		};
+		C1F8234F1FD63E0E00EAF37C /* other */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = other;
+			sourceTree = "<group>";
+		};
+		C1F823501FD63E0E00EAF37C /* view */ = {
+			isa = PBXGroup;
+			children = (
 				C1F823321FD63E0E00EAF37C /* JSEIMPFuJianView.h */,
 				C1F823331FD63E0E00EAF37C /* JSEIMPFuJianView.m */,
 				C1F823341FD63E0E00EAF37C /* JSEIMPHeTongZhiFuTiaoKuanView.h */,
@@ -1944,31 +1984,6 @@
 				C1F8234B1FD63E0E00EAF37C /* JSEIMPShouKuanJieDianView.m */,
 				C1F8234C1FD63E0E00EAF37C /* JSEIMPWenMingSHiGongTiaoKuanView.h */,
 				C1F8234D1FD63E0E00EAF37C /* JSEIMPWenMingSHiGongTiaoKuanView.m */,
-			);
-			path = controller;
-			sourceTree = "<group>";
-		};
-		C1F8234E1FD63E0E00EAF37C /* model */ = {
-			isa = PBXGroup;
-			children = (
-				C1F823651FD6456D00EAF37C /* JSEIMPAllChengBaoHeTongModel.h */,
-				C1F823661FD6456D00EAF37C /* JSEIMPAllChengBaoHeTongModel.m */,
-				C1F823681FD7CEE400EAF37C /* JSEIMPAllChengBaoHeTongDetailModel.h */,
-				C1F823691FD7CEE400EAF37C /* JSEIMPAllChengBaoHeTongDetailModel.m */,
-			);
-			path = model;
-			sourceTree = "<group>";
-		};
-		C1F8234F1FD63E0E00EAF37C /* other */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = other;
-			sourceTree = "<group>";
-		};
-		C1F823501FD63E0E00EAF37C /* view */ = {
-			isa = PBXGroup;
-			children = (
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -2102,6 +2117,16 @@
 		C1F8238D1FE3592100EAF37C /* view */ = {
 			isa = PBXGroup;
 			children = (
+				C1F8239D1FE7556900EAF37C /* JSEIMPCalculateMethodView.h */,
+				C1F8239E1FE7556900EAF37C /* JSEIMPCalculateMethodView.m */,
+				C1F823A01FE7622100EAF37C /* JSEIMPQualityBiaoZhunView.h */,
+				C1F823A11FE7622100EAF37C /* JSEIMPQualityBiaoZhunView.m */,
+				C1F823A31FE7A03B00EAF37C /* JSEIMPWenMingShiGongView.h */,
+				C1F823A41FE7A03B00EAF37C /* JSEIMPWenMingShiGongView.m */,
+				C1F823A61FE8ADC200EAF37C /* JSEIMPFuKuanTiaoKuanView.h */,
+				C1F823A71FE8ADC200EAF37C /* JSEIMPFuKuanTiaoKuanView.m */,
+				C1F823A91FE8AFCB00EAF37C /* JSEIMPJiaoFuTuiHuanView.h */,
+				C1F823AA1FE8AFCB00EAF37C /* JSEIMPJiaoFuTuiHuanView.m */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -2263,9 +2288,11 @@
 				C1C6EC331FC4209A00FDA439 /* JSEIMPWorkDesktopController.m in Sources */,
 				C1F823881FE2108000EAF37C /* JSEIMPDaiBanItemsController.m in Sources */,
 				C1EB2F1E1F984367005D9F2F /* JSEIMPNewZhiJianShouXuView.m in Sources */,
+				C1F823A51FE7A03B00EAF37C /* JSEIMPWenMingShiGongView.m in Sources */,
 				C1047FA81F7F809E005412FB /* JSEIMPTouBiaoGuanLiController.m in Sources */,
 				C1047FD01F8B48EF005412FB /* UIColor+RGBA.m in Sources */,
 				C1047F9E1F7F7E23005412FB /* JSEIMPXianChangCheckController.m in Sources */,
+				C1F823A81FE8ADC300EAF37C /* JSEIMPFuKuanTiaoKuanView.m in Sources */,
 				C1EB2EE91F944CEF005D9F2F /* JSEIMPNewBiaoShuInfoController.m in Sources */,
 				C1F8239C1FE3A2AA00EAF37C /* JSEIMPZhuanYeFenBaoHeTongDetailModel.m in Sources */,
 				C1F823581FD63E0F00EAF37C /* JSEIMPNewOtherTiaoKuanView.m in Sources */,
@@ -2311,6 +2338,7 @@
 				C1EB2F3A1F9AF146005D9F2F /* JSEIMPPorjectJiangXiangController.m in Sources */,
 				C1047F921F7F7E23005412FB /* JSProjectCheckController.m in Sources */,
 				C1EB2ED81F8EF7DE005D9F2F /* JSEIMPLvYueBaoZhengJinDetailController.m in Sources */,
+				C1F8239F1FE7556900EAF37C /* JSEIMPCalculateMethodView.m in Sources */,
 				C1C6EC1C1FC27FB600FDA439 /* JSEIMPQualityGuanLiController.m in Sources */,
 				C1047F901F7F7E23005412FB /* JSBeforeTouBiaoController.m in Sources */,
 				C1EB2ECC1F8E0C7B005D9F2F /* JSEIMPNewFarmerBaoZhengJinController.m in Sources */,
@@ -2323,6 +2351,7 @@
 				C1F823931FE35BFE00EAF37C /* JSEIMPZhuanYeFenBaoHeTongController.m in Sources */,
 				C1C6EC5E1FD0F0E100FDA439 /* JSEIMPLoginController.m in Sources */,
 				C1EB2F181F973EC5005D9F2F /* JSEIMPNewFaBaoShouXuView.m in Sources */,
+				C1F823AB1FE8AFCC00EAF37C /* JSEIMPJiaoFuTuiHuanView.m in Sources */,
 				C1EB2EBD1F8E0C70005D9F2F /* JSEIMPNewTouBiaoBaoZhengJinController.m in Sources */,
 				C1047FCB1F8B48EF005412FB /* HARootScrollViewManager.m in Sources */,
 				C1047F9F1F7F7E23005412FB /* JSEIMPXianChangTaKanDetailController.m in Sources */,
@@ -2367,6 +2396,7 @@
 				C1EB2F481F9ED6C0005D9F2F /* JSEIMPBiaoHouAnalyzeController.m in Sources */,
 				C1F823601FD63E0F00EAF37C /* JSEIMPWenMingSHiGongTiaoKuanView.m in Sources */,
 				C1EB2EF71F95A3CE005D9F2F /* JSEIMPZiZhiCheckShouXuController.m in Sources */,
+				C1F823A21FE7622100EAF37C /* JSEIMPQualityBiaoZhunView.m in Sources */,
 				C1C6EC271FC3C5C100FDA439 /* JSEIMPQualityTargetDetailController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
