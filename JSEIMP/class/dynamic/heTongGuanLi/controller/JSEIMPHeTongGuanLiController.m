@@ -9,6 +9,7 @@
 #import "JSEIMPHeTongGuanLiController.h"
 #import "JSEIMPChengBaoHeTongController.h"
 #import "JSEIMPFenBaoHeTongController.h"
+#import "JSEIMPCaiGouHeTongController.h"
 
 static NSString *cellID = @"cellID";
 
@@ -71,7 +72,7 @@ static NSString *cellID = @"cellID";
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     
-    return 2;
+    return 3;
     
 //    return 8;
     
@@ -90,6 +91,11 @@ static NSString *cellID = @"cellID";
         JSEIMPFenBaoHeTongController *fenBaoHeTongController = [JSEIMPFenBaoHeTongController new];
         
         [self.navigationController pushViewController:fenBaoHeTongController animated:YES];
+    }else if (indexPath.row == 2){
+        
+        JSEIMPCaiGouHeTongController *caiGouHeTongController = [JSEIMPCaiGouHeTongController new];
+        
+        [self.navigationController pushViewController:caiGouHeTongController animated:YES];
     }
     
 }
@@ -109,7 +115,10 @@ static NSString *cellID = @"cellID";
         [self setImageViewWithName:@"chengBaoHeTong" Text:@"承包合同"];
     }else if (indexPath.row == 1){
         
-        [self setImageViewWithName:@"fenBaoHeTong" Text:@"分包合同"];
+        [self setImageViewWithName:@"fenBaoHeTong" Text:@"专业分包合同"];
+    }else if (indexPath.row == 2){
+        
+        [self setImageViewWithName:@"caiGouHeTong" Text:@"采购合同"];
     }
     
 //    if (indexPath.section == 0) {

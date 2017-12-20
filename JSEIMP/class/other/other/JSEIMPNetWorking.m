@@ -22,6 +22,7 @@
 #import "JSEIMPZhuanYeChengBaoHeTongModel.h"
 #import "JSEIMPZhuanYeFenBaoHeTongModel.h"
 #import "JSEIMPZhuanYeFenBaoHeTongDetailModel.h"
+#import "JSEIMPCaiGouHeTongModel.h"
 #import "JSEIMPError.h"
 
 @implementation JSEIMPNetWorking
@@ -933,6 +934,66 @@
             
         } else {
             errorInfo();
+        }
+        
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        
+        NSLog(@"%@",error);
+    }];
+}
+
+//获得采购合同列表
++(void)getCaiGouHeTongOnSuccess:(void (^)())response onErrorInfo:(void (^)(JSEIMPError))errorInfo{
+    
+    NSArray *parameters = @[@{@"ContractType":@"CONTRACTC"}];
+    
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    manager.responseSerializer = [AFJSONResponseSerializer serializer];
+    manager.requestSerializer = [AFJSONRequestSerializer serializer];
+    [self setPublicHeader:manager];
+    [manager POST:API_CAIGOUHETONG parameters:parameters progress:^(NSProgress * _Nonnull uploadProgress) {
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        
+        NSLog(@"%@",responseObject);
+        
+        if (responseObject != nil) {
+            
+            NSDictionary *dict = (NSDictionary *)responseObject;
+            
+            JSEIMPCaiGouHeTongModel *model = [JSEIMPCaiGouHeTongModel mj_objectWithKeyValues:dict];
+            
+            NSMutableArray *contractIdMArray = [NSMutableArray array];
+            NSMutableArray *contractNameMArray = [NSMutableArray array];
+            NSMutableArray *statusMArray = [NSMutableArray array];
+            for (int i = 0; i < model.ContractList.count; i++) {
+                
+                NSString *contractId = model.ContractList[i].ContractId;
+                NSString *contractName = model.ContractList[i].ContractName;
+                NSInteger status = model.ContractList[i].Status;
+                NSString *heTongStatus;
+                
+                [contractIdMArray addObject:contractId];
+                [contractNameMArray addObject:contractName];
+                if (status == 0) {
+                    heTongStatus = @"待审";
+                }else if (status == 1){
+                    heTongStatus = @"审批中";
+                }else if (status == 2){
+                    heTongStatus = @"已审";
+                }else if (status == 3){
+                    heTongStatus = @"作废";
+                }else if (status == 4){
+                    heTongStatus = @"已决算";
+                }else if (status == 5){
+                    heTongStatus = @"终止";
+                }
+                [statusMArray addObject:heTongStatus];
+            }
+            
+            response(contractIdMArray,contractNameMArray,statusMArray);
+            
+        } else {
+            errorInfo(noData);
         }
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {

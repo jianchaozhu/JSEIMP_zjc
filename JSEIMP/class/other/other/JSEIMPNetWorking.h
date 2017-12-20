@@ -70,6 +70,9 @@
 //获得专业分包合同明细
 +(void)getZhuanYeFenBaoHeTongDetailWithContractId:(NSString *)contractId OnSuccess:(void(^)())response onErrorInfo:(void(^)())errorInfo;
 
+//获得采购合同列表
++(void)getCaiGouHeTongOnSuccess:(void(^)())response onErrorInfo:(void(^)(JSEIMPError))errorInfo;
+
 //获得待办事项列表
 +(void)getDaiBanItemOnSuccess:(void(^)())response onErrorInfo:(void(^)(JSEIMPError error))errorInfo;
 

@@ -567,7 +567,7 @@
 
 -(void)setupCursor{
     
-    _titles = [NSMutableArray arrayWithObjects:@"承包范围",@"收款节点",@"支付条款",@"质量条款",@"施工条款",@"其他条款",@"附件", nil];
+    _titles = [NSMutableArray arrayWithObjects:@"承包范围",@"质量条款",@"施工条款",@"其他条款",@"附件", nil];
     
     _cursor = [[HACursor alloc]init];
     //    _cursor.backgroundColor = [UIColor colorWithRed:56.0 / 255.0 green:135.0 / 255.0 blue:250.0 / 255.0 alpha:1];
