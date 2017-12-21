@@ -153,6 +153,8 @@
 		C1F823AE1FEA32D500EAF37C /* JSEIMPCaiGouHeTongController.m in Sources */ = {isa = PBXBuildFile; fileRef = C1F823AD1FEA32D500EAF37C /* JSEIMPCaiGouHeTongController.m */; };
 		C1F823B61FEA33C300EAF37C /* JSEIMPChildCaiGouHeTongController.m in Sources */ = {isa = PBXBuildFile; fileRef = C1F823B51FEA33C300EAF37C /* JSEIMPChildCaiGouHeTongController.m */; };
 		C1F823B91FEA38A800EAF37C /* JSEIMPCaiGouHeTongModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C1F823B81FEA38A800EAF37C /* JSEIMPCaiGouHeTongModel.m */; };
+		C1F823BC1FEA54F900EAF37C /* JSEIMPCaiGouHeTongDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C1F823BB1FEA54F900EAF37C /* JSEIMPCaiGouHeTongDetailModel.m */; };
+		C1F823BF1FEA580E00EAF37C /* JSEIMPCaiGouHeTongDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = C1F823BE1FEA580E00EAF37C /* JSEIMPCaiGouHeTongDetailController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -442,6 +444,10 @@
 		C1F823B51FEA33C300EAF37C /* JSEIMPChildCaiGouHeTongController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JSEIMPChildCaiGouHeTongController.m; sourceTree = "<group>"; };
 		C1F823B71FEA38A800EAF37C /* JSEIMPCaiGouHeTongModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JSEIMPCaiGouHeTongModel.h; sourceTree = "<group>"; };
 		C1F823B81FEA38A800EAF37C /* JSEIMPCaiGouHeTongModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JSEIMPCaiGouHeTongModel.m; sourceTree = "<group>"; };
+		C1F823BA1FEA54F900EAF37C /* JSEIMPCaiGouHeTongDetailModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JSEIMPCaiGouHeTongDetailModel.h; sourceTree = "<group>"; };
+		C1F823BB1FEA54F900EAF37C /* JSEIMPCaiGouHeTongDetailModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JSEIMPCaiGouHeTongDetailModel.m; sourceTree = "<group>"; };
+		C1F823BD1FEA580E00EAF37C /* JSEIMPCaiGouHeTongDetailController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JSEIMPCaiGouHeTongDetailController.h; sourceTree = "<group>"; };
+		C1F823BE1FEA580E00EAF37C /* JSEIMPCaiGouHeTongDetailController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JSEIMPCaiGouHeTongDetailController.m; sourceTree = "<group>"; };
 		E49184B2F529332E524E6306 /* Pods-JSEIMP.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JSEIMP.debug.xcconfig"; path = "Pods/Target Support Files/Pods-JSEIMP/Pods-JSEIMP.debug.xcconfig"; sourceTree = "<group>"; };
 		E6C22083F882A16F454660EA /* Pods-JSEIMP.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JSEIMP.release.xcconfig"; path = "Pods/Target Support Files/Pods-JSEIMP/Pods-JSEIMP.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -2159,6 +2165,8 @@
 			children = (
 				C1F823B41FEA33C300EAF37C /* JSEIMPChildCaiGouHeTongController.h */,
 				C1F823B51FEA33C300EAF37C /* JSEIMPChildCaiGouHeTongController.m */,
+				C1F823BD1FEA580E00EAF37C /* JSEIMPCaiGouHeTongDetailController.h */,
+				C1F823BE1FEA580E00EAF37C /* JSEIMPCaiGouHeTongDetailController.m */,
 			);
 			path = controller;
 			sourceTree = "<group>";
@@ -2168,6 +2176,8 @@
 			children = (
 				C1F823B71FEA38A800EAF37C /* JSEIMPCaiGouHeTongModel.h */,
 				C1F823B81FEA38A800EAF37C /* JSEIMPCaiGouHeTongModel.m */,
+				C1F823BA1FEA54F900EAF37C /* JSEIMPCaiGouHeTongDetailModel.h */,
+				C1F823BB1FEA54F900EAF37C /* JSEIMPCaiGouHeTongDetailModel.m */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -2406,6 +2416,7 @@
 				C1C6EC371FC7ACB900FDA439 /* JSEIMPNetWorking.m in Sources */,
 				C1EB2F2F1F99934D005D9F2F /* JSEIMPStaffBeiAnDetailController.m in Sources */,
 				C1F823931FE35BFE00EAF37C /* JSEIMPZhuanYeFenBaoHeTongController.m in Sources */,
+				C1F823BF1FEA580E00EAF37C /* JSEIMPCaiGouHeTongDetailController.m in Sources */,
 				C1C6EC5E1FD0F0E100FDA439 /* JSEIMPLoginController.m in Sources */,
 				C1EB2F181F973EC5005D9F2F /* JSEIMPNewFaBaoShouXuView.m in Sources */,
 				C1F823AB1FE8AFCC00EAF37C /* JSEIMPJiaoFuTuiHuanView.m in Sources */,
@@ -2420,6 +2431,7 @@
 				C1EB2F3D1F9D91E2005D9F2F /* JSEIMPProjectJiangXiangDetailController.m in Sources */,
 				C1EB2F401F9D9210005D9F2F /* JSEIMPNewProjectJiangXiangController.m in Sources */,
 				C1047FC81F8B48EF005412FB /* HAItemManager.m in Sources */,
+				C1F823BC1FEA54F900EAF37C /* JSEIMPCaiGouHeTongDetailModel.m in Sources */,
 				C1C6EC241FC2AEA300FDA439 /* JSEIMPQualityTargetController.m in Sources */,
 				C1C6EB791FAC0B3100FDA439 /* UIImage+LC.m in Sources */,
 				C10245151F5E88B000FA32AA /* JSEIMPDynamciCell.m in Sources */,

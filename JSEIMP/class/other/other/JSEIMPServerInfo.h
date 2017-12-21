@@ -48,5 +48,7 @@
 #define API_ZHUANYEFENBAOHETONGDETAIL @"http://"IP"/api/Contract/Contract/GetDetails"
 //获得采购合同列表
 #define API_CAIGOUHETONG @"http://"IP"/api/Contract/Contract/GetList"
+//获得采购合同详情
+#define API_CAIGOUHETONGDETAIL @"http://"IP"/api/Contract/Contract/GetDetails"
 //获得待办事项列表
 #define API_DAIBANITEM @"http://"HAWORKIP"/api/services/wf/Instance/GetPendingWorkItems"

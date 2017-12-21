@@ -23,6 +23,7 @@
 #import "JSEIMPZhuanYeFenBaoHeTongModel.h"
 #import "JSEIMPZhuanYeFenBaoHeTongDetailModel.h"
 #import "JSEIMPCaiGouHeTongModel.h"
+#import "JSEIMPCaiGouHeTongDetailModel.h"
 #import "JSEIMPError.h"
 
 @implementation JSEIMPNetWorking
@@ -896,6 +897,7 @@
             NSString *projectName = model.ContractDetails.PROJECTNAME;
             NSString *jiaFangName = model.ContractDetails.PARTYAName;
             NSString *yiFangName = model.ContractDetails.PARTYBName;
+            NSString *diSanFangName = model.ContractDetails.PARTYCName;
             NSString *contractType = model.ContractDetails.CONTRACTTYPE;
             NSString *amount = model.ContractDetails.AMOUNT;
             NSString *qianYueDate = model.ContractDetails.CONTRACTDATE;
@@ -930,7 +932,7 @@
                 [fileNameMArray addObject:fileName];
                 [filePathMArray addObject:filePath];
             }
-            response(contractCode,projectName,jiaFangName,yiFangName,contractType,amount,finalQianYueDate,finalStartDate,finalEndDate,days,qualityBaoXiuMoney,creator,chengBaoFanWei,calculateMethod,qualityBiaoZhun,wenMingShiGong,fuKuanTiaoKuan,jiaoFuTuiHuan,otherTiaoKuan,fileTypeMArray,fileNameMArray,filePathMArray);
+            response(contractCode,projectName,jiaFangName,yiFangName,diSanFangName,contractType,amount,finalQianYueDate,finalStartDate,finalEndDate,days,qualityBaoXiuMoney,creator,chengBaoFanWei,calculateMethod,qualityBiaoZhun,wenMingShiGong,fuKuanTiaoKuan,jiaoFuTuiHuan,otherTiaoKuan,fileTypeMArray,fileNameMArray,filePathMArray);
             
         } else {
             errorInfo();
@@ -994,6 +996,74 @@
             
         } else {
             errorInfo(noData);
+        }
+        
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        
+        NSLog(@"%@",error);
+    }];
+}
+
+//获得采购合同明细
++(void)getCaiGouHeTongDetailWithContractId:(NSString *)contractId OnSuccess:(void (^)())response onErrorInfo:(void (^)())errorInfo{
+    
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    manager.responseSerializer = [AFJSONResponseSerializer serializer];
+    manager.requestSerializer = [AFJSONRequestSerializer serializer];
+    
+    NSDictionary *paramaters = @{@"ContractId":contractId};
+    [self setPublicHeader:manager];
+    [manager POST:API_CAIGOUHETONGDETAIL parameters:paramaters progress:^(NSProgress * _Nonnull uploadProgress) {
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        
+        NSLog(@"%@",responseObject);
+        
+        if (responseObject != nil) {
+            
+            NSDictionary *dict = (NSDictionary *)responseObject;
+            
+            JSEIMPCaiGouHeTongDetailModel *model = [JSEIMPCaiGouHeTongDetailModel mj_objectWithKeyValues:dict];
+            
+            NSString *contractCode = model.ContractDetails.CONTRACTCODE;
+            NSString *projectName = model.ContractDetails.PROJECTNAME;
+            NSString *jiaFangName = model.ContractDetails.PARTYAName;
+            NSString *yiFangName = model.ContractDetails.PARTYBName;
+            NSString *diSanFangName = model.ContractDetails.PARTYCName;
+            NSString *contractType = model.ContractDetails.CONTRACTTYPE;
+            NSString *amount = model.ContractDetails.AMOUNT;
+            NSString *qianYueDate = model.ContractDetails.CONTRACTDATE;
+            NSString *creator = model.ContractDetails.CREATOR;
+            NSString *qualityBiaoZhun = model.ContractDetails.QUALITYTERM;
+            NSString *fuKuanTiaoKuan = model.ContractDetails.PAYMENTTERM;
+            NSString *otherTiaoKuan = model.ContractDetails.OTHERTERM;
+            
+            NSString *finalQianYueDate = [qianYueDate stringByReplacingOccurrencesOfString:@"T00:00:00" withString:@""];
+            
+            NSMutableArray *fileTypeMArray = [NSMutableArray array];
+            NSMutableArray *fileNameMArray = [NSMutableArray array];
+            NSMutableArray *filePathMArray = [NSMutableArray array];
+            NSString *api = @"http://nimp.jaso.com.cn:6001/";
+            for (int i = 0; i < model.Files.count; i++) {
+                
+                NSString *fileType = model.Files[i].FILEEXT;
+                NSString *fileName = model.Files[i].FILENAME;
+                NSString *filePath;
+                
+                if (model.Files[i].FILEPATH == nil) {
+                    
+                    filePath = [api stringByAppendingString:@""];
+                }else{
+                    filePath = [api stringByAppendingString:model.Files[i].FILEPATH];
+                }
+                
+                [fileTypeMArray addObject:fileType];
+                [fileNameMArray addObject:fileName];
+                [filePathMArray addObject:filePath];
+            }
+            response(contractCode,projectName,jiaFangName,yiFangName,diSanFangName,contractType,amount,finalQianYueDate,creator,qualityBiaoZhun,fuKuanTiaoKuan,otherTiaoKuan,fileTypeMArray,fileNameMArray,filePathMArray);
+            
+        } else {
+            errorInfo();
         }
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {

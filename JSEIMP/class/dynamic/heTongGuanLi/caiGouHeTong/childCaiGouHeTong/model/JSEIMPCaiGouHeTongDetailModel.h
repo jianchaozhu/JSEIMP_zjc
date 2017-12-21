@@ -1,14 +1,14 @@
 //
-//  JSEIMPZhuanYeFenBaoHeTongDetailModel.h
+//  JSEIMPCaiGouHeTongDetailModel.h
 //  JSEIMP
 //
-//  Created by 朱建超 on 2017/12/15.
+//  Created by 朱建超 on 2017/12/20.
 //  Copyright © 2017年 朱建超. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 
-@interface ZhuanYeFenBaoHeTongDetailArraylModel : NSObject
+@interface CaiGouHeTongDetailArraylModel : NSObject
 //文件格式
 @property(nonatomic,strong)NSString *FILEEXT;
 //文件名
@@ -18,7 +18,7 @@
 
 @end
 
-@interface ZhuanYeFenBaoHeTongDetaillModel : NSObject
+@interface CaiGouHeTongDetaillModel : NSObject
 //合同编号
 @property(nonatomic,strong)NSString *CONTRACTCODE;
 //项目ID
@@ -37,39 +37,23 @@
 @property(nonatomic,strong)NSString *AMOUNT;
 //签约日期
 @property(nonatomic,strong)NSString *CONTRACTDATE;
-//开工日期
-@property(nonatomic,strong)NSString *STARTDATE;
-//竣工日期
-@property(nonatomic,strong)NSString *ENDDATE;
-//合同工期
-@property(nonatomic,strong)NSString *DAYS;
-//质量保修金
-@property(nonatomic,strong)NSString *REPAIEFEE;
 //创建人
 @property(nonatomic,strong)NSString *CREATOR;
-//承包范围
-@property(nonatomic,strong)NSString *CONTENTTERM;
-//计算方法
-@property(nonatomic,strong)NSString *FUNDTERM;
 //质量标准
 @property(nonatomic,strong)NSString *QUALITYTERM;
-//文明施工
-@property(nonatomic,strong)NSString *CIVILTERM;
 //付款条款
 @property(nonatomic,strong)NSString *PAYMENTTERM;
-//保证金交付退还
-@property(nonatomic,strong)NSString *DEPOSITTERM;
 //其他条款
 @property(nonatomic,strong)NSString *OTHERTERM;
 
 @end
 
-@interface JSEIMPZhuanYeFenBaoHeTongDetailModel : NSObject
+@interface JSEIMPCaiGouHeTongDetailModel : NSObject
 
-@property(nonatomic,strong)ZhuanYeFenBaoHeTongDetaillModel *ContractDetails;
+@property(nonatomic,strong)CaiGouHeTongDetaillModel *ContractDetails;
 
 @property(nonatomic,assign)NSInteger Code;
 
-@property(nonatomic,strong)NSMutableArray<ZhuanYeFenBaoHeTongDetailArraylModel *> *Files;
+@property(nonatomic,strong)NSMutableArray<CaiGouHeTongDetailArraylModel *> *Files;
 
 @end

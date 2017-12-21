@@ -40,6 +40,8 @@
 
 @property(nonatomic,strong)NSString *yiFangName;
 
+@property(nonatomic,strong)NSString *diSanFangName;
+
 @property(nonatomic,strong)NSString *contractType;
 
 @property(nonatomic,strong)NSString *amount;
@@ -109,6 +111,10 @@
     UILabel *_label6;
     
     UILabel *_qualityBaoXiuMoneyLabel;
+    
+    UILabel *_label7;
+    
+    UILabel *_diSanFangNameLabel;
     
     UILabel *_label8;
     
@@ -216,12 +222,13 @@
 -(void)getData{
     
     NSLog(@"%@",_contractId);
-    [JSEIMPNetWorking getZhuanYeFenBaoHeTongDetailWithContractId:_contractId OnSuccess:^(NSString *contractCode,NSString *projectName,NSString *jiaFangName,NSString *yiFangName,NSString *contractType,NSString *amount,NSString *qianYueDate,NSString *startDate,NSString *endDate,NSString *days,NSString *qualityBaoXiuMoney,NSString *creator,NSString *chengBaoFanWei,NSString *calculateMethod,NSString *qualityBiaoZhun,NSString *wenMingShiGong,NSString *fuKuanTiaoKuan,NSString *jiaoFuTuiHuan,NSString *otherTiaoKuan,NSMutableArray *fileTypeMArray,NSMutableArray *fileNameMArray,NSMutableArray *filePathMArray){
+    [JSEIMPNetWorking getZhuanYeFenBaoHeTongDetailWithContractId:_contractId OnSuccess:^(NSString *contractCode,NSString *projectName,NSString *jiaFangName,NSString *yiFangName,NSString *diSanFangName,NSString *contractType,NSString *amount,NSString *qianYueDate,NSString *startDate,NSString *endDate,NSString *days,NSString *qualityBaoXiuMoney,NSString *creator,NSString *chengBaoFanWei,NSString *calculateMethod,NSString *qualityBiaoZhun,NSString *wenMingShiGong,NSString *fuKuanTiaoKuan,NSString *jiaoFuTuiHuan,NSString *otherTiaoKuan,NSMutableArray *fileTypeMArray,NSMutableArray *fileNameMArray,NSMutableArray *filePathMArray){
         
         _contractCode = contractCode.copy;
         _projectName = projectName.copy;
         _jiaFangName = jiaFangName.copy;
         _yiFangName = yiFangName.copy;
+        _diSanFangName = diSanFangName.copy;
         _contractType = contractType.copy;
         _amount = amount.copy;
         _qianYueDate = qianYueDate.copy;
@@ -284,6 +291,11 @@
     _yiFangLabel = [self setupLabelWithText:_yiFangName TextColor:[UIColor darkGrayColor] Font:[UIFont systemFontOfSize:16]];
     _yiFangLabel.textAlignment = NSTextAlignmentRight;
     _yiFangLabel.numberOfLines = 0;
+    
+    _label7 = [self setupLabelWithText:@"第三方" TextColor:[UIColor darkTextColor] Font:[UIFont systemFontOfSize:20]];
+    _diSanFangNameLabel = [self setupLabelWithText:_diSanFangName TextColor:[UIColor darkGrayColor] Font:[UIFont systemFontOfSize:16]];
+    _diSanFangNameLabel.textAlignment = NSTextAlignmentRight;
+    _diSanFangNameLabel.numberOfLines = 0;
     
     _label8 = [self setupLabelWithText:@"合同类型" TextColor:[UIColor darkTextColor] Font:[UIFont systemFontOfSize:20]];
     _heTongStyleLabel = [self setupLabelWithText:_contractType TextColor:[UIColor darkGrayColor] Font:[UIFont systemFontOfSize:16]];
@@ -408,18 +420,33 @@
         
     }];
     
-    [_label8 mas_makeConstraints:^(MASConstraintMaker *make) {
+    [_label7 mas_makeConstraints:^(MASConstraintMaker *make) {
         
         make.top.mas_equalTo(_yiFangLabel.mas_bottom).offset(16);
         make.left.mas_equalTo(_label5);
+        make.width.mas_equalTo(62);
+        
+    }];
+    [_diSanFangNameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        
+        make.left.mas_equalTo(_label7.mas_right).offset(16);
+        make.top.mas_equalTo(_label7.mas_top);
+        make.right.mas_equalTo(_yiFangLabel.mas_right);
+        
+    }];
+    
+    [_label8 mas_makeConstraints:^(MASConstraintMaker *make) {
+        
+        make.top.mas_equalTo(_label7.mas_bottom).offset(16);
+        make.left.mas_equalTo(_label7);
         make.right.mas_equalTo(_label3.mas_right);
         
     }];
     [_heTongStyleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         
-        make.left.mas_equalTo(_yiFangLabel.mas_left);
+        make.left.mas_equalTo(_heTongNameLabel.mas_left);
         make.centerY.mas_equalTo(_label8.mas_centerY);
-        make.right.mas_equalTo(_yiFangLabel.mas_right);
+        make.right.mas_equalTo(_diSanFangNameLabel.mas_right);
         
     }];
     
@@ -555,13 +582,13 @@
     _cursor.backgroundColor = [UIColor lightGrayColor];
     
     if (_heTongNameLabel.text.length > 26 && _heTongNameLabel.text.length < 39) {
-        _cursor.frame = CGRectMake(0, 645, self.view.width, 45);
+        _cursor.frame = CGRectMake(0, 685, self.view.width, 45);
     }else if(_heTongNameLabel.text.length > 13 && _heTongNameLabel.text.length <= 26 && _projectNameLabel.text.length > 26 && _projectNameLabel.text.length < 39){
-        _cursor.frame = CGRectMake(0, 610, self.view.width, 45);
-    }else if (_heTongNameLabel.text.length <= 13 && _projectNameLabel.text.length > 26 && _projectNameLabel.text.length < 39){
         _cursor.frame = CGRectMake(0, 650, self.view.width, 45);
+    }else if (_heTongNameLabel.text.length <= 13 && _projectNameLabel.text.length > 26 && _projectNameLabel.text.length < 39){
+        _cursor.frame = CGRectMake(0, 690, self.view.width, 45);
     }else if (_heTongNameLabel.text.length <= 13){
-        _cursor.frame = CGRectMake(0, 580, self.view.width, 45);
+        _cursor.frame = CGRectMake(0, 620, self.view.width, 45);
     }
     
     _cursor.titles = self.titles;
