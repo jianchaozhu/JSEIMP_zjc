@@ -15,10 +15,7 @@
 
 @end
 
-@implementation JSEIMPFuKuanTiaoKuanView{
-    
-    UILabel *_label1;
-}
+@implementation JSEIMPFuKuanTiaoKuanView
 
 -(instancetype)init{
     

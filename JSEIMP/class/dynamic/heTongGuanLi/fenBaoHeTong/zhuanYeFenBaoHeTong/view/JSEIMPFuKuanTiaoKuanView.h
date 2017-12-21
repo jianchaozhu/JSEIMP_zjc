@@ -10,6 +10,8 @@
 
 @interface JSEIMPFuKuanTiaoKuanView : UIView
 
+@property(nonatomic,strong)UILabel *label1;
+
 @property(nonatomic,strong)UILabel *fuKuanTiaoKuanLabel;
 
 @end

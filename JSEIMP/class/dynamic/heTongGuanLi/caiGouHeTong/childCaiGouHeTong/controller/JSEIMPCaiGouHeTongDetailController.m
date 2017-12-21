@@ -11,6 +11,7 @@
 #import "UIView+Extension.h"
 #import "JSEIMPQualityBiaoZhunView.h"
 #import "JSEIMPJiaoFuPlaceView.h"
+#import "JSEIMPFuKuanTiaoKuanView.h"
 #import "HACursor.h"
 #import <Masonry.h>
 
@@ -115,9 +116,13 @@
     
     UIScrollView *_scrollView2;
     
+    UIScrollView *_scrollView3;
+    
     JSEIMPQualityBiaoZhunView *_qualityBiaoZhunView;
     
     JSEIMPJiaoFuPlaceView *_jiaoFuPlaceView;
+    
+    JSEIMPFuKuanTiaoKuanView *_fuKuanTiaoKuanView;
 }
 
 - (void)viewDidLoad {
@@ -433,7 +438,7 @@
 
 -(void)setupCursor{
     
-    _titles = [NSMutableArray arrayWithObjects:@"质量标准",@"交付地点", nil];
+    _titles = [NSMutableArray arrayWithObjects:@"质量标准",@"交付地点",@"支付条款", nil];
     
     _cursor = [[HACursor alloc]init];
     //    _cursor.backgroundColor = [UIColor colorWithRed:56.0 / 255.0 green:135.0 / 255.0 blue:250.0 / 255.0 alpha:1];
@@ -481,6 +486,7 @@
             _cursor.rootScrollView.bounces = NO;
             _scrollView1 = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, self.view.width, self.view.height / 2)];
             _qualityBiaoZhunView = [[JSEIMPQualityBiaoZhunView alloc] init];
+            _qualityBiaoZhunView.label1.text = @"质量标准";
             //发送通知
             [[NSNotificationCenter defaultCenter] postNotificationName:@"qualityBiaoZhun" object:_qualityBiaoZhun];
             
@@ -510,6 +516,24 @@
                 make.bottom.mas_equalTo(_jiaoFuPlaceView.jiaoFuPlaceLabel.mas_bottom).offset(16);
             }];
             [pageViews addObject:_scrollView2];
+        }else if (i == 2){
+            
+            _cursor.rootScrollView.bounces = NO;
+            _scrollView3 = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, self.view.width, self.view.height / 2)];
+            _fuKuanTiaoKuanView = [[JSEIMPFuKuanTiaoKuanView alloc] init];
+            _fuKuanTiaoKuanView.label1.text = @"支付条款";
+            //发送通知
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"fuKuanTiaoKuan" object:_fuKuanTiaoKuan];
+            
+            [_scrollView3 addSubview:_fuKuanTiaoKuanView];
+            
+            [_fuKuanTiaoKuanView mas_makeConstraints:^(MASConstraintMaker *make) {
+                
+                make.edges.mas_equalTo(_scrollView3);
+                make.width.mas_equalTo(UIScreenW);
+                make.bottom.mas_equalTo(_fuKuanTiaoKuanView.fuKuanTiaoKuanLabel.mas_bottom).offset(16);
+            }];
+            [pageViews addObject:_scrollView3];
         }
 //        else if (i == 1){
 //

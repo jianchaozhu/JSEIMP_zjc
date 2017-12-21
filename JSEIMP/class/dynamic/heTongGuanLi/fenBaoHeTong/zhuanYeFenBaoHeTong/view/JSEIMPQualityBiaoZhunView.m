@@ -15,10 +15,7 @@
 
 @end
 
-@implementation JSEIMPQualityBiaoZhunView{
-    
-    UILabel *_label1;
-}
+@implementation JSEIMPQualityBiaoZhunView
 
 -(instancetype)init{
     
