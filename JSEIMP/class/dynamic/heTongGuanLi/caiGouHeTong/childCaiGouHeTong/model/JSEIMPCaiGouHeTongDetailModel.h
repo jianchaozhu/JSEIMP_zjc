@@ -41,6 +41,8 @@
 @property(nonatomic,strong)NSString *CREATOR;
 //质量标准
 @property(nonatomic,strong)NSString *QUALITYTERM;
+//交付地点
+@property(nonatomic,strong)NSString *DELIVERYTERM;
 //付款条款
 @property(nonatomic,strong)NSString *PAYMENTTERM;
 //其他条款

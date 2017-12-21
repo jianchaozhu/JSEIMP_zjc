@@ -10,6 +10,7 @@
 #import "JSEIMPNetWorking.h"
 #import "UIView+Extension.h"
 #import "JSEIMPQualityBiaoZhunView.h"
+#import "JSEIMPJiaoFuPlaceView.h"
 #import "HACursor.h"
 #import <Masonry.h>
 
@@ -43,6 +44,8 @@
 @property(nonatomic,strong)NSString *creator;
 //质量标准
 @property(nonatomic,strong)NSString *qualityBiaoZhun;
+//交付地点
+@property(nonatomic,strong)NSString *jiaoFuPlace;
 //付款条款
 @property(nonatomic,strong)NSString *fuKuanTiaoKuan;
 //其他条款
@@ -110,7 +113,11 @@
     
     UIScrollView *_scrollView1;
     
+    UIScrollView *_scrollView2;
+    
     JSEIMPQualityBiaoZhunView *_qualityBiaoZhunView;
+    
+    JSEIMPJiaoFuPlaceView *_jiaoFuPlaceView;
 }
 
 - (void)viewDidLoad {
@@ -152,7 +159,7 @@
 -(void)getData{
     
     NSLog(@"%@",_contractId);
-    [JSEIMPNetWorking getCaiGouHeTongDetailWithContractId:_contractId OnSuccess:^(NSString *contractCode,NSString *projectName,NSString *jiaFangName,NSString *yiFangName,NSString *diSanFangName,NSString *contractType,NSString *amount,NSString *qianYueDate,NSString *creator,NSString *qualityBiaoZhun,NSString *fuKuanTiaoKuan,NSString *otherTiaoKuan,NSMutableArray *fileTypeMArray,NSMutableArray *fileNameMArray,NSMutableArray *filePathMArray){
+    [JSEIMPNetWorking getCaiGouHeTongDetailWithContractId:_contractId OnSuccess:^(NSString *contractCode,NSString *projectName,NSString *jiaFangName,NSString *yiFangName,NSString *diSanFangName,NSString *contractType,NSString *amount,NSString *qianYueDate,NSString *creator,NSString *qualityBiaoZhun,NSString *jiaoFuPlace,NSString *fuKuanTiaoKuan,NSString *otherTiaoKuan,NSMutableArray *fileTypeMArray,NSMutableArray *fileNameMArray,NSMutableArray *filePathMArray){
         
         _contractCode = contractCode.copy;
         _projectName = projectName.copy;
@@ -164,6 +171,7 @@
         _qianYueDate = qianYueDate.copy;
         _creator = creator.copy;
         _qualityBiaoZhun = qualityBiaoZhun.copy;
+        _jiaoFuPlace = jiaoFuPlace.copy;
         _fuKuanTiaoKuan = fuKuanTiaoKuan.copy;
         _otherTiaoKuan = otherTiaoKuan.copy;
         _fileTypeMArray = fileTypeMArray.copy;
@@ -425,7 +433,7 @@
 
 -(void)setupCursor{
     
-    _titles = [NSMutableArray arrayWithObjects:@"质量标准", nil];
+    _titles = [NSMutableArray arrayWithObjects:@"质量标准",@"交付地点", nil];
     
     _cursor = [[HACursor alloc]init];
     //    _cursor.backgroundColor = [UIColor colorWithRed:56.0 / 255.0 green:135.0 / 255.0 blue:250.0 / 255.0 alpha:1];
@@ -485,7 +493,23 @@
                 make.bottom.mas_equalTo(_qualityBiaoZhunView.qualityBiaoZhunLabel.mas_bottom).offset(16);
             }];
             [pageViews addObject:_scrollView1];
-
+        }else if (i == 1){
+            
+            _cursor.rootScrollView.bounces = NO;
+            _scrollView2 = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, self.view.width, self.view.height / 2)];
+            _jiaoFuPlaceView = [[JSEIMPJiaoFuPlaceView alloc] init];
+            //发送通知
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"jiaoFuPlace" object:_jiaoFuPlace];
+            
+            [_scrollView2 addSubview:_jiaoFuPlaceView];
+            
+            [_jiaoFuPlaceView mas_makeConstraints:^(MASConstraintMaker *make) {
+                
+                make.edges.mas_equalTo(_scrollView2);
+                make.width.mas_equalTo(UIScreenW);
+                make.bottom.mas_equalTo(_jiaoFuPlaceView.jiaoFuPlaceLabel.mas_bottom).offset(16);
+            }];
+            [pageViews addObject:_scrollView2];
         }
 //        else if (i == 1){
 //
