@@ -45,6 +45,8 @@
 @property(nonatomic,strong)NSString *DELIVERYTERM;
 //付款条款
 @property(nonatomic,strong)NSString *PAYMENTTERM;
+//验收方式
+@property(nonatomic,strong)NSString *ACCEPTTERM;
 //其他条款
 @property(nonatomic,strong)NSString *OTHERTERM;
 

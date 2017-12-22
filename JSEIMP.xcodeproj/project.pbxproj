@@ -156,6 +156,7 @@
 		C1F823BC1FEA54F900EAF37C /* JSEIMPCaiGouHeTongDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C1F823BB1FEA54F900EAF37C /* JSEIMPCaiGouHeTongDetailModel.m */; };
 		C1F823BF1FEA580E00EAF37C /* JSEIMPCaiGouHeTongDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = C1F823BE1FEA580E00EAF37C /* JSEIMPCaiGouHeTongDetailController.m */; };
 		C1F823C21FEB9FEC00EAF37C /* JSEIMPJiaoFuPlaceView.m in Sources */ = {isa = PBXBuildFile; fileRef = C1F823C11FEB9FEC00EAF37C /* JSEIMPJiaoFuPlaceView.m */; };
+		C1F823C51FECADD600EAF37C /* JSEIMPYanShouMethodView.m in Sources */ = {isa = PBXBuildFile; fileRef = C1F823C41FECADD500EAF37C /* JSEIMPYanShouMethodView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -451,6 +452,8 @@
 		C1F823BE1FEA580E00EAF37C /* JSEIMPCaiGouHeTongDetailController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JSEIMPCaiGouHeTongDetailController.m; sourceTree = "<group>"; };
 		C1F823C01FEB9FEC00EAF37C /* JSEIMPJiaoFuPlaceView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JSEIMPJiaoFuPlaceView.h; sourceTree = "<group>"; };
 		C1F823C11FEB9FEC00EAF37C /* JSEIMPJiaoFuPlaceView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JSEIMPJiaoFuPlaceView.m; sourceTree = "<group>"; };
+		C1F823C31FECADD500EAF37C /* JSEIMPYanShouMethodView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JSEIMPYanShouMethodView.h; sourceTree = "<group>"; };
+		C1F823C41FECADD500EAF37C /* JSEIMPYanShouMethodView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JSEIMPYanShouMethodView.m; sourceTree = "<group>"; };
 		E49184B2F529332E524E6306 /* Pods-JSEIMP.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JSEIMP.debug.xcconfig"; path = "Pods/Target Support Files/Pods-JSEIMP/Pods-JSEIMP.debug.xcconfig"; sourceTree = "<group>"; };
 		E6C22083F882A16F454660EA /* Pods-JSEIMP.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JSEIMP.release.xcconfig"; path = "Pods/Target Support Files/Pods-JSEIMP/Pods-JSEIMP.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -2197,6 +2200,8 @@
 			children = (
 				C1F823C01FEB9FEC00EAF37C /* JSEIMPJiaoFuPlaceView.h */,
 				C1F823C11FEB9FEC00EAF37C /* JSEIMPJiaoFuPlaceView.m */,
+				C1F823C31FECADD500EAF37C /* JSEIMPYanShouMethodView.h */,
+				C1F823C41FECADD500EAF37C /* JSEIMPYanShouMethodView.m */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -2453,6 +2458,7 @@
 				C102450B1F5E7E8D00FA32AA /* JSEIMPAplicationController.m in Sources */,
 				C1F823591FD63E0F00EAF37C /* JSEIMPNewProjecteQualityTiaoKuanView.m in Sources */,
 				C1F8235F1FD63E0F00EAF37C /* JSEIMPShouKuanJieDianView.m in Sources */,
+				C1F823C51FECADD600EAF37C /* JSEIMPYanShouMethodView.m in Sources */,
 				C1F823B61FEA33C300EAF37C /* JSEIMPChildCaiGouHeTongController.m in Sources */,
 				C1C6EC611FD0F71800FDA439 /* EdgeInsetsLabel.m in Sources */,
 				C1047F9C1F7F7E23005412FB /* JSEIMPTouBiaoZhaiYaoDetailController.m in Sources */,

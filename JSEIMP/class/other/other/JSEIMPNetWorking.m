@@ -1036,6 +1036,7 @@
             NSString *qualityBiaoZhun = model.ContractDetails.QUALITYTERM;
             NSString *jiaoFuPlace = model.ContractDetails.DELIVERYTERM;
             NSString *fuKuanTiaoKuan = model.ContractDetails.PAYMENTTERM;
+            NSString *yanShouMethod = model.ContractDetails.ACCEPTTERM;
             NSString *otherTiaoKuan = model.ContractDetails.OTHERTERM;
             
             NSString *finalQianYueDate = [qianYueDate stringByReplacingOccurrencesOfString:@"T00:00:00" withString:@""];
@@ -1061,7 +1062,7 @@
                 [fileNameMArray addObject:fileName];
                 [filePathMArray addObject:filePath];
             }
-            response(contractCode,projectName,jiaFangName,yiFangName,diSanFangName,contractType,amount,finalQianYueDate,creator,qualityBiaoZhun,jiaoFuPlace,fuKuanTiaoKuan,otherTiaoKuan,fileTypeMArray,fileNameMArray,filePathMArray);
+            response(contractCode,projectName,jiaFangName,yiFangName,diSanFangName,contractType,amount,finalQianYueDate,creator,qualityBiaoZhun,jiaoFuPlace,fuKuanTiaoKuan,yanShouMethod,otherTiaoKuan,fileTypeMArray,fileNameMArray,filePathMArray);
             
         } else {
             errorInfo();
