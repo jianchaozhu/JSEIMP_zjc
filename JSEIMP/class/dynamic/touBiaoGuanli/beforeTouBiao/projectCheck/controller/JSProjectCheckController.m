@@ -34,7 +34,7 @@ static NSString *cellID = @"cellID";
     self.view.backgroundColor = [UIColor whiteColor];
     
     self.title = @"工程考察";
-    
+        
     _projectNameMArray = [NSMutableArray arrayWithObjects:@"俞泾浦南、四平路西地块综合开发项目总包工程",@"苏州嘉苑和广场", nil];
     _checkTimeMArray = [NSMutableArray arrayWithObjects:@"2017-09-22",@"2017-06-12", nil];
     

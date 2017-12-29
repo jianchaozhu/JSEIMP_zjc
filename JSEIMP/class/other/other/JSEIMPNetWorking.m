@@ -61,16 +61,17 @@
 
 //系统登录
 +(void)loginWithServerByUserName:(NSString *)username password:(NSString *)password onSuccess:(void (^)())response onError:(void (^)(JSEIMPError))errorCode{
-    [self loginWithServer:username password:password response:response onError:errorCode];
+    [self loginWithServer:username password:password UserToken:nil response:response onError:errorCode];
     [self loginWithServerBeforeClearUserDefault];
 }
 +(void)loginWithServerBeforeClearUserDefault{
     NSUserDefaults *data = [NSUserDefaults standardUserDefaults];
     [data removeObjectForKey:@"username"];
     [data removeObjectForKey:@"password"];
+    [data removeObjectForKey:@"userToken"];
 }
 //登录接口
-+(void)loginWithServer:(NSString *)username password:(NSString *)password response:(void (^)())responseOJ onError:(void (^)(JSEIMPError))errorCode{
++(void)loginWithServer:(NSString *)username password:(NSString *)password UserToken:(NSString *)userToken response:(void (^)())responseOJ onError:(void (^)(JSEIMPError))errorCode{
     
     NSDictionary *parameters = @{@"grant_type":@"password",
                                  @"username":username,
@@ -84,7 +85,7 @@
     //转换content-Type要用下面的request
     manager.requestSerializer = [AFHTTPRequestSerializer serializer];
     [manager.requestSerializer setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
-    [self setPublicHeader:manager];
+//    [self setPublicHeader:manager];
     [manager POST:API_LOGIN parameters:parameters progress:^(NSProgress * _Nonnull uploadProgress) {
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         
@@ -129,17 +130,18 @@
 
 //默认自动登录系统
 +(void)loginWithUserDefaults:(void (^)())response onError:(void (^)(JSEIMPError))errorCode{
-    [self loginWithDefaults:^(NSString *username, NSString *password) {
-        if (username == nil || password == nil) {
+    [self loginWithDefaults:^(NSString *username, NSString *password,NSString *userToken) {
+        if (username == nil || password == nil || userToken == nil) {
             errorCode(noUserData);
         } else {
-            [self loginWithServer:username password:password response:response onError:errorCode];
+            [self loginWithServer:username password:password UserToken:userToken
+                         response:response onError:errorCode];
         }
     }];
 }
-+(void)loginWithDefaults:(void(^)(NSString * username,NSString * password))info{
++(void)loginWithDefaults:(void(^)(NSString * username,NSString * password,NSString * userToken))info{
     NSUserDefaults *data = [NSUserDefaults standardUserDefaults];
-    info([data objectForKey:@"username"],[data objectForKey:@"password"]);
+    info([data objectForKey:@"username"],[data objectForKey:@"password"],[data objectForKey:@"userToken"]);
 }
 
 //获得投标项目列表
@@ -1037,6 +1039,7 @@
             NSString *jiaoFuPlace = model.ContractDetails.DELIVERYTERM;
             NSString *fuKuanTiaoKuan = model.ContractDetails.PAYMENTTERM;
             NSString *yanShouMethod = model.ContractDetails.ACCEPTTERM;
+            NSString *weiYueZeRen = model.ContractDetails.BREACHTERM;
             NSString *otherTiaoKuan = model.ContractDetails.OTHERTERM;
             
             NSString *finalQianYueDate = [qianYueDate stringByReplacingOccurrencesOfString:@"T00:00:00" withString:@""];
@@ -1062,7 +1065,7 @@
                 [fileNameMArray addObject:fileName];
                 [filePathMArray addObject:filePath];
             }
-            response(contractCode,projectName,jiaFangName,yiFangName,diSanFangName,contractType,amount,finalQianYueDate,creator,qualityBiaoZhun,jiaoFuPlace,fuKuanTiaoKuan,yanShouMethod,otherTiaoKuan,fileTypeMArray,fileNameMArray,filePathMArray);
+            response(contractCode,projectName,jiaFangName,yiFangName,diSanFangName,contractType,amount,finalQianYueDate,creator,qualityBiaoZhun,jiaoFuPlace,fuKuanTiaoKuan,yanShouMethod,weiYueZeRen,otherTiaoKuan,fileTypeMArray,fileNameMArray,filePathMArray);
             
         } else {
             errorInfo();
@@ -1080,10 +1083,16 @@
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.responseSerializer = [AFJSONResponseSerializer serializer];
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
+//    manager.requestSerializer = [AFHTTPRequestSerializer serializer];
+//    [manager.requestSerializer setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
     
     [self setPublicHeader:manager];
     
-    [manager GET:API_DAIBANITEM parameters:nil progress:^(NSProgress * _Nonnull uploadProgress) {
+//    NSInteger count = 20;
+//    NSString *url = [NSString stringWithFormat:API_DAIBANITEM"?MaxResultCount=%zd",count];
+//    NSDictionary *parameters = @{@"MaxResultCount":@20};
+    
+    [manager GET:API_ZAIBANITEM parameters:nil progress:^(NSProgress * _Nonnull uploadProgress) {
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         
         NSLog(@"%@",responseObject);

@@ -20,13 +20,13 @@
     
     UIViewController *dynamicViewController = [self controllerWithName:@"JSEIMPDynamicController" Title:@"动态" ImageName:@"dong"];
     
-//    UIViewController *applicationViewController = [self controllerWithName:@"JSEIMPAplicationController" Title:@"应用" ImageName:@"application"];
+    UIViewController *applicationViewController = [self controllerWithName:@"JSEIMPAplicationController" Title:@"应用" ImageName:@"application"];
     
     UIViewController *workDesktopController = [self controllerWithName:@"JSEIMPWorkDesktopController" Title:@"工作台" ImageName:@"workDesktop"];
     
 //    UIViewController *mineViewController = [self controllerWithName:@"JSEIMPMineController" Title:@"我的" ImageName:@"me"];
     
-    self.viewControllers = @[dynamicViewController,workDesktopController];
+    self.viewControllers = @[dynamicViewController,applicationViewController,workDesktopController];
     
 }
 

@@ -68,7 +68,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "JSEIMP/class/dynamic/touBiaoGuanli/beforeTouBiao/projectInformation/controller/JSEIMPTouBiaoController.m"
-            timestampString = "535604958.744536"
+            timestampString = "536223590.795232"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "261"
@@ -83,60 +83,12 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "JSEIMP/class/workDesktop/daiBanItems/controller/JSEIMPDaiBanItemsController.m"
-            timestampString = "534996238.709616"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "30"
-            endingLineNumber = "30"
-            landmarkName = "-getData"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "-[JSEIMPDaiBanItemsController getData]"
-                  moduleName = "JSEIMP"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/zhujianchao/Desktop/JSEIMP2/JSEIMP/class/workDesktop/daiBanItems/controller/JSEIMPDaiBanItemsController.m"
-                  timestampString = "535604958.928806"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "30"
-                  endingLineNumber = "30"
-                  offsetFromSymbolStart = "25">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "__38-[JSEIMPDaiBanItemsController getData]_block_invoke"
-                  moduleName = "JSEIMP"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/zhujianchao/Desktop/JSEIMP2/JSEIMP/class/workDesktop/daiBanItems/controller/JSEIMPDaiBanItemsController.m"
-                  timestampString = "535604958.93177"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "32"
-                  endingLineNumber = "32"
-                  offsetFromSymbolStart = "12">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "JSEIMP/class/other/other/JSEIMPNetWorking.m"
-            timestampString = "535604958.745815"
+            timestampString = "536223590.797054"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "242"
-            endingLineNumber = "242"
+            startingLineNumber = "244"
+            endingLineNumber = "244"
             landmarkName = "+getTouBiaoDetailListWithProjectID:OnSuccess:onErrorInfo:"
             landmarkType = "7">
          </BreakpointContent>
@@ -148,11 +100,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "JSEIMP/class/other/other/JSEIMPNetWorking.m"
-            timestampString = "535604958.746083"
+            timestampString = "536223590.799634"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1089"
-            endingLineNumber = "1089"
+            startingLineNumber = "1098"
+            endingLineNumber = "1098"
             landmarkName = "+getDaiBanItemOnSuccess:onErrorInfo:"
             landmarkType = "7">
          </BreakpointContent>
@@ -164,11 +116,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "JSEIMP/class/other/other/JSEIMPNetWorking.m"
-            timestampString = "535604958.746183"
+            timestampString = "536223590.800514"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1101"
-            endingLineNumber = "1101"
+            startingLineNumber = "1110"
+            endingLineNumber = "1110"
             landmarkName = "+getDaiBanItemOnSuccess:onErrorInfo:"
             landmarkType = "7">
          </BreakpointContent>
@@ -180,12 +132,172 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "JSEIMP/class/other/other/JSEIMPNetWorking.m"
-            timestampString = "535604958.746283"
+            timestampString = "536223590.801276"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "638"
-            endingLineNumber = "638"
+            startingLineNumber = "640"
+            endingLineNumber = "640"
             landmarkName = "+getAllChengBaoHeTongDetailWithContractId:OnSuccess:onErrorInfo:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "JSEIMP/class/other/other/JSEIMPNetWorking.m"
+            timestampString = "536223590.801965"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "157"
+            endingLineNumber = "157"
+            landmarkName = "+getTouBiaoListOnSuccess:onErrorInfo:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "JSEIMP/class/other/other/JSEIMPNetWorking.m"
+            timestampString = "536223590.802215"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "262"
+            endingLineNumber = "262"
+            landmarkName = "+getTouBiaoBaoZhengJinOnSuccess:onErrorInfo:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "JSEIMP/class/other/other/JSEIMPNetWorking.m"
+            timestampString = "536223590.802521"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "293"
+            endingLineNumber = "293"
+            landmarkName = "+getTouBiaoBaoZhengJinOnSuccess:onErrorInfo:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "JSEIMP/class/other/other/JSEIMPNetWorking.m"
+            timestampString = "536223590.802806"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "148"
+            endingLineNumber = "148"
+            landmarkName = "+getTouBiaoListOnSuccess:onErrorInfo:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "JSEIMP/class/other/other/JSEIMPNetWorking.m"
+            timestampString = "536223590.803148"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "173"
+            endingLineNumber = "173"
+            landmarkName = "+getTouBiaoListOnSuccess:onErrorInfo:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "JSEIMP/class/other/other/JSEIMPNetWorking.m"
+            timestampString = "536223590.803582"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "168"
+            endingLineNumber = "168"
+            landmarkName = "+getTouBiaoListOnSuccess:onErrorInfo:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "JSEIMP/class/other/other/JSEIMPNetWorking.m"
+            timestampString = "536223590.803946"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "298"
+            endingLineNumber = "298"
+            landmarkName = "+getTouBiaoBaoZhengJinOnSuccess:onErrorInfo:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "JSEIMP/class/other/other/JSEIMPNetWorking.m"
+            timestampString = "536223590.804132"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "367"
+            endingLineNumber = "367"
+            landmarkName = "+getFarmerBaoZhengJinOnSuccess:onErrorInfo:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "JSEIMP/class/other/other/JSEIMPNetWorking.m"
+            timestampString = "536223590.804298"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "422"
+            endingLineNumber = "422"
+            landmarkName = "+getFarmerBaoZhengJinDetailWithDepositId:OnSuccess:onErrorInfo:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "JSEIMP/class/other/other/JSEIMPNetWorking.m"
+            timestampString = "536223590.804389"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "454"
+            endingLineNumber = "454"
+            landmarkName = "+getFarmerBaoZhengJinDetailWithDepositId:OnSuccess:onErrorInfo:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

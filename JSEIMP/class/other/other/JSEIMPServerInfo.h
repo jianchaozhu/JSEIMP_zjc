@@ -13,9 +13,11 @@
 //正式API
 //#define IP @"192.168.2.55:6002"
 //hamazon登录API
-#define HALOGINIP @"192.168.2.55:83"
-//hamazon工作流API
-#define HAWORKIP @"192.168.2.55:84"
+#define HALOGINIP @"sso.jaso.com.cn:83"
+//hamazon工作流正式API
+#define HAWORKIP @"wf.jaso.com.cn:84/app"
+//hamazon工作流测试API
+//#define HAWORKIP @"192.168.2.53:8030/app"
 //登录
 #define API_LOGIN @"http://"HALOGINIP"/connect/token"
 //获取投标项目列表
@@ -52,3 +54,8 @@
 #define API_CAIGOUHETONGDETAIL @"http://"IP"/api/Contract/Contract/GetDetails"
 //获得待办事项列表
 #define API_DAIBANITEM @"http://"HAWORKIP"/api/services/wf/Instance/GetPendingWorkItems"
+//获得在办事项列表
+#define API_ZAIBANITEM @"http://"HAWORKIP"/api/services/wf/Instance/GetInTrayWorkItems"
+//获得已办事项列表
+#define API_YIBANITEM @"http://"HAWORKIP"/api/services/wf/Instance/GetOutTrayWorkItems"
+

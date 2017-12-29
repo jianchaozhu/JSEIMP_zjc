@@ -157,6 +157,9 @@
 		C1F823BF1FEA580E00EAF37C /* JSEIMPCaiGouHeTongDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = C1F823BE1FEA580E00EAF37C /* JSEIMPCaiGouHeTongDetailController.m */; };
 		C1F823C21FEB9FEC00EAF37C /* JSEIMPJiaoFuPlaceView.m in Sources */ = {isa = PBXBuildFile; fileRef = C1F823C11FEB9FEC00EAF37C /* JSEIMPJiaoFuPlaceView.m */; };
 		C1F823C51FECADD600EAF37C /* JSEIMPYanShouMethodView.m in Sources */ = {isa = PBXBuildFile; fileRef = C1F823C41FECADD500EAF37C /* JSEIMPYanShouMethodView.m */; };
+		C1F823CD1FF4C6F000EAF37C /* JSEIMPZaiBanItemsController.m in Sources */ = {isa = PBXBuildFile; fileRef = C1F823CC1FF4C6EF00EAF37C /* JSEIMPZaiBanItemsController.m */; };
+		C1F823D51FF4C99700EAF37C /* JSEIMPYiBanItemsController.m in Sources */ = {isa = PBXBuildFile; fileRef = C1F823D41FF4C99700EAF37C /* JSEIMPYiBanItemsController.m */; };
+		C1F823DD1FF61E9700EAF37C /* JSEIMPGuanLiJiaShiCangController.m in Sources */ = {isa = PBXBuildFile; fileRef = C1F823DC1FF61E9700EAF37C /* JSEIMPGuanLiJiaShiCangController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -454,6 +457,12 @@
 		C1F823C11FEB9FEC00EAF37C /* JSEIMPJiaoFuPlaceView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JSEIMPJiaoFuPlaceView.m; sourceTree = "<group>"; };
 		C1F823C31FECADD500EAF37C /* JSEIMPYanShouMethodView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JSEIMPYanShouMethodView.h; sourceTree = "<group>"; };
 		C1F823C41FECADD500EAF37C /* JSEIMPYanShouMethodView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JSEIMPYanShouMethodView.m; sourceTree = "<group>"; };
+		C1F823CB1FF4C6EF00EAF37C /* JSEIMPZaiBanItemsController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JSEIMPZaiBanItemsController.h; sourceTree = "<group>"; };
+		C1F823CC1FF4C6EF00EAF37C /* JSEIMPZaiBanItemsController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JSEIMPZaiBanItemsController.m; sourceTree = "<group>"; };
+		C1F823D31FF4C99700EAF37C /* JSEIMPYiBanItemsController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JSEIMPYiBanItemsController.h; sourceTree = "<group>"; };
+		C1F823D41FF4C99700EAF37C /* JSEIMPYiBanItemsController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JSEIMPYiBanItemsController.m; sourceTree = "<group>"; };
+		C1F823DB1FF61E9700EAF37C /* JSEIMPGuanLiJiaShiCangController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JSEIMPGuanLiJiaShiCangController.h; sourceTree = "<group>"; };
+		C1F823DC1FF61E9700EAF37C /* JSEIMPGuanLiJiaShiCangController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JSEIMPGuanLiJiaShiCangController.m; sourceTree = "<group>"; };
 		E49184B2F529332E524E6306 /* Pods-JSEIMP.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JSEIMP.debug.xcconfig"; path = "Pods/Target Support Files/Pods-JSEIMP/Pods-JSEIMP.debug.xcconfig"; sourceTree = "<group>"; };
 		E6C22083F882A16F454660EA /* Pods-JSEIMP.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JSEIMP.release.xcconfig"; path = "Pods/Target Support Files/Pods-JSEIMP/Pods-JSEIMP.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -546,6 +555,7 @@
 		C10244EF1F5E4DBD00FA32AA /* application */ = {
 			isa = PBXGroup;
 			children = (
+				C1F823D61FF61E7D00EAF37C /* guanLiJiaShiCang */,
 				C10244F01F5E4DBD00FA32AA /* controller */,
 				C10244F11F5E4DBD00FA32AA /* model */,
 				C10244F21F5E4DBD00FA32AA /* other */,
@@ -1511,6 +1521,8 @@
 			isa = PBXGroup;
 			children = (
 				C1F823811FE2106C00EAF37C /* daiBanItems */,
+				C1F823C61FF4C6CB00EAF37C /* zaiBanItems */,
+				C1F823CE1FF4C97400EAF37C /* yiBanItems */,
 				C1C6EC2D1FC4208300FDA439 /* controller */,
 				C1C6EC2E1FC4208300FDA439 /* model */,
 				C1C6EC2F1FC4208300FDA439 /* other */,
@@ -2206,6 +2218,129 @@
 			path = view;
 			sourceTree = "<group>";
 		};
+		C1F823C61FF4C6CB00EAF37C /* zaiBanItems */ = {
+			isa = PBXGroup;
+			children = (
+				C1F823C71FF4C6CB00EAF37C /* controller */,
+				C1F823C81FF4C6CB00EAF37C /* model */,
+				C1F823C91FF4C6CB00EAF37C /* other */,
+				C1F823CA1FF4C6CB00EAF37C /* view */,
+			);
+			path = zaiBanItems;
+			sourceTree = "<group>";
+		};
+		C1F823C71FF4C6CB00EAF37C /* controller */ = {
+			isa = PBXGroup;
+			children = (
+				C1F823CB1FF4C6EF00EAF37C /* JSEIMPZaiBanItemsController.h */,
+				C1F823CC1FF4C6EF00EAF37C /* JSEIMPZaiBanItemsController.m */,
+			);
+			path = controller;
+			sourceTree = "<group>";
+		};
+		C1F823C81FF4C6CB00EAF37C /* model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = model;
+			sourceTree = "<group>";
+		};
+		C1F823C91FF4C6CB00EAF37C /* other */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = other;
+			sourceTree = "<group>";
+		};
+		C1F823CA1FF4C6CB00EAF37C /* view */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = view;
+			sourceTree = "<group>";
+		};
+		C1F823CE1FF4C97400EAF37C /* yiBanItems */ = {
+			isa = PBXGroup;
+			children = (
+				C1F823CF1FF4C97400EAF37C /* controller */,
+				C1F823D01FF4C97400EAF37C /* model */,
+				C1F823D11FF4C97400EAF37C /* other */,
+				C1F823D21FF4C97400EAF37C /* view */,
+			);
+			path = yiBanItems;
+			sourceTree = "<group>";
+		};
+		C1F823CF1FF4C97400EAF37C /* controller */ = {
+			isa = PBXGroup;
+			children = (
+				C1F823D31FF4C99700EAF37C /* JSEIMPYiBanItemsController.h */,
+				C1F823D41FF4C99700EAF37C /* JSEIMPYiBanItemsController.m */,
+			);
+			path = controller;
+			sourceTree = "<group>";
+		};
+		C1F823D01FF4C97400EAF37C /* model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = model;
+			sourceTree = "<group>";
+		};
+		C1F823D11FF4C97400EAF37C /* other */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = other;
+			sourceTree = "<group>";
+		};
+		C1F823D21FF4C97400EAF37C /* view */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = view;
+			sourceTree = "<group>";
+		};
+		C1F823D61FF61E7D00EAF37C /* guanLiJiaShiCang */ = {
+			isa = PBXGroup;
+			children = (
+				C1F823D71FF61E7D00EAF37C /* controller */,
+				C1F823D81FF61E7D00EAF37C /* model */,
+				C1F823D91FF61E7D00EAF37C /* other */,
+				C1F823DA1FF61E7D00EAF37C /* view */,
+			);
+			path = guanLiJiaShiCang;
+			sourceTree = "<group>";
+		};
+		C1F823D71FF61E7D00EAF37C /* controller */ = {
+			isa = PBXGroup;
+			children = (
+				C1F823DB1FF61E9700EAF37C /* JSEIMPGuanLiJiaShiCangController.h */,
+				C1F823DC1FF61E9700EAF37C /* JSEIMPGuanLiJiaShiCangController.m */,
+			);
+			path = controller;
+			sourceTree = "<group>";
+		};
+		C1F823D81FF61E7D00EAF37C /* model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = model;
+			sourceTree = "<group>";
+		};
+		C1F823D91FF61E7D00EAF37C /* other */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = other;
+			sourceTree = "<group>";
+		};
+		C1F823DA1FF61E7D00EAF37C /* view */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = view;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -2380,6 +2515,7 @@
 				C1F8237A1FDE51DA00EAF37C /* JSEIMPZhuanYeChengBaoHeTongController.m in Sources */,
 				C1047FAB1F8B1DEF005412FB /* JSEIMPProjectInfoController.m in Sources */,
 				C1C6EBF51FB9341B00FDA439 /* SkyAssociationMenuView.m in Sources */,
+				C1F823CD1FF4C6F000EAF37C /* JSEIMPZaiBanItemsController.m in Sources */,
 				C12E458A1FAAED2C00D95D7C /* JSEIMPHeTongGuanLiController.m in Sources */,
 				C1EB2F031F95DAEC005D9F2F /* JSEIMPAnJianShouXuController.m in Sources */,
 				C1F823551FD63E0F00EAF37C /* JSEIMPNewChengBaoFanWeiView.m in Sources */,
@@ -2388,6 +2524,7 @@
 				C10245051F5E7D2E00FA32AA /* JSEIMPTabBarController.m in Sources */,
 				C10245081F5E7E6700FA32AA /* JSEIMPDynamicController.m in Sources */,
 				C1EB2ECD1F8E0C7B005D9F2F /* JSFarmerBaoZhengJinController.m in Sources */,
+				C1F823DD1FF61E9700EAF37C /* JSEIMPGuanLiJiaShiCangController.m in Sources */,
 				C1EB2EDB1F8EF82F005D9F2F /* JSEIMPNewLvYueBaoZhengJinController.m in Sources */,
 				C1EBF3F61FD51904003658EF /* JSEIMPTokenModel.m in Sources */,
 				C1047FD11F8B48EF005412FB /* UIView+Extension.m in Sources */,
@@ -2479,6 +2616,7 @@
 				C1F823601FD63E0F00EAF37C /* JSEIMPWenMingSHiGongTiaoKuanView.m in Sources */,
 				C1EB2EF71F95A3CE005D9F2F /* JSEIMPZiZhiCheckShouXuController.m in Sources */,
 				C1F823A21FE7622100EAF37C /* JSEIMPQualityBiaoZhunView.m in Sources */,
+				C1F823D51FF4C99700EAF37C /* JSEIMPYiBanItemsController.m in Sources */,
 				C1C6EC271FC3C5C100FDA439 /* JSEIMPQualityTargetDetailController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

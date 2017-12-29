@@ -8,6 +8,8 @@
 
 #import "JSEIMPWorkDesktopController.h"
 #import "JSEIMPDaiBanItemsController.h"
+#import "JSEIMPZaiBanItemsController.h"
+#import "JSEIMPYiBanItemsController.h"
 
 static NSString *cellID = @"cellID";
 
@@ -80,6 +82,16 @@ static NSString *cellID = @"cellID";
         JSEIMPDaiBanItemsController *daiBanItemsController = [JSEIMPDaiBanItemsController new];
         
         [self.navigationController pushViewController:daiBanItemsController animated:YES];
+    }else if (indexPath.section == 1){
+        
+        JSEIMPZaiBanItemsController *zaiBanItemsController = [JSEIMPZaiBanItemsController new];
+        
+        [self.navigationController pushViewController:zaiBanItemsController animated:YES];
+    }else if (indexPath.section == 2){
+        
+        JSEIMPYiBanItemsController *yiBanItemsController = [JSEIMPYiBanItemsController new];
+        
+        [self.navigationController pushViewController:yiBanItemsController animated:YES];
     }
 }
 

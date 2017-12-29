@@ -1,21 +1,20 @@
 //
-//  JSEIMPDaiBanItemsController.m
+//  JSEIMPYiBanItemsController.m
 //  JSEIMP
 //
-//  Created by 朱建超 on 2017/12/14.
+//  Created by 朱建超 on 2017/12/28.
 //  Copyright © 2017年 朱建超. All rights reserved.
 //
 
-#import "JSEIMPDaiBanItemsController.h"
-#import "JSEIMPNetWorking.h"
+#import "JSEIMPYiBanItemsController.h"
 
 static NSString *cellID = @"cellID";
 
-@interface JSEIMPDaiBanItemsController ()<UITableViewDelegate,UITableViewDataSource>
+@interface JSEIMPYiBanItemsController ()<UITableViewDelegate,UITableViewDataSource>
 
 @end
 
-@implementation JSEIMPDaiBanItemsController{
+@implementation JSEIMPYiBanItemsController{
     
     UITableView *_tableView;
     
@@ -27,7 +26,7 @@ static NSString *cellID = @"cellID";
     
     self.view.backgroundColor = [UIColor whiteColor];
     
-    self.title = @"待办事项";
+    self.title = @"已办事项";
     
     [self getData];
     
@@ -36,9 +35,7 @@ static NSString *cellID = @"cellID";
 
 -(void)getData{
     
-    [JSEIMPNetWorking getDaiBanItemOnSuccess:^{
-        
-    } onErrorInfo:nil];
+    
 }
 
 -(void)setupUI{
@@ -60,7 +57,7 @@ static NSString *cellID = @"cellID";
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    NSString *str = @"南京栖霞研发楼";
+    NSString *str = @"苏州天籁城总承包合同";
     
     CGSize size = [str sizeWithFont:[UIFont systemFontOfSize:15] constrainedToSize:CGSizeMake(280, 999) lineBreakMode:NSLineBreakByWordWrapping];
     
@@ -78,7 +75,7 @@ static NSString *cellID = @"cellID";
         
     }
     
-    _cell.textLabel.text = [NSString stringWithFormat:@"%zd   南京栖霞研发楼",indexPath.row + 1];
+    _cell.textLabel.text = [NSString stringWithFormat:@"%zd   苏州天籁城总承包合同",indexPath.row + 1];
     _cell.detailTextLabel.text = [NSString stringWithFormat:@"节点：发起人    日期：2017-12-28"];
     _cell.selectionStyle = UITableViewCellSelectionStyleNone;
     _cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;

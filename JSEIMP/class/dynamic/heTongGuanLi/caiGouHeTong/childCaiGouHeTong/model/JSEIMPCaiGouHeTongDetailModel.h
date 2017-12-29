@@ -47,6 +47,8 @@
 @property(nonatomic,strong)NSString *PAYMENTTERM;
 //验收方式
 @property(nonatomic,strong)NSString *ACCEPTTERM;
+//违约责任
+@property(nonatomic,strong)NSString *BREACHTERM;
 //其他条款
 @property(nonatomic,strong)NSString *OTHERTERM;
 
