@@ -1092,14 +1092,14 @@
 //    NSString *url = [NSString stringWithFormat:API_DAIBANITEM"?MaxResultCount=%zd",count];
 //    NSDictionary *parameters = @{@"MaxResultCount":@20};
     
-    [manager GET:API_ZAIBANITEM parameters:nil progress:^(NSProgress * _Nonnull uploadProgress) {
+    [manager GET:API_YIBANITEM parameters:nil progress:^(NSProgress * _Nonnull uploadProgress) {
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         
         NSLog(@"%@",responseObject);
         
         if (responseObject != nil) {
             
-            
+            NSLog(@"成功");
         } else {
             
             errorInfo(noData);

@@ -371,7 +371,7 @@
         
         make.left.mas_equalTo(_label12.mas_left);
         make.top.mas_equalTo(_label12.mas_bottom).offset(16);
-        
+        make.right.mas_equalTo(_isZHongBiaoLabel.mas_right);
     }];
     
 }
