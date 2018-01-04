@@ -1,25 +1,25 @@
 //
-//  JSEIMPJianSheOptionDetailController.m
+//  JSEIMPJianLiOptionDetailController.m
 //  JSEIMP
 //
-//  Created by 朱建超 on 2018/1/2.
+//  Created by 朱建超 on 2018/1/4.
 //  Copyright © 2018年 朱建超. All rights reserved.
 //
 
-#import "JSEIMPJianSheOptionDetailController.h"
+#import "JSEIMPJianLiOptionDetailController.h"
 #import <Masonry.h>
 
 #define UIScreenW [UIScreen mainScreen].bounds.size.width
 #define UIScreenH [UIScreen mainScreen].bounds.size.height
 
 
-@interface JSEIMPJianSheOptionDetailController ()
+@interface JSEIMPJianLiOptionDetailController ()
 
 @property(nonatomic,strong)NSMutableArray *titleMArray;
 
 @end
 
-@implementation JSEIMPJianSheOptionDetailController{
+@implementation JSEIMPJianLiOptionDetailController{
     
     UIScrollView *_scrollView;
     

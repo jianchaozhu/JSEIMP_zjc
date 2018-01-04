@@ -162,7 +162,8 @@
 		C1F823DD1FF61E9700EAF37C /* JSEIMPGuanLiJiaShiCangController.m in Sources */ = {isa = PBXBuildFile; fileRef = C1F823DC1FF61E9700EAF37C /* JSEIMPGuanLiJiaShiCangController.m */; };
 		C1F823E51FFB288000EAF37C /* JSEIMPJianSheOptionController.m in Sources */ = {isa = PBXBuildFile; fileRef = C1F823E41FFB287F00EAF37C /* JSEIMPJianSheOptionController.m */; };
 		C1F823E81FFB7A4700EAF37C /* JSEIMPJianSheOptionDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = C1F823E71FFB7A4700EAF37C /* JSEIMPJianSheOptionDetailController.m */; };
-		C1F823EB1FFB7A6800EAF37C /* RadioButton.m in Sources */ = {isa = PBXBuildFile; fileRef = C1F823E91FFB7A6700EAF37C /* RadioButton.m */; };
+		C1F823F31FFDCEFA00EAF37C /* JSEIMPJianLiOptionController.m in Sources */ = {isa = PBXBuildFile; fileRef = C1F823F21FFDCEFA00EAF37C /* JSEIMPJianLiOptionController.m */; };
+		C1F823F61FFDCF2E00EAF37C /* JSEIMPJianLiOptionDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = C1F823F51FFDCF2E00EAF37C /* JSEIMPJianLiOptionDetailController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -470,8 +471,10 @@
 		C1F823E41FFB287F00EAF37C /* JSEIMPJianSheOptionController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JSEIMPJianSheOptionController.m; sourceTree = "<group>"; };
 		C1F823E61FFB7A4600EAF37C /* JSEIMPJianSheOptionDetailController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JSEIMPJianSheOptionDetailController.h; sourceTree = "<group>"; };
 		C1F823E71FFB7A4700EAF37C /* JSEIMPJianSheOptionDetailController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JSEIMPJianSheOptionDetailController.m; sourceTree = "<group>"; };
-		C1F823E91FFB7A6700EAF37C /* RadioButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RadioButton.m; sourceTree = "<group>"; };
-		C1F823EA1FFB7A6700EAF37C /* RadioButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RadioButton.h; sourceTree = "<group>"; };
+		C1F823F11FFDCEFA00EAF37C /* JSEIMPJianLiOptionController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JSEIMPJianLiOptionController.h; sourceTree = "<group>"; };
+		C1F823F21FFDCEFA00EAF37C /* JSEIMPJianLiOptionController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JSEIMPJianLiOptionController.m; sourceTree = "<group>"; };
+		C1F823F41FFDCF2E00EAF37C /* JSEIMPJianLiOptionDetailController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JSEIMPJianLiOptionDetailController.h; sourceTree = "<group>"; };
+		C1F823F51FFDCF2E00EAF37C /* JSEIMPJianLiOptionDetailController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JSEIMPJianLiOptionDetailController.m; sourceTree = "<group>"; };
 		E49184B2F529332E524E6306 /* Pods-JSEIMP.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JSEIMP.debug.xcconfig"; path = "Pods/Target Support Files/Pods-JSEIMP/Pods-JSEIMP.debug.xcconfig"; sourceTree = "<group>"; };
 		E6C22083F882A16F454660EA /* Pods-JSEIMP.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JSEIMP.release.xcconfig"; path = "Pods/Target Support Files/Pods-JSEIMP/Pods-JSEIMP.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -2313,6 +2316,7 @@
 			isa = PBXGroup;
 			children = (
 				C1F823DE1FFB286400EAF37C /* jianSheOption */,
+				C1F823EC1FFDCEC400EAF37C /* jianLiOption */,
 				C1F823D71FF61E7D00EAF37C /* controller */,
 				C1F823D81FF61E7D00EAF37C /* model */,
 				C1F823D91FF61E7D00EAF37C /* other */,
@@ -2383,13 +2387,54 @@
 		C1F823E11FFB286400EAF37C /* other */ = {
 			isa = PBXGroup;
 			children = (
-				C1F823EA1FFB7A6700EAF37C /* RadioButton.h */,
-				C1F823E91FFB7A6700EAF37C /* RadioButton.m */,
 			);
 			path = other;
 			sourceTree = "<group>";
 		};
 		C1F823E21FFB286400EAF37C /* view */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = view;
+			sourceTree = "<group>";
+		};
+		C1F823EC1FFDCEC400EAF37C /* jianLiOption */ = {
+			isa = PBXGroup;
+			children = (
+				C1F823ED1FFDCEC400EAF37C /* controller */,
+				C1F823EE1FFDCEC400EAF37C /* model */,
+				C1F823EF1FFDCEC400EAF37C /* other */,
+				C1F823F01FFDCEC400EAF37C /* view */,
+			);
+			path = jianLiOption;
+			sourceTree = "<group>";
+		};
+		C1F823ED1FFDCEC400EAF37C /* controller */ = {
+			isa = PBXGroup;
+			children = (
+				C1F823F11FFDCEFA00EAF37C /* JSEIMPJianLiOptionController.h */,
+				C1F823F21FFDCEFA00EAF37C /* JSEIMPJianLiOptionController.m */,
+				C1F823F41FFDCF2E00EAF37C /* JSEIMPJianLiOptionDetailController.h */,
+				C1F823F51FFDCF2E00EAF37C /* JSEIMPJianLiOptionDetailController.m */,
+			);
+			path = controller;
+			sourceTree = "<group>";
+		};
+		C1F823EE1FFDCEC400EAF37C /* model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = model;
+			sourceTree = "<group>";
+		};
+		C1F823EF1FFDCEC400EAF37C /* other */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = other;
+			sourceTree = "<group>";
+		};
+		C1F823F01FFDCEC400EAF37C /* view */ = {
 			isa = PBXGroup;
 			children = (
 			);
@@ -2547,6 +2592,7 @@
 				C1F823671FD6456D00EAF37C /* JSEIMPAllChengBaoHeTongModel.m in Sources */,
 				C1EB2F211F987BCB005D9F2F /* JSEIMPNewAnJianShouXiView.m in Sources */,
 				C1047FC91F8B48EF005412FB /* HARootScrollView.m in Sources */,
+				C1F823F61FFDCF2E00EAF37C /* JSEIMPJianLiOptionDetailController.m in Sources */,
 				C1EB2F2C1F9991DB005D9F2F /* JSEIMPStaffBeiAnController.m in Sources */,
 				C1F823E51FFB288000EAF37C /* JSEIMPJianSheOptionController.m in Sources */,
 				C1F823521FD63E0F00EAF37C /* JSEIMPChengBaoHeTongDetailController.m in Sources */,
@@ -2554,6 +2600,7 @@
 				C1F8235A1FD63E0F00EAF37C /* JSEIMPNewShouKuanJieDianView.m in Sources */,
 				C1C6EC331FC4209A00FDA439 /* JSEIMPWorkDesktopController.m in Sources */,
 				C1F823881FE2108000EAF37C /* JSEIMPDaiBanItemsController.m in Sources */,
+				C1F823F31FFDCEFA00EAF37C /* JSEIMPJianLiOptionController.m in Sources */,
 				C1EB2F1E1F984367005D9F2F /* JSEIMPNewZhiJianShouXuView.m in Sources */,
 				C1F823A51FE7A03B00EAF37C /* JSEIMPWenMingShiGongView.m in Sources */,
 				C1047FA81F7F809E005412FB /* JSEIMPTouBiaoGuanLiController.m in Sources */,
@@ -2591,7 +2638,6 @@
 				C1F8235E1FD63E0F00EAF37C /* JSEIMPPropjectChengBaoFanWeiView.m in Sources */,
 				C1C6EC431FC7FC5400FDA439 /* JSEIMPProjectDetailModel.m in Sources */,
 				C1F823961FE361F800EAF37C /* JSEIMPZhuanYeFenBaoHeTongModel.m in Sources */,
-				C1F823EB1FFB7A6800EAF37C /* RadioButton.m in Sources */,
 				C1EB2F321F99CF68005D9F2F /* JSEIMPNewStaffBeiAnController.m in Sources */,
 				C1EB2F4B1F9ED72C005D9F2F /* JSEIMPBiaoHouAnalyzeDetailController.m in Sources */,
 				C1F823991FE3A15F00EAF37C /* JSEIMPZhuanYeFenBaoHeTongDetailController.m in Sources */,

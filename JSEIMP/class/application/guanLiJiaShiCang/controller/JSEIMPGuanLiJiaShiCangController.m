@@ -8,6 +8,7 @@
 
 #import "JSEIMPGuanLiJiaShiCangController.h"
 #import "JSEIMPJianSheOptionController.h"
+#import "JSEIMPJianLiOptionController.h"
 
 static NSString *cellID = @"cellID";
 
@@ -60,6 +61,11 @@ static NSString *cellID = @"cellID";
         JSEIMPJianSheOptionController *jianSheOptionController = [JSEIMPJianSheOptionController new];
         
         [self.navigationController pushViewController:jianSheOptionController animated:YES];
+    }else if (indexPath.row == 1){
+        
+        JSEIMPJianLiOptionController *_jianLiOptionController = [JSEIMPJianLiOptionController new];
+        
+        [self.navigationController pushViewController:_jianLiOptionController animated:YES];
     }
 }
 
