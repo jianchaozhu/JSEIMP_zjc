@@ -245,22 +245,22 @@ static NSString *cellID = @"cellID";
     
 }
 
-//-(void)clickAddButton{
-//    
-//    JSEIMPNewFarmerBaoZhengJinController *newFarmerBaoZhengJinController = [JSEIMPNewFarmerBaoZhengJinController new];
-//    
-//    [self.navigationController pushViewController:newFarmerBaoZhengJinController animated:YES];
-//    
-//    //    if (_canInformationPut == YES) {
-//    
-//    //    }
-//    //    else if (_canInformationPut == NO){
-//    //
-//    //        [self setupAlertLabelWithTitle:@"对不起，您没有此权限" Rect:CGRectMake(self.view.center.x - 90, self.view.center.y + 100, 180, 50)];
-//    //
-//    //    }
-//    
-//}
+-(void)clickAddButton{
+    
+    JSEIMPNewFarmerBaoZhengJinController *newFarmerBaoZhengJinController = [JSEIMPNewFarmerBaoZhengJinController new];
+    
+    [self.navigationController pushViewController:newFarmerBaoZhengJinController animated:YES];
+    
+    //    if (_canInformationPut == YES) {
+    
+    //    }
+    //    else if (_canInformationPut == NO){
+    //
+    //        [self setupAlertLabelWithTitle:@"对不起，您没有此权限" Rect:CGRectMake(self.view.center.x - 90, self.view.center.y + 100, 180, 50)];
+    //
+    //    }
+    
+}
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     

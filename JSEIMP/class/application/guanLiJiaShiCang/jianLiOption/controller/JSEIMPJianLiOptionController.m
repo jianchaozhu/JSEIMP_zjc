@@ -64,6 +64,16 @@ static NSString *cellID = @"cellID";
     
 }
 
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    NSString *str = _projectName;
+    
+    CGSize size = [str sizeWithFont:[UIFont systemFontOfSize:15] constrainedToSize:CGSizeMake(280, 999) lineBreakMode:NSLineBreakByWordWrapping];
+    
+    return size.height + 50;
+    
+}
+
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
     JSEIMPJianLiOptionDetailController *jianLiOptionDetailController = [JSEIMPJianLiOptionDetailController new];
@@ -92,6 +102,8 @@ static NSString *cellID = @"cellID";
     _cell.textLabel.numberOfLines = 0;
     _cell.detailTextLabel.lineBreakMode = NSLineBreakByWordWrapping;
     _cell.detailTextLabel.font = [UIFont systemFontOfSize:14];
+    _cell.detailTextLabel.textColor = [UIColor darkGrayColor];
+    _cell.detailTextLabel.numberOfLines = 0;
     
     return _cell;
     

@@ -70,18 +70,13 @@ static NSString *cellID = @"cellID";
 
 -(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
     
-    if (section == 0) {
-        
-        return 10;
-    }
-    
     return 5;
     
 }
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
 
-    return 1;
+    return 2;
     
 //    return 4;
 
@@ -106,6 +101,9 @@ static NSString *cellID = @"cellID";
     if (section == 0) {
         
         return 2;
+    }else if (section == 1){
+        
+        return 1;
     }
 
     return 0;
@@ -125,6 +123,14 @@ static NSString *cellID = @"cellID";
             JSEIMPHeTongGuanLiController *heTongGuanLiController = [JSEIMPHeTongGuanLiController new];
             
             [self.navigationController pushViewController:heTongGuanLiController animated:YES];
+        }
+    }else if (indexPath.section == 1){
+        
+        if (indexPath.row == 0) {
+            
+            JSEIMPQualityGuanLiController *qualityGuanLiController = [JSEIMPQualityGuanLiController new];
+            
+            [self.navigationController pushViewController:qualityGuanLiController animated:YES];
         }
     }
     
@@ -149,7 +155,7 @@ static NSString *cellID = @"cellID";
 //        if (indexPath.row == 0) {
 //            
 //            JSEIMPQualityGuanLiController *qualityGuanLiController = [JSEIMPQualityGuanLiController new];
-//            
+//
 //            [self.navigationController pushViewController:qualityGuanLiController animated:YES];
 //        }
 //    
@@ -175,6 +181,12 @@ static NSString *cellID = @"cellID";
         }else if (indexPath.row == 1){
         
             [self setImageViewWithName:@"heTong" Text:@"合同管理" TextColor:[UIColor darkTextColor]];
+        }
+    }else if (indexPath.section == 1){
+        
+        if (indexPath.row == 0) {
+            
+            [self setImageViewWithName:@"quailty" Text:@"质量管理" TextColor:[UIColor darkTextColor]];
         }
     }
     

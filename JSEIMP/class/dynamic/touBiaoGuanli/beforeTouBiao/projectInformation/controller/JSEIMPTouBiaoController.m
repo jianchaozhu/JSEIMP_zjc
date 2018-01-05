@@ -272,6 +272,36 @@ static NSString *cellID = @"cellID";
                 }
                 
             }
+            
+            //遍历需要搜索的所有内容，其中self.dataArray为存放总数据的数组
+            for (NSString *projectName in _projectCodeMArray) {
+                
+                //----------->把所有的搜索结果转成成拼音
+                NSString *pinyin = [self transformToPinyin:projectName];
+                NSLog(@"pinyin--%@",pinyin);
+                
+                if ([pinyin rangeOfString:searchText options:NSCaseInsensitiveSearch].length >0 ) {
+                    //把搜索结果存放self.resultArray数组
+                    [self.resultArray addObject:projectName];
+                    
+                    _finalResultMArray = [[NSMutableArray alloc]init];
+                    for (NSString *str in self.resultArray) {
+                        if (![_finalResultMArray containsObject:str]) {
+                            
+                            [_finalResultMArray addObject:str];
+                            
+                        }
+                    }
+                    
+                    if (_finalResultMArray) {
+                        [self.resultArray removeAllObjects];
+                    }
+                    
+                    self.resultArray = [NSMutableArray arrayWithArray:_finalResultMArray];
+                    
+                }
+                
+            }
         
         }else{
             
@@ -471,6 +501,7 @@ static NSString *cellID = @"cellID";
     _cell.textLabel.text = self.resultArray[indexPath.row];
     _cell.detailTextLabel.text = _projectCodeMArray[indexPath.row];
     _cell.detailTextLabel.textColor = [UIColor darkGrayColor];
+    _cell.detailTextLabel.font = [UIFont systemFontOfSize:14];
     _cell.selectionStyle = UITableViewCellSelectionStyleNone;
     _cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     _cell.textLabel.numberOfLines = 0;

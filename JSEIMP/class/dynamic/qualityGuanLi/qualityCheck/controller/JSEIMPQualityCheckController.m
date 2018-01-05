@@ -1,29 +1,33 @@
 //
-//  JSEIMPJianSheOptionController.m
+//  JSEIMPQualityCheckController.m
 //  JSEIMP
 //
-//  Created by 朱建超 on 2018/1/2.
+//  Created by 朱建超 on 2018/1/4.
 //  Copyright © 2018年 朱建超. All rights reserved.
 //
 
-#import "JSEIMPJianSheOptionController.h"
-#import "JSEIMPJianSheOptionDetailController.h"
+#import "JSEIMPQualityCheckController.h"
+#import "JSEIMPProjectListController.h"
+#import "JSEIMPQualityCheckDetailController.h"
 
 static NSString *cellID = @"cellID";
 
-@interface JSEIMPJianSheOptionController ()<UITableViewDelegate,UITableViewDataSource>
+@interface JSEIMPQualityCheckController ()<UITableViewDelegate,UITableViewDataSource>
 
 @property(nonatomic,strong)NSString *projectName;
 
-@property(nonatomic,strong)NSString *diaoChaDate;
+@property(nonatomic,strong)NSString *danHao;
+
+@property(nonatomic,strong)NSString *zhengGaiRen;
 
 @end
 
-@implementation JSEIMPJianSheOptionController{
+@implementation JSEIMPQualityCheckController{
     
     UITableView *_tableView;
     
     UITableViewCell *_cell;
+    
 }
 
 - (void)viewDidLoad {
@@ -31,13 +35,29 @@ static NSString *cellID = @"cellID";
     
     self.view.backgroundColor = [UIColor whiteColor];
     
-    self.title = @"建设意见交流评价";
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"返回" style:UIBarButtonItemStylePlain target:self action:@selector(returnAction)];
+    
+    //添加右边的按钮
+    UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(clickAddButton:)];
+    
+    UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithTitle:@"根目录" style:UIBarButtonItemStyleDone target:self action:@selector(clickBackButton:)];
+    
+    NSArray *buttonArray = [NSArray arrayWithObjects:addButton,backButton, nil];
+    
+    self.navigationItem.rightBarButtonItems = buttonArray;
+    
+    UILabel *titleViewLabel = [[UILabel alloc] init];
+    titleViewLabel.frame = CGRectMake(0, 0, 180, 40);
+    titleViewLabel.numberOfLines = 0;
+    titleViewLabel.font = [UIFont boldSystemFontOfSize:16];
+    titleViewLabel.text = [NSString stringWithFormat:@"质量检查整改单(%@)",_buildingName];
+    titleViewLabel.textAlignment = NSTextAlignmentCenter;
+    
+    self.navigationItem.titleView = titleViewLabel;
     
     _projectName = @"无锡万科金域缇香项目";
-    
-    _diaoChaDate = @"2017-12-27";
-    
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"返回" style:UIBarButtonItemStylePlain target:self action:@selector(returnAction)];
+    _danHao = @"ZGD-201712-0021";
+    _zhengGaiRen = @"贾明胜";
     
     [self setupUI];
 }
@@ -47,21 +67,31 @@ static NSString *cellID = @"cellID";
     [self.navigationController popViewControllerAnimated:YES];
 }
 
+-(void)clickBackButton:(UIButton *)button{
+    
+    for(UIViewController *controller in self.navigationController.viewControllers) {
+        
+        if([controller isKindOfClass:[JSEIMPProjectListController class]]) {
+            
+            [self.navigationController popToViewController:controller animated:YES];
+        }
+    }
+}
+
 -(void)setupUI{
     
     _tableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStyleGrouped];
     _tableView.delegate = self;
     _tableView.dataSource = self;
     [_tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:cellID];
-    _tableView.tableFooterView = [[UIView alloc]init];
     
     [self.view addSubview:_tableView];
+    
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     
-    return 1;
-    
+    return 1;;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -70,18 +100,13 @@ static NSString *cellID = @"cellID";
     
     CGSize size = [str sizeWithFont:[UIFont systemFontOfSize:15] constrainedToSize:CGSizeMake(280, 999) lineBreakMode:NSLineBreakByWordWrapping];
     
-    return size.height + 50;
+    return size.height + 40;
     
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    JSEIMPJianSheOptionDetailController *jianSheOptionDetailController = [JSEIMPJianSheOptionDetailController new];
     
-    jianSheOptionDetailController.projectName = _projectName;
-    jianSheOptionDetailController.diaoChaDate = _diaoChaDate;
-    
-    [self.navigationController pushViewController:jianSheOptionDetailController animated:YES];
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -99,7 +124,7 @@ static NSString *cellID = @"cellID";
     _cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     _cell.textLabel.lineBreakMode = NSLineBreakByWordWrapping;
     _cell.textLabel.numberOfLines = 0;
-    _cell.detailTextLabel.text = [NSString stringWithFormat:@"单号：YJD-201712-0001   调查日期：%@",_diaoChaDate,nil];
+    _cell.detailTextLabel.text = [NSString stringWithFormat:@"单号：%@   整改责任人：%@",_danHao,_zhengGaiRen,nil];
     _cell.detailTextLabel.lineBreakMode = NSLineBreakByWordWrapping;
     _cell.detailTextLabel.font = [UIFont systemFontOfSize:14];
     _cell.detailTextLabel.textColor = [UIColor darkGrayColor];

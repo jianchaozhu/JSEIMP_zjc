@@ -8,6 +8,8 @@
 
 #import "JSEIMPQualityGuanLiController.h"
 #import "JSEIMPQualityTargetController.h"
+#import "JSEIMPQualityCheckController.h"
+#import "JSEIMPProjectListController.h"
 
 static NSString *cellID = @"cellID";
 
@@ -26,12 +28,11 @@ static NSString *cellID = @"cellID";
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.title = @"投标管理";
+    self.title = @"质量管理";
     
     self.view.backgroundColor = [UIColor whiteColor];
     
     [self setupUI];
-    
 }
 
 -(void)setupUI{
@@ -57,9 +58,9 @@ static NSString *cellID = @"cellID";
     
     if (indexPath.row == 0) {
         
-        JSEIMPQualityTargetController *qualityTargetController = [JSEIMPQualityTargetController new];
+        JSEIMPProjectListController *projectListController = [JSEIMPProjectListController new];
         
-        [self.navigationController pushViewController:qualityTargetController animated:YES];
+        [self.navigationController pushViewController:projectListController animated:YES];
         
     }
     
@@ -79,11 +80,12 @@ static NSString *cellID = @"cellID";
         
         if (indexPath.row == 0) {
             
-            [self setImageViewWithName:@"qualityTarget" Text:@"质量目标" TextColor:[UIColor darkTextColor]];
+            [self setImageViewWithName:@"qualityChangeNote" Text:@"质量检查整改单" TextColor:[UIColor darkTextColor]];
         }
 //        else if (indexPath.row == 1){
-//            
-//            [self setImageViewWithName:@"qualityChangeNote" Text:@"质量整改单" TextColor:[UIColor redColor]];
+        
+//        [self setImageViewWithName:@"qualityTarget" Text:@"质量目标" TextColor:[UIColor darkTextColor]];
+
 //        }else if (indexPath.row == 2){
 //            
 //            [self setImageViewWithName:@"shiGuBaoGaoDan" Text:@"质量事故报告单" TextColor:[UIColor darkTextColor]];

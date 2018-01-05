@@ -1,29 +1,28 @@
 //
-//  JSEIMPJianSheOptionController.m
+//  JSEIMPProjectListController.m
 //  JSEIMP
 //
-//  Created by 朱建超 on 2018/1/2.
+//  Created by 朱建超 on 2018/1/4.
 //  Copyright © 2018年 朱建超. All rights reserved.
 //
 
-#import "JSEIMPJianSheOptionController.h"
-#import "JSEIMPJianSheOptionDetailController.h"
+#import "JSEIMPProjectListController.h"
+#import "JSEIMPBuildingListController.h"
 
 static NSString *cellID = @"cellID";
 
-@interface JSEIMPJianSheOptionController ()<UITableViewDelegate,UITableViewDataSource>
+@interface JSEIMPProjectListController ()<UITableViewDelegate,UITableViewDataSource>
 
 @property(nonatomic,strong)NSString *projectName;
 
-@property(nonatomic,strong)NSString *diaoChaDate;
-
 @end
 
-@implementation JSEIMPJianSheOptionController{
+@implementation JSEIMPProjectListController{
     
     UITableView *_tableView;
     
     UITableViewCell *_cell;
+    
 }
 
 - (void)viewDidLoad {
@@ -31,20 +30,11 @@ static NSString *cellID = @"cellID";
     
     self.view.backgroundColor = [UIColor whiteColor];
     
-    self.title = @"建设意见交流评价";
+    self.title = @"请选择项目";
     
     _projectName = @"无锡万科金域缇香项目";
-    
-    _diaoChaDate = @"2017-12-27";
-    
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"返回" style:UIBarButtonItemStylePlain target:self action:@selector(returnAction)];
-    
-    [self setupUI];
-}
 
-- (void)returnAction {
-    
-    [self.navigationController popViewControllerAnimated:YES];
+    [self setupUI];
 }
 
 -(void)setupUI{
@@ -53,15 +43,21 @@ static NSString *cellID = @"cellID";
     _tableView.delegate = self;
     _tableView.dataSource = self;
     [_tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:cellID];
-    _tableView.tableFooterView = [[UIView alloc]init];
     
     [self.view addSubview:_tableView];
+    
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     
     return 1;
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
+    JSEIMPBuildingListController *buildingListController = [JSEIMPBuildingListController new];
+    
+    [self.navigationController pushViewController:buildingListController animated:YES];
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -70,23 +66,13 @@ static NSString *cellID = @"cellID";
     
     CGSize size = [str sizeWithFont:[UIFont systemFontOfSize:15] constrainedToSize:CGSizeMake(280, 999) lineBreakMode:NSLineBreakByWordWrapping];
     
-    return size.height + 50;
+    return size.height + 40;
     
-}
-
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    
-    JSEIMPJianSheOptionDetailController *jianSheOptionDetailController = [JSEIMPJianSheOptionDetailController new];
-    
-    jianSheOptionDetailController.projectName = _projectName;
-    jianSheOptionDetailController.diaoChaDate = _diaoChaDate;
-    
-    [self.navigationController pushViewController:jianSheOptionDetailController animated:YES];
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    _cell= [tableView cellForRowAtIndexPath:indexPath];
+    _cell= [tableView dequeueReusableCellWithIdentifier:cellID];
     
     if (_cell == nil) {
         
@@ -99,11 +85,6 @@ static NSString *cellID = @"cellID";
     _cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     _cell.textLabel.lineBreakMode = NSLineBreakByWordWrapping;
     _cell.textLabel.numberOfLines = 0;
-    _cell.detailTextLabel.text = [NSString stringWithFormat:@"单号：YJD-201712-0001   调查日期：%@",_diaoChaDate,nil];
-    _cell.detailTextLabel.lineBreakMode = NSLineBreakByWordWrapping;
-    _cell.detailTextLabel.font = [UIFont systemFontOfSize:14];
-    _cell.detailTextLabel.textColor = [UIColor darkGrayColor];
-    _cell.detailTextLabel.numberOfLines = 0;
     
     return _cell;
     

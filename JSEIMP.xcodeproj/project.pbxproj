@@ -164,6 +164,10 @@
 		C1F823E81FFB7A4700EAF37C /* JSEIMPJianSheOptionDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = C1F823E71FFB7A4700EAF37C /* JSEIMPJianSheOptionDetailController.m */; };
 		C1F823F31FFDCEFA00EAF37C /* JSEIMPJianLiOptionController.m in Sources */ = {isa = PBXBuildFile; fileRef = C1F823F21FFDCEFA00EAF37C /* JSEIMPJianLiOptionController.m */; };
 		C1F823F61FFDCF2E00EAF37C /* JSEIMPJianLiOptionDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = C1F823F51FFDCF2E00EAF37C /* JSEIMPJianLiOptionDetailController.m */; };
+		C1F823FE1FFE042400EAF37C /* JSEIMPQualityCheckController.m in Sources */ = {isa = PBXBuildFile; fileRef = C1F823FD1FFE042300EAF37C /* JSEIMPQualityCheckController.m */; };
+		C1F824011FFE1AC300EAF37C /* JSEIMPProjectListController.m in Sources */ = {isa = PBXBuildFile; fileRef = C1F824001FFE1AC200EAF37C /* JSEIMPProjectListController.m */; };
+		C1F824041FFE1F3400EAF37C /* JSEIMPBuildingListController.m in Sources */ = {isa = PBXBuildFile; fileRef = C1F824031FFE1F3400EAF37C /* JSEIMPBuildingListController.m */; };
+		C1F824071FFF17A700EAF37C /* JSEIMPQualityCheckDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = C1F824061FFF17A600EAF37C /* JSEIMPQualityCheckDetailController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -475,6 +479,14 @@
 		C1F823F21FFDCEFA00EAF37C /* JSEIMPJianLiOptionController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JSEIMPJianLiOptionController.m; sourceTree = "<group>"; };
 		C1F823F41FFDCF2E00EAF37C /* JSEIMPJianLiOptionDetailController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JSEIMPJianLiOptionDetailController.h; sourceTree = "<group>"; };
 		C1F823F51FFDCF2E00EAF37C /* JSEIMPJianLiOptionDetailController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JSEIMPJianLiOptionDetailController.m; sourceTree = "<group>"; };
+		C1F823FC1FFE042300EAF37C /* JSEIMPQualityCheckController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JSEIMPQualityCheckController.h; sourceTree = "<group>"; };
+		C1F823FD1FFE042300EAF37C /* JSEIMPQualityCheckController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JSEIMPQualityCheckController.m; sourceTree = "<group>"; };
+		C1F823FF1FFE1AC100EAF37C /* JSEIMPProjectListController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JSEIMPProjectListController.h; sourceTree = "<group>"; };
+		C1F824001FFE1AC200EAF37C /* JSEIMPProjectListController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JSEIMPProjectListController.m; sourceTree = "<group>"; };
+		C1F824021FFE1F3400EAF37C /* JSEIMPBuildingListController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JSEIMPBuildingListController.h; sourceTree = "<group>"; };
+		C1F824031FFE1F3400EAF37C /* JSEIMPBuildingListController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JSEIMPBuildingListController.m; sourceTree = "<group>"; };
+		C1F824051FFF17A600EAF37C /* JSEIMPQualityCheckDetailController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JSEIMPQualityCheckDetailController.h; sourceTree = "<group>"; };
+		C1F824061FFF17A600EAF37C /* JSEIMPQualityCheckDetailController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JSEIMPQualityCheckDetailController.m; sourceTree = "<group>"; };
 		E49184B2F529332E524E6306 /* Pods-JSEIMP.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JSEIMP.debug.xcconfig"; path = "Pods/Target Support Files/Pods-JSEIMP/Pods-JSEIMP.debug.xcconfig"; sourceTree = "<group>"; };
 		E6C22083F882A16F454660EA /* Pods-JSEIMP.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JSEIMP.release.xcconfig"; path = "Pods/Target Support Files/Pods-JSEIMP/Pods-JSEIMP.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -1448,6 +1460,7 @@
 			isa = PBXGroup;
 			children = (
 				C1C6EC1D1FC2AE8D00FDA439 /* qualityTarget */,
+				C1F823F71FFE02EC00EAF37C /* qualityCheck */,
 				C1C6EC161FC2740F00FDA439 /* controller */,
 				C1C6EC171FC2740F00FDA439 /* model */,
 				C1C6EC181FC2740F00FDA439 /* other */,
@@ -2441,6 +2454,53 @@
 			path = view;
 			sourceTree = "<group>";
 		};
+		C1F823F71FFE02EC00EAF37C /* qualityCheck */ = {
+			isa = PBXGroup;
+			children = (
+				C1F823F81FFE02EC00EAF37C /* controller */,
+				C1F823F91FFE02EC00EAF37C /* model */,
+				C1F823FA1FFE02EC00EAF37C /* other */,
+				C1F823FB1FFE02EC00EAF37C /* view */,
+			);
+			path = qualityCheck;
+			sourceTree = "<group>";
+		};
+		C1F823F81FFE02EC00EAF37C /* controller */ = {
+			isa = PBXGroup;
+			children = (
+				C1F823FF1FFE1AC100EAF37C /* JSEIMPProjectListController.h */,
+				C1F824001FFE1AC200EAF37C /* JSEIMPProjectListController.m */,
+				C1F824021FFE1F3400EAF37C /* JSEIMPBuildingListController.h */,
+				C1F824031FFE1F3400EAF37C /* JSEIMPBuildingListController.m */,
+				C1F823FC1FFE042300EAF37C /* JSEIMPQualityCheckController.h */,
+				C1F823FD1FFE042300EAF37C /* JSEIMPQualityCheckController.m */,
+				C1F824051FFF17A600EAF37C /* JSEIMPQualityCheckDetailController.h */,
+				C1F824061FFF17A600EAF37C /* JSEIMPQualityCheckDetailController.m */,
+			);
+			path = controller;
+			sourceTree = "<group>";
+		};
+		C1F823F91FFE02EC00EAF37C /* model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = model;
+			sourceTree = "<group>";
+		};
+		C1F823FA1FFE02EC00EAF37C /* other */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = other;
+			sourceTree = "<group>";
+		};
+		C1F823FB1FFE02EC00EAF37C /* view */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = view;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -2629,11 +2689,13 @@
 				C10245081F5E7E6700FA32AA /* JSEIMPDynamicController.m in Sources */,
 				C1EB2ECD1F8E0C7B005D9F2F /* JSFarmerBaoZhengJinController.m in Sources */,
 				C1F823DD1FF61E9700EAF37C /* JSEIMPGuanLiJiaShiCangController.m in Sources */,
+				C1F824041FFE1F3400EAF37C /* JSEIMPBuildingListController.m in Sources */,
 				C1EB2EDB1F8EF82F005D9F2F /* JSEIMPNewLvYueBaoZhengJinController.m in Sources */,
 				C1EBF3F61FD51904003658EF /* JSEIMPTokenModel.m in Sources */,
 				C1047FD11F8B48EF005412FB /* UIView+Extension.m in Sources */,
 				C1C6EC491FC9602F00FDA439 /* JSEIMPTouBiaoBaoZhengJinDetailModel.m in Sources */,
 				C1EB2F061F95E1B0005D9F2F /* JSEIMPShiGongXuKeZhengBanLiController.m in Sources */,
+				C1F824071FFF17A700EAF37C /* JSEIMPQualityCheckDetailController.m in Sources */,
 				C1EB2ED51F8EF714005D9F2F /* JSEIMPLvYueBaoZhengJinController.m in Sources */,
 				C1F8235E1FD63E0F00EAF37C /* JSEIMPPropjectChengBaoFanWeiView.m in Sources */,
 				C1C6EC431FC7FC5400FDA439 /* JSEIMPProjectDetailModel.m in Sources */,
@@ -2653,6 +2715,7 @@
 				C1F823511FD63E0F00EAF37C /* JSEIMPAllChengBaoHeTongController.m in Sources */,
 				C1C6EC4F1FCC03AA00FDA439 /* JSEIMPFarmerBaoZhengJinDetailModel.m in Sources */,
 				C1F823B91FEA38A800EAF37C /* JSEIMPCaiGouHeTongModel.m in Sources */,
+				C1F824011FFE1AC300EAF37C /* JSEIMPProjectListController.m in Sources */,
 				C1EB2F3A1F9AF146005D9F2F /* JSEIMPPorjectJiangXiangController.m in Sources */,
 				C1047F921F7F7E23005412FB /* JSProjectCheckController.m in Sources */,
 				C1EB2ED81F8EF7DE005D9F2F /* JSEIMPLvYueBaoZhengJinDetailController.m in Sources */,
@@ -2722,6 +2785,7 @@
 				C1F823A21FE7622100EAF37C /* JSEIMPQualityBiaoZhunView.m in Sources */,
 				C1F823D51FF4C99700EAF37C /* JSEIMPYiBanItemsController.m in Sources */,
 				C1C6EC271FC3C5C100FDA439 /* JSEIMPQualityTargetDetailController.m in Sources */,
+				C1F823FE1FFE042400EAF37C /* JSEIMPQualityCheckController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

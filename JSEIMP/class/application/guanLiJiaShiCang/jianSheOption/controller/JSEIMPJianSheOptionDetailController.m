@@ -147,7 +147,7 @@
     _diaoChaDateLabel.textAlignment = NSTextAlignmentRight;
     _label9 = [self setupLabelWithText:@"管理目标" TextColor:[UIColor darkTextColor] Font:[UIFont boldSystemFontOfSize:16]];
     _label10 = [self setupLabelWithText:@"建设单位评价" TextColor:[UIColor darkTextColor] Font:[UIFont boldSystemFontOfSize:16]];
-    _label11 = [self setupLabelWithText:@"”不满意事例“的说明" TextColor:[UIColor darkTextColor] Font:[UIFont boldSystemFontOfSize:16]];
+    _label11 = [self setupLabelWithText:@"不满意事例说明" TextColor:[UIColor darkTextColor] Font:[UIFont boldSystemFontOfSize:16]];
     _label11.textAlignment = NSTextAlignmentRight;
     
     _line2 = [[UIView alloc] init];
@@ -318,7 +318,7 @@
     
     [_label11 mas_makeConstraints:^(MASConstraintMaker *make) {
         
-        make.left.mas_equalTo(_label10.mas_right).offset(16);
+        make.left.mas_equalTo(_label10.mas_right).offset(8);
         make.centerY.mas_equalTo(_label10.mas_centerY);
         make.right.mas_equalTo(_diaoChaDateLabel.mas_right);
     }];
