@@ -51,6 +51,7 @@
 		C1047FCF1F8B48EF005412FB /* icons.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C1047FC11F8B48EF005412FB /* icons.bundle */; };
 		C1047FD01F8B48EF005412FB /* UIColor+RGBA.m in Sources */ = {isa = PBXBuildFile; fileRef = C1047FC31F8B48EF005412FB /* UIColor+RGBA.m */; };
 		C1047FD11F8B48EF005412FB /* UIView+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = C1047FC51F8B48EF005412FB /* UIView+Extension.m */; };
+		C11240F92004CFF800678D25 /* JSPhotoCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C11240F82004CFF800678D25 /* JSPhotoCollectionViewCell.m */; };
 		C12E458A1FAAED2C00D95D7C /* JSEIMPHeTongGuanLiController.m in Sources */ = {isa = PBXBuildFile; fileRef = C12E45891FAAED2C00D95D7C /* JSEIMPHeTongGuanLiController.m */; };
 		C13ABD131FA0256E00D17A6E /* JSEIMPBaoBiaoController.m in Sources */ = {isa = PBXBuildFile; fileRef = C13ABD121FA0256E00D17A6E /* JSEIMPBaoBiaoController.m */; };
 		C13ABD161FA02FB000D17A6E /* JSEIMPBaoBiaoDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = C13ABD151FA02FB000D17A6E /* JSEIMPBaoBiaoDetailController.m */; };
@@ -168,6 +169,9 @@
 		C1F824011FFE1AC300EAF37C /* JSEIMPProjectListController.m in Sources */ = {isa = PBXBuildFile; fileRef = C1F824001FFE1AC200EAF37C /* JSEIMPProjectListController.m */; };
 		C1F824041FFE1F3400EAF37C /* JSEIMPBuildingListController.m in Sources */ = {isa = PBXBuildFile; fileRef = C1F824031FFE1F3400EAF37C /* JSEIMPBuildingListController.m */; };
 		C1F824071FFF17A700EAF37C /* JSEIMPQualityCheckDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = C1F824061FFF17A600EAF37C /* JSEIMPQualityCheckDetailController.m */; };
+		C1F8240A1FFF73E700EAF37C /* JSEIMPNewQualityCheckController.m in Sources */ = {isa = PBXBuildFile; fileRef = C1F824091FFF73E600EAF37C /* JSEIMPNewQualityCheckController.m */; };
+		C1F8240D2004AE3200EAF37C /* JSEIMPModelController.m in Sources */ = {isa = PBXBuildFile; fileRef = C1F8240C2004AE3100EAF37C /* JSEIMPModelController.m */; };
+		C1F824132004CCB900EAF37C /* JSProjectDynamicImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C1F824112004CCB700EAF37C /* JSProjectDynamicImageViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -254,6 +258,8 @@
 		C1047FC31F8B48EF005412FB /* UIColor+RGBA.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+RGBA.m"; sourceTree = "<group>"; };
 		C1047FC41F8B48EF005412FB /* UIView+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Extension.h"; sourceTree = "<group>"; };
 		C1047FC51F8B48EF005412FB /* UIView+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Extension.m"; sourceTree = "<group>"; };
+		C11240F72004CFF700678D25 /* JSPhotoCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSPhotoCollectionViewCell.h; sourceTree = "<group>"; };
+		C11240F82004CFF800678D25 /* JSPhotoCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSPhotoCollectionViewCell.m; sourceTree = "<group>"; };
 		C12E45881FAAED2C00D95D7C /* JSEIMPHeTongGuanLiController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSEIMPHeTongGuanLiController.h; sourceTree = "<group>"; };
 		C12E45891FAAED2C00D95D7C /* JSEIMPHeTongGuanLiController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSEIMPHeTongGuanLiController.m; sourceTree = "<group>"; };
 		C13ABD111FA0256E00D17A6E /* JSEIMPBaoBiaoController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSEIMPBaoBiaoController.h; sourceTree = "<group>"; };
@@ -487,6 +493,12 @@
 		C1F824031FFE1F3400EAF37C /* JSEIMPBuildingListController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JSEIMPBuildingListController.m; sourceTree = "<group>"; };
 		C1F824051FFF17A600EAF37C /* JSEIMPQualityCheckDetailController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JSEIMPQualityCheckDetailController.h; sourceTree = "<group>"; };
 		C1F824061FFF17A600EAF37C /* JSEIMPQualityCheckDetailController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JSEIMPQualityCheckDetailController.m; sourceTree = "<group>"; };
+		C1F824081FFF73E500EAF37C /* JSEIMPNewQualityCheckController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JSEIMPNewQualityCheckController.h; sourceTree = "<group>"; };
+		C1F824091FFF73E600EAF37C /* JSEIMPNewQualityCheckController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JSEIMPNewQualityCheckController.m; sourceTree = "<group>"; };
+		C1F8240B2004AE3000EAF37C /* JSEIMPModelController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JSEIMPModelController.h; sourceTree = "<group>"; };
+		C1F8240C2004AE3100EAF37C /* JSEIMPModelController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JSEIMPModelController.m; sourceTree = "<group>"; };
+		C1F824112004CCB700EAF37C /* JSProjectDynamicImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSProjectDynamicImageViewController.m; sourceTree = "<group>"; };
+		C1F824122004CCB800EAF37C /* JSProjectDynamicImageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSProjectDynamicImageViewController.h; sourceTree = "<group>"; };
 		E49184B2F529332E524E6306 /* Pods-JSEIMP.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JSEIMP.debug.xcconfig"; path = "Pods/Target Support Files/Pods-JSEIMP/Pods-JSEIMP.debug.xcconfig"; sourceTree = "<group>"; };
 		E6C22083F882A16F454660EA /* Pods-JSEIMP.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JSEIMP.release.xcconfig"; path = "Pods/Target Support Files/Pods-JSEIMP/Pods-JSEIMP.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -2476,6 +2488,12 @@
 				C1F823FD1FFE042300EAF37C /* JSEIMPQualityCheckController.m */,
 				C1F824051FFF17A600EAF37C /* JSEIMPQualityCheckDetailController.h */,
 				C1F824061FFF17A600EAF37C /* JSEIMPQualityCheckDetailController.m */,
+				C1F824081FFF73E500EAF37C /* JSEIMPNewQualityCheckController.h */,
+				C1F824091FFF73E600EAF37C /* JSEIMPNewQualityCheckController.m */,
+				C1F8240B2004AE3000EAF37C /* JSEIMPModelController.h */,
+				C1F8240C2004AE3100EAF37C /* JSEIMPModelController.m */,
+				C1F824122004CCB800EAF37C /* JSProjectDynamicImageViewController.h */,
+				C1F824112004CCB700EAF37C /* JSProjectDynamicImageViewController.m */,
 			);
 			path = controller;
 			sourceTree = "<group>";
@@ -2497,6 +2515,8 @@
 		C1F823FB1FFE02EC00EAF37C /* view */ = {
 			isa = PBXGroup;
 			children = (
+				C11240F72004CFF700678D25 /* JSPhotoCollectionViewCell.h */,
+				C11240F82004CFF800678D25 /* JSPhotoCollectionViewCell.m */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -2600,6 +2620,7 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-JSEIMP/Pods-JSEIMP-resources.sh",
+				"${PODS_ROOT}/HMImagePicker/HMImagePicker/HMImagePicker/HMImagePicker.bundle",
 				"${PODS_ROOT}/MJRefresh/MJRefresh/MJRefresh.bundle",
 				"${PODS_ROOT}/SVProgressHUD/SVProgressHUD/SVProgressHUD.bundle",
 			);
@@ -2660,6 +2681,7 @@
 				C1F8235A1FD63E0F00EAF37C /* JSEIMPNewShouKuanJieDianView.m in Sources */,
 				C1C6EC331FC4209A00FDA439 /* JSEIMPWorkDesktopController.m in Sources */,
 				C1F823881FE2108000EAF37C /* JSEIMPDaiBanItemsController.m in Sources */,
+				C11240F92004CFF800678D25 /* JSPhotoCollectionViewCell.m in Sources */,
 				C1F823F31FFDCEFA00EAF37C /* JSEIMPJianLiOptionController.m in Sources */,
 				C1EB2F1E1F984367005D9F2F /* JSEIMPNewZhiJianShouXuView.m in Sources */,
 				C1F823A51FE7A03B00EAF37C /* JSEIMPWenMingShiGongView.m in Sources */,
@@ -2705,6 +2727,7 @@
 				C1F823991FE3A15F00EAF37C /* JSEIMPZhuanYeFenBaoHeTongDetailController.m in Sources */,
 				C1F823561FD63E0F00EAF37C /* JSEIMPNewChengBaoHeTongController.m in Sources */,
 				C1C6EC0D1FBD330600FDA439 /* JSEIMPTouBiaoGuanLiEditView.m in Sources */,
+				C1F8240D2004AE3200EAF37C /* JSEIMPModelController.m in Sources */,
 				C13ABD161FA02FB000D17A6E /* JSEIMPBaoBiaoDetailController.m in Sources */,
 				C1047FA21F7F7FAE005412FB /* JSEIMPTouBiaoDetailController.m in Sources */,
 				C1F8235D1FD63E0F00EAF37C /* JSEIMPProjectQuailtyTiaoKuanView.m in Sources */,
@@ -2724,6 +2747,7 @@
 				C1047F901F7F7E23005412FB /* JSBeforeTouBiaoController.m in Sources */,
 				C1EB2ECC1F8E0C7B005D9F2F /* JSEIMPNewFarmerBaoZhengJinController.m in Sources */,
 				C1047F971F7F7E23005412FB /* JSEIMPNewStaffStoreController.m in Sources */,
+				C1F824132004CCB900EAF37C /* JSProjectDynamicImageViewController.m in Sources */,
 				C1C6EC551FCD43AC00FDA439 /* JSEIMPProjectJiangXiangDetailModel.m in Sources */,
 				C1F823531FD63E0F00EAF37C /* JSEIMPFuJianView.m in Sources */,
 				C1EB2EBF1F8E0C70005D9F2F /* JSEIMPTouBiaoBaoZhengJinDetailController.m in Sources */,
@@ -2764,6 +2788,7 @@
 				C1F8235F1FD63E0F00EAF37C /* JSEIMPShouKuanJieDianView.m in Sources */,
 				C1F823C51FECADD600EAF37C /* JSEIMPYanShouMethodView.m in Sources */,
 				C1F823B61FEA33C300EAF37C /* JSEIMPChildCaiGouHeTongController.m in Sources */,
+				C1F8240A1FFF73E700EAF37C /* JSEIMPNewQualityCheckController.m in Sources */,
 				C1C6EC611FD0F71800FDA439 /* EdgeInsetsLabel.m in Sources */,
 				C1047F9C1F7F7E23005412FB /* JSEIMPTouBiaoZhaiYaoDetailController.m in Sources */,
 				C1C6EC461FC94EAF00FDA439 /* JSEIMPTouBiaoBaoZhengJinModel.m in Sources */,

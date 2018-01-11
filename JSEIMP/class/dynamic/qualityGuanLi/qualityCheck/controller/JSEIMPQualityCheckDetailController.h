@@ -10,4 +10,12 @@
 
 @interface JSEIMPQualityCheckDetailController : UIViewController
 
+@property(nonatomic,strong)NSString *buildingName;
+
+@property(nonatomic,strong)NSString *projectName;
+
+@property(nonatomic,strong)NSString *danHao;
+
+@property(nonatomic,strong)NSString *zhengGaiRen;
+
 @end

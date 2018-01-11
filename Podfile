@@ -13,5 +13,6 @@ target 'JSEIMP' do
   pod 'MJExtension'
   pod 'SVProgressHUD'
   pod 'MJRefresh'
+  pod 'HMImagePicker'
 
 end

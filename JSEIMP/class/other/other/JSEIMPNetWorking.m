@@ -1111,4 +1111,80 @@
     }];
 }
 
+//获得大象云Token
++(void)getDaXiangYunTokenwithSuccessBlock:(void (^)())response{
+    
+    NSDictionary *dict = @{@"app_id" : @"a029791e04a446b6b6bfdfcb3f0e09ca" , @"security_key" : @"9c5b08326c064f04ae2f7bb2367309a0"};
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    manager.responseSerializer = [AFJSONResponseSerializer serializer];
+    manager.requestSerializer = [AFJSONRequestSerializer serializer];
+    
+    [manager POST:@"https://open.daxiangyun.com/dx/api/auth/token" parameters:dict progress:^(NSProgress * _Nonnull uploadProgress) {
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        
+        NSLog(@"%@",responseObject);
+        
+        if (responseObject != nil) {
+            
+            NSDictionary *dict = responseObject[@"data"];
+            NSString *token = dict[@"token"];
+            NSString *apiString = @"https://open.daxiangyun.com/dx/api/f/v1/file/status?token=";
+            NSString *tokenString = [apiString stringByAppendingString:token];
+            NSString *finalURLString = [tokenString stringByAppendingString:@"&path=opendx/a029791e04a446b6b6bfdfcb3f0e09ca/2eebe594b24c455f8140b602e3cb73c2/2eebe594b24c455f8140b602e3cb73c2.rvt"];
+            
+            if (finalURLString) {
+                
+                [self getModelStatusWithURLString:finalURLString SuccessBlock:^(NSString *urlString){
+                    
+                    response(urlString);
+                }];
+            }
+        }
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        
+        if (!error) {
+            
+        }
+
+        NSLog(@"%@",error);
+    }];
+}
+
++(void)getModelStatusWithURLString:(NSString *)urlString SuccessBlock:(void (^)())response{
+    
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    manager.responseSerializer = [AFJSONResponseSerializer serializer];
+    manager.requestSerializer = [AFJSONRequestSerializer serializer];
+    
+    [manager GET:urlString parameters:nil progress:^(NSProgress * _Nonnull uploadProgress) {
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        
+        NSLog(@"%@",responseObject);
+        
+        if (responseObject != nil) {
+            
+            NSDictionary *dict = responseObject[@"data"];
+            
+            if ([dict[@"status"] isEqualToString:@"Ready"]) {
+                
+                NSString *urlString = dict[@"url"];
+                
+                NSString *finalURLString = [urlString stringByAppendingString:@"&props=1"];
+                
+                response(finalURLString);
+            }
+        }
+        
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        
+        if (!error) {
+            
+        }
+        
+        NSLog(@"%@",error);
+    }];
+    
+}
+
+
 @end

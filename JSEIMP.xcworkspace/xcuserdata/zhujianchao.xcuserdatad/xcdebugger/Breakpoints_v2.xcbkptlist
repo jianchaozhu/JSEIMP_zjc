@@ -68,7 +68,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "JSEIMP/class/other/other/JSEIMPNetWorking.m"
-            timestampString = "536810064.094039"
+            timestampString = "537184552.917069"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "244"
@@ -84,39 +84,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "JSEIMP/class/other/other/JSEIMPNetWorking.m"
-            timestampString = "536810064.094351"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1098"
-            endingLineNumber = "1098"
-            landmarkName = "+getDaiBanItemOnSuccess:onErrorInfo:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "JSEIMP/class/other/other/JSEIMPNetWorking.m"
-            timestampString = "536810064.094551"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1110"
-            endingLineNumber = "1110"
-            landmarkName = "+getDaiBanItemOnSuccess:onErrorInfo:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "JSEIMP/class/other/other/JSEIMPNetWorking.m"
-            timestampString = "536810064.094741"
+            timestampString = "537184552.918306"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "640"
@@ -132,7 +100,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "JSEIMP/class/other/other/JSEIMPNetWorking.m"
-            timestampString = "536810064.094926"
+            timestampString = "537184552.9191411"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "173"
@@ -148,7 +116,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "JSEIMP/class/other/other/JSEIMPNetWorking.m"
-            timestampString = "536810064.095034"
+            timestampString = "537184552.919475"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "168"
@@ -164,7 +132,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "JSEIMP/class/other/other/JSEIMPNetWorking.m"
-            timestampString = "536810064.095201"
+            timestampString = "537184552.919892"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "454"
@@ -180,7 +148,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "JSEIMP/class/other/other/JSEIMPNetWorking.m"
-            timestampString = "536810064.095311"
+            timestampString = "537184552.920248"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "182"
@@ -196,7 +164,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "JSEIMP/class/other/other/JSEIMPNetWorking.m"
-            timestampString = "536810064.095409"
+            timestampString = "537184552.92062"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "191"
@@ -212,7 +180,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "JSEIMP/class/other/other/JSEIMPNetWorking.m"
-            timestampString = "536810064.0955"
+            timestampString = "537184552.9208111"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "239"

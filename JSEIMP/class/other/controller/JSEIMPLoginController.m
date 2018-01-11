@@ -299,7 +299,7 @@
             
             [JSEIMPNetWorking loginWithServerByUserName:_userNameField.text password:_passwordfield.text onSuccess:^{
                 
-                [SVProgressHUD showSuccessWithStatus:@"登陆成功"];
+                [SVProgressHUD showSuccessWithStatus:@"登录成功"];
                 
                 JSEIMPTabBarController *tabbarContoller = [JSEIMPTabBarController new];
                 

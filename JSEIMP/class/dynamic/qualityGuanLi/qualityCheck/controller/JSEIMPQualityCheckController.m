@@ -9,6 +9,7 @@
 #import "JSEIMPQualityCheckController.h"
 #import "JSEIMPProjectListController.h"
 #import "JSEIMPQualityCheckDetailController.h"
+#import "JSEIMPNewQualityCheckController.h"
 
 static NSString *cellID = @"cellID";
 
@@ -67,6 +68,16 @@ static NSString *cellID = @"cellID";
     [self.navigationController popViewControllerAnimated:YES];
 }
 
+-(void)clickAddButton:(UIButton *)button{
+    
+    JSEIMPNewQualityCheckController *newQualityCheckController = [JSEIMPNewQualityCheckController new];
+    
+    newQualityCheckController.projectName = _projectName;
+    newQualityCheckController.hidesBottomBarWhenPushed = YES;
+    
+    [self.navigationController pushViewController:newQualityCheckController animated:YES];
+}
+
 -(void)clickBackButton:(UIButton *)button{
     
     for(UIViewController *controller in self.navigationController.viewControllers) {
@@ -106,7 +117,14 @@ static NSString *cellID = @"cellID";
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
+    JSEIMPQualityCheckDetailController *qualityCheckDetailController = [JSEIMPQualityCheckDetailController new];
     
+    qualityCheckDetailController.buildingName = _buildingName;
+    qualityCheckDetailController.projectName = _projectName;
+    qualityCheckDetailController.danHao = _danHao;
+    qualityCheckDetailController.zhengGaiRen = _zhengGaiRen;
+    
+    [self.navigationController pushViewController:qualityCheckDetailController animated:YES];
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{

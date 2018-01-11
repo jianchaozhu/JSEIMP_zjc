@@ -79,4 +79,7 @@
 //获得待办事项列表
 +(void)getDaiBanItemOnSuccess:(void(^)())response onErrorInfo:(void(^)(JSEIMPError error))errorInfo;
 
+//获得大象云Token
++(void)getDaXiangYunTokenwithSuccessBlock:(void(^)())response;
+
 @end
