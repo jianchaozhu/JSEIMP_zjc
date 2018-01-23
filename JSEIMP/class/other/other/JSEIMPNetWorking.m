@@ -24,6 +24,8 @@
 #import "JSEIMPZhuanYeFenBaoHeTongDetailModel.h"
 #import "JSEIMPCaiGouHeTongModel.h"
 #import "JSEIMPCaiGouHeTongDetailModel.h"
+#import "JSEIMPDaiBanItemsModel.h"
+#import "JSEIMPDaiBanItemDetailModel.h"
 #import "JSEIMPError.h"
 
 @implementation JSEIMPNetWorking
@@ -1083,26 +1085,227 @@
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.responseSerializer = [AFJSONResponseSerializer serializer];
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
-//    manager.requestSerializer = [AFHTTPRequestSerializer serializer];
-//    [manager.requestSerializer setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
     
     [self setPublicHeader:manager];
-    
-//    NSInteger count = 20;
-//    NSString *url = [NSString stringWithFormat:API_DAIBANITEM"?MaxResultCount=%zd",count];
-//    NSDictionary *parameters = @{@"MaxResultCount":@20};
-    
-    [manager GET:API_YIBANITEM parameters:nil progress:^(NSProgress * _Nonnull uploadProgress) {
+    [manager GET:API_DAIBANITEM parameters:nil progress:^(NSProgress * _Nonnull uploadProgress) {
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         
         NSLog(@"%@",responseObject);
         
         if (responseObject != nil) {
             
-            NSLog(@"成功");
+            NSDictionary *dict = (NSDictionary *)responseObject;
+            
+            JSEIMPDaiBanItemsModel *model = [JSEIMPDaiBanItemsModel mj_objectWithKeyValues:dict];
+            
+            NSMutableArray *activityIdMArray = [NSMutableArray array];
+            NSMutableArray *IDMArray = [NSMutableArray array];
+            NSMutableArray *activityNameMArray = [NSMutableArray array];
+            NSMutableArray *nameMArray = [NSMutableArray array];
+            NSMutableArray *timeMArray = [NSMutableArray array];
+            NSMutableArray *contractIdMArray = [NSMutableArray array];
+            for (int i = 0; i < model.result.items.count; i++) {
+                
+                NSInteger activityID = model.result.items[i].activityId;
+                NSString *ID = model.result.items[i].ID;
+                NSString *activityName = model.result.items[i].activityName;
+                NSString *name = model.result.items[i].name;
+                NSString *time = model.result.items[i].processCreationTime;
+                
+                NSString *processCreationTime = [time substringToIndex:10];
+                
+                [activityIdMArray addObject:@(activityID)];
+                [IDMArray addObject:ID];
+                [activityNameMArray addObject:activityName];
+                [nameMArray addObject:name];
+                [timeMArray addObject:processCreationTime];
+                
+                for (int j = 0; j < model.result.items[i].dataFields.count; j++) {
+                    
+                    NSString *dataType = model.result.items[i].dataFields[j].dataType;
+                    NSString *value = model.result.items[i].dataFields[j].value;
+                    
+                    if ([dataType isEqualToString:@"REFERENCE"]) {
+                        
+                        [contractIdMArray addObject:value];
+                    }
+                }
+            }
+            response(activityIdMArray,IDMArray,activityNameMArray,nameMArray,timeMArray,contractIdMArray);
         } else {
             
             errorInfo(noData);
+        }
+        
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        
+        NSLog(@"%@",error);
+    }];
+}
+
+//获得代办事项详情
++(void)getDaiBanItemDetailWithContractID:(NSString *)contractId OnSuccess:(void (^)())response onErrorInfo:(void (^)())errorInfo{
+    
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    manager.responseSerializer = [AFJSONResponseSerializer serializer];
+    manager.requestSerializer = [AFJSONRequestSerializer serializer];
+    
+    NSDictionary *paramaters = @{@"ContractId":contractId};
+    [self setPublicHeader:manager];
+    [manager POST:API_DAIBANITEMSDETAIL parameters:paramaters progress:^(NSProgress * _Nonnull uploadProgress) {
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        
+        NSLog(@"%@",responseObject);
+        
+        if (responseObject != nil) {
+            
+            NSDictionary *dict = (NSDictionary *)responseObject;
+            
+            JSEIMPDaiBanItemDetailModel *model = [JSEIMPDaiBanItemDetailModel mj_objectWithKeyValues:dict];
+            
+            NSString *contractCode = model.ContractDetails.CONTRACTCODE;
+            NSString *projectName = model.ContractDetails.PROJECTNAME;
+            NSString *jiaFangName = model.ContractDetails.PARTYAName;
+            NSString *yiFangName = model.ContractDetails.PARTYBName;
+            NSString *contractType = model.ContractDetails.CONTRACTTYPE;
+            NSString *amount = model.ContractDetails.AMOUNT;
+            NSString *qianYueDate = model.ContractDetails.CONTRACTDATE;
+            NSString *creator = model.ContractDetails.CREATOR;
+            NSInteger status = model.ContractDetails.STATUS;
+            NSString *finalQianYueDate = [qianYueDate stringByReplacingOccurrencesOfString:@"T00:00:00" withString:@""];
+            NSString *heTongStatus;
+            if (status == 0) {
+                heTongStatus = @"待审";
+            }else if (status == 1){
+                heTongStatus = @"审批中";
+            }else if (status == 2){
+                heTongStatus = @"已审";
+            }else if (status == 3){
+                heTongStatus = @"作废";
+            }else if (status == 4){
+                heTongStatus = @"已决算";
+            }else if (status == 5){
+                heTongStatus = @"终止";
+            }
+            
+            NSMutableArray *fileTypeMArray = [NSMutableArray array];
+            NSMutableArray *fileNameMArray = [NSMutableArray array];
+            NSMutableArray *filePathMArray = [NSMutableArray array];
+            NSString *api = @"http://nimp.jaso.com.cn:6001/";
+            for (int i = 0; i < model.Files.count; i++) {
+                
+                NSString *fileType = model.Files[i].FILEEXT;
+                NSString *fileName = model.Files[i].FILENAME;
+                NSString *filePath;
+                
+                if (model.Files[i].FILEPATH == nil) {
+                    
+                    filePath = [api stringByAppendingString:@""];
+                }else{
+                    filePath = [api stringByAppendingString:model.Files[i].FILEPATH];
+                }
+                
+                [fileTypeMArray addObject:fileType];
+                [fileNameMArray addObject:fileName];
+                [filePathMArray addObject:filePath];
+            }
+            response(contractCode,projectName,jiaFangName,yiFangName,contractType,amount,finalQianYueDate,creator,heTongStatus);
+            
+        } else {
+            errorInfo();
+        }
+        
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        
+        NSLog(@"%@",error);
+    }];
+}
+
+//获得在办事项列表
++(void)getZaiBanItemOnSuccess:(void (^)())response onErrorInfo:(void (^)(JSEIMPError))errorInfo{
+    
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    manager.responseSerializer = [AFJSONResponseSerializer serializer];
+    manager.requestSerializer = [AFJSONRequestSerializer serializer];
+    
+    [self setPublicHeader:manager];
+    [manager GET:API_ZAIBANITEM parameters:nil progress:^(NSProgress * _Nonnull uploadProgress) {
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        
+        NSLog(@"%@",responseObject);
+        
+        if (responseObject != nil) {
+            
+            NSDictionary *dict = (NSDictionary *)responseObject;
+            
+            JSEIMPDaiBanItemsModel *model = [JSEIMPDaiBanItemsModel mj_objectWithKeyValues:dict];
+            
+            NSMutableArray *activityIdMArray = [NSMutableArray array];
+            NSMutableArray *IDMArray = [NSMutableArray array];
+            NSMutableArray *activityNameMArray = [NSMutableArray array];
+            NSMutableArray *nameMArray = [NSMutableArray array];
+            NSMutableArray *timeMArray = [NSMutableArray array];
+            NSMutableArray *contractIdMArray = [NSMutableArray array];
+            for (int i = 0; i < model.result.items.count; i++) {
+                
+                NSInteger activityID = model.result.items[i].activityId;
+                NSString *ID = model.result.items[i].ID;
+                NSString *activityName = model.result.items[i].activityName;
+                NSString *name = model.result.items[i].name;
+                NSString *time = model.result.items[i].processCreationTime;
+                
+                NSString *processCreationTime = [time substringToIndex:10];
+                
+                [activityIdMArray addObject:@(activityID)];
+                [IDMArray addObject:ID];
+                [activityNameMArray addObject:activityName];
+                [nameMArray addObject:name];
+                [timeMArray addObject:processCreationTime];
+                
+                for (int j = 0; j < model.result.items[i].dataFields.count; j++) {
+                    
+                    NSString *dataType = model.result.items[i].dataFields[j].dataType;
+                    NSString *value = model.result.items[i].dataFields[j].value;
+                    
+                    if ([dataType isEqualToString:@"REFERENCE"]) {
+                        
+                        [contractIdMArray addObject:value];
+                    }
+                }
+            }
+            response(activityIdMArray,IDMArray,activityNameMArray,nameMArray,timeMArray,contractIdMArray);
+        } else {
+            
+            errorInfo(noData);
+        }
+        
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        
+        NSLog(@"%@",error);
+    }];
+}
+
+//合同签收
++(void)PostQianShouWithActivityId:(NSInteger)activityId OnSuccess:(void (^)())response onErrorInfo:(void (^)())errorInfo{
+    
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    manager.responseSerializer = [AFJSONResponseSerializer serializer];
+//    manager.requestSerializer = [AFJSONRequestSerializer serializer];
+    manager.requestSerializer = [AFHTTPRequestSerializer serializer];
+    
+    NSDictionary *parameters = @{@"activityId":@(activityId)};
+    
+    [self setPublicHeader:manager];
+    [manager POST:API_CONTRACTQIANSHOU parameters:parameters progress:^(NSProgress * _Nonnull uploadProgress) {
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        
+        NSLog(@"%@",responseObject);
+        
+        if (responseObject != nil) {
+            
+            response();
+        } else {
+            errorInfo();
         }
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
@@ -1150,6 +1353,7 @@
     }];
 }
 
+//获取模型
 +(void)getModelStatusWithURLString:(NSString *)urlString SuccessBlock:(void (^)())response{
     
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];

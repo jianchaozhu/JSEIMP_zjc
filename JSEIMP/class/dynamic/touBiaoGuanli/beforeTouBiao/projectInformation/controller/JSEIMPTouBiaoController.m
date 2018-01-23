@@ -74,7 +74,7 @@ static NSString *cellID = @"cellID";
     //下拉刷新
     _tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
 
-        [self.resultArray removeAllObjects];
+//        [self.resultArray removeAllObjects];
 
         [self getData];
 
@@ -87,7 +87,7 @@ static NSString *cellID = @"cellID";
     //上拉加载更多
     _tableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
 
-        [self.resultArray removeAllObjects];
+//        [self.resultArray removeAllObjects];
         
         [self getData];
 
@@ -267,7 +267,7 @@ static NSString *cellID = @"cellID";
                         [self.resultArray removeAllObjects];
                     }
                     
-                    self.resultArray = [NSMutableArray arrayWithArray:_finalResultMArray];
+                    self.resultArray = _finalResultMArray.copy;
   
                 }
                 
@@ -275,7 +275,7 @@ static NSString *cellID = @"cellID";
         
         }else{
             
-            self.resultArray = [NSMutableArray arrayWithArray:_projectNameMArray];
+            self.resultArray = _projectNameMArray.copy;
         }
         
         //回到主线程
@@ -371,7 +371,7 @@ static NSString *cellID = @"cellID";
         _projectCodeMArray = projectCodeMArray.copy;
         _projectIDMArray = projectIdMArray.copy;
         
-        [self.resultArray addObjectsFromArray:_projectNameMArray];
+        self.resultArray = _projectNameMArray;
         
         [_tableView reloadData];
         

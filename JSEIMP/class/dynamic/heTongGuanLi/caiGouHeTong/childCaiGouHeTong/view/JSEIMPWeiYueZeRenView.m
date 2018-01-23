@@ -1,21 +1,21 @@
 //
-//  JSEIMPYanShouMethodView.m
+//  JSEIMPWeiYueZeRenView.m
 //  JSEIMP
 //
-//  Created by 朱建超 on 2017/12/22.
-//  Copyright © 2017年 朱建超. All rights reserved.
+//  Created by 朱建超 on 2018/1/12.
+//  Copyright © 2018年 朱建超. All rights reserved.
 //
 
-#import "JSEIMPYanShouMethodView.h"
+#import "JSEIMPWeiYueZeRenView.h"
 #import <Masonry.h>
 
-@interface JSEIMPYanShouMethodView ()
+@interface JSEIMPWeiYueZeRenView ()
 
-@property(nonatomic,strong)NSString *yanShouMethod;
+@property(nonatomic,strong)NSString *weiYueZeRen;
 
 @end
 
-@implementation JSEIMPYanShouMethodView{
+@implementation JSEIMPWeiYueZeRenView{
     
     UILabel *_label1;
 }
@@ -35,21 +35,21 @@
     //注册通知
     [self setNotification];
     
-    _label1 = [self setupLabelWithText:@"验收方式" Font:[UIFont systemFontOfSize:20] TextColor:[UIColor darkTextColor]];
+    _label1 = [self setupLabelWithText:@"违约责任" Font:[UIFont systemFontOfSize:20] TextColor:[UIColor darkTextColor]];
 }
 
 -(void)setNotification{
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(yanShouMethod:) name:@"yanShouMethod" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(weiYueZeRen:) name:@"weiYueZeRen" object:nil];
     
 }
 
--(void)yanShouMethod:(NSNotification *)notification{
+-(void)weiYueZeRen:(NSNotification *)notification{
     
-    _yanShouMethod = notification.object;
+    _weiYueZeRen = notification.object;
     
-    _yanShouMethodLabel = [self setupLabelWithText:_yanShouMethod Font:[UIFont systemFontOfSize:16] TextColor:[UIColor darkGrayColor]];
-    _yanShouMethodLabel.numberOfLines = 0;
+    _weiYueZeRenLabel = [self setupLabelWithText:_weiYueZeRen Font:[UIFont systemFontOfSize:16] TextColor:[UIColor darkGrayColor]];
+    _weiYueZeRenLabel.numberOfLines = 0;
 }
 
 -(void)layoutSubviews{
@@ -60,16 +60,14 @@
         
         make.top.mas_equalTo(self.mas_top).offset(16);
         make.centerX.mas_equalTo(self.mas_centerX);
-        
     }];
     
-    [_yanShouMethodLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+    [_weiYueZeRenLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         
         make.top.mas_equalTo(_label1.mas_bottom).offset(16);
         make.centerX.mas_equalTo(_label1.mas_centerX);
         make.left.mas_equalTo(self.mas_left).offset(16);
         make.right.mas_equalTo(self.mas_right).offset(-16);
-        
     }];
 }
 

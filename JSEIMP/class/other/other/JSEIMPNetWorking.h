@@ -79,6 +79,15 @@
 //获得待办事项列表
 +(void)getDaiBanItemOnSuccess:(void(^)())response onErrorInfo:(void(^)(JSEIMPError error))errorInfo;
 
+//获得代办事项详情
++(void)getDaiBanItemDetailWithContractID:(NSString *)contractId OnSuccess:(void(^)())response onErrorInfo:(void(^)())errorInfo;
+
+//获得在办事项列表
++(void)getZaiBanItemOnSuccess:(void(^)())response onErrorInfo:(void(^)(JSEIMPError error))errorInfo;
+
+//合同签收
++(void)PostQianShouWithActivityId:(NSInteger)activityId OnSuccess:(void(^)())response onErrorInfo:(void(^)())errorInfo;
+
 //获得大象云Token
 +(void)getDaXiangYunTokenwithSuccessBlock:(void(^)())response;
 

@@ -7,11 +7,11 @@
 //
 
 //测试API
-#define IP @"192.168.2.53:8002"
+//#define IP @"192.168.2.53:8002"
 //周军本地API
 //#define IP @"api.jaso.com"
 //正式API
-//#define IP @"192.168.2.55:6002"
+#define IP @"192.168.2.55:6002"
 //hamazon登录API
 #define HALOGINIP @"sso.jaso.com.cn:83"
 //hamazon工作流正式API
@@ -54,8 +54,12 @@
 #define API_CAIGOUHETONGDETAIL @"http://"IP"/api/Contract/Contract/GetDetails"
 //获得待办事项列表
 #define API_DAIBANITEM @"http://"HAWORKIP"/api/services/wf/Instance/GetPendingWorkItems"
+//获得代办事项详情
+#define API_DAIBANITEMSDETAIL @"http://"IP"/api/Contract/Contract/GetDetails"
 //获得在办事项列表
 #define API_ZAIBANITEM @"http://"HAWORKIP"/api/services/wf/Instance/GetInTrayWorkItems"
 //获得已办事项列表
 #define API_YIBANITEM @"http://"HAWORKIP"/api/services/wf/Instance/GetOutTrayWorkItems"
+//工作台签收
+#define API_CONTRACTQIANSHOU @"http://"HAWORKIP"/api/services/wf/Instance/ActivitySignUpAsync"
 

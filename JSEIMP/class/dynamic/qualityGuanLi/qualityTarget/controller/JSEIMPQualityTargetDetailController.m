@@ -271,10 +271,7 @@
         make.edges.mas_equalTo(_scrollView);
         make.width.mas_equalTo([UIScreen mainScreen].bounds.size.width);
         make.bottom.mas_equalTo(_label10.mas_bottom).offset(16);
-        
     }];
-
-    
 }
 
 //获取当地时间

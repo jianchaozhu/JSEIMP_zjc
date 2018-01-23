@@ -13,6 +13,8 @@
 #import "JSEIMPJiaoFuPlaceView.h"
 #import "JSEIMPFuKuanTiaoKuanView.h"
 #import "JSEIMPYanShouMethodView.h"
+#import "JSEIMPWeiYueZeRenView.h"
+#import "JSEIMPOtherTiaoKuanView.h"
 #import "HACursor.h"
 #import <Masonry.h>
 
@@ -52,6 +54,8 @@
 @property(nonatomic,strong)NSString *fuKuanTiaoKuan;
 //验收方式
 @property(nonatomic,strong)NSString *yanShouMethod;
+//违约责任
+@property(nonatomic,strong)NSString *weiYueZeRen;
 //其他条款
 @property(nonatomic,strong)NSString *otherTiaoKuan;
 //附件类型
@@ -123,6 +127,10 @@
     
     UIScrollView *_scrollView4;
     
+    UIScrollView *_scrollView5;
+    
+    UIScrollView *_scrollView6;
+    
     JSEIMPQualityBiaoZhunView *_qualityBiaoZhunView;
     
     JSEIMPJiaoFuPlaceView *_jiaoFuPlaceView;
@@ -130,6 +138,10 @@
     JSEIMPFuKuanTiaoKuanView *_fuKuanTiaoKuanView;
     
     JSEIMPYanShouMethodView *_yanShouMethodView;
+    
+    JSEIMPWeiYueZeRenView *_weiYueZeRenView;
+    
+    JSEIMPOtherTiaoKuanView *_otherTiaoKuanView;
 }
 
 - (void)viewDidLoad {
@@ -171,7 +183,7 @@
 -(void)getData{
     
     NSLog(@"%@",_contractId);
-    [JSEIMPNetWorking getCaiGouHeTongDetailWithContractId:_contractId OnSuccess:^(NSString *contractCode,NSString *projectName,NSString *jiaFangName,NSString *yiFangName,NSString *diSanFangName,NSString *contractType,NSString *amount,NSString *qianYueDate,NSString *creator,NSString *qualityBiaoZhun,NSString *jiaoFuPlace,NSString *fuKuanTiaoKuan,NSString *yanShouMethod,NSString *otherTiaoKuan,NSMutableArray *fileTypeMArray,NSMutableArray *fileNameMArray,NSMutableArray *filePathMArray){
+    [JSEIMPNetWorking getCaiGouHeTongDetailWithContractId:_contractId OnSuccess:^(NSString *contractCode,NSString *projectName,NSString *jiaFangName,NSString *yiFangName,NSString *diSanFangName,NSString *contractType,NSString *amount,NSString *qianYueDate,NSString *creator,NSString *qualityBiaoZhun,NSString *jiaoFuPlace,NSString *fuKuanTiaoKuan,NSString *yanShouMethod,NSString *weiYueZeRen,NSString *otherTiaoKuan,NSMutableArray *fileTypeMArray,NSMutableArray *fileNameMArray,NSMutableArray *filePathMArray){
         
         _contractCode = contractCode.copy;
         _projectName = projectName.copy;
@@ -186,6 +198,7 @@
         _jiaoFuPlace = jiaoFuPlace.copy;
         _fuKuanTiaoKuan = fuKuanTiaoKuan.copy;
         _yanShouMethod = yanShouMethod.copy;
+        _weiYueZeRen = weiYueZeRen.copy;
         _otherTiaoKuan = otherTiaoKuan.copy;
         _fileTypeMArray = fileTypeMArray.copy;
         _fileNameMArray = fileNameMArray.copy;
@@ -446,7 +459,7 @@
 
 -(void)setupCursor{
     
-    _titles = [NSMutableArray arrayWithObjects:@"质量标准",@"交付地点",@"支付条款",@"验收方式", nil];
+    _titles = [NSMutableArray arrayWithObjects:@"质量标准",@"交付地点",@"支付条款",@"验收方式",@"违约责任",@"其他条款", nil];
     
     _cursor = [[HACursor alloc]init];
     //    _cursor.backgroundColor = [UIColor colorWithRed:56.0 / 255.0 green:135.0 / 255.0 blue:250.0 / 255.0 alpha:1];
@@ -559,6 +572,40 @@
                 make.bottom.mas_equalTo(_yanShouMethodView.yanShouMethodLabel.mas_bottom).offset(16);
             }];
             [pageViews addObject:_scrollView4];
+        }else if (i == 4){
+            
+            _cursor.rootScrollView.bounces = NO;
+            _scrollView5 = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, self.view.width, self.view.height / 2)];
+            _weiYueZeRenView = [[JSEIMPWeiYueZeRenView alloc] init];
+            //发送通知
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"weiYueZeRen" object:_weiYueZeRen];
+            
+            [_scrollView5 addSubview:_weiYueZeRenView];
+            
+            [_weiYueZeRenView mas_makeConstraints:^(MASConstraintMaker *make) {
+                
+                make.edges.mas_equalTo(_scrollView5);
+                make.width.mas_equalTo(UIScreenW);
+                make.bottom.mas_equalTo(_weiYueZeRenView.weiYueZeRenLabel.mas_bottom).offset(16);
+            }];
+            [pageViews addObject:_scrollView5];
+        }else if (i == 5){
+            
+            _cursor.rootScrollView.bounces = NO;
+            _scrollView6 = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, self.view.width, self.view.height / 2)];
+            _otherTiaoKuanView = [[JSEIMPOtherTiaoKuanView alloc] init];
+            //发送通知
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"otherTiaoKuan" object:_otherTiaoKuan];
+            
+            [_scrollView6 addSubview:_otherTiaoKuanView];
+            
+            [_otherTiaoKuanView mas_makeConstraints:^(MASConstraintMaker *make) {
+                
+                make.edges.mas_equalTo(_scrollView6);
+                make.width.mas_equalTo(UIScreenW);
+                make.bottom.mas_equalTo(_otherTiaoKuanView.otherTiaoKuanLabel.mas_bottom).offset(16);
+            }];
+            [pageViews addObject:_scrollView6];
         }
 //        else if (i == 1){
 //

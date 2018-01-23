@@ -14,7 +14,7 @@
 #define UIScreenW [UIScreen mainScreen].bounds.size.width
 #define UIScreenH [UIScreen mainScreen].bounds.size.height
 
-@interface JSEIMPNewQualityCheckController ()
+@interface JSEIMPNewQualityCheckController ()<UITextFieldDelegate,UITextViewDelegate>
 
 @end
 
@@ -79,6 +79,8 @@
     UILabel *_label9;
     
     JSProjectDynamicImageViewController *_projectDynamicImageViewController;
+    
+    UIView *_touchView;
 }
 
 - (void)viewDidLoad {
@@ -128,9 +130,17 @@
     
     [_scrollView addSubview:_view];
     
+    _touchView = [UIView new];
+    _touchView.backgroundColor = [UIColor whiteColor];
+    [_view addSubview:_touchView];
+    //点击手势
+    UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(touchEvent)];
+    [_touchView addGestureRecognizer:tapGestureRecognizer];
+    
     _label1 = [self setupLabelWithText:@"项目名称" TextColor:[UIColor darkTextColor] Font:[UIFont systemFontOfSize:20]];
     _projectNameLabel = [self setupLabelWithText:_projectName TextColor:[UIColor darkGrayColor] Font:[UIFont systemFontOfSize:16]];
     _projectNameLabel.numberOfLines = 0;
+    _projectNameLabel.textAlignment = NSTextAlignmentRight;
     
     _label2 = [self setupLabelWithText:@"检查人" TextColor:[UIColor darkTextColor] Font:[UIFont systemFontOfSize:20]];
     _checkPeopleTextField = [self setupTextFieldWithPlacedText:@"请填写检查人姓名"];
@@ -174,6 +184,12 @@
     
     [_view addSubview:_projectDynamicImageViewController.view];
     [self addChildViewController:_projectDynamicImageViewController];
+    
+    [_touchView mas_makeConstraints:^(MASConstraintMaker *make) {
+        
+        make.top.left.bottom.mas_equalTo(_view);
+        make.right.mas_equalTo(_label1.mas_right);
+    }];
     
     [_label1 mas_makeConstraints:^(MASConstraintMaker *make) {
         
@@ -325,6 +341,102 @@
         make.width.mas_equalTo(UIScreenW);
         make.bottom.mas_equalTo(_projectDynamicImageViewController.view.mas_bottom).offset(16);
     }];
+}
+
+#pragma mark - 触摸事件
+-(void)touchEvent{
+    
+    [_view endEditing:YES];
+}
+
+#pragma mark - <UITextViewDelegate>
+-(void)textViewDidChange:(UITextView *)textView{
+    
+    if (_checkContentTextView.hasText || _yinHuanTextView.hasText) {
+        
+        _checkContentPlaceLabel.hidden = YES;
+    }else if (!_checkContentTextView.hasText){
+        
+        _checkContentPlaceLabel.hidden = NO;
+    }
+    if (_zhengGaiWayTextView.hasText) {
+        
+        _zhengGaiPlaceLabel.hidden = YES;
+    }else if (!_zhengGaiWayTextView.hasText){
+        
+        _zhengGaiPlaceLabel.hidden = NO;
+    }
+    if (_yinHuanTextView.hasText) {
+        
+        _yinHuanPlaceLabel.hidden = YES;
+    }else if (!_yinHuanTextView.hasText){
+        
+        _yinHuanPlaceLabel.hidden = NO;
+    }
+    
+}
+
+#pragma mark - UITextFieldDelegate
+-(void)textFieldDidBeginEditing:(UITextField *)textField{
+    
+    _checkDateButton.enabled = NO;
+    _zhengGaiDateButton.enabled = NO;
+    
+    [self scrollViewFrameChange];
+    
+}
+
+-(void)textFieldDidEndEditing:(UITextField *)textField{
+    
+    _checkDateButton.enabled = YES;
+    _zhengGaiDateButton.enabled = YES;
+    
+    [self scrollViewFrameRecover];
+    
+}
+
+#pragma mark - UITextViewDelegate
+-(void)textViewDidBeginEditing:(UITextView *)textView{
+    
+    _checkDateButton.enabled = NO;
+    _zhengGaiDateButton.enabled = NO;
+    
+    [self scrollViewFrameChange];
+    
+}
+
+-(void)textViewDidEndEditing:(UITextView *)textView{
+    
+    _checkDateButton.enabled = YES;
+    _zhengGaiDateButton.enabled = YES;
+    
+    [self scrollViewFrameRecover];
+    
+}
+
+#pragma mark - ScrollViewFramebianhua
+-(void)scrollViewFrameChange{
+    
+    [_view mas_remakeConstraints:^(MASConstraintMaker *make) {
+        
+        make.edges.mas_equalTo(_scrollView);
+        make.width.mas_equalTo([UIScreen mainScreen].bounds.size.width);
+        make.bottom.mas_equalTo(_projectDynamicImageViewController.view.mas_bottom).offset(226);
+        
+    }];
+    
+}
+
+-(void)scrollViewFrameRecover{
+    
+    [_view mas_remakeConstraints:^(MASConstraintMaker *make) {
+        
+        make.edges.mas_equalTo(_scrollView);
+        make.width.mas_equalTo([UIScreen mainScreen].bounds.size.width);
+        make.bottom.mas_equalTo(_projectDynamicImageViewController.view.mas_bottom).offset(10);
+        
+    }];
+    
 }
 
 -(void)selectImage:(UIButton *)button{
@@ -493,6 +605,7 @@
     textView.layer.borderWidth = 0.5;
     //内容可以拖拽
     textView.alwaysBounceVertical = YES;
+    textView.delegate = self;
     //关闭键盘
     textView.keyboardDismissMode = UIScrollViewKeyboardDismissModeOnDrag;
     textView.font = [UIFont systemFontOfSize:16];
@@ -544,6 +657,7 @@
     textField.layer.borderWidth = 0.5;
     textField.textAlignment = NSTextAlignmentCenter;
     textField.placeholder = placedText;
+    textField.delegate = self;
     textField.textColor = [UIColor darkGrayColor];
     textField.font = [UIFont systemFontOfSize:16];
     
