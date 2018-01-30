@@ -184,7 +184,7 @@
         [_view addSubview:_label12];
         [_view addSubview:_line1];
         
-        _buttonView = [self setView];
+        _buttonView = [self setButtonView];
         _buttonView.frame = CGRectMake(4, 4, 8, 8);
         
         [_button1 addSubview:_buttonView];
@@ -393,7 +393,7 @@
     
 }
 
--(UIView *)setView{
+-(UIView *)setButtonView{
     
     UIView *view = [UIView new];
     view.backgroundColor = [UIColor blueColor];

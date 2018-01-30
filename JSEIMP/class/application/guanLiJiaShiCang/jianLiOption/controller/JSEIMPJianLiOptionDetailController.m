@@ -427,7 +427,6 @@
     [_view addSubview:label];
     
     return label;
-    
 }
 
 @end

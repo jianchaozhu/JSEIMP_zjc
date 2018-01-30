@@ -60,6 +60,15 @@
 		C145EEDD200F22A500599E2B /* JSEIMPDaiBanItemsDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = C145EEDC200F22A500599E2B /* JSEIMPDaiBanItemsDetailController.m */; };
 		C145EFA32011CB3400599E2B /* JSEIMPDaiBanItemDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C145EFA22011CB3400599E2B /* JSEIMPDaiBanItemDetailModel.m */; };
 		C145EFA6201708F300599E2B /* JSEIMPZaiBanItemsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C145EFA5201708F300599E2B /* JSEIMPZaiBanItemsModel.m */; };
+		C145EFA920171BD000599E2B /* JSEIMPZaiBanItemsDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = C145EFA820171BD000599E2B /* JSEIMPZaiBanItemsDetailController.m */; };
+		C145EFAC2018755B00599E2B /* JSEIMPGetTargetActivityIdModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C145EFAB2018755B00599E2B /* JSEIMPGetTargetActivityIdModel.m */; };
+		C145EFAF20196A5500599E2B /* JSEIMPSuggestController.m in Sources */ = {isa = PBXBuildFile; fileRef = C145EFAE20196A5500599E2B /* JSEIMPSuggestController.m */; };
+		C145EFB220197D8300599E2B /* JSEIMPNextDealPeopleController.m in Sources */ = {isa = PBXBuildFile; fileRef = C145EFB120197D8300599E2B /* JSEIMPNextDealPeopleController.m */; };
+		C145EFB52019CA6400599E2B /* JSEIMPCaoZuoPeopleModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C145EFB42019CA6400599E2B /* JSEIMPCaoZuoPeopleModel.m */; };
+		C145EFB8201B1E5900599E2B /* JSEIMPYiBanItemsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C145EFB7201B1E5900599E2B /* JSEIMPYiBanItemsModel.m */; };
+		C145EFBB201B233F00599E2B /* JSEIMPYiBanItemsDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = C145EFBA201B233F00599E2B /* JSEIMPYiBanItemsDetailController.m */; };
+		C196B9E22020045B006F6B3D /* JSEIMPGetUserIdModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C196B9E12020045B006F6B3D /* JSEIMPGetUserIdModel.m */; };
+		C196B9E520204DCD006F6B3D /* JSEIMPBackReasonController.m in Sources */ = {isa = PBXBuildFile; fileRef = C196B9E420204DCD006F6B3D /* JSEIMPBackReasonController.m */; };
 		C1A668471F7108FC00A7F11E /* LMJDropdownMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = C1A668461F7108FC00A7F11E /* LMJDropdownMenu.m */; };
 		C1C6EB781FAC0B3100FDA439 /* LCNewFeatureVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C1C6EB751FAC0B3100FDA439 /* LCNewFeatureVC.m */; };
 		C1C6EB791FAC0B3100FDA439 /* UIImage+LC.m in Sources */ = {isa = PBXBuildFile; fileRef = C1C6EB771FAC0B3100FDA439 /* UIImage+LC.m */; };
@@ -281,6 +290,24 @@
 		C145EFA22011CB3400599E2B /* JSEIMPDaiBanItemDetailModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JSEIMPDaiBanItemDetailModel.m; sourceTree = "<group>"; };
 		C145EFA4201708F300599E2B /* JSEIMPZaiBanItemsModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JSEIMPZaiBanItemsModel.h; sourceTree = "<group>"; };
 		C145EFA5201708F300599E2B /* JSEIMPZaiBanItemsModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JSEIMPZaiBanItemsModel.m; sourceTree = "<group>"; };
+		C145EFA720171BD000599E2B /* JSEIMPZaiBanItemsDetailController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JSEIMPZaiBanItemsDetailController.h; sourceTree = "<group>"; };
+		C145EFA820171BD000599E2B /* JSEIMPZaiBanItemsDetailController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JSEIMPZaiBanItemsDetailController.m; sourceTree = "<group>"; };
+		C145EFAA2018755B00599E2B /* JSEIMPGetTargetActivityIdModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JSEIMPGetTargetActivityIdModel.h; sourceTree = "<group>"; };
+		C145EFAB2018755B00599E2B /* JSEIMPGetTargetActivityIdModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JSEIMPGetTargetActivityIdModel.m; sourceTree = "<group>"; };
+		C145EFAD20196A5500599E2B /* JSEIMPSuggestController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JSEIMPSuggestController.h; sourceTree = "<group>"; };
+		C145EFAE20196A5500599E2B /* JSEIMPSuggestController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JSEIMPSuggestController.m; sourceTree = "<group>"; };
+		C145EFB020197D8300599E2B /* JSEIMPNextDealPeopleController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JSEIMPNextDealPeopleController.h; sourceTree = "<group>"; };
+		C145EFB120197D8300599E2B /* JSEIMPNextDealPeopleController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JSEIMPNextDealPeopleController.m; sourceTree = "<group>"; };
+		C145EFB32019CA6400599E2B /* JSEIMPCaoZuoPeopleModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JSEIMPCaoZuoPeopleModel.h; sourceTree = "<group>"; };
+		C145EFB42019CA6400599E2B /* JSEIMPCaoZuoPeopleModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JSEIMPCaoZuoPeopleModel.m; sourceTree = "<group>"; };
+		C145EFB6201B1E5900599E2B /* JSEIMPYiBanItemsModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JSEIMPYiBanItemsModel.h; sourceTree = "<group>"; };
+		C145EFB7201B1E5900599E2B /* JSEIMPYiBanItemsModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JSEIMPYiBanItemsModel.m; sourceTree = "<group>"; };
+		C145EFB9201B233F00599E2B /* JSEIMPYiBanItemsDetailController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JSEIMPYiBanItemsDetailController.h; sourceTree = "<group>"; };
+		C145EFBA201B233F00599E2B /* JSEIMPYiBanItemsDetailController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JSEIMPYiBanItemsDetailController.m; sourceTree = "<group>"; };
+		C196B9E02020045B006F6B3D /* JSEIMPGetUserIdModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JSEIMPGetUserIdModel.h; sourceTree = "<group>"; };
+		C196B9E12020045B006F6B3D /* JSEIMPGetUserIdModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JSEIMPGetUserIdModel.m; sourceTree = "<group>"; };
+		C196B9E320204DCD006F6B3D /* JSEIMPBackReasonController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JSEIMPBackReasonController.h; sourceTree = "<group>"; };
+		C196B9E420204DCD006F6B3D /* JSEIMPBackReasonController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JSEIMPBackReasonController.m; sourceTree = "<group>"; };
 		C1A668451F7108FC00A7F11E /* LMJDropdownMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LMJDropdownMenu.h; sourceTree = "<group>"; };
 		C1A668461F7108FC00A7F11E /* LMJDropdownMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LMJDropdownMenu.m; sourceTree = "<group>"; };
 		C1C6EB741FAC0B3100FDA439 /* LCNewFeatureVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCNewFeatureVC.h; sourceTree = "<group>"; };
@@ -2294,6 +2321,14 @@
 			children = (
 				C1F823CB1FF4C6EF00EAF37C /* JSEIMPZaiBanItemsController.h */,
 				C1F823CC1FF4C6EF00EAF37C /* JSEIMPZaiBanItemsController.m */,
+				C145EFA720171BD000599E2B /* JSEIMPZaiBanItemsDetailController.h */,
+				C145EFA820171BD000599E2B /* JSEIMPZaiBanItemsDetailController.m */,
+				C145EFAD20196A5500599E2B /* JSEIMPSuggestController.h */,
+				C145EFAE20196A5500599E2B /* JSEIMPSuggestController.m */,
+				C196B9E320204DCD006F6B3D /* JSEIMPBackReasonController.h */,
+				C196B9E420204DCD006F6B3D /* JSEIMPBackReasonController.m */,
+				C145EFB020197D8300599E2B /* JSEIMPNextDealPeopleController.h */,
+				C145EFB120197D8300599E2B /* JSEIMPNextDealPeopleController.m */,
 			);
 			path = controller;
 			sourceTree = "<group>";
@@ -2303,6 +2338,12 @@
 			children = (
 				C145EFA4201708F300599E2B /* JSEIMPZaiBanItemsModel.h */,
 				C145EFA5201708F300599E2B /* JSEIMPZaiBanItemsModel.m */,
+				C145EFAA2018755B00599E2B /* JSEIMPGetTargetActivityIdModel.h */,
+				C145EFAB2018755B00599E2B /* JSEIMPGetTargetActivityIdModel.m */,
+				C145EFB32019CA6400599E2B /* JSEIMPCaoZuoPeopleModel.h */,
+				C145EFB42019CA6400599E2B /* JSEIMPCaoZuoPeopleModel.m */,
+				C196B9E02020045B006F6B3D /* JSEIMPGetUserIdModel.h */,
+				C196B9E12020045B006F6B3D /* JSEIMPGetUserIdModel.m */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -2337,6 +2378,8 @@
 			children = (
 				C1F823D31FF4C99700EAF37C /* JSEIMPYiBanItemsController.h */,
 				C1F823D41FF4C99700EAF37C /* JSEIMPYiBanItemsController.m */,
+				C145EFB9201B233F00599E2B /* JSEIMPYiBanItemsDetailController.h */,
+				C145EFBA201B233F00599E2B /* JSEIMPYiBanItemsDetailController.m */,
 			);
 			path = controller;
 			sourceTree = "<group>";
@@ -2344,6 +2387,8 @@
 		C1F823D01FF4C97400EAF37C /* model */ = {
 			isa = PBXGroup;
 			children = (
+				C145EFB6201B1E5900599E2B /* JSEIMPYiBanItemsModel.h */,
+				C145EFB7201B1E5900599E2B /* JSEIMPYiBanItemsModel.m */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -2681,6 +2726,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C1F823E81FFB7A4700EAF37C /* JSEIMPJianSheOptionDetailController.m in Sources */,
+				C145EFB52019CA6400599E2B /* JSEIMPCaoZuoPeopleModel.m in Sources */,
 				C1C6EC4C1FCBB1B600FDA439 /* JSEIMPFarmerBaoZhengJinModel.m in Sources */,
 				C1F823571FD63E0F00EAF37C /* JSEIMPNewHeTongZhiFuTiaoKuanView.m in Sources */,
 				C1F8237D1FDE520500EAF37C /* JSEIMPZhuanYeChengBaoHeTongModel.m in Sources */,
@@ -2689,7 +2735,9 @@
 				C1047F941F7F7E23005412FB /* JSEIMPNewTouBiaoController.m in Sources */,
 				C1047FC71F8B48EF005412FB /* HACursor.m in Sources */,
 				C145EFA6201708F300599E2B /* JSEIMPZaiBanItemsModel.m in Sources */,
+				C145EFB8201B1E5900599E2B /* JSEIMPYiBanItemsModel.m in Sources */,
 				C1C6EC521FCCF49700FDA439 /* JSEIMPProjectJiangXiangModel.m in Sources */,
+				C145EFA920171BD000599E2B /* JSEIMPZaiBanItemsDetailController.m in Sources */,
 				C1F823901FE359E000EAF37C /* JSEIMPFenBaoHeTongController.m in Sources */,
 				C1EB2E941F8B65D7005D9F2F /* HATestView.m in Sources */,
 				C1047F9A1F7F7E23005412FB /* JSEIMPNewTouBiaoZhaiYaoController.m in Sources */,
@@ -2722,6 +2770,7 @@
 				C1047FCE1F8B48EF005412FB /* HASortItemView.m in Sources */,
 				C1047F951F7F7E23005412FB /* JSEIMPTouBiaoController.m in Sources */,
 				C1EB2F1B1F983828005D9F2F /* JSEIIMPNewHeTongBeiAnView.m in Sources */,
+				C145EFBB201B233F00599E2B /* JSEIMPYiBanItemsDetailController.m in Sources */,
 				C1047FCC1F8B48EF005412FB /* HAScrollNavBar.m in Sources */,
 				C1C6EC401FC7C2C100FDA439 /* JSEIMPTouBiaoProjectListModel.m in Sources */,
 				C1C6EB781FAC0B3100FDA439 /* LCNewFeatureVC.m in Sources */,
@@ -2759,6 +2808,7 @@
 				C13ABD161FA02FB000D17A6E /* JSEIMPBaoBiaoDetailController.m in Sources */,
 				C1047FA21F7F7FAE005412FB /* JSEIMPTouBiaoDetailController.m in Sources */,
 				C1F8235D1FD63E0F00EAF37C /* JSEIMPProjectQuailtyTiaoKuanView.m in Sources */,
+				C196B9E22020045B006F6B3D /* JSEIMPGetUserIdModel.m in Sources */,
 				C1EB2EFD1F95D51E005D9F2F /* JSEIMPHeTongBeiAnShouXuController.m in Sources */,
 				C1EB2F4E1F9ED792005D9F2F /* JSEIMPNewBiaoHouAnalyzeController.m in Sources */,
 				C1F823AE1FEA32D500EAF37C /* JSEIMPCaiGouHeTongController.m in Sources */,
@@ -2825,7 +2875,9 @@
 				C1EB2F241F988FFC005D9F2F /* JSEIMPNewShiGongXuKeZhengView.m in Sources */,
 				C1047F931F7F7E23005412FB /* JSProjectCheckDetailController.m in Sources */,
 				C1EB2F091F95F41B005D9F2F /* JSEIMPNewProjectShouXuController.m in Sources */,
+				C145EFAF20196A5500599E2B /* JSEIMPSuggestController.m in Sources */,
 				C1C6EC121FBD37F800FDA439 /* JSEIMPWriteZhongBiaoNoteController.m in Sources */,
+				C196B9E520204DCD006F6B3D /* JSEIMPBackReasonController.m in Sources */,
 				C1F823541FD63E0F00EAF37C /* JSEIMPHeTongZhiFuTiaoKuanView.m in Sources */,
 				C1EB2EF11F949F12005D9F2F /* JSEIMPProjectShouXuDealController.m in Sources */,
 				C1047FC61F8B48EF005412FB /* HAAnimationTool.m in Sources */,
@@ -2833,6 +2885,7 @@
 				C1047FCD1F8B48EF005412FB /* HASortButton.m in Sources */,
 				C1F823801FDE6AFC00EAF37C /* JSEIMPZhuanYeChengBaoHeTongDetailController.m in Sources */,
 				C10244D91F5E44E100FA32AA /* main.m in Sources */,
+				C145EFAC2018755B00599E2B /* JSEIMPGetTargetActivityIdModel.m in Sources */,
 				C1EB2ECB1F8E0C7B005D9F2F /* JSEIMPFarmerBaoZhengJinDetailController.m in Sources */,
 				C1EB2F481F9ED6C0005D9F2F /* JSEIMPBiaoHouAnalyzeController.m in Sources */,
 				C1F823601FD63E0F00EAF37C /* JSEIMPWenMingSHiGongTiaoKuanView.m in Sources */,
@@ -2841,6 +2894,7 @@
 				C1F823D51FF4C99700EAF37C /* JSEIMPYiBanItemsController.m in Sources */,
 				C1C6EC271FC3C5C100FDA439 /* JSEIMPQualityTargetDetailController.m in Sources */,
 				C1F823FE1FFE042400EAF37C /* JSEIMPQualityCheckController.m in Sources */,
+				C145EFB220197D8300599E2B /* JSEIMPNextDealPeopleController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

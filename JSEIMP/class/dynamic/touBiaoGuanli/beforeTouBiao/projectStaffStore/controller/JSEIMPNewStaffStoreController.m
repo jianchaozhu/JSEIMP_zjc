@@ -210,7 +210,6 @@
         
         make.top.left.bottom.mas_equalTo(_view);
         make.right.mas_equalTo(_label1.mas_right);
-        
     }];
     
     [_label1 mas_makeConstraints:^(MASConstraintMaker *make) {

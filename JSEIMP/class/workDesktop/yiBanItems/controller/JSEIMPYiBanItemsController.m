@@ -7,10 +7,24 @@
 //
 
 #import "JSEIMPYiBanItemsController.h"
+#import "JSEIMPNetWorking.h"
+#import "JSEIMPYiBanItemsDetailController.h"
 
 static NSString *cellID = @"cellID";
 
 @interface JSEIMPYiBanItemsController ()<UITableViewDelegate,UITableViewDataSource>
+
+@property(nonatomic,strong)NSMutableArray *activityIdMArray;
+
+@property(nonatomic,strong)NSMutableArray *IDMArray;
+//节点
+@property(nonatomic,strong)NSMutableArray *activityNameMArray;
+//名称
+@property(nonatomic,strong)NSMutableArray *nameMArray;
+//日期
+@property(nonatomic,strong)NSMutableArray *timeMArray;
+//合同id
+@property(nonatomic,strong)NSMutableArray *contractIdMArray;
 
 @end
 
@@ -35,7 +49,21 @@ static NSString *cellID = @"cellID";
 
 -(void)getData{
     
-    
+    [JSEIMPNetWorking getYiBanItemOnSuccess:^(NSMutableArray *activityIdMArray,NSMutableArray * IDMArray,NSMutableArray *activityNameMArray,NSMutableArray *nameMArray,NSMutableArray *timeMArray,NSMutableArray *contractIdMArray){
+        
+        _activityIdMArray = activityIdMArray.copy;
+        _IDMArray = IDMArray.copy;
+        _activityNameMArray = activityNameMArray.copy;
+        _nameMArray = nameMArray.copy;
+        _timeMArray = timeMArray.copy;
+        _contractIdMArray = contractIdMArray.copy;
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            
+            [_tableView reloadData];
+        });
+        
+    } onErrorInfo:nil];
 }
 
 -(void)setupUI{
@@ -51,18 +79,29 @@ static NSString *cellID = @"cellID";
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     
-    return 1;
+    return _IDMArray.count;
     
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    NSString *str = @"苏州天籁城总承包合同";
+    NSString *str = _nameMArray[indexPath.row];
     
     CGSize size = [str sizeWithFont:[UIFont systemFontOfSize:15] constrainedToSize:CGSizeMake(280, 999) lineBreakMode:NSLineBreakByWordWrapping];
     
     return size.height + 50;
     
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    JSEIMPYiBanItemsDetailController *yiBanItemsDetailController = [JSEIMPYiBanItemsDetailController new];
+    
+    yiBanItemsDetailController.activityId = [_activityIdMArray[indexPath.row] integerValue];
+    yiBanItemsDetailController.contractName = _nameMArray[indexPath.row];
+    yiBanItemsDetailController.contractId = _contractIdMArray[indexPath.row];
+    
+    [self.navigationController pushViewController:yiBanItemsDetailController animated:YES];
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -75,8 +114,8 @@ static NSString *cellID = @"cellID";
         
     }
     
-    _cell.textLabel.text = [NSString stringWithFormat:@"%zd   苏州天籁城总承包合同",indexPath.row + 1];
-    _cell.detailTextLabel.text = [NSString stringWithFormat:@"节点：发起人    日期：2017-12-28"];
+    _cell.textLabel.text = [NSString stringWithFormat:@"%zd   %@",indexPath.row + 1,_nameMArray[indexPath.row]];
+    _cell.detailTextLabel.text = [NSString stringWithFormat:@"节点：%@     日期：%@",_activityNameMArray[indexPath.row],_timeMArray[indexPath.row]];
     _cell.selectionStyle = UITableViewCellSelectionStyleNone;
     _cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     _cell.textLabel.lineBreakMode = NSLineBreakByWordWrapping;

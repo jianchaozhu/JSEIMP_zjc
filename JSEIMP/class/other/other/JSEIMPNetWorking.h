@@ -79,14 +79,29 @@
 //获得待办事项列表
 +(void)getDaiBanItemOnSuccess:(void(^)())response onErrorInfo:(void(^)(JSEIMPError error))errorInfo;
 
-//获得代办事项详情
+//获得待办事项详情
 +(void)getDaiBanItemDetailWithContractID:(NSString *)contractId OnSuccess:(void(^)())response onErrorInfo:(void(^)())errorInfo;
 
 //获得在办事项列表
 +(void)getZaiBanItemOnSuccess:(void(^)())response onErrorInfo:(void(^)(JSEIMPError error))errorInfo;
 
+//获得已办事项列表
++(void)getYiBanItemOnSuccess:(void(^)())response onErrorInfo:(void(^)(JSEIMPError error))errorInfo;
+
 //合同签收
 +(void)PostQianShouWithActivityId:(NSInteger)activityId OnSuccess:(void(^)())response onErrorInfo:(void(^)())errorInfo;
+
+//点击合同同意，获取targetActivityId和activityId
++(void)GetTatgetActivityIdWithActivityId:(NSInteger)activityId OnSuccess:(void(^)())response onErrorInfo:(void(^)())errorInfo;
+
+//点击建议VC里的确定，获得允许的操作人
++(void)getCaoZuoPeopleWithProcessInstanceId:(NSInteger)processInstanceId ActivityDefinitionId:(NSString *)activityDefinitionId OnSuccess:(void(^)())response onErrorInfo:(void(^)())errorInfo;
+
+//选择完项目经理，点击确定之后同意发送到下一步
++(void)PostToNextStepWithCurrentActivityId:(NSInteger)currentActivityId TargetActivityId:(NSString *)targetActivityId ActivityId:(NSString *)activityId UserId:(NSString *)userId LoginId:(NSString *)loginId UserName:(NSString *)userName UserStationId:(NSString *)userStationId UserUnitId:(NSString *)userUnitId RoleId:(NSString *)roleId Opinion:(NSString *)opinion OnSuccess:(void(^)())response onErrorInfo:(void(^)())errorInfo;
+
+//在办中点击退回上一步，获得userId和returnTargetActivityInstanceId
++(void)getUserIdAndReturnTargetActivityInstanceIdWithActivityId:(NSInteger)activityId OnSuccess:(void(^)())response onErrorInfo:(void(^)())errorInfo;
 
 //获得大象云Token
 +(void)getDaXiangYunTokenwithSuccessBlock:(void(^)())response;

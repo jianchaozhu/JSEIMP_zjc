@@ -26,6 +26,11 @@
 #import "JSEIMPCaiGouHeTongDetailModel.h"
 #import "JSEIMPDaiBanItemsModel.h"
 #import "JSEIMPDaiBanItemDetailModel.h"
+#import "JSEIMPGetTargetActivityIdModel.h"
+#import "JSEIMPZaiBanItemsModel.h"
+#import "JSEIMPCaoZuoPeopleModel.h"
+#import "JSEIMPYiBanItemsModel.h"
+#import "JSEIMPGetUserIdModel.h"
 #import "JSEIMPError.h"
 
 @implementation JSEIMPNetWorking
@@ -1238,7 +1243,74 @@
             
             NSDictionary *dict = (NSDictionary *)responseObject;
             
-            JSEIMPDaiBanItemsModel *model = [JSEIMPDaiBanItemsModel mj_objectWithKeyValues:dict];
+            JSEIMPZaiBanItemsModel *model = [JSEIMPZaiBanItemsModel mj_objectWithKeyValues:dict];
+            
+            NSMutableArray *activityIdMArray = [NSMutableArray array];
+            NSMutableArray *IDMArray = [NSMutableArray array];
+            NSMutableArray *activityNameMArray = [NSMutableArray array];
+            NSMutableArray *nameMArray = [NSMutableArray array];
+            NSMutableArray *timeMArray = [NSMutableArray array];
+            NSMutableArray *contractIdMArray = [NSMutableArray array];
+            NSMutableArray *processInstanceIdMArray = [NSMutableArray array];
+            for (int i = 0; i < model.result.items.count; i++) {
+                
+                NSInteger activityID = model.result.items[i].activityId;
+                NSString *ID = model.result.items[i].ID;
+                NSString *activityName = model.result.items[i].activityName;
+                NSString *name = model.result.items[i].name;
+                NSString *time = model.result.items[i].processCreationTime;
+                
+                NSString *processCreationTime = [time substringToIndex:10];
+                
+                [activityIdMArray addObject:@(activityID)];
+                [IDMArray addObject:ID];
+                [activityNameMArray addObject:activityName];
+                [nameMArray addObject:name];
+                [timeMArray addObject:processCreationTime];
+                
+                for (int j = 0; j < model.result.items[i].dataFields.count; j++) {
+                    
+                    NSString *dataType = model.result.items[i].dataFields[j].dataType;
+                    NSString *value = model.result.items[i].dataFields[j].value;
+                    NSInteger processInstanceId = model.result.items[i].dataFields[j].processInstanceId;
+                    
+                    if ([dataType isEqualToString:@"REFERENCE"]) {
+                        
+                        [contractIdMArray addObject:value];
+                        [processInstanceIdMArray addObject:@(processInstanceId)];
+                    }
+                }
+            }
+            response(activityIdMArray,IDMArray,activityNameMArray,nameMArray,timeMArray,contractIdMArray,processInstanceIdMArray);
+        } else {
+            
+            errorInfo(noData);
+        }
+        
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        
+        NSLog(@"%@",error);
+    }];
+}
+
+//获得已办事项列表
++(void)getYiBanItemOnSuccess:(void (^)())response onErrorInfo:(void (^)(JSEIMPError))errorInfo{
+    
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    manager.responseSerializer = [AFJSONResponseSerializer serializer];
+    manager.requestSerializer = [AFJSONRequestSerializer serializer];
+    
+    [self setPublicHeader:manager];
+    [manager GET:API_YIBANITEM parameters:nil progress:^(NSProgress * _Nonnull uploadProgress) {
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        
+        NSLog(@"%@",responseObject);
+        
+        if (responseObject != nil) {
+            
+            NSDictionary *dict = (NSDictionary *)responseObject;
+            
+            JSEIMPYiBanItemsModel *model = [JSEIMPYiBanItemsModel mj_objectWithKeyValues:dict];
             
             NSMutableArray *activityIdMArray = [NSMutableArray array];
             NSMutableArray *IDMArray = [NSMutableArray array];
@@ -1306,6 +1378,179 @@
             response();
         } else {
             errorInfo();
+        }
+        
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        
+        NSLog(@"%@",error);
+    }];
+}
+
+//点击合同同意，获取targetActivityId和activityId
++(void)GetTatgetActivityIdWithActivityId:(NSInteger)activityId OnSuccess:(void (^)())response onErrorInfo:(void (^)())errorInfo{
+    
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    manager.responseSerializer = [AFJSONResponseSerializer serializer];
+    manager.requestSerializer = [AFJSONRequestSerializer serializer];
+    
+    NSDictionary *parameters = @{@"activityInstanceId":@(activityId)};
+    
+    [self setPublicHeader:manager];
+    [manager GET:API_GETTARGETACTIVITYID parameters:parameters progress:^(NSProgress * _Nonnull uploadProgress) {
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        
+        NSLog(@"%@",responseObject);
+        
+        if (responseObject != nil) {
+            
+            NSDictionary *dict = (NSDictionary *)responseObject;
+            
+            JSEIMPGetTargetActivityIdModel *model = [JSEIMPGetTargetActivityIdModel mj_objectWithKeyValues:dict];
+            
+            NSMutableArray *targetActivityIdMArray = [NSMutableArray array];
+            for (int i = 0; i < model.result.items.count; i++) {
+                
+                NSString *targetActivityId = model.result.items[i].to;
+                
+                [targetActivityIdMArray addObject:targetActivityId];
+            }
+            
+            response(targetActivityIdMArray);
+        } else {
+            
+            errorInfo(noData);
+        }
+        
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        
+        NSLog(@"%@",error);
+    }];
+}
+
+////点击建议VC里的确定，获得允许的操作人
++(void)getCaoZuoPeopleWithProcessInstanceId:(NSInteger)processInstanceId ActivityDefinitionId:(NSString *)activityDefinitionId OnSuccess:(void (^)())response onErrorInfo:(void (^)())errorInfo{
+    
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    manager.responseSerializer = [AFJSONResponseSerializer serializer];
+    manager.requestSerializer = [AFJSONRequestSerializer serializer];
+    
+    NSDictionary *parameters = @{@"ProcessInstanceId":@(processInstanceId),
+                                 @"ActivityDefinitionId":activityDefinitionId
+                                 };
+    
+    [self setPublicHeader:manager];
+    [manager GET:API_GETCAOZUOPEOPLE parameters:parameters progress:^(NSProgress * _Nonnull uploadProgress) {
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        
+        NSLog(@"%@",responseObject);
+        
+        if (responseObject != nil) {
+            
+            NSDictionary *dict = (NSDictionary *)responseObject;
+            
+            JSEIMPCaoZuoPeopleModel *model = [JSEIMPCaoZuoPeopleModel mj_objectWithKeyValues:dict];
+            
+            NSMutableArray *loginIdMArray = [NSMutableArray array];
+            NSMutableArray *roleIdMArray = [NSMutableArray array];
+            NSMutableArray *userIdMArray = [NSMutableArray array];
+            NSMutableArray *userNameMArray = [NSMutableArray array];
+            NSMutableArray *userSatationIdMArray = [NSMutableArray array];
+            NSMutableArray *userUnitIdMArray = [NSMutableArray array];
+            for (int i = 0; i < model.result.items.count; i++) {
+                
+                NSString *loginId = model.result.items[i].loginId;
+                NSString *roleId = model.result.items[i].roleId;
+                NSString *userId = model.result.items[i].userId;
+                NSString *userName = model.result.items[i].userName;
+                NSString *userSatationId = model.result.items[i].userStationId;
+                NSString *userUnitId = model.result.items[i].userUnitId;
+                
+                [loginIdMArray addObject:loginId];
+                [roleIdMArray addObject:roleId];
+                [userIdMArray addObject:userId];
+                [userNameMArray addObject:userName];
+                [userSatationIdMArray addObject:userSatationId];
+                [userUnitIdMArray addObject:userUnitId];
+            }
+            response(loginIdMArray,roleIdMArray,userIdMArray,userNameMArray,userSatationIdMArray,userUnitIdMArray);
+        } else {
+            
+            errorInfo(noData);
+        }
+        
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        
+        NSLog(@"%@",error);
+    }];
+}
+
+//选择完项目经理，点击确定之后同意发送到下一步
++(void)PostToNextStepWithCurrentActivityId:(NSInteger)currentActivityId TargetActivityId:(NSString *)targetActivityId ActivityId:(NSString *)activityId UserId:(NSString *)userId LoginId:(NSString *)loginId UserName:(NSString *)userName UserStationId:(NSString *)userStationId UserUnitId:(NSString *)userUnitId RoleId:(NSString *)roleId Opinion:(NSString *)opinion OnSuccess:(void (^)())response onErrorInfo:(void (^)())errorInfo{
+    
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    manager.responseSerializer = [AFJSONResponseSerializer serializer];
+    manager.requestSerializer = [AFJSONRequestSerializer serializer];
+//    manager.requestSerializer = [AFHTTPRequestSerializer serializer];
+    
+    NSDictionary *parameters = @{@"currentActivityId":@(currentActivityId),
+                                 @"targetActivityId":targetActivityId,
+                                 @"targetActivityPerformers":@[@{@"activityId":activityId,@"performers":@[@{@"userId":userId,@"loginId":loginId,@"userName":userName,@"userStationId":userStationId,@"userUnitId":userUnitId,@"roleId":roleId}]}],@"opinion":opinion
+                                 };
+    
+    [self setPublicHeader:manager];
+    [manager POST:API_AGREETONEXTSTEP parameters:parameters progress:^(NSProgress * _Nonnull uploadProgress) {
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        
+        NSLog(@"%@",responseObject);
+        
+        if (responseObject != nil) {
+            
+            response();
+        } else {
+            errorInfo();
+        }
+        
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        
+        NSLog(@"%@",error);
+    }];
+}
+
+//在办中点击退回上一步，获得userId和returnTargetActivityInstanceId
++(void)getUserIdAndReturnTargetActivityInstanceIdWithActivityId:(NSInteger)activityId OnSuccess:(void (^)())response onErrorInfo:(void (^)())errorInfo{
+    
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    manager.responseSerializer = [AFJSONResponseSerializer serializer];
+    manager.requestSerializer = [AFJSONRequestSerializer serializer];
+    
+    NSDictionary *parameters = @{@"activityInstanceId":@(activityId)};
+    
+    [self setPublicHeader:manager];
+    [manager GET:API_GETUSERID parameters:parameters progress:^(NSProgress * _Nonnull uploadProgress) {
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        
+        NSLog(@"%@",responseObject);
+        
+        if (responseObject != nil) {
+            
+            NSDictionary *dict = (NSDictionary *)responseObject;
+            
+            JSEIMPGetUserIdModel *model = [JSEIMPGetUserIdModel mj_objectWithKeyValues:dict];
+            
+            NSInteger returnTargetActivityInstanceId = model.result.inComeActivity.ID;
+            
+            NSMutableArray *userIdMArray = [NSMutableArray array];
+            for (int i = 0; i < model.result.workItems.count; i++) {
+                
+                NSString *userId = model.result.workItems[i].userId;
+                
+                [userIdMArray addObject:userId];
+            }
+            
+            response(returnTargetActivityInstanceId,userIdMArray);
+        } else {
+            
+            errorInfo(noData);
         }
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {

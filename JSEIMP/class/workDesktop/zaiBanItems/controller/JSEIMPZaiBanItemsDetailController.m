@@ -1,20 +1,21 @@
 //
-//  JSEIMPDaiBanItemsDetailController.m
+//  JSEIMPZaiBanItemsDetailController.m
 //  JSEIMP
 //
-//  Created by 朱建超 on 2018/1/17.
+//  Created by 朱建超 on 2018/1/23.
 //  Copyright © 2018年 朱建超. All rights reserved.
 //
 
-#import "JSEIMPDaiBanItemsDetailController.h"
+#import "JSEIMPZaiBanItemsDetailController.h"
 #import "JSEIMPNetWorking.h"
-#import "JSEIMPWorkDesktopController.h"
+#import "JSEIMPSuggestController.h"
+#import "JSEIMPBackReasonController.h"
 #import <Masonry.h>
 
 #define UIScreenW [UIScreen mainScreen].bounds.size.width
 #define UIScreenH [UIScreen mainScreen].bounds.size.height
 
-@interface JSEIMPDaiBanItemsDetailController ()
+@interface JSEIMPZaiBanItemsDetailController ()
 //合同编号
 @property(nonatomic,strong)NSString *contractCode;
 //甲方
@@ -33,10 +34,16 @@
 @property(nonatomic,strong)NSString *creator;
 //状态
 @property(nonatomic,strong)NSString *status;
+//targetActivityId
+@property(nonatomic,strong)NSMutableArray *targetActivityIdMArray;
+//returnTargetActivityInstanceId
+@property(nonatomic,assign)NSInteger returnTargetActivityInstanceId;
+//userID
+@property(nonatomic,strong)NSMutableArray *userIdMArray;
 
 @end
 
-@implementation JSEIMPDaiBanItemsDetailController{
+@implementation JSEIMPZaiBanItemsDetailController{
     
     UIScrollView *_scrollView;
     
@@ -84,14 +91,16 @@
     
     UILabel *_statusLabel;
     
-    UIButton *_qianShouButton;
+    UIButton *_agreeButton;
+    
+    UIButton *_beforeButton;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+    
     self.view.backgroundColor = [UIColor whiteColor];
-
+    
     UILabel *titleViewLabel = [[UILabel alloc] init];
     titleViewLabel.frame = CGRectMake(0, 0, 180, 40);
     titleViewLabel.numberOfLines = 0;
@@ -100,6 +109,8 @@
     titleViewLabel.textAlignment = NSTextAlignmentCenter;
     
     self.navigationItem.titleView = titleViewLabel;
+    
+    self.navigationController.navigationBarHidden = NO;
     
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"返回" style:UIBarButtonItemStylePlain target:self action:@selector(returnAction)];
     
@@ -145,8 +156,9 @@
     _view.backgroundColor = [UIColor whiteColor];
     
     [_scrollView addSubview:_view];
-
-    _qianShouButton = [self setButtonWithBackgroundColor:[UIColor colorWithRed:51.0 / 255.0 green:122.0 / 255.0 blue:183.0 / 255.0 alpha:1] Title:@"签收" Tag:1 TitleColor:[UIColor whiteColor] Target:@selector(clickButton:)];
+    
+    _agreeButton = [self setButtonWithBackgroundColor:[UIColor colorWithRed:51.0 / 255.0 green:122.0 / 255.0 blue:183.0 / 255.0 alpha:1] Title:@"同意" Tag:1 TitleColor:[UIColor whiteColor] Target:@selector(clickButton:)];
+    _beforeButton = [self setButtonWithBackgroundColor:[UIColor colorWithRed:51.0 / 255.0 green:122.0 / 255.0 blue:183.0 / 255.0 alpha:1] Title:@"退回上一步" Tag:2 TitleColor:[UIColor whiteColor] Target:@selector(clickButton:)];
     
     _label1 = [self setupLabelWithText:@"合同编号" TextColor:[UIColor darkTextColor] Font:[UIFont systemFontOfSize:20]];
     _heTongBianHaoLabel = [self setupLabelWithText:_contractCode TextColor:[UIColor darkGrayColor] Font:[UIFont boldSystemFontOfSize:16]];
@@ -197,10 +209,17 @@
         _statusLabel.textColor = [UIColor greenColor];
     }
     
-    [_qianShouButton mas_makeConstraints:^(MASConstraintMaker *make) {
+    [_beforeButton mas_makeConstraints:^(MASConstraintMaker *make) {
         
         make.top.mas_equalTo(_view.mas_top).offset(16);
         make.right.mas_equalTo(_view.mas_right).offset(-16);
+        make.width.mas_equalTo(102);
+        make.height.mas_equalTo(20);
+    }];
+    [_agreeButton mas_makeConstraints:^(MASConstraintMaker *make) {
+
+        make.centerY.mas_equalTo(_beforeButton.mas_centerY);
+        make.right.mas_equalTo(_beforeButton.mas_left);
         make.width.mas_equalTo(50);
         make.height.mas_equalTo(20);
     }];
@@ -347,23 +366,50 @@
     
     if (button.tag == 1) {
         
-        [self qianShouMethod];
+        [self agreeMethod];
+    }else if (button.tag == 2){
         
+        [self comeBackMethod];
     }
 }
 
--(void)qianShouMethod{
+-(void)comeBackMethod{
     
-    [JSEIMPNetWorking PostQianShouWithActivityId:_activityId OnSuccess:^{
+    [JSEIMPNetWorking getUserIdAndReturnTargetActivityInstanceIdWithActivityId:_activityId OnSuccess:^(NSInteger returnTargetActivityInstanceId,NSMutableArray *userIdMArray){
         
-        for(UIViewController *controller in self.navigationController.viewControllers) {
-            
-            if([controller isKindOfClass:[JSEIMPWorkDesktopController class]]) {
-                
-                [self.navigationController popToViewController:controller animated:YES];
-            }
-        }
+        _returnTargetActivityInstanceId = returnTargetActivityInstanceId;
+        _userIdMArray = userIdMArray.copy;
+        
+        [self goToReasonVC];
     } onErrorInfo:nil];
+}
+
+-(void)agreeMethod{
+    
+    [JSEIMPNetWorking GetTatgetActivityIdWithActivityId:_activityId OnSuccess:^(NSMutableArray *targetActivityIdMArray){
+        
+        _targetActivityIdMArray = targetActivityIdMArray.copy;
+        
+        [self goToSuggestVC];
+    } onErrorInfo:nil];
+}
+
+-(void)goToReasonVC{
+    
+    JSEIMPBackReasonController *backReasonController = [JSEIMPBackReasonController new];
+    
+    [self.navigationController pushViewController:backReasonController animated:YES];
+}
+
+-(void)goToSuggestVC{
+    
+    JSEIMPSuggestController *suggestController = [JSEIMPSuggestController new];
+    
+    suggestController.targetActivityId = _targetActivityIdMArray[0];
+    suggestController.processInstanceId = _processInstanceId;
+    suggestController.activityId = _activityId;
+    
+    [self.navigationController pushViewController:suggestController animated:YES];
 }
 
 -(UILabel *)setupLabelWithText:(NSString *)text TextColor:(UIColor *)textColor Font:(UIFont *)font{

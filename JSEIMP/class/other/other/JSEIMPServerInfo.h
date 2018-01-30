@@ -62,4 +62,12 @@
 #define API_YIBANITEM @"http://"HAWORKIP"/api/services/wf/Instance/GetOutTrayWorkItems"
 //工作台签收
 #define API_CONTRACTQIANSHOU @"http://"HAWORKIP"/api/services/wf/Instance/ActivitySignUpAsync"
+//代办中点击合同同意，获取targetActivityId和activityId
+#define API_GETTARGETACTIVITYID @"http://"HAWORKIP"/api/services/wf/Instance/GetOutTransitions"
+//代办中点击建议VC里的确定，获得允许的操作人
+#define API_GETCAOZUOPEOPLE @"http://"HAWORKIP"/api/services/wf/Instance/GetActivityPerformers"
+//代办中选择完项目经理，点击确定之后同意发送到下一步
+#define API_AGREETONEXTSTEP @"http://"HAWORKIP"/api/services/wf/Instance/ActivitySendAsync"
+//在办中点击退回上一步，获得userId和returnTargetActivityInstanceId
+#define API_GETUSERID @"http://"HAWORKIP"/api/services/wf/Instance/GetActivityInstance"
 

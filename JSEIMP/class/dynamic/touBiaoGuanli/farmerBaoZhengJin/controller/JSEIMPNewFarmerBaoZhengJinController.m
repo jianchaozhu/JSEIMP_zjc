@@ -222,10 +222,8 @@
     }];
     [_descPlaceLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         
-        
         make.top.mas_equalTo(_descTextView.mas_top).offset(8);
         make.left.mas_equalTo(_descTextView.mas_left).offset(6);
-        
     }];
     
     [_view mas_makeConstraints:^(MASConstraintMaker *make) {

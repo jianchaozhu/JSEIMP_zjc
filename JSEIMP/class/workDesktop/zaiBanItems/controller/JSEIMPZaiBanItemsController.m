@@ -8,6 +8,7 @@
 
 #import "JSEIMPZaiBanItemsController.h"
 #import "JSEIMPNetWorking.h"
+#import "JSEIMPZaiBanItemsDetailController.h"
 
 static NSString *cellID = @"cellID";
 
@@ -24,6 +25,8 @@ static NSString *cellID = @"cellID";
 @property(nonatomic,strong)NSMutableArray *timeMArray;
 //合同id
 @property(nonatomic,strong)NSMutableArray *contractIdMArray;
+//流程实例ID
+@property(nonatomic,strong)NSMutableArray *processInstanceIdMArray;
 
 @end
 
@@ -49,7 +52,7 @@ static NSString *cellID = @"cellID";
 
 -(void)getData{
     
-    [JSEIMPNetWorking getZaiBanItemOnSuccess:^(NSMutableArray *activityIdMArray,NSMutableArray * IDMArray,NSMutableArray *activityNameMArray,NSMutableArray *nameMArray,NSMutableArray *timeMArray,NSMutableArray *contractIdMArray){
+    [JSEIMPNetWorking getZaiBanItemOnSuccess:^(NSMutableArray *activityIdMArray,NSMutableArray * IDMArray,NSMutableArray *activityNameMArray,NSMutableArray *nameMArray,NSMutableArray *timeMArray,NSMutableArray *contractIdMArray,NSMutableArray *processInstanceIdMArray){
         
         _activityIdMArray = activityIdMArray.copy;
         _IDMArray = IDMArray.copy;
@@ -57,6 +60,7 @@ static NSString *cellID = @"cellID";
         _nameMArray = nameMArray.copy;
         _timeMArray = timeMArray.copy;
         _contractIdMArray = contractIdMArray.copy;
+        _processInstanceIdMArray = processInstanceIdMArray.copy;
         
         [_tableView reloadData];
         
@@ -87,6 +91,18 @@ static NSString *cellID = @"cellID";
     CGSize size = [str sizeWithFont:[UIFont systemFontOfSize:15] constrainedToSize:CGSizeMake(280, 999) lineBreakMode:NSLineBreakByWordWrapping];
     
     return size.height + 50;
+    
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    JSEIMPZaiBanItemsDetailController *zaiBanItemsDetailController = [JSEIMPZaiBanItemsDetailController new];
+    
+    zaiBanItemsDetailController.activityId = [_activityIdMArray[indexPath.row] integerValue];
+    zaiBanItemsDetailController.contractName = _nameMArray[indexPath.row];
+    zaiBanItemsDetailController.contractId = _contractIdMArray[indexPath.row];
+    zaiBanItemsDetailController.processInstanceId = [_processInstanceIdMArray[indexPath.row] integerValue];
+    [self.navigationController pushViewController:zaiBanItemsDetailController animated:YES];
     
 }
 

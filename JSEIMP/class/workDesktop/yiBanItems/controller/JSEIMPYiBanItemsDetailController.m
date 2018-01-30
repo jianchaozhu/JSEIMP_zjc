@@ -1,20 +1,19 @@
 //
-//  JSEIMPDaiBanItemsDetailController.m
+//  JSEIMPYiBanItemsDetailController.m
 //  JSEIMP
 //
-//  Created by 朱建超 on 2018/1/17.
+//  Created by 朱建超 on 2018/1/26.
 //  Copyright © 2018年 朱建超. All rights reserved.
 //
 
-#import "JSEIMPDaiBanItemsDetailController.h"
+#import "JSEIMPYiBanItemsDetailController.h"
 #import "JSEIMPNetWorking.h"
-#import "JSEIMPWorkDesktopController.h"
 #import <Masonry.h>
 
 #define UIScreenW [UIScreen mainScreen].bounds.size.width
 #define UIScreenH [UIScreen mainScreen].bounds.size.height
 
-@interface JSEIMPDaiBanItemsDetailController ()
+@interface JSEIMPYiBanItemsDetailController ()
 //合同编号
 @property(nonatomic,strong)NSString *contractCode;
 //甲方
@@ -36,7 +35,7 @@
 
 @end
 
-@implementation JSEIMPDaiBanItemsDetailController{
+@implementation JSEIMPYiBanItemsDetailController{
     
     UIScrollView *_scrollView;
     
@@ -83,15 +82,13 @@
     UILabel *_label10;
     
     UILabel *_statusLabel;
-    
-    UIButton *_qianShouButton;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+    
     self.view.backgroundColor = [UIColor whiteColor];
-
+    
     UILabel *titleViewLabel = [[UILabel alloc] init];
     titleViewLabel.frame = CGRectMake(0, 0, 180, 40);
     titleViewLabel.numberOfLines = 0;
@@ -101,10 +98,11 @@
     
     self.navigationItem.titleView = titleViewLabel;
     
+    self.navigationController.navigationBarHidden = NO;
+    
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"返回" style:UIBarButtonItemStylePlain target:self action:@selector(returnAction)];
     
     [self getData];
-    
 }
 
 - (void)returnAction {
@@ -146,8 +144,6 @@
     
     [_scrollView addSubview:_view];
 
-    _qianShouButton = [self setButtonWithBackgroundColor:[UIColor colorWithRed:51.0 / 255.0 green:122.0 / 255.0 blue:183.0 / 255.0 alpha:1] Title:@"签收" Tag:1 TitleColor:[UIColor whiteColor] Target:@selector(clickButton:)];
-    
     _label1 = [self setupLabelWithText:@"合同编号" TextColor:[UIColor darkTextColor] Font:[UIFont systemFontOfSize:20]];
     _heTongBianHaoLabel = [self setupLabelWithText:_contractCode TextColor:[UIColor darkGrayColor] Font:[UIFont boldSystemFontOfSize:16]];
     _heTongBianHaoLabel.textAlignment = NSTextAlignmentRight;
@@ -196,14 +192,6 @@
     }else if ([_statusLabel.text isEqualToString:@"已审"]){
         _statusLabel.textColor = [UIColor greenColor];
     }
-    
-    [_qianShouButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        
-        make.top.mas_equalTo(_view.mas_top).offset(16);
-        make.right.mas_equalTo(_view.mas_right).offset(-16);
-        make.width.mas_equalTo(50);
-        make.height.mas_equalTo(20);
-    }];
     
     [_label1 mas_makeConstraints:^(MASConstraintMaker *make) {
         
@@ -341,29 +329,6 @@
         make.width.mas_equalTo(UIScreenW);
         make.bottom.mas_equalTo(_label10.mas_bottom).offset(16);
     }];
-}
-
--(void)clickButton:(UIButton *)button{
-    
-    if (button.tag == 1) {
-        
-        [self qianShouMethod];
-        
-    }
-}
-
--(void)qianShouMethod{
-    
-    [JSEIMPNetWorking PostQianShouWithActivityId:_activityId OnSuccess:^{
-        
-        for(UIViewController *controller in self.navigationController.viewControllers) {
-            
-            if([controller isKindOfClass:[JSEIMPWorkDesktopController class]]) {
-                
-                [self.navigationController popToViewController:controller animated:YES];
-            }
-        }
-    } onErrorInfo:nil];
 }
 
 -(UILabel *)setupLabelWithText:(NSString *)text TextColor:(UIColor *)textColor Font:(UIFont *)font{

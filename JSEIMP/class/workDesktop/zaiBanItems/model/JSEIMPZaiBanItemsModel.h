@@ -13,6 +13,8 @@
 @property(nonatomic,strong)NSString *dataType;
 
 @property(nonatomic,strong)NSString *value;
+//流程实例ID
+@property(nonatomic,assign)NSInteger processInstanceId;
 
 @end
 

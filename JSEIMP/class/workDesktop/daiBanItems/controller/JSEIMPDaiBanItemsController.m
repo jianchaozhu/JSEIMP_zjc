@@ -97,7 +97,6 @@ static NSString *cellID = @"cellID";
     daiBanItemsDetailController.activityId = [_activityIdMArray[indexPath.row] integerValue];
     daiBanItemsDetailController.contractName = _nameMArray[indexPath.row];
     daiBanItemsDetailController.contractId = _contractIdMArray[indexPath.row];
-    
     [self.navigationController pushViewController:daiBanItemsDetailController animated:YES];
     
 }
