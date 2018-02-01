@@ -1,26 +1,27 @@
 //
-//  JSEIMPBackReasonController.m
+//  JSEIMPCheHuiReasonController.m
 //  JSEIMP
 //
-//  Created by 朱建超 on 2018/1/30.
+//  Created by 朱建超 on 2018/2/1.
 //  Copyright © 2018年 朱建超. All rights reserved.
 //
 
-#import "JSEIMPBackReasonController.h"
-#import "JEIMPBackDealPeopleController.h"
+#import "JSEIMPCheHuiReasonController.h"
+#import "JSEIMPNetWorking.h"
+#import "JSEIMPWorkDesktopController.h"
 #import <Masonry.h>
 
-@interface JSEIMPBackReasonController ()<UITextViewDelegate>
+@interface JSEIMPCheHuiReasonController ()<UITextViewDelegate>
 
 @property(nonatomic,strong)NSString *textViewText;
 
 @end
 
-@implementation JSEIMPBackReasonController{
+@implementation JSEIMPCheHuiReasonController{
     
-    UITextView *_backReasonTextView;
+    UITextView *_cheHuiReasonTextView;
     
-    UILabel *_backReasonPlaceLabel;
+    UILabel *_cheHuiReasonPlaceLabel;
     
     UIView *_touchView;
 }
@@ -28,7 +29,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.title = @"退回原因";
+    self.title = @"撤回原因";
     
     self.view.backgroundColor = [UIColor whiteColor];
     
@@ -50,9 +51,9 @@
     
     _touchView = [self setupTouchViewWithAction:@selector(touchEvent)];
     
-    _backReasonTextView = [self setupTextView];
-    _backReasonPlaceLabel = [self setupPlaceLabelWithText:@"请填写退回原因" Font:[UIFont systemFontOfSize:16]];
-    [_backReasonTextView addSubview:_backReasonPlaceLabel];
+    _cheHuiReasonTextView = [self setupTextView];
+    _cheHuiReasonPlaceLabel = [self setupPlaceLabelWithText:@"请填写撤回原因" Font:[UIFont systemFontOfSize:16]];
+    [_cheHuiReasonTextView addSubview:_cheHuiReasonPlaceLabel];
     
     [_touchView mas_makeConstraints:^(MASConstraintMaker *make) {
         
@@ -60,7 +61,7 @@
         make.right.mas_equalTo(self.view.mas_centerX);
     }];
     
-    [_backReasonTextView mas_makeConstraints:^(MASConstraintMaker *make) {
+    [_cheHuiReasonTextView mas_makeConstraints:^(MASConstraintMaker *make) {
         
         make.top.mas_equalTo(self.view.mas_top).offset(80);
         make.left.mas_equalTo(self.view.mas_left).offset(16);
@@ -68,23 +69,25 @@
         make.height.mas_equalTo(120);
         
     }];
-    [_backReasonPlaceLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+    [_cheHuiReasonPlaceLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         
-        make.top.mas_equalTo(_backReasonTextView.mas_top).offset(8);
-        make.left.mas_equalTo(_backReasonTextView.mas_left).offset(6);
+        make.top.mas_equalTo(_cheHuiReasonTextView.mas_top).offset(8);
+        make.left.mas_equalTo(_cheHuiReasonTextView.mas_left).offset(6);
     }];
 }
 
 -(void)clickSureButton:(UIButton *)button{
-    
-    JEIMPBackDealPeopleController *backDealPeopleController = [JEIMPBackDealPeopleController new];
-    
-    backDealPeopleController.userIdMArray = _userIdMArray;
-    backDealPeopleController.reason = _textViewText;
-    backDealPeopleController.activityId = _activityId;
-    backDealPeopleController.returnTargetActivityInstanceId = _returnTargetActivityInstanceId;
-    
-    [self.navigationController pushViewController:backDealPeopleController animated:YES];
+
+    [JSEIMPNetWorking PostCheHuikStepWithActivityId:_activityId RevokeBackReason:_textViewText OnSuccess:^{
+        
+        for(UIViewController *controller in self.navigationController.viewControllers) {
+            
+            if([controller isKindOfClass:[JSEIMPWorkDesktopController class]]) {
+                
+                [self.navigationController popToViewController:controller animated:YES];
+            }
+        }
+    } onErrorInfo:nil];
 }
 
 -(void)touchEvent{
@@ -97,13 +100,13 @@
     
     _textViewText = textView.text;
     
-    if (_backReasonTextView.hasText) {
+    if (_cheHuiReasonTextView.hasText) {
         
-        _backReasonPlaceLabel.hidden = YES;
+        _cheHuiReasonPlaceLabel.hidden = YES;
         
-    }else if (!_backReasonTextView.hasText){
+    }else if (!_cheHuiReasonTextView.hasText){
         
-        _backReasonPlaceLabel.hidden = NO;
+        _cheHuiReasonPlaceLabel.hidden = NO;
     }
 }
 

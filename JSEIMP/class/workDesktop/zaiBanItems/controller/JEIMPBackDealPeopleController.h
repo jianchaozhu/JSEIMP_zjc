@@ -1,5 +1,5 @@
 //
-//  JSEIMPBackReasonController.h
+//  JEIMPBackDealPeopleController.h
 //  JSEIMP
 //
 //  Created by 朱建超 on 2018/1/30.
@@ -8,9 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-@interface JSEIMPBackReasonController : UIViewController
+@interface JEIMPBackDealPeopleController : UIViewController
 //userID
 @property(nonatomic,strong)NSMutableArray *userIdMArray;
+//returnReason
+@property(nonatomic,strong)NSString *reason;
 //activityId
 @property(nonatomic,assign)NSInteger activityId;
 //returnTargetActivityInstanceId

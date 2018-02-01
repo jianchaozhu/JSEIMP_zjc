@@ -31,6 +31,7 @@
 #import "JSEIMPCaoZuoPeopleModel.h"
 #import "JSEIMPYiBanItemsModel.h"
 #import "JSEIMPGetUserIdModel.h"
+#import "JSEIMPBackUserInfoModel.h"
 #import "JSEIMPError.h"
 
 @implementation JSEIMPNetWorking
@@ -1538,19 +1539,129 @@
             JSEIMPGetUserIdModel *model = [JSEIMPGetUserIdModel mj_objectWithKeyValues:dict];
             
             NSInteger returnTargetActivityInstanceId = model.result.inComeActivity.ID;
+            NSInteger canReturnPrevious = model.result.canReturnPrevious;
             
             NSMutableArray *userIdMArray = [NSMutableArray array];
-            for (int i = 0; i < model.result.workItems.count; i++) {
+            for (int i = 0; i < model.result.inComeActivity.workItems.count; i++) {
                 
-                NSString *userId = model.result.workItems[i].userId;
+                NSString *userId = model.result.inComeActivity.workItems[i].userId;
                 
                 [userIdMArray addObject:userId];
             }
             
-            response(returnTargetActivityInstanceId,userIdMArray);
+            response(canReturnPrevious,returnTargetActivityInstanceId,userIdMArray);
         } else {
             
             errorInfo(noData);
+        }
+        
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        
+        NSLog(@"%@",error);
+    }];
+}
+
+//写完退回原因，点击确定获取退回的用户信息
++(void)getUserInfoWithUserId:(NSString *)userId OnSuccess:(void (^)())response onErrorInfo:(void (^)())errorInfo{
+    
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    manager.responseSerializer = [AFJSONResponseSerializer serializer];
+    manager.requestSerializer = [AFJSONRequestSerializer serializer];
+    
+    NSDictionary *parameters = @{@"userId":userId};
+    
+    [self setPublicHeader:manager];
+    [manager GET:API_GETUSERINFO parameters:parameters progress:^(NSProgress * _Nonnull uploadProgress) {
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        
+        NSLog(@"%@",responseObject);
+        
+        if (responseObject != nil) {
+            
+            NSDictionary *dict = (NSDictionary *)responseObject;
+            
+            JSEIMPBackUserInfoModel *model = [JSEIMPBackUserInfoModel mj_objectWithKeyValues:dict];
+            
+            NSString *loginId = model.result.loginId;
+            NSString *roleId = model.result.roleId;
+            NSString *userId = model.result.userId;
+            NSString *userName = model.result.userName;
+            NSString *userStationId = model.result.userStationId;
+            NSString *userUnitId = model.result.userUnitId;
+            
+            response(loginId,roleId,userId,userName,userStationId,userUnitId);
+        } else {
+            
+            errorInfo(noData);
+        }
+        
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        
+        NSLog(@"%@",error);
+    }];
+}
+
+//最后点确定的退回操作
++(void)PostComeBackPeopleStepWithActivityInstanceId:(NSInteger)activityInstanceId ReturnTargetActivityInstanceId:(NSInteger)returnTargetActivityInstanceId ReturnReason:(NSString *)returnReason UserId:(NSString *)userId LoginId:(NSString *)loginId UserName:(NSString *)userName UserStationId:(NSString *)userStationId UserUnitId:(NSString *)userUnitId RoleId:(NSString *)roleId OnSuccess:(void (^)())response onErrorInfo:(void (^)())errorInfo{
+    
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    manager.responseSerializer = [AFJSONResponseSerializer serializer];
+    manager.requestSerializer = [AFJSONRequestSerializer serializer];
+    //    manager.requestSerializer = [AFHTTPRequestSerializer serializer];
+    
+    NSDictionary *parameters = @{@"activityInstanceId":@(activityInstanceId),
+                                 @"returnTargetActivityInstanceId":@(returnTargetActivityInstanceId),
+                                 @"returnReason":returnReason,
+                                 @"targetPerformer":@{@"userId":userId,
+                                                      @"loginId":loginId,
+                                                      @"userName":userName,
+                                                      @"userStationId":userStationId,
+                                                      @"userUnitId":userUnitId,
+                                                      @"roleId":roleId
+                                                      }
+                                 };
+    
+    [self setPublicHeader:manager];
+    [manager POST:API_POSTCOMEBACK parameters:parameters progress:^(NSProgress * _Nonnull uploadProgress) {
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        
+        NSLog(@"%@",responseObject);
+        
+        if (responseObject != nil) {
+            
+            response();
+        } else {
+            errorInfo();
+        }
+        
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        
+        NSLog(@"%@",error);
+    }];
+}
+
+//撤回操作
++(void)PostCheHuikStepWithActivityId:(NSInteger)activityId RevokeBackReason:(NSString *)revokeBackReason OnSuccess:(void (^)())response onErrorInfo:(void (^)())errorInfo{
+    
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    manager.responseSerializer = [AFJSONResponseSerializer serializer];
+    manager.requestSerializer = [AFJSONRequestSerializer serializer];
+//    manager.requestSerializer = [AFHTTPRequestSerializer serializer];
+    
+    NSDictionary *parameters = @{@"activityId":@(activityId),
+                                 @"revokeBackReason":revokeBackReason};
+    
+    [self setPublicHeader:manager];
+    [manager POST:API_POSTCHEHUI parameters:parameters progress:^(NSProgress * _Nonnull uploadProgress) {
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        
+        NSLog(@"%@",responseObject);
+        
+        if (responseObject != nil) {
+            
+            response();
+        } else {
+            errorInfo();
         }
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {

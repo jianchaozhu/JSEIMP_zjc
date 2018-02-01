@@ -40,6 +40,8 @@
 @property(nonatomic,assign)NSInteger returnTargetActivityInstanceId;
 //userID
 @property(nonatomic,strong)NSMutableArray *userIdMArray;
+//canReturnPrevious(可退回)
+@property(nonatomic,assign)NSInteger canReturnPrevious;
 
 @end
 
@@ -137,10 +139,7 @@
         _creator = creator.copy;
         _status = status.copy;
         
-        dispatch_async(dispatch_get_main_queue(), ^{
-            
-            [self setupUI];
-        });
+        [self isShowButtons];
         
     } onErrorInfo:nil];
 }
@@ -209,20 +208,33 @@
         _statusLabel.textColor = [UIColor greenColor];
     }
     
-    [_beforeButton mas_makeConstraints:^(MASConstraintMaker *make) {
+    if (_canReturnPrevious == 1) {
         
-        make.top.mas_equalTo(_view.mas_top).offset(16);
-        make.right.mas_equalTo(_view.mas_right).offset(-16);
-        make.width.mas_equalTo(102);
-        make.height.mas_equalTo(20);
-    }];
-    [_agreeButton mas_makeConstraints:^(MASConstraintMaker *make) {
-
-        make.centerY.mas_equalTo(_beforeButton.mas_centerY);
-        make.right.mas_equalTo(_beforeButton.mas_left);
-        make.width.mas_equalTo(50);
-        make.height.mas_equalTo(20);
-    }];
+        [_beforeButton mas_makeConstraints:^(MASConstraintMaker *make) {
+            
+            make.top.mas_equalTo(_view.mas_top).offset(16);
+            make.right.mas_equalTo(_view.mas_right).offset(-16);
+            make.width.mas_equalTo(102);
+            make.height.mas_equalTo(20);
+        }];
+        
+        [_agreeButton mas_makeConstraints:^(MASConstraintMaker *make) {
+            
+            make.centerY.mas_equalTo(_beforeButton.mas_centerY);
+            make.right.mas_equalTo(_beforeButton.mas_left);
+            make.width.mas_equalTo(50);
+            make.height.mas_equalTo(20);
+        }];
+    }else if (_canReturnPrevious == 0){
+        
+        [_agreeButton mas_makeConstraints:^(MASConstraintMaker *make) {
+            
+            make.top.mas_equalTo(_view.mas_top).offset(16);
+            make.right.mas_equalTo(_view.mas_right).offset(-16);
+            make.width.mas_equalTo(50);
+            make.height.mas_equalTo(20);
+        }];
+    }
     
     [_label1 mas_makeConstraints:^(MASConstraintMaker *make) {
         
@@ -362,6 +374,19 @@
     }];
 }
 
+-(void)isShowButtons{
+    
+    [JSEIMPNetWorking getUserIdAndReturnTargetActivityInstanceIdWithActivityId:_activityId OnSuccess:^(NSInteger canReturnPrevious){
+        
+        _canReturnPrevious = canReturnPrevious;//退回按钮判断
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            
+            [self setupUI];
+        });
+    } onErrorInfo:nil];
+}
+
 -(void)clickButton:(UIButton *)button{
     
     if (button.tag == 1) {
@@ -375,8 +400,9 @@
 
 -(void)comeBackMethod{
     
-    [JSEIMPNetWorking getUserIdAndReturnTargetActivityInstanceIdWithActivityId:_activityId OnSuccess:^(NSInteger returnTargetActivityInstanceId,NSMutableArray *userIdMArray){
+    [JSEIMPNetWorking getUserIdAndReturnTargetActivityInstanceIdWithActivityId:_activityId OnSuccess:^(NSInteger canReturnPrevious,NSInteger returnTargetActivityInstanceId,NSMutableArray *userIdMArray){
         
+        _canReturnPrevious = canReturnPrevious;
         _returnTargetActivityInstanceId = returnTargetActivityInstanceId;
         _userIdMArray = userIdMArray.copy;
         
@@ -397,6 +423,10 @@
 -(void)goToReasonVC{
     
     JSEIMPBackReasonController *backReasonController = [JSEIMPBackReasonController new];
+    
+    backReasonController.userIdMArray = _userIdMArray;
+    backReasonController.activityId = _activityId;
+    backReasonController.returnTargetActivityInstanceId = _returnTargetActivityInstanceId;
     
     [self.navigationController pushViewController:backReasonController animated:YES];
 }

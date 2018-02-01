@@ -7,6 +7,7 @@
 //
 
 #import "JSEIMPYiBanItemsDetailController.h"
+#import "JSEIMPCheHuiReasonController.h"
 #import "JSEIMPNetWorking.h"
 #import <Masonry.h>
 
@@ -82,6 +83,8 @@
     UILabel *_label10;
     
     UILabel *_statusLabel;
+    
+    UIButton *_cheHuiButton;
 }
 
 - (void)viewDidLoad {
@@ -143,6 +146,8 @@
     _view.backgroundColor = [UIColor whiteColor];
     
     [_scrollView addSubview:_view];
+    
+    _cheHuiButton = [self setButtonWithBackgroundColor:[UIColor colorWithRed:51.0 / 255.0 green:122.0 / 255.0 blue:183.0 / 255.0 alpha:1] Title:@"撤回" Tag:1 TitleColor:[UIColor whiteColor] Target:@selector(clickButton:)];
 
     _label1 = [self setupLabelWithText:@"合同编号" TextColor:[UIColor darkTextColor] Font:[UIFont systemFontOfSize:20]];
     _heTongBianHaoLabel = [self setupLabelWithText:_contractCode TextColor:[UIColor darkGrayColor] Font:[UIFont boldSystemFontOfSize:16]];
@@ -192,6 +197,14 @@
     }else if ([_statusLabel.text isEqualToString:@"已审"]){
         _statusLabel.textColor = [UIColor greenColor];
     }
+    
+    [_cheHuiButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        
+        make.top.mas_equalTo(_view.mas_top).offset(16);
+        make.right.mas_equalTo(_view.mas_right).offset(-16);
+        make.width.mas_equalTo(50);
+        make.height.mas_equalTo(20);
+    }];
     
     [_label1 mas_makeConstraints:^(MASConstraintMaker *make) {
         
@@ -329,6 +342,23 @@
         make.width.mas_equalTo(UIScreenW);
         make.bottom.mas_equalTo(_label10.mas_bottom).offset(16);
     }];
+}
+
+-(void)clickButton:(UIButton *)button{
+    
+    if (button.tag == 1) {
+        
+        [self goToCheHuiReasonVC];
+    }
+}
+
+-(void)goToCheHuiReasonVC{
+    
+    JSEIMPCheHuiReasonController *cheHuiReasonController = [JSEIMPCheHuiReasonController new];
+    
+    cheHuiReasonController.activityId = _activityId;
+    
+    [self.navigationController pushViewController:cheHuiReasonController animated:YES];
 }
 
 -(UILabel *)setupLabelWithText:(NSString *)text TextColor:(UIColor *)textColor Font:(UIFont *)font{

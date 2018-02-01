@@ -70,4 +70,9 @@
 #define API_AGREETONEXTSTEP @"http://"HAWORKIP"/api/services/wf/Instance/ActivitySendAsync"
 //在办中点击退回上一步，获得userId和returnTargetActivityInstanceId
 #define API_GETUSERID @"http://"HAWORKIP"/api/services/wf/Instance/GetActivityInstance"
-
+//写完退回原因，点击确定获取退回的用户信息
+#define API_GETUSERINFO @"http://"HAWORKIP"/api/services/wf/User/GetUserInfo"
+//最后点确定的退回操作
+#define API_POSTCOMEBACK @"http://"HAWORKIP"/api/services/wf/Instance/ActivityReturnAsync"
+//撤回操作
+#define API_POSTCHEHUI @"http://"HAWORKIP"/api/services/wf/Instance/ActivityRevokeBackAsync"

@@ -103,6 +103,15 @@
 //在办中点击退回上一步，获得userId和returnTargetActivityInstanceId
 +(void)getUserIdAndReturnTargetActivityInstanceIdWithActivityId:(NSInteger)activityId OnSuccess:(void(^)())response onErrorInfo:(void(^)())errorInfo;
 
+//最后点确定的退回操作
++(void)PostComeBackPeopleStepWithActivityInstanceId:(NSInteger)activityInstanceId ReturnTargetActivityInstanceId:(NSInteger)returnTargetActivityInstanceId ReturnReason:(NSString *)returnReason UserId:(NSString *)userId LoginId:(NSString *)loginId UserName:(NSString *)userName UserStationId:(NSString *)userStationId UserUnitId:(NSString *)userUnitId RoleId:(NSString *)roleId OnSuccess:(void(^)())response onErrorInfo:(void(^)())errorInfo;
+
+//写完退回原因，点击确定获取退回的用户信息
++(void)getUserInfoWithUserId:(NSString *)userId OnSuccess:(void(^)())response onErrorInfo:(void(^)())errorInfo;
+
+//撤回操作
++(void)PostCheHuikStepWithActivityId:(NSInteger)activityId RevokeBackReason:(NSString *)revokeBackReason OnSuccess:(void(^)())response onErrorInfo:(void(^)())errorInfo;
+
 //获得大象云Token
 +(void)getDaXiangYunTokenwithSuccessBlock:(void(^)())response;
 

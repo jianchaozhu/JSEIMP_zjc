@@ -21,12 +21,17 @@
 
 +(NSDictionary *)mj_objectClassInArray{
     
-    return @{@"inComeActivity":[GetInComeActivityModel class],@"workItems":[GetUserIdArrayModel class]};
+    return @{@"inComeActivity":[GetInComeActivityModel class]};
 }
 
 @end
 
 @implementation GetInComeActivityModel
+
++(NSDictionary *)mj_objectClassInArray{
+    
+    return @{@"workItems":[GetUserIdArrayModel class]};
+}
 
 +(NSDictionary *)mj_replacedKeyFromPropertyName{
     return @{@"ID":@"id"};

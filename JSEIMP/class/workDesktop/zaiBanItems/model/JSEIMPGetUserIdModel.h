@@ -18,13 +18,16 @@
 
 @property(nonatomic,assign)NSInteger ID;
 
+@property(nonatomic,strong)NSMutableArray<GetUserIdArrayModel *> *workItems;
+
 @end
 
 @interface GetUserIdModel : NSObject
 
 @property(nonatomic,strong)GetInComeActivityModel *inComeActivity;
 
-@property(nonatomic,strong)NSMutableArray<GetUserIdArrayModel *> *workItems;
+@property(nonatomic,assign)NSInteger canReturnPrevious;
+
 
 @end
 
