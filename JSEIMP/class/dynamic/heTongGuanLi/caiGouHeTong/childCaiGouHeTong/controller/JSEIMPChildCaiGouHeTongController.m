@@ -224,7 +224,7 @@ static NSString *cellID = @"cellID";
                         [self.resultArray removeAllObjects];
                     }
                     
-                    self.resultArray = [NSMutableArray arrayWithArray:_finalResultMArray];
+                    self.resultArray = _finalResultMArray.copy;
                     
                 }
                 
@@ -232,7 +232,7 @@ static NSString *cellID = @"cellID";
             
         }else{
             
-            self.resultArray = [NSMutableArray arrayWithArray:_contractNameMArray];
+            self.resultArray = _contractNameMArray.copy;
         }
         
         //回到主线程
@@ -324,9 +324,9 @@ static NSString *cellID = @"cellID";
             string2 = [string1 stringByAppendingString:_statusMArray[i]];
             
             [_finalMArray addObject:string2];
-            
-            [self.resultArray addObject:_contractNameMArray[i]];
         }
+        
+        self.resultArray = _contractNameMArray.copy;
         
         [_tableView reloadData];
         

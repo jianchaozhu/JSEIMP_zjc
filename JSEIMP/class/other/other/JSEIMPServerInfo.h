@@ -7,11 +7,11 @@
 //
 
 //测试API
-//#define IP @"192.168.2.53:8002"
+#define IP @"192.168.2.53:8002"
 //周军本地API
 //#define IP @"api.jaso.com"
 //正式API
-#define IP @"192.168.2.55:6002"
+//#define IP @"192.168.2.55:6002"
 //hamazon登录API
 #define HALOGINIP @"sso.jaso.com.cn:83"
 //hamazon工作流正式API

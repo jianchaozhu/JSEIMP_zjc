@@ -10,6 +10,7 @@
 #import "JSEIMPChengBaoHeTongController.h"
 #import "JSEIMPFenBaoHeTongController.h"
 #import "JSEIMPCaiGouHeTongController.h"
+#import "JSEIMPLaoWuFenBaoHeTongController.h"
 
 static NSString *cellID = @"cellID";
 

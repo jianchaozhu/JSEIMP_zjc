@@ -28,6 +28,10 @@ static NSString *cellID = @"cellID";
 
 @property(nonatomic,strong)NSMutableArray *finalResultMArray;
 
+@property(nonatomic,strong)NSMutableArray *finalProjectCodeMArray;
+
+@property(nonatomic,strong)NSMutableArray *finalProjectIDMArray;
+
 @property(nonatomic,assign)NSInteger lenght;
 
 @end
@@ -43,6 +47,8 @@ static NSString *cellID = @"cellID";
     UIView *_view;
     
     UISearchBar *_searchBar;
+    
+    JSEIMPTouBiaoProjectListModel *_model1;
 }
 
 -(NSMutableArray *)resultArray{
@@ -104,7 +110,7 @@ static NSString *cellID = @"cellID";
     
     NSLog(@"再次测试远程管理");
     
-    _searchBar = [[UISearchBar alloc]initWithFrame:CGRectMake(0, 64, 100, 44)];
+    _searchBar = [[UISearchBar alloc]initWithFrame:CGRectMake(0, 64, 100, 54)];
     _searchBar.keyboardType = UIKeyboardAppearanceDefault;
     _searchBar.placeholder = @"请输入搜索关键字";
     _searchBar.delegate = self;
@@ -160,25 +166,33 @@ static NSString *cellID = @"cellID";
 -(void)scrollViewWillBeginDragging:(UIScrollView *)scrollView{
     
     if (_searchBar.text.length > 0) {
-        
+    
+        _tableView.mj_header.hidden = YES;
+        _tableView.mj_footer.hidden = YES;
         self.navigationController.navigationBarHidden = YES;
         [_searchBar resignFirstResponder];
         
         UIButton *cancelBtn = [_searchBar valueForKey:@"cancelButton"]; //首先取出cancelBtn
+        [cancelBtn addTarget:self action:@selector(clickButton:) forControlEvents:UIControlEventTouchUpInside];
         cancelBtn.enabled = YES; //把enabled设置为yes
     }
 }
 
+#pragma mark - 取消按钮的点击事件
+-(void)clickButton:(UIButton *)button{
+    
+    _tableView.mj_header.hidden = NO;
+    _tableView.mj_footer.hidden = NO;
+}
 
 #pragma mark - 触摸事件
 -(void)touchEvent{
-    
+
     _tableView.scrollEnabled = YES;
     [_view removeFromSuperview];
     [self.view endEditing:YES];
     [_searchBar setShowsCancelButton:NO animated:YES];
     [_searchBar resignFirstResponder];
-    
 }
 
 -(void)searchBarTextDidEndEditing:(UISearchBar *)searchBar{
@@ -243,9 +257,14 @@ static NSString *cellID = @"cellID";
     dispatch_async(globalQueue, ^{
         if (searchText!=nil && searchText.length>0) {
             
+            NSLog(@"%@",searchText);
+            
+            NSMutableArray *finalProjectCodeMArray = [NSMutableArray array];
+            NSMutableArray *finalProjectIDMArray = [NSMutableArray array];
             //遍历需要搜索的所有内容，其中self.dataArray为存放总数据的数组
-            for (NSString *projectName in _projectNameMArray) {
+            for (int i = 0; i < _projectNameMArray.count; i++) {
                 
+                NSString *projectName = _projectNameMArray[i];
                 //----------->把所有的搜索结果转成成拼音
                 NSString *pinyin = [self transformToPinyin:projectName];
                 NSLog(@"pinyin--%@",pinyin);
@@ -254,12 +273,18 @@ static NSString *cellID = @"cellID";
                     //把搜索结果存放self.resultArray数组
                     [self.resultArray addObject:projectName];
                     
+                    [finalProjectCodeMArray addObject:_projectCodeMArray[i]];
+                    [finalProjectIDMArray addObject:_projectIDMArray[i]];
+                    
                     _finalResultMArray = [[NSMutableArray alloc]init];
-                    for (NSString *str in self.resultArray) {
+                    
+                    for (int i = 0; i < self.resultArray.count; i++) {
+                        
+                        NSString *str = self.resultArray[i];
+                        
                         if (![_finalResultMArray containsObject:str]) {
                             
                             [_finalResultMArray addObject:str];
-                            
                         }  
                     }
                     
@@ -267,15 +292,17 @@ static NSString *cellID = @"cellID";
                         [self.resultArray removeAllObjects];
                     }
                     
-                    self.resultArray = _finalResultMArray.copy;
-  
+                    self.resultArray = [NSMutableArray arrayWithArray:_finalResultMArray];
                 }
-                
             }
-        
+            
+            _finalProjectCodeMArray = finalProjectCodeMArray.copy;
+            _finalProjectIDMArray = finalProjectIDMArray.copy;
         }else{
             
-            self.resultArray = _projectNameMArray.copy;
+            self.resultArray = [NSMutableArray arrayWithArray:_projectNameMArray];
+            _finalProjectCodeMArray = [NSMutableArray arrayWithArray:_projectCodeMArray];
+            _finalProjectIDMArray = [NSMutableArray arrayWithArray:_projectIDMArray];
         }
         
         //回到主线程
@@ -293,6 +320,8 @@ static NSString *cellID = @"cellID";
     [searchBar setShowsCancelButton:NO animated:YES];
     [searchBar resignFirstResponder];
     self.resultArray = [NSMutableArray arrayWithArray:_projectNameMArray];
+    _finalProjectCodeMArray = [NSMutableArray arrayWithArray:_projectCodeMArray];
+    _finalProjectIDMArray = [NSMutableArray arrayWithArray:_projectIDMArray];
     [_tableView reloadData];
 }
 
@@ -353,6 +382,10 @@ static NSString *cellID = @"cellID";
     
     [JSEIMPNetWorking getTouBiaoListOnSuccess:^(JSEIMPTouBiaoProjectListModel *model){
         
+        _model1 = [JSEIMPTouBiaoProjectListModel new];
+        
+        _model1 = model;
+        
         NSMutableArray *projectNameMArray = [NSMutableArray array];
         NSMutableArray *projectCodeMArray = [NSMutableArray array];
         NSMutableArray *projectIdMArray = [NSMutableArray array];
@@ -371,7 +404,9 @@ static NSString *cellID = @"cellID";
         _projectCodeMArray = projectCodeMArray.copy;
         _projectIDMArray = projectIdMArray.copy;
         
-        self.resultArray = _projectNameMArray;
+        self.resultArray = [NSMutableArray arrayWithArray:_projectNameMArray];
+        _finalProjectCodeMArray = [NSMutableArray arrayWithArray:_projectCodeMArray];
+        _finalProjectIDMArray = [NSMutableArray arrayWithArray:_projectIDMArray];
         
         [_tableView reloadData];
         
@@ -446,11 +481,13 @@ static NSString *cellID = @"cellID";
 //    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
 //    _zhongBiaoStatus = [userDefaults objectForKey:[@"zhongBiaoStatus" stringByAppendingString:[@(indexPath.row + 11) stringValue]]];
     
+    self.navigationController.navigationBarHidden = NO;
+    
     JSEIMPProjectInfoController *projectInfoController = [JSEIMPProjectInfoController new];
     
-    projectInfoController.projectName = _projectNameMArray[indexPath.row];
-    projectInfoController.projectCode = _projectCodeMArray[indexPath.row];
-    projectInfoController.projectID = _projectIDMArray[indexPath.row];
+    projectInfoController.projectName = self.resultArray[indexPath.row];
+    projectInfoController.projectCode = _finalProjectCodeMArray[indexPath.row];
+    projectInfoController.projectID = _finalProjectIDMArray[indexPath.row];
 //    projectInfoController.number = indexPath.row + 1;
 //    projectInfoController.zhongBiaoStatus = _zhongBiaoStatus;
     
@@ -469,7 +506,7 @@ static NSString *cellID = @"cellID";
     }
     
     _cell.textLabel.text = self.resultArray[indexPath.row];
-    _cell.detailTextLabel.text = _projectCodeMArray[indexPath.row];
+    _cell.detailTextLabel.text = _finalProjectCodeMArray[indexPath.row];
     _cell.detailTextLabel.textColor = [UIColor darkGrayColor];
     _cell.detailTextLabel.font = [UIFont systemFontOfSize:14];
     _cell.selectionStyle = UITableViewCellSelectionStyleNone;
