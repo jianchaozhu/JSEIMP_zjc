@@ -1,21 +1,21 @@
 //
-//  JSEIMPPropjectChengBaoFanWeiView.m
+//  JSEIMPCaiLiaoSheBeiView.m
 //  JSEIMP
 //
-//  Created by 朱建超 on 2017/11/6.
-//  Copyright © 2017年 朱建超. All rights reserved.
+//  Created by 朱建超 on 2018/2/9.
+//  Copyright © 2018年 朱建超. All rights reserved.
 //
 
-#import "JSEIMPPropjectChengBaoFanWeiView.h"
+#import "JSEIMPCaiLiaoSheBeiView.h"
 #import <Masonry.h>
 
-@interface JSEIMPPropjectChengBaoFanWeiView ()
+@interface JSEIMPCaiLiaoSheBeiView ()
 
-@property(nonatomic,strong)NSString *projectContent;
+@property(nonatomic,strong)NSString *caiLiaoSheBei;
 
 @end
 
-@implementation JSEIMPPropjectChengBaoFanWeiView{
+@implementation JSEIMPCaiLiaoSheBeiView{
     
     UILabel *_label1;
 }
@@ -35,24 +35,22 @@
     //注册通知
     [self setNotification];
     
-    _label1 = [self setupLabelWithText:@"承包工程内容及范围" Font:[UIFont systemFontOfSize:20] TextColor:[UIColor darkTextColor]];
-    
+    _label1 = [self setupLabelWithText:@"材料、设备供应" Font:[UIFont systemFontOfSize:20] TextColor:[UIColor darkTextColor]];
 }
 
 -(void)setNotification{
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(chengBaoFanWei:) name:@"chengBaoFanWei" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(caiLiaoSheBei:) name:@"caiLiaoSheBei" object:nil];
     
 }
 
--(void)chengBaoFanWei:(NSNotification *)notification{
+-(void)caiLiaoSheBei:(NSNotification *)notification{
     
-    _projectContent = notification.object;
+    _caiLiaoSheBei = notification.object;
     
-    _projectContentLabel = [self setupLabelWithText:_projectContent Font:[UIFont systemFontOfSize:16] TextColor:[UIColor darkGrayColor]];
-    _projectContentLabel.numberOfLines = 0;
+    _caiLiaoSheBeiLabel = [self setupLabelWithText:_caiLiaoSheBei Font:[UIFont systemFontOfSize:16] TextColor:[UIColor darkGrayColor]];
+    _caiLiaoSheBeiLabel.numberOfLines = 0;
 }
-
 
 -(void)layoutSubviews{
     
@@ -62,16 +60,14 @@
         
         make.top.mas_equalTo(self.mas_top).offset(16);
         make.centerX.mas_equalTo(self.mas_centerX);
-        
     }];
     
-    [_projectContentLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+    [_caiLiaoSheBeiLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         
         make.top.mas_equalTo(_label1.mas_bottom).offset(16);
         make.centerX.mas_equalTo(_label1.mas_centerX);
         make.left.mas_equalTo(self.mas_left).offset(16);
         make.right.mas_equalTo(self.mas_right).offset(-16);
-        
     }];
 }
 

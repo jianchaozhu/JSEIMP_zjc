@@ -8,6 +8,8 @@
 
 //测试API
 #define IP @"192.168.2.53:8002"
+//测试浏览文件API
+#define FIlEIP @"http://192.168.2.53:9003/"
 //周军本地API
 //#define IP @"api.jaso.com"
 //正式API
@@ -52,6 +54,10 @@
 #define API_CAIGOUHETONG @"http://"IP"/api/Contract/Contract/GetList"
 //获得采购合同详情
 #define API_CAIGOUHETONGDETAIL @"http://"IP"/api/Contract/Contract/GetDetails"
+//获得劳务分包合同列表
+#define API_LAOWUFENBAOHETONG @"http://"IP"/api/Contract/Contract/GetList"
+//获得劳务分包合同详情
+#define API_LAOWUFENBAOHETONGDETAIL @"http://"IP"/api/Contract/Contract/GetDetails"
 //获得待办事项列表
 #define API_DAIBANITEM @"http://"HAWORKIP"/api/services/wf/Instance/GetPendingWorkItems"
 //获得代办事项详情

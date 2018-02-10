@@ -28,6 +28,7 @@
     
     self.viewControllers = @[dynamicViewController,applicationViewController,workDesktopController];
     
+//    self.viewControllers = @[applicationViewController];
 }
 
 -(UIViewController *)controllerWithName:(NSString *)name Title:(NSString *)title ImageName:(NSString *)imageName{

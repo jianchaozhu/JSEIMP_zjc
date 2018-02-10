@@ -73,7 +73,7 @@ static NSString *cellID = @"cellID";
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     
-    return 3;
+    return 4;
     
 //    return 8;
     
@@ -97,6 +97,11 @@ static NSString *cellID = @"cellID";
         JSEIMPCaiGouHeTongController *caiGouHeTongController = [JSEIMPCaiGouHeTongController new];
         
         [self.navigationController pushViewController:caiGouHeTongController animated:YES];
+    }else if (indexPath.row == 3){
+        
+        JSEIMPLaoWuFenBaoHeTongController *laoWuFenBaoHeTongController = [JSEIMPLaoWuFenBaoHeTongController new];
+        
+        [self.navigationController pushViewController:laoWuFenBaoHeTongController animated:YES];
     }
     
 }
@@ -120,6 +125,9 @@ static NSString *cellID = @"cellID";
     }else if (indexPath.row == 2){
         
         [self setImageViewWithName:@"caiGouHeTong" Text:@"采购合同"];
+    }else if (indexPath.row == 3){
+        
+        [self setImageViewWithName:@"laoWuFenBaoHeTong" Text:@"劳务分包合同"];
     }
     
 //    if (indexPath.section == 0) {

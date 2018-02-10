@@ -11,6 +11,7 @@
 #import "LCNewFeatureVC.h"
 #import "JSEIMPLoginController.h"
 #import "JSEIMPNetWorking.h"
+#import "EZOpenSDK.h"
 #import <SVProgressHUD.h>
 
 #define SCREEN_SIZE [UIScreen mainScreen].bounds.size
@@ -27,6 +28,14 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+
+    [EZOPENSDK setDebugLogEnable:NO];
+    
+    [EZOPENSDK initLibWithAppKey:@"c4f5ff47a3444afd9f6571d7beb4542a"];
+    
+    [EZOPENSDK enableP2P:YES];
+    
+    [EZOPENSDK initPushService];
     
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     
@@ -147,6 +156,16 @@
  */
 - (void)newFeatureVC:(LCNewFeatureVC *)newFeatureVC page:(NSInteger)page {
     NSLog(@"%@ -> Page: %d", newFeatureVC, (int)page);
+}
+
+- (void)applicationWillResignActive:(UIApplication *)application {
+
+    NSLog(@"applicationWillResignActive");
+    sleep(0.5);
+}
+
+- (UIInterfaceOrientationMask)application:(UIApplication *)application supportedInterfaceOrientationsForWindow:(UIWindow *)window {
+    return UIInterfaceOrientationMaskAllButUpsideDown;
 }
 
 @end

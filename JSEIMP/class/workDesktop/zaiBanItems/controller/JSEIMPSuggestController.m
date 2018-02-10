@@ -8,7 +8,6 @@
 
 #import "JSEIMPSuggestController.h"
 #import "JSEIMPNextDealPeopleController.h"
-#import <Masonry.h>
 
 @interface JSEIMPSuggestController ()<UITextViewDelegate>
 

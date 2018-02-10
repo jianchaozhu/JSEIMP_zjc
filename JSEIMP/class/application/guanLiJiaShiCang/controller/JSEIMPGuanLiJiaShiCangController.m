@@ -32,7 +32,8 @@ static NSString *cellID = @"cellID";
     
     self.title = @"管理驾驶舱";
     
-    _nameMArray = [NSMutableArray arrayWithObjects:@"建设意见交流评价",@"监理意见交流评价", nil];
+    _nameMArray = [NSMutableArray arrayWithObjects:@"建设意见交流评价",@"监理意见交流评价",@"视频监控", nil];
+//    _nameMArray = [NSMutableArray arrayWithObjects:@"视频监控", nil];
     
     [self setupUI];
 }
@@ -57,16 +58,32 @@ static NSString *cellID = @"cellID";
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
     if (indexPath.row == 0) {
-        
+
         JSEIMPJianSheOptionController *jianSheOptionController = [JSEIMPJianSheOptionController new];
-        
+
         [self.navigationController pushViewController:jianSheOptionController animated:YES];
     }else if (indexPath.row == 1){
-        
+
         JSEIMPJianLiOptionController *_jianLiOptionController = [JSEIMPJianLiOptionController new];
-        
+
         [self.navigationController pushViewController:_jianLiOptionController animated:YES];
+    }else if (indexPath.row == 2){
+
+        UIStoryboard *ezMainStoryboard = [UIStoryboard storyboardWithName:@"EZMain" bundle:nil];
+        //获取EZMain.storyboard的实例ViewController--获取摄像头列表
+        UIViewController *instanceVC = [ezMainStoryboard instantiateViewControllerWithIdentifier:@"EZCameraList"];
+        //push摄像头列表的viewController
+        [self.navigationController pushViewController:instanceVC animated:YES];
     }
+    
+//    if (indexPath.row == 0) {
+//
+//        UIStoryboard *ezMainStoryboard = [UIStoryboard storyboardWithName:@"EZMain" bundle:nil];
+//        //获取EZMain.storyboard的实例ViewController--获取摄像头列表
+//        UIViewController *instanceVC = [ezMainStoryboard instantiateViewControllerWithIdentifier:@"EZCameraList"];
+//        //push摄像头列表的viewController
+//        [self.navigationController pushViewController:instanceVC animated:YES];
+//    }
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{

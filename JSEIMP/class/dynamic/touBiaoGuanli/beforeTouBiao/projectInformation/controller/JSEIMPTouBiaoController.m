@@ -47,8 +47,6 @@ static NSString *cellID = @"cellID";
     UIView *_view;
     
     UISearchBar *_searchBar;
-    
-    JSEIMPTouBiaoProjectListModel *_model1;
 }
 
 -(NSMutableArray *)resultArray{
@@ -381,10 +379,6 @@ static NSString *cellID = @"cellID";
 -(void)getData{
     
     [JSEIMPNetWorking getTouBiaoListOnSuccess:^(JSEIMPTouBiaoProjectListModel *model){
-        
-        _model1 = [JSEIMPTouBiaoProjectListModel new];
-        
-        _model1 = model;
         
         NSMutableArray *projectNameMArray = [NSMutableArray array];
         NSMutableArray *projectCodeMArray = [NSMutableArray array];
