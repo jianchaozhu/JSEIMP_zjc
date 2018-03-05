@@ -11,6 +11,7 @@
 		C10244DC1F5E44E100FA32AA /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C10244DB1F5E44E100FA32AA /* AppDelegate.m */; };
 		C10244E41F5E44E100FA32AA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C10244E31F5E44E100FA32AA /* Assets.xcassets */; };
 		C10244E71F5E44E100FA32AA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C10244E51F5E44E100FA32AA /* LaunchScreen.storyboard */; };
+		C139218F204D3AD40004BEB3 /* JSEIMPMoneyChengDanView.m in Sources */ = {isa = PBXBuildFile; fileRef = C139218E204D3AD40004BEB3 /* JSEIMPMoneyChengDanView.m */; };
 		C196BB06202414C8006F6B3D /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = C196BA212023FF27006F6B3D /* libz.tbd */; };
 		C196BB07202414ED006F6B3D /* libbz2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = C196BA232023FF52006F6B3D /* libbz2.tbd */; };
 		C196BB092024154E006F6B3D /* libiconv.2.4.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = C196BA2A2023FFFD006F6B3D /* libiconv.2.4.0.tbd */; };
@@ -98,7 +99,7 @@
 		C1AC86E4204D35D400E884E1 /* HIKLoadViewItem+configPath.m in Sources */ = {isa = PBXBuildFile; fileRef = C1AC844D204D35D300E884E1 /* HIKLoadViewItem+configPath.m */; };
 		C1AC86E5204D35D400E884E1 /* HIKLoadViewItem.m in Sources */ = {isa = PBXBuildFile; fileRef = C1AC844F204D35D300E884E1 /* HIKLoadViewItem.m */; };
 		C1AC86E6204D35D400E884E1 /* NSDate-Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = C1AC8451204D35D300E884E1 /* NSDate-Utilities.m */; };
-		C1AC86E7204D35D400E884E1 /* Toast+UIView.m in Sources */ = {isa = PBXBuildFile; fileRef = C1AC8453204D35D300E884E1 /* Toast+UIView.m */; };
+		C1AC86E7204D35D400E884E1 /* Toast+UIView.m in Sources */ = {isa = PBXBuildFile; fileRef = C1AC8453204D35D300E884E1 /* Toast+UIView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		C1AC86E8204D35D400E884E1 /* UIImageView+EzvizOpenSDK.m in Sources */ = {isa = PBXBuildFile; fileRef = C1AC8455204D35D300E884E1 /* UIImageView+EzvizOpenSDK.m */; };
 		C1AC86E9204D35D400E884E1 /* CameraListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C1AC8458204D35D300E884E1 /* CameraListCell.m */; };
 		C1AC86EA204D35D400E884E1 /* DeviceListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C1AC845A204D35D300E884E1 /* DeviceListCell.m */; };
@@ -299,6 +300,8 @@
 		C10244E31F5E44E100FA32AA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C10244E61F5E44E100FA32AA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C10244E81F5E44E200FA32AA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C139218D204D3AD40004BEB3 /* JSEIMPMoneyChengDanView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JSEIMPMoneyChengDanView.h; sourceTree = "<group>"; };
+		C139218E204D3AD40004BEB3 /* JSEIMPMoneyChengDanView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JSEIMPMoneyChengDanView.m; sourceTree = "<group>"; };
 		C196BA122023FC32006F6B3D /* JSEIMP.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JSEIMP.pch; sourceTree = "<group>"; };
 		C196BA172023FED6006F6B3D /* libstdc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libstdc++.tbd"; path = "usr/lib/libstdc++.tbd"; sourceTree = SDKROOT; };
 		C196BA192023FEE4006F6B3D /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
@@ -2308,6 +2311,8 @@
 			children = (
 				C1AC851F204D35D300E884E1 /* JSEIMPZuLinAndJieSuanMethodView.h */,
 				C1AC8520204D35D300E884E1 /* JSEIMPZuLinAndJieSuanMethodView.m */,
+				C139218D204D3AD40004BEB3 /* JSEIMPMoneyChengDanView.h */,
+				C139218E204D3AD40004BEB3 /* JSEIMPMoneyChengDanView.m */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -3894,6 +3899,7 @@
 				C1AC874F204D35D400E884E1 /* JSEIMPNewStaffStoreController.m in Sources */,
 				C1AC8747204D35D400E884E1 /* JSEIMPTouBiaoController.m in Sources */,
 				C1AC8723204D35D400E884E1 /* JSEIMPSheBeiZuLinHeTongDetailModel.m in Sources */,
+				C139218F204D3AD40004BEB3 /* JSEIMPMoneyChengDanView.m in Sources */,
 				C1AC871C204D35D400E884E1 /* JSEIMPLaoWuFenBaoHeTongDetailController.m in Sources */,
 				C1AC86B8204D35D300E884E1 /* EZWifiInfoViewController.m in Sources */,
 				C1AC86D6204D35D400E884E1 /* MWTapDetectingView.m in Sources */,

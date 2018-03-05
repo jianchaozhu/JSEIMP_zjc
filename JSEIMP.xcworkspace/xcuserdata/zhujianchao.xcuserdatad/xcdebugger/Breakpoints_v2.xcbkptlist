@@ -68,13 +68,90 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "JSEIMP/class/other/other/JSEIMPNetWorking.m"
-            timestampString = "539939407.02626"
+            timestampString = "541933047.525578"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "254"
             endingLineNumber = "254"
             landmarkName = "+getTouBiaoDetailListWithProjectID:OnSuccess:onErrorInfo:"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "+[JSEIMPNetWorking getTouBiaoDetailListWithProjectID:OnSuccess:onErrorInfo:]"
+                  moduleName = "JSEIMP"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/zhujianchao/Desktop/JSEIMP_zjc/JSEIMP/class/other/other/JSEIMPNetWorking.m"
+                  timestampString = "541932784.332418"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "254"
+                  endingLineNumber = "254"
+                  offsetFromSymbolStart = "604">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__76+[JSEIMPNetWorking getTouBiaoDetailListWithProjectID:OnSuccess:onErrorInfo:]_block_invoke_2"
+                  moduleName = "JSEIMP"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/zhujianchao/Desktop/JSEIMP_zjc/JSEIMP/class/other/other/JSEIMPNetWorking.m"
+                  timestampString = "541932784.3360929"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "254"
+                  endingLineNumber = "254"
+                  offsetFromSymbolStart = "1748">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__copy_helper_block_.142"
+                  moduleName = "JSEIMP"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/zhujianchao/Desktop/JSEIMP_zjc/JSEIMP/class/other/other/JSEIMPNetWorking.m"
+                  timestampString = "541932784.338272"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "254"
+                  endingLineNumber = "254"
+                  offsetFromSymbolStart = "88">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__destroy_helper_block_.143"
+                  moduleName = "JSEIMP"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/zhujianchao/Desktop/JSEIMP_zjc/JSEIMP/class/other/other/JSEIMPNetWorking.m"
+                  timestampString = "541932784.340448"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "254"
+                  endingLineNumber = "254"
+                  offsetFromSymbolStart = "64">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__76+[JSEIMPNetWorking getTouBiaoDetailListWithProjectID:OnSuccess:onErrorInfo:]_block_invoke.145"
+                  moduleName = "JSEIMP"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/zhujianchao/Desktop/JSEIMP_zjc/JSEIMP/class/other/other/JSEIMPNetWorking.m"
+                  timestampString = "541932784.343164"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "254"
+                  endingLineNumber = "254"
+                  offsetFromSymbolStart = "24">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -84,13 +161,75 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "JSEIMP/class/other/other/JSEIMPNetWorking.m"
-            timestampString = "539939407.026466"
+            timestampString = "541933047.5256391"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "464"
             endingLineNumber = "464"
             landmarkName = "+getFarmerBaoZhengJinDetailWithDepositId:OnSuccess:onErrorInfo:"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__82+[JSEIMPNetWorking getFarmerBaoZhengJinDetailWithDepositId:OnSuccess:onErrorInfo:]_block_invoke_2"
+                  moduleName = "JSEIMP"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/zhujianchao/Desktop/JSEIMP_zjc/JSEIMP/class/other/other/JSEIMPNetWorking.m"
+                  timestampString = "541932784.355296"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "464"
+                  endingLineNumber = "464"
+                  offsetFromSymbolStart = "1116">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__copy_helper_block_.236"
+                  moduleName = "JSEIMP"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/zhujianchao/Desktop/JSEIMP_zjc/JSEIMP/class/other/other/JSEIMPNetWorking.m"
+                  timestampString = "541932784.358989"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "464"
+                  endingLineNumber = "464"
+                  offsetFromSymbolStart = "88">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__destroy_helper_block_.237"
+                  moduleName = "JSEIMP"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/zhujianchao/Desktop/JSEIMP_zjc/JSEIMP/class/other/other/JSEIMPNetWorking.m"
+                  timestampString = "541932784.36206"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "464"
+                  endingLineNumber = "464"
+                  offsetFromSymbolStart = "64">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__82+[JSEIMPNetWorking getFarmerBaoZhengJinDetailWithDepositId:OnSuccess:onErrorInfo:]_block_invoke.239"
+                  moduleName = "JSEIMP"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/zhujianchao/Desktop/JSEIMP_zjc/JSEIMP/class/other/other/JSEIMPNetWorking.m"
+                  timestampString = "541932784.365411"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "466"
+                  endingLineNumber = "466"
+                  offsetFromSymbolStart = "80">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -100,13 +239,45 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "JSEIMP/class/other/other/JSEIMPNetWorking.m"
-            timestampString = "539939407.026644"
+            timestampString = "541933047.525683"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "249"
             endingLineNumber = "249"
             landmarkName = "+getTouBiaoDetailListWithProjectID:OnSuccess:onErrorInfo:"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__76+[JSEIMPNetWorking getTouBiaoDetailListWithProjectID:OnSuccess:onErrorInfo:]_block_invoke_2"
+                  moduleName = "JSEIMP"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/zhujianchao/Desktop/JSEIMP_zjc/JSEIMP/class/other/other/JSEIMPNetWorking.m"
+                  timestampString = "541932784.376283"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "250"
+                  endingLineNumber = "250"
+                  offsetFromSymbolStart = "1496">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__76+[JSEIMPNetWorking getTouBiaoDetailListWithProjectID:OnSuccess:onErrorInfo:]_block_invoke_2"
+                  moduleName = "JSEIMP"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/zhujianchao/Desktop/JSEIMP_zjc/JSEIMP/class/other/other/JSEIMPNetWorking.m"
+                  timestampString = "541932784.380533"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "250"
+                  endingLineNumber = "250"
+                  offsetFromSymbolStart = "1708">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -116,11 +287,43 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "JSEIMP/class/other/other/JSEIMPNetWorking.m"
-            timestampString = "539939407.026736"
+            timestampString = "541933047.5257241"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1661"
-            endingLineNumber = "1661"
+            startingLineNumber = "1662"
+            endingLineNumber = "1662"
+            landmarkName = "+PostQianShouWithActivityId:OnSuccess:onErrorInfo:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "JSEIMP/class/other/other/JSEIMPNetWorking.m"
+            timestampString = "541933047.525766"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "1657"
+            endingLineNumber = "1657"
+            landmarkName = "+PostQianShouWithActivityId:OnSuccess:onErrorInfo:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "JSEIMP/class/other/other/JSEIMPNetWorking.m"
+            timestampString = "541933047.525805"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "1774"
+            endingLineNumber = "1774"
             landmarkName = "+PostToNextStepWithCurrentActivityId:TargetActivityId:ActivityId:UserId:LoginId:UserName:UserStationId:UserUnitId:RoleId:Opinion:OnSuccess:onErrorInfo:"
             landmarkType = "7">
          </BreakpointContent>
@@ -132,12 +335,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "JSEIMP/class/other/other/JSEIMPNetWorking.m"
-            timestampString = "539939407.0268821"
+            timestampString = "541933047.525843"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1656"
-            endingLineNumber = "1656"
-            landmarkName = "+PostToNextStepWithCurrentActivityId:TargetActivityId:ActivityId:UserId:LoginId:UserName:UserStationId:UserUnitId:RoleId:Opinion:OnSuccess:onErrorInfo:"
+            startingLineNumber = "1804"
+            endingLineNumber = "1804"
+            landmarkName = "+getUserIdAndReturnTargetActivityInstanceIdWithActivityId:OnSuccess:onErrorInfo:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -148,76 +351,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "JSEIMP/class/other/other/JSEIMPNetWorking.m"
-            timestampString = "539939407.026981"
+            timestampString = "541933047.52588"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1773"
-            endingLineNumber = "1773"
-            landmarkName = "+PostComeBackPeopleStepWithActivityInstanceId:ReturnTargetActivityInstanceId:ReturnReason:UserId:LoginId:UserName:UserStationId:UserUnitId:RoleId:OnSuccess:onErrorInfo:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "JSEIMP/class/other/other/JSEIMPNetWorking.m"
-            timestampString = "539939407.027118"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1803"
-            endingLineNumber = "1803"
-            landmarkName = "+PostCheHuikStepWithActivityId:RevokeBackReason:OnSuccess:onErrorInfo:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "JSEIMP/class/other/other/JSEIMPNetWorking.m"
-            timestampString = "539939407.0272371"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1814"
-            endingLineNumber = "1814"
-            landmarkName = "+PostCheHuikStepWithActivityId:RevokeBackReason:OnSuccess:onErrorInfo:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "JSEIMP/class/other/other/JSEIMPNetWorking.m"
-            timestampString = "539939407.027384"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "125"
-            endingLineNumber = "125"
-            landmarkName = "+loginWithServer:password:UserToken:response:onError:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "JSEIMP/class/other/other/JSEIMPNetWorking.m"
-            timestampString = "539939407.027456"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "128"
-            endingLineNumber = "128"
-            landmarkName = "+loginWithServer:password:UserToken:response:onError:"
+            startingLineNumber = "1815"
+            endingLineNumber = "1815"
+            landmarkName = "+getUserIdAndReturnTargetActivityInstanceIdWithActivityId:OnSuccess:onErrorInfo:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
