@@ -58,6 +58,10 @@
 #define API_LAOWUFENBAOHETONG @"http://"IP"/api/Contract/Contract/GetList"
 //获得劳务分包合同详情
 #define API_LAOWUFENBAOHETONGDETAIL @"http://"IP"/api/Contract/Contract/GetDetails"
+//获得设备租赁合同列表
+#define API_SHEBEIZULINHETONG @"http://"IP"/api/Contract/Contract/GetList"
+//获得设备租赁合同详情
+#define API_SHEBEIZULINHETONGDETAIL @"http://"IP"/api/Contract/Contract/GetDetails"
 //获得待办事项列表
 #define API_DAIBANITEM @"http://"HAWORKIP"/api/services/wf/Instance/GetPendingWorkItems"
 //获得代办事项详情

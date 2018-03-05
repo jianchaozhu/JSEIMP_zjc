@@ -28,7 +28,7 @@ static NSString *cellID = @"cellID";
     
     self.view.backgroundColor = [UIColor whiteColor];
     
-    self.title = @"分包合同";
+    self.title = @"专业分包合同";
     
     [self setupUI];
     

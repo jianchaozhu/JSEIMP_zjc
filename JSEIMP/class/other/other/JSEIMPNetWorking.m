@@ -34,6 +34,8 @@
 #import "JSEIMPBackUserInfoModel.h"
 #import "JSEIMPLaoWuFenBaoHeTongModel.h"
 #import "JSEIMPLaoWuFenBaoHeTongDetailModel.h"
+#import "JSEIMPSheBeiZuLinHeTongModel.h"
+#import "JSEIMPSheBeiZuLinHeTongDetailModel.h"
 #import "JSEIMPError.h"
 
 @implementation JSEIMPNetWorking
@@ -1219,6 +1221,141 @@
                 [filePathMArray addObject:filePath];
             }
             response(contractCode,projectName,jiaFangName,yiFangName,diSanFangName,contractType,amount,finalQianYueDate,finalStartDate,finalEndDate,days, creator,chengBaoFanWei,qualityBiaoZhun,caiLiaoSheBei,fuKuanTiaoKuan,baoZhengJinPayBack,otherTiaoKuan,fileTypeMArray,fileNameMArray,filePathMArray);
+            
+        } else {
+            errorInfo();
+        }
+        
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        
+        NSLog(@"%@",error);
+    }];
+}
+
+//获得设备租赁合同列表
++(void)getSheBeiZuLinHeTongOnSuccess:(void (^)())response onErrorInfo:(void (^)(JSEIMPError))errorInfo{
+    
+    NSArray *parameters = @[@{@"ContractType":@"CONTRACTE"}];
+    
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    manager.responseSerializer = [AFJSONResponseSerializer serializer];
+    manager.requestSerializer = [AFJSONRequestSerializer serializer];
+    [self setPublicHeader:manager];
+    [manager POST:API_SHEBEIZULINHETONG parameters:parameters progress:^(NSProgress * _Nonnull uploadProgress) {
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        
+        NSLog(@"%@",responseObject);
+        
+        if (responseObject != nil) {
+            
+            NSDictionary *dict = (NSDictionary *)responseObject;
+            
+            JSEIMPSheBeiZuLinHeTongModel *model = [JSEIMPSheBeiZuLinHeTongModel mj_objectWithKeyValues:dict];
+            
+            NSMutableArray *contractIdMArray = [NSMutableArray array];
+            NSMutableArray *contractNameMArray = [NSMutableArray array];
+            NSMutableArray *statusMArray = [NSMutableArray array];
+            for (int i = 0; i < model.ContractList.count; i++) {
+                
+                NSString *contractId = model.ContractList[i].ContractId;
+                NSString *contractName = model.ContractList[i].ContractName;
+                NSInteger status = model.ContractList[i].Status;
+                NSString *heTongStatus;
+                
+                [contractIdMArray addObject:contractId];
+                [contractNameMArray addObject:contractName];
+                if (status == 0) {
+                    heTongStatus = @"待审";
+                }else if (status == 1){
+                    heTongStatus = @"审批中";
+                }else if (status == 2){
+                    heTongStatus = @"已审";
+                }else if (status == 3){
+                    heTongStatus = @"作废";
+                }else if (status == 4){
+                    heTongStatus = @"已决算";
+                }else if (status == 5){
+                    heTongStatus = @"终止";
+                }
+                [statusMArray addObject:heTongStatus];
+            }
+            
+            response(contractIdMArray,contractNameMArray,statusMArray);
+            
+        } else {
+            errorInfo(noData);
+        }
+        
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        
+        NSLog(@"%@",error);
+    }];
+}
+
+//获得设备租赁合同明细
++(void)getSheBeiZuLinHeTongDetailWithContractId:(NSString *)contractId OnSuccess:(void (^)())response onErrorInfo:(void (^)())errorInfo{
+    
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    manager.responseSerializer = [AFJSONResponseSerializer serializer];
+    manager.requestSerializer = [AFJSONRequestSerializer serializer];
+    
+    NSDictionary *paramaters = @{@"ContractId":contractId};
+    [self setPublicHeader:manager];
+    [manager POST:API_SHEBEIZULINHETONGDETAIL parameters:paramaters progress:^(NSProgress * _Nonnull uploadProgress) {
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        
+        NSLog(@"%@",responseObject);
+        
+        if (responseObject != nil) {
+            
+            NSDictionary *dict = (NSDictionary *)responseObject;
+            
+            JSEIMPSheBeiZuLinHeTongDetailModel *model = [JSEIMPSheBeiZuLinHeTongDetailModel mj_objectWithKeyValues:dict];
+            
+            NSString *contractCode = model.ContractDetails.CONTRACTCODE;
+            NSString *projectName = model.ContractDetails.PROJECTNAME;
+            NSString *contractType = model.ContractDetails.CONTRACTTYPE;
+            NSString *amount = model.ContractDetails.AMOUNT;
+            NSString *jiaFangName = model.ContractDetails.PARTYAName;
+            NSString *yiFangName = model.ContractDetails.PARTYBName;
+            NSString *diSanFangName = model.ContractDetails.PARTYCName;
+            NSString *chengBaoMethod = model.ContractDetails.CONTRACTMODE;
+            NSString *baoXiuJin = model.ContractDetails.REPAIEFEE;
+            NSString *qianYueDate = model.ContractDetails.CONTRACTDATE;
+            NSString *creator = model.ContractDetails.CREATOR;
+            NSString *zuLinAndJieSuanMethod = model.ContractDetails.CONTENTTERM;
+            
+            if (diSanFangName != nil) {
+                
+                diSanFangName = model.ContractDetails.PARTYCName;
+            }else if (diSanFangName == nil){
+                
+                diSanFangName = @"";
+            }
+            NSString *finalQianYueDate = [qianYueDate stringByReplacingOccurrencesOfString:@"T00:00:00" withString:@""];
+            
+            NSMutableArray *fileTypeMArray = [NSMutableArray array];
+            NSMutableArray *fileNameMArray = [NSMutableArray array];
+            NSMutableArray *filePathMArray = [NSMutableArray array];
+            NSString *api = FIlEIP;
+            for (int i = 0; i < model.Files.count; i++) {
+                
+                NSString *fileType = model.Files[i].FILEEXT;
+                NSString *fileName = model.Files[i].FILENAME;
+                NSString *filePath;
+                
+                if (model.Files[i].FILEPATH == nil) {
+                    
+                    filePath = [api stringByAppendingString:@""];
+                }else{
+                    filePath = [api stringByAppendingString:model.Files[i].FILEPATH];
+                }
+                
+                [fileTypeMArray addObject:fileType];
+                [fileNameMArray addObject:fileName];
+                [filePathMArray addObject:filePath];
+            }
+            response(contractCode,projectName,contractType,amount,jiaFangName,yiFangName,diSanFangName,chengBaoMethod,baoXiuJin,finalQianYueDate, creator,zuLinAndJieSuanMethod,fileTypeMArray,fileNameMArray,filePathMArray);
             
         } else {
             errorInfo();

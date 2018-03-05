@@ -64,6 +64,13 @@ static NSString *cellID = @"cellID";
     
     [self setupUI];
     
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"返回" style:UIBarButtonItemStylePlain target:self action:@selector(returnAction)];
+    
+}
+
+- (void)returnAction {
+    
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 //UISearchBar作为tableview的头部
