@@ -12,6 +12,7 @@
 		C10244E41F5E44E100FA32AA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C10244E31F5E44E100FA32AA /* Assets.xcassets */; };
 		C10244E71F5E44E100FA32AA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C10244E51F5E44E100FA32AA /* LaunchScreen.storyboard */; };
 		C139218F204D3AD40004BEB3 /* JSEIMPMoneyChengDanView.m in Sources */ = {isa = PBXBuildFile; fileRef = C139218E204D3AD40004BEB3 /* JSEIMPMoneyChengDanView.m */; };
+		C1392195204F78590004BEB3 /* JSEIMPOtherYueDingView.m in Sources */ = {isa = PBXBuildFile; fileRef = C1392194204F78590004BEB3 /* JSEIMPOtherYueDingView.m */; };
 		C196BB06202414C8006F6B3D /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = C196BA212023FF27006F6B3D /* libz.tbd */; };
 		C196BB07202414ED006F6B3D /* libbz2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = C196BA232023FF52006F6B3D /* libbz2.tbd */; };
 		C196BB092024154E006F6B3D /* libiconv.2.4.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = C196BA2A2023FFFD006F6B3D /* libiconv.2.4.0.tbd */; };
@@ -302,6 +303,8 @@
 		C10244E81F5E44E200FA32AA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C139218D204D3AD40004BEB3 /* JSEIMPMoneyChengDanView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JSEIMPMoneyChengDanView.h; sourceTree = "<group>"; };
 		C139218E204D3AD40004BEB3 /* JSEIMPMoneyChengDanView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JSEIMPMoneyChengDanView.m; sourceTree = "<group>"; };
+		C1392193204F78590004BEB3 /* JSEIMPOtherYueDingView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JSEIMPOtherYueDingView.h; sourceTree = "<group>"; };
+		C1392194204F78590004BEB3 /* JSEIMPOtherYueDingView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JSEIMPOtherYueDingView.m; sourceTree = "<group>"; };
 		C196BA122023FC32006F6B3D /* JSEIMP.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JSEIMP.pch; sourceTree = "<group>"; };
 		C196BA172023FED6006F6B3D /* libstdc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libstdc++.tbd"; path = "usr/lib/libstdc++.tbd"; sourceTree = SDKROOT; };
 		C196BA192023FEE4006F6B3D /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
@@ -2313,6 +2316,8 @@
 				C1AC8520204D35D300E884E1 /* JSEIMPZuLinAndJieSuanMethodView.m */,
 				C139218D204D3AD40004BEB3 /* JSEIMPMoneyChengDanView.h */,
 				C139218E204D3AD40004BEB3 /* JSEIMPMoneyChengDanView.m */,
+				C1392193204F78590004BEB3 /* JSEIMPOtherYueDingView.h */,
+				C1392194204F78590004BEB3 /* JSEIMPOtherYueDingView.m */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -3831,6 +3836,7 @@
 				C1AC871A204D35D400E884E1 /* JSEIMPWenMingShiGongView.m in Sources */,
 				C1AC8731204D35D400E884E1 /* JSEIMPQualityTargetDetailController.m in Sources */,
 				C1AC86BC204D35D300E884E1 /* AFHTTPRequestOperation.m in Sources */,
+				C1392195204F78590004BEB3 /* JSEIMPOtherYueDingView.m in Sources */,
 				C1AC8740204D35D400E884E1 /* UIView+Extension.m in Sources */,
 				C1AC86BE204D35D300E884E1 /* Aspects.m in Sources */,
 				C1AC878A204D35D400E884E1 /* JSEIMPNavigationController.m in Sources */,

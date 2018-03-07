@@ -1325,7 +1325,10 @@
             NSString *creator = model.ContractDetails.CREATOR;
             NSString *zuLinAndJieSuanMethod = model.ContractDetails.CONTENTTERM;
             NSString *moneyChengDan = model.ContractDetails.PERIODCOSTTERM;
-            
+            NSString *weiYueZeRen = model.ContractDetails.BREACHTERM;
+            NSString *fuKuanTiaoKuan = model.ContractDetails.PAYMENTTERM;
+            NSString *otherYueDing = model.ContractDetails.OTHERTERM;
+         
             if (diSanFangName != nil) {
                 
                 diSanFangName = model.ContractDetails.PARTYCName;
@@ -1356,7 +1359,7 @@
                 [fileNameMArray addObject:fileName];
                 [filePathMArray addObject:filePath];
             }
-            response(contractCode,projectName,contractType,amount,jiaFangName,yiFangName,diSanFangName,chengBaoMethod,baoXiuJin,finalQianYueDate, creator,zuLinAndJieSuanMethod,moneyChengDan,fileTypeMArray,fileNameMArray,filePathMArray);
+            response(contractCode,projectName,contractType,amount,jiaFangName,yiFangName,diSanFangName,chengBaoMethod,baoXiuJin,finalQianYueDate, creator,zuLinAndJieSuanMethod,moneyChengDan,weiYueZeRen,fuKuanTiaoKuan,otherYueDing,fileTypeMArray,fileNameMArray,filePathMArray);
             
         } else {
             errorInfo();
