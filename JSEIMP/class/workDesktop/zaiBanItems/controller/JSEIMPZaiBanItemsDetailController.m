@@ -126,6 +126,7 @@
 }
 
 -(void)getData{
+    NSLog(@"%@",_contractId);
     
     [JSEIMPNetWorking getDaiBanItemDetailWithContractID:_contractId OnSuccess:^(NSString *contractCode,NSString *projectName,NSString *jiaFangName,NSString *yiFangName,NSString *contractType,NSString *amount,NSString *finalQianYueDate,NSString *creator,NSString *status){
         

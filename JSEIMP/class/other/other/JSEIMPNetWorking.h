@@ -87,6 +87,9 @@
 //获得设备租赁合同明细
 +(void)getSheBeiZuLinHeTongDetailWithContractId:(NSString *)contractId OnSuccess:(void(^)())response onErrorInfo:(void(^)())errorInfo;
 
+//获得其他收入合同列表
++(void)getOtherShouRuHeTongOnSuccess:(void(^)())response onErrorInfo:(void(^)(JSEIMPError))errorInfo;
+
 //获得待办事项列表
 +(void)getDaiBanItemOnSuccess:(void(^)())response onErrorInfo:(void(^)(JSEIMPError error))errorInfo;
 

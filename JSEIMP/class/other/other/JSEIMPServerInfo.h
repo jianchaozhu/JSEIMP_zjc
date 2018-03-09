@@ -7,13 +7,13 @@
 //
 
 //测试API
-#define IP @"192.168.2.53:8002"
+//#define IP @"192.168.2.53:8002"
 //测试浏览文件API
 #define FIlEIP @"http://192.168.2.53:9003/"
 //周军本地API
 //#define IP @"api.jaso.com"
 //正式API
-//#define IP @"192.168.2.55:6002"
+#define IP @"192.168.2.55:6002"
 //hamazon登录API
 #define HALOGINIP @"sso.jaso.com.cn:83"
 //hamazon工作流正式API
@@ -62,6 +62,8 @@
 #define API_SHEBEIZULINHETONG @"http://"IP"/api/Contract/Contract/GetList"
 //获得设备租赁合同详情
 #define API_SHEBEIZULINHETONGDETAIL @"http://"IP"/api/Contract/Contract/GetDetails"
+//获得其他收入合同列表
+#define API_OTHERSHOURUHETONG @"http://"IP"/api/Contract/Contract/GetList"
 //获得待办事项列表
 #define API_DAIBANITEM @"http://"HAWORKIP"/api/services/wf/Instance/GetPendingWorkItems"
 //获得代办事项详情

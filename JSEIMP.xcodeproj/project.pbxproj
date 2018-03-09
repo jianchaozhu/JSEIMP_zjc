@@ -13,6 +13,9 @@
 		C10244E71F5E44E100FA32AA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C10244E51F5E44E100FA32AA /* LaunchScreen.storyboard */; };
 		C139218F204D3AD40004BEB3 /* JSEIMPMoneyChengDanView.m in Sources */ = {isa = PBXBuildFile; fileRef = C139218E204D3AD40004BEB3 /* JSEIMPMoneyChengDanView.m */; };
 		C1392195204F78590004BEB3 /* JSEIMPOtherYueDingView.m in Sources */ = {isa = PBXBuildFile; fileRef = C1392194204F78590004BEB3 /* JSEIMPOtherYueDingView.m */; };
+		C139219820521D690004BEB3 /* JSEIMPOtherShouRuHeTongController.m in Sources */ = {isa = PBXBuildFile; fileRef = C139219720521D690004BEB3 /* JSEIMPOtherShouRuHeTongController.m */; };
+		C13921A020521DEF0004BEB3 /* JSEIMPChildOtherShouHeTongController.m in Sources */ = {isa = PBXBuildFile; fileRef = C139219F20521DEF0004BEB3 /* JSEIMPChildOtherShouHeTongController.m */; };
+		C13921A3205220A50004BEB3 /* JSEIMPOtherShouRuHeTongModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C13921A2205220A50004BEB3 /* JSEIMPOtherShouRuHeTongModel.m */; };
 		C196BB06202414C8006F6B3D /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = C196BA212023FF27006F6B3D /* libz.tbd */; };
 		C196BB07202414ED006F6B3D /* libbz2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = C196BA232023FF52006F6B3D /* libbz2.tbd */; };
 		C196BB092024154E006F6B3D /* libiconv.2.4.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = C196BA2A2023FFFD006F6B3D /* libiconv.2.4.0.tbd */; };
@@ -305,6 +308,12 @@
 		C139218E204D3AD40004BEB3 /* JSEIMPMoneyChengDanView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JSEIMPMoneyChengDanView.m; sourceTree = "<group>"; };
 		C1392193204F78590004BEB3 /* JSEIMPOtherYueDingView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JSEIMPOtherYueDingView.h; sourceTree = "<group>"; };
 		C1392194204F78590004BEB3 /* JSEIMPOtherYueDingView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JSEIMPOtherYueDingView.m; sourceTree = "<group>"; };
+		C139219620521D690004BEB3 /* JSEIMPOtherShouRuHeTongController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JSEIMPOtherShouRuHeTongController.h; sourceTree = "<group>"; };
+		C139219720521D690004BEB3 /* JSEIMPOtherShouRuHeTongController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JSEIMPOtherShouRuHeTongController.m; sourceTree = "<group>"; };
+		C139219E20521DEF0004BEB3 /* JSEIMPChildOtherShouHeTongController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JSEIMPChildOtherShouHeTongController.h; sourceTree = "<group>"; };
+		C139219F20521DEF0004BEB3 /* JSEIMPChildOtherShouHeTongController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JSEIMPChildOtherShouHeTongController.m; sourceTree = "<group>"; };
+		C13921A1205220A50004BEB3 /* JSEIMPOtherShouRuHeTongModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JSEIMPOtherShouRuHeTongModel.h; sourceTree = "<group>"; };
+		C13921A2205220A50004BEB3 /* JSEIMPOtherShouRuHeTongModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JSEIMPOtherShouRuHeTongModel.m; sourceTree = "<group>"; };
 		C196BA122023FC32006F6B3D /* JSEIMP.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JSEIMP.pch; sourceTree = "<group>"; };
 		C196BA172023FED6006F6B3D /* libstdc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libstdc++.tbd"; path = "usr/lib/libstdc++.tbd"; sourceTree = SDKROOT; };
 		C196BA192023FEE4006F6B3D /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
@@ -1055,6 +1064,49 @@
 				C10244D81F5E44E100FA32AA /* main.m */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		C139219920521DD10004BEB3 /* childOtherShouRuHeTong */ = {
+			isa = PBXGroup;
+			children = (
+				C139219A20521DD10004BEB3 /* controller */,
+				C139219B20521DD10004BEB3 /* model */,
+				C139219C20521DD10004BEB3 /* other */,
+				C139219D20521DD10004BEB3 /* view */,
+			);
+			path = childOtherShouRuHeTong;
+			sourceTree = "<group>";
+		};
+		C139219A20521DD10004BEB3 /* controller */ = {
+			isa = PBXGroup;
+			children = (
+				C139219E20521DEF0004BEB3 /* JSEIMPChildOtherShouHeTongController.h */,
+				C139219F20521DEF0004BEB3 /* JSEIMPChildOtherShouHeTongController.m */,
+			);
+			path = controller;
+			sourceTree = "<group>";
+		};
+		C139219B20521DD10004BEB3 /* model */ = {
+			isa = PBXGroup;
+			children = (
+				C13921A1205220A50004BEB3 /* JSEIMPOtherShouRuHeTongModel.h */,
+				C13921A2205220A50004BEB3 /* JSEIMPOtherShouRuHeTongModel.m */,
+			);
+			path = model;
+			sourceTree = "<group>";
+		};
+		C139219C20521DD10004BEB3 /* other */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = other;
+			sourceTree = "<group>";
+		};
+		C139219D20521DD10004BEB3 /* view */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = view;
 			sourceTree = "<group>";
 		};
 		C1AC8341204D35D200E884E1 /* class */ = {
@@ -2207,6 +2259,7 @@
 		C1AC850A204D35D300E884E1 /* otherShouRuHeTong */ = {
 			isa = PBXGroup;
 			children = (
+				C139219920521DD10004BEB3 /* childOtherShouRuHeTong */,
 				C1AC850B204D35D300E884E1 /* controller */,
 				C1AC850C204D35D300E884E1 /* model */,
 				C1AC850D204D35D300E884E1 /* view */,
@@ -2217,6 +2270,8 @@
 		C1AC850B204D35D300E884E1 /* controller */ = {
 			isa = PBXGroup;
 			children = (
+				C139219620521D690004BEB3 /* JSEIMPOtherShouRuHeTongController.h */,
+				C139219720521D690004BEB3 /* JSEIMPOtherShouRuHeTongController.m */,
 			);
 			path = controller;
 			sourceTree = "<group>";
@@ -3754,6 +3809,7 @@
 				C1AC86DC204D35D400E884E1 /* UITableView+FDIndexPathHeightCache.m in Sources */,
 				C1AC86F1204D35D400E884E1 /* JSEIMPCaiGouHeTongDetailController.m in Sources */,
 				C1AC8785204D35D400E884E1 /* LMJDropdownMenu.m in Sources */,
+				C13921A3205220A50004BEB3 /* JSEIMPOtherShouRuHeTongModel.m in Sources */,
 				C1AC879F204D35D400E884E1 /* JSEIMPZaiBanItemsDetailController.m in Sources */,
 				C1AC878B204D35D400E884E1 /* JSEIMPTabBarController.m in Sources */,
 				C1AC8767204D35D400E884E1 /* JSEIMPNewProjectJiangXiangController.m in Sources */,
@@ -3764,6 +3820,7 @@
 				C1AC879C204D35D400E884E1 /* JSEIMPNextDealPeopleController.m in Sources */,
 				C1AC86F2204D35D400E884E1 /* JSEIMPChildCaiGouHeTongController.m in Sources */,
 				C1AC8770204D35D400E884E1 /* JSEIMPNewAnJianShouXiView.m in Sources */,
+				C139219820521D690004BEB3 /* JSEIMPOtherShouRuHeTongController.m in Sources */,
 				C1AC8752204D35D400E884E1 /* JSEIMPNewTouBiaoZhaiYaoController.m in Sources */,
 				C1AC8712204D35D400E884E1 /* JSEIMPZhuanYeFenBaoHeTongController.m in Sources */,
 				C1AC86B7204D35D300E884E1 /* EZWifiConfigViewController.m in Sources */,
@@ -3803,6 +3860,7 @@
 				C1AC86C2204D35D300E884E1 /* NSDate+DDKit.m in Sources */,
 				C1AC8781204D35D400E884E1 /* JSEIMPTouBiaoBaoZhengJinDetailModel.m in Sources */,
 				C1AC86F8204D35D400E884E1 /* JSEIMPCaiGouHeTongController.m in Sources */,
+				C13921A020521DEF0004BEB3 /* JSEIMPChildOtherShouHeTongController.m in Sources */,
 				C1AC86CC204D35D400E884E1 /* DDCollectionViewFlowLayout.m in Sources */,
 				C1AC86BD204D35D300E884E1 /* AFURLConnectionOperation.m in Sources */,
 				C1AC86B9204D35D300E884E1 /* EZWifiTipsViewController.m in Sources */,

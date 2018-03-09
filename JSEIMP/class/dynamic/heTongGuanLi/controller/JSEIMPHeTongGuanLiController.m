@@ -12,6 +12,7 @@
 #import "JSEIMPCaiGouHeTongController.h"
 #import "JSEIMPLaoWuFenBaoHeTongController.h"
 #import "JSEIMPSheBeiZuLinHeTongController.h"
+#import "JSEIMPOtherShouRuHeTongController.h"
 
 static NSString *cellID = @"cellID";
 
@@ -74,7 +75,7 @@ static NSString *cellID = @"cellID";
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     
-    return 5;
+    return 6;
     
 //    return 8;
     
@@ -108,6 +109,11 @@ static NSString *cellID = @"cellID";
         JSEIMPSheBeiZuLinHeTongController *sheBeiZuLinHeTongController = [JSEIMPSheBeiZuLinHeTongController new];
         
         [self.navigationController pushViewController:sheBeiZuLinHeTongController animated:YES];
+    }else if (indexPath.row == 5){
+        
+        JSEIMPOtherShouRuHeTongController *otherShouRuHeTongController = [JSEIMPOtherShouRuHeTongController new];
+        
+        [self.navigationController pushViewController:otherShouRuHeTongController animated:YES];
     }
     
 }
@@ -137,6 +143,9 @@ static NSString *cellID = @"cellID";
     }else if (indexPath.row == 4){
         
         [self setImageViewWithName:@"sheBeiZuLinHeTong" Text:@"设备租赁合同"];
+    }else if (indexPath.row == 5){
+        
+        [self setImageViewWithName:@"otherShouRuHeTong" Text:@"其他收入合同"];
     }
     
 //    if (indexPath.section == 0) {
