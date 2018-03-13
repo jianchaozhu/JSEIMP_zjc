@@ -471,7 +471,7 @@
         _cursor.frame = CGRectMake(0, 470, self.view.width, 45);
     }else if (_heTongNameLabel.text.length <= 13 && _projectNameLabel.text.length > 26 && _projectNameLabel.text.length < 39){
         _cursor.frame = CGRectMake(0, 510, self.view.width, 45);
-    }else if (_heTongNameLabel.text.length <= 13){
+    }else if ((_heTongNameLabel.text.length <= 1) || (_heTongNameLabel.text.length > 13 && _heTongNameLabel.text.length <= 26 && _projectNameLabel.text.length < 13)){
         _cursor.frame = CGRectMake(0, 440, self.view.width, 45);
     }
     

@@ -64,6 +64,8 @@
 #define API_SHEBEIZULINHETONGDETAIL @"http://"IP"/api/Contract/Contract/GetDetails"
 //获得其他收入合同列表
 #define API_OTHERSHOURUHETONG @"http://"IP"/api/Contract/Contract/GetList"
+//获得其他收入合同详情
+#define API_OTHERSHOURUHETONGDETAIL @"http://"IP"/api/Contract/Contract/GetDetails"
 //获得待办事项列表
 #define API_DAIBANITEM @"http://"HAWORKIP"/api/services/wf/Instance/GetPendingWorkItems"
 //获得代办事项详情

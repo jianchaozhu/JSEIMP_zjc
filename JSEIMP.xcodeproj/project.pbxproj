@@ -16,6 +16,8 @@
 		C139219820521D690004BEB3 /* JSEIMPOtherShouRuHeTongController.m in Sources */ = {isa = PBXBuildFile; fileRef = C139219720521D690004BEB3 /* JSEIMPOtherShouRuHeTongController.m */; };
 		C13921A020521DEF0004BEB3 /* JSEIMPChildOtherShouHeTongController.m in Sources */ = {isa = PBXBuildFile; fileRef = C139219F20521DEF0004BEB3 /* JSEIMPChildOtherShouHeTongController.m */; };
 		C13921A3205220A50004BEB3 /* JSEIMPOtherShouRuHeTongModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C13921A2205220A50004BEB3 /* JSEIMPOtherShouRuHeTongModel.m */; };
+		C13921A62056258E0004BEB3 /* JSEIMPOtherShouRuHeTongDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = C13921A52056258E0004BEB3 /* JSEIMPOtherShouRuHeTongDetailController.m */; };
+		C13921A920564E7A0004BEB3 /* JSEIMPOtherShouRuHeTongDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C13921A820564E7A0004BEB3 /* JSEIMPOtherShouRuHeTongDetailModel.m */; };
 		C196BB06202414C8006F6B3D /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = C196BA212023FF27006F6B3D /* libz.tbd */; };
 		C196BB07202414ED006F6B3D /* libbz2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = C196BA232023FF52006F6B3D /* libbz2.tbd */; };
 		C196BB092024154E006F6B3D /* libiconv.2.4.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = C196BA2A2023FFFD006F6B3D /* libiconv.2.4.0.tbd */; };
@@ -314,6 +316,10 @@
 		C139219F20521DEF0004BEB3 /* JSEIMPChildOtherShouHeTongController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JSEIMPChildOtherShouHeTongController.m; sourceTree = "<group>"; };
 		C13921A1205220A50004BEB3 /* JSEIMPOtherShouRuHeTongModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JSEIMPOtherShouRuHeTongModel.h; sourceTree = "<group>"; };
 		C13921A2205220A50004BEB3 /* JSEIMPOtherShouRuHeTongModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JSEIMPOtherShouRuHeTongModel.m; sourceTree = "<group>"; };
+		C13921A42056258E0004BEB3 /* JSEIMPOtherShouRuHeTongDetailController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JSEIMPOtherShouRuHeTongDetailController.h; sourceTree = "<group>"; };
+		C13921A52056258E0004BEB3 /* JSEIMPOtherShouRuHeTongDetailController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JSEIMPOtherShouRuHeTongDetailController.m; sourceTree = "<group>"; };
+		C13921A720564E7A0004BEB3 /* JSEIMPOtherShouRuHeTongDetailModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JSEIMPOtherShouRuHeTongDetailModel.h; sourceTree = "<group>"; };
+		C13921A820564E7A0004BEB3 /* JSEIMPOtherShouRuHeTongDetailModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JSEIMPOtherShouRuHeTongDetailModel.m; sourceTree = "<group>"; };
 		C196BA122023FC32006F6B3D /* JSEIMP.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JSEIMP.pch; sourceTree = "<group>"; };
 		C196BA172023FED6006F6B3D /* libstdc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libstdc++.tbd"; path = "usr/lib/libstdc++.tbd"; sourceTree = SDKROOT; };
 		C196BA192023FEE4006F6B3D /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
@@ -1082,6 +1088,8 @@
 			children = (
 				C139219E20521DEF0004BEB3 /* JSEIMPChildOtherShouHeTongController.h */,
 				C139219F20521DEF0004BEB3 /* JSEIMPChildOtherShouHeTongController.m */,
+				C13921A42056258E0004BEB3 /* JSEIMPOtherShouRuHeTongDetailController.h */,
+				C13921A52056258E0004BEB3 /* JSEIMPOtherShouRuHeTongDetailController.m */,
 			);
 			path = controller;
 			sourceTree = "<group>";
@@ -1091,6 +1099,8 @@
 			children = (
 				C13921A1205220A50004BEB3 /* JSEIMPOtherShouRuHeTongModel.h */,
 				C13921A2205220A50004BEB3 /* JSEIMPOtherShouRuHeTongModel.m */,
+				C13921A720564E7A0004BEB3 /* JSEIMPOtherShouRuHeTongDetailModel.h */,
+				C13921A820564E7A0004BEB3 /* JSEIMPOtherShouRuHeTongDetailModel.m */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -3880,6 +3890,7 @@
 				C1AC8732204D35D400E884E1 /* JSEIMPBaoBiaoController.m in Sources */,
 				C1AC86CE204D35D400E884E1 /* GlobalKit.m in Sources */,
 				C1AC8721204D35D400E884E1 /* JSEIMPChildSheBeiZuLinHeTongController.m in Sources */,
+				C13921A920564E7A0004BEB3 /* JSEIMPOtherShouRuHeTongDetailModel.m in Sources */,
 				C1AC86B2204D35D300E884E1 /* EZMessageListViewController.m in Sources */,
 				C1AC871E204D35D400E884E1 /* JSEIMPLaoWuFenBaoHeTongModel.m in Sources */,
 				C1AC87A3204D35D400E884E1 /* JSEIMPGetUserIdModel.m in Sources */,
@@ -4037,6 +4048,7 @@
 				C1AC86B4204D35D300E884E1 /* EZMessagePlaybackViewController.m in Sources */,
 				C1AC86B6204D35D300E884E1 /* EZSettingViewController.m in Sources */,
 				C1AC879B204D35D400E884E1 /* JSEIMPBackReasonController.m in Sources */,
+				C13921A62056258E0004BEB3 /* JSEIMPOtherShouRuHeTongDetailController.m in Sources */,
 				C1AC86C3204D35D300E884E1 /* NSString+DDKit.m in Sources */,
 				C1AC8709204D35D400E884E1 /* JSEIMPShouKuanJieDianView.m in Sources */,
 				C1AC8726204D35D400E884E1 /* JSEIMPSheBeiZuLinHeTongController.m in Sources */,

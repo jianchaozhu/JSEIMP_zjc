@@ -7,6 +7,7 @@
 //
 
 #import "JSEIMPChildOtherShouHeTongController.h"
+#import "JSEIMPOtherShouRuHeTongDetailController.h"
 #import "JSEIMPNetWorking.h"
 
 static NSString *cellID = @"cellID";
@@ -51,7 +52,7 @@ static NSString *cellID = @"cellID";
     
     self.view.backgroundColor = [UIColor whiteColor];
     
-    self.title = @"采购合同";
+    self.title = @"其他收入合同";
     
     [self getData];
     
@@ -132,6 +133,17 @@ static NSString *cellID = @"cellID";
     
     return size.height + 50;
     
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    JSEIMPOtherShouRuHeTongDetailController *otherShouRuHeTongDetailController = [JSEIMPOtherShouRuHeTongDetailController new];
+    
+    otherShouRuHeTongDetailController.contractName = _contractNameMArray[indexPath.row];
+    otherShouRuHeTongDetailController.status = _statusMArray[indexPath.row];
+    otherShouRuHeTongDetailController.contractId = _contractIdMArray[indexPath.row];
+    
+    [self.navigationController pushViewController:otherShouRuHeTongDetailController animated:YES];
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
