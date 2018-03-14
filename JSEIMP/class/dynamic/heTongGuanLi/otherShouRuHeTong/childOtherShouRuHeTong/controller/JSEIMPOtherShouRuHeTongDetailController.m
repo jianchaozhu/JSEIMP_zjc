@@ -11,11 +11,15 @@
 #import <Masonry.h>
 #import "JSEIMPNetWorking.h"
 #import "UIView+Extension.h"
+#import "JSEIMPContentAndRangeView.h"
+#import "JSEIMPFuKuanTiaoKuanView.h"
+#import "JSEIMPOtherTiaoKuanView.h"
+#import "JSEIMPFuJianView.h"
 
 #define UIScreenW [UIScreen mainScreen].bounds.size.width
 #define UIScreenH [UIScreen mainScreen].bounds.size.height
 
-@interface JSEIMPOtherShouRuHeTongDetailController ()
+@interface JSEIMPOtherShouRuHeTongDetailController ()<UIDocumentInteractionControllerDelegate>
 
 @property(nonatomic,strong)NSMutableArray *titles;
 
@@ -41,6 +45,11 @@
 
 @property(nonatomic,strong)NSString *creator;
 
+@property(nonatomic,strong)NSString *contentAndRange;
+
+@property(nonatomic,strong)NSString *fuKuanTiaoKuan;
+
+@property(nonatomic,strong)NSString *otherTiaoKuan;
 //附件类型
 @property(nonatomic,strong)NSMutableArray *fileTypeMArray;
 //附件名称
@@ -103,6 +112,18 @@
     HACursor *_cursor;
     
     UIScrollView *_scrollView1;
+    
+    UIScrollView *_scrollView2;
+    
+    UIScrollView *_scrollView3;
+    
+    JSEIMPContentAndRangeView *_contentAndRangeView;
+    
+    JSEIMPFuKuanTiaoKuanView *_fuKuanTiaoKuanView;
+    
+    JSEIMPOtherTiaoKuanView *_otherTiaoKuanView;
+    
+    JSEIMPFuJianView *_fuJianView;
 }
 
 - (void)viewDidLoad {
@@ -142,7 +163,7 @@
 
 -(void)getData{
     
-    [JSEIMPNetWorking getOtherShouRuHeTongDetailWithContractId:_contractId OnSuccess:^(NSString *contractCode,NSString *projectName,NSString *jiaFangName,NSString *yiFangName,NSString *diSanFangName,NSString *contractType,NSString *amount,NSString *finalQianYueDate,NSString *creator,NSMutableArray *fileTypeMArray,NSMutableArray *fileNameMArray,NSMutableArray *filePathMArray){
+    [JSEIMPNetWorking getOtherShouRuHeTongDetailWithContractId:_contractId OnSuccess:^(NSString *contractCode,NSString *projectName,NSString *jiaFangName,NSString *yiFangName,NSString *diSanFangName,NSString *contractType,NSString *amount,NSString *finalQianYueDate,NSString *creator,NSString *contentAndRange,NSString *fuKuanTiaoKuan,NSString *otherTiaoKuan,NSMutableArray *fileTypeMArray,NSMutableArray *fileNameMArray,NSMutableArray *filePathMArray){
         
         _contractCode = contractCode.copy;
         _projectName = projectName.copy;
@@ -153,6 +174,9 @@
         _amount = amount.copy;
         _qianYueDate = finalQianYueDate.copy;
         _creator = creator.copy;
+        _contentAndRange = contentAndRange.copy;
+        _fuKuanTiaoKuan = fuKuanTiaoKuan.copy;
+        _otherTiaoKuan = otherTiaoKuan.copy;
         _fileTypeMArray = fileTypeMArray.copy;
         _fileNameMArray = fileNameMArray.copy;
         _filePathMArray = filePathMArray.copy;
@@ -420,13 +444,13 @@
     }else if(_heTongNameLabel.text.length > 13 && _heTongNameLabel.text.length <= 26 && _projectNameLabel.text.length > 26 && _projectNameLabel.text.length < 39){
         _cursor.frame = CGRectMake(0, 580, self.view.width, 45);
     }else if (_heTongNameLabel.text.length <= 13 && _projectNameLabel.text.length > 26 && _projectNameLabel.text.length < 39){
-        _cursor.frame = CGRectMake(0, 620, self.view.width, 45);
+        _cursor.frame = CGRectMake(0, 450, self.view.width, 45);
     }else if (_heTongNameLabel.text.length <= 13){
-        _cursor.frame = CGRectMake(0, 550, self.view.width, 45);
+        _cursor.frame = CGRectMake(0, 400, self.view.width, 45);
     }
     
     _cursor.titles = self.titles;
-//    _cursor.pageViews = [self createPageViews];
+    _cursor.pageViews = [self createPageViews];
     //设置根滚动视图的高度
     _cursor.rootScrollViewHeight = self.view.frame.size.height / 2;
     //默认值是白色
@@ -446,33 +470,127 @@
     
 }
 
-//- (NSMutableArray *)createPageViews{
-//
-//    NSMutableArray *pageViews = [NSMutableArray array];
-//
-//    for (NSInteger i = 0; i < self.titles.count; i++) {
-//
-//        if (i == 0) {
-//
-//            _cursor.rootScrollView.bounces = NO;
-//            _scrollView1 = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, self.view.width, self.view.height / 2)];
-//            _propjectChengBaoFanWeiView = [[JSEIMPPropjectChengBaoFanWeiView alloc] init];
-//            //发送通知
-//            [[NSNotificationCenter defaultCenter] postNotificationName:@"chengBaoFanWei" object:_chengBaoFanWei];
-//            [_scrollView1 addSubview:_propjectChengBaoFanWeiView];
-//
-//            [_propjectChengBaoFanWeiView mas_makeConstraints:^(MASConstraintMaker *make) {
-//
-//                make.edges.mas_equalTo(_scrollView1);
-//                make.width.mas_equalTo(UIScreenW);
-//                make.bottom.mas_equalTo(_propjectChengBaoFanWeiView.projectContentLabel.mas_bottom).offset(16);
-//            }];
-//            [pageViews addObject:_scrollView1];
-//        }
-//    }
-//
-//    return pageViews;
-//}
+- (NSMutableArray *)createPageViews{
+
+    NSMutableArray *pageViews = [NSMutableArray array];
+
+    for (NSInteger i = 0; i < self.titles.count; i++) {
+
+        if (i == 0) {
+
+            _cursor.rootScrollView.bounces = NO;
+            _scrollView1 = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, self.view.width, self.view.height / 2)];
+            _contentAndRangeView = [[JSEIMPContentAndRangeView alloc] init];
+            //发送通知
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"contentAndRange" object:_contentAndRange];
+            [_scrollView1 addSubview:_contentAndRangeView];
+
+            [_contentAndRangeView mas_makeConstraints:^(MASConstraintMaker *make) {
+
+                make.edges.mas_equalTo(_scrollView1);
+                make.width.mas_equalTo(UIScreenW);
+                make.bottom.mas_equalTo(_contentAndRangeView.contentAndRangeLabel.mas_bottom).offset(16);
+            }];
+            [pageViews addObject:_scrollView1];
+        }else if (i == 1){
+            
+            _cursor.rootScrollView.bounces = NO;
+            _scrollView2 = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, self.view.width, self.view.height / 2)];
+            _fuKuanTiaoKuanView = [[JSEIMPFuKuanTiaoKuanView alloc] init];
+            //发送通知
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"fuKuanTiaoKuan" object:_fuKuanTiaoKuan];
+            [_scrollView2 addSubview:_fuKuanTiaoKuanView];
+            
+            [_fuKuanTiaoKuanView mas_makeConstraints:^(MASConstraintMaker *make) {
+                
+                make.edges.mas_equalTo(_scrollView2);
+                make.width.mas_equalTo(UIScreenW);
+                make.bottom.mas_equalTo(_fuKuanTiaoKuanView.fuKuanTiaoKuanLabel.mas_bottom).offset(16);
+            }];
+            [pageViews addObject:_scrollView2];
+        }else if (i == 2){
+            
+            _cursor.rootScrollView.bounces = NO;
+            _scrollView3 = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, self.view.width, self.view.height / 2)];
+            _otherTiaoKuanView = [[JSEIMPOtherTiaoKuanView alloc] init];
+            //发送通知
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"otherTiaoKuan" object:_otherTiaoKuan];
+            [_scrollView3 addSubview:_otherTiaoKuanView];
+            
+            [_otherTiaoKuanView mas_makeConstraints:^(MASConstraintMaker *make) {
+                
+                make.edges.mas_equalTo(_scrollView3);
+                make.width.mas_equalTo(UIScreenW);
+                make.bottom.mas_equalTo(_otherTiaoKuanView.otherTiaoKuanLabel.mas_bottom).offset(16);
+            }];
+            [pageViews addObject:_scrollView3];
+        }else if (i == 3){
+            
+            _fuJianView = [JSEIMPFuJianView new];
+            
+            [self postNotification];
+            
+            [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(filePath:) name:@"filePath" object:nil];
+            [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(exisFilePath:) name:@"exisFilePath" object:nil];
+            
+            [pageViews addObject:_fuJianView];
+        }
+    }
+
+    return pageViews;
+}
+
+-(void)filePath:(NSNotification *)notification{
+    
+    _filePath = notification.object;
+    
+    [self setupLookViewWithPath:_filePath];
+    
+}
+
+-(void)exisFilePath:(NSNotification *)notification{
+    
+    _exisFilePath = notification.object;
+    
+    [self setupLookViewWithPath:_exisFilePath];
+    
+}
+
+-(void)setupLookViewWithPath:(NSString *)path{
+    
+    NSURL *url = [NSURL fileURLWithPath:path];
+    
+    
+    UIDocumentInteractionController *interactionController = [UIDocumentInteractionController interactionControllerWithURL:url];
+    
+    interactionController.delegate = self;
+    //预览有其他软件打开按钮
+    [interactionController presentPreviewAnimated:YES];
+    
+    //    CGRect navRect = self.navigationController.navigationBar.frame;
+    //    navRect.size =CGSizeMake(1500.0f,40.0f);
+    //
+    //    //直接显示包含预览的菜单项
+    //    [interactionController presentOptionsMenuFromRect:navRect inView:_view animated:YES];
+    
+}
+
+-(UIViewController *)documentInteractionControllerViewControllerForPreview:(UIDocumentInteractionController *)controller{
+    return self;
+}
+-(UIView *)documentInteractionControllerViewForPreview:(UIDocumentInteractionController *)controller{
+    return self.view;
+}
+-(CGRect)documentInteractionControllerRectForPreview:(UIDocumentInteractionController *)controller{
+    return  self.view.frame;
+}
+
+#pragma mark - 发送通知
+-(void)postNotification{
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"fileNameMArray" object:_fileNameMArray];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"filePathMArray" object:_filePathMArray];
+}
 
 -(UILabel *)setupLabelWithText:(NSString *)text TextColor:(UIColor *)textColor Font:(UIFont *)font{
     

@@ -1462,6 +1462,9 @@
             NSString *diSanFangName = model.ContractDetails.PARTYCName;
             NSString *qianYueDate = model.ContractDetails.CONTRACTDATE;
             NSString *creator = model.ContractDetails.CREATOR;
+            NSString *contentAndRange = model.ContractDetails.CONTENTTERM;
+            NSString *fuKuanTiaoKuan = model.ContractDetails.PAYMENTTERM;
+            NSString *otherTiaoKuan = model.ContractDetails.OTHERTERM;
             
             if (diSanFangName != nil) {
                 
@@ -1493,7 +1496,7 @@
                 [fileNameMArray addObject:fileName];
                 [filePathMArray addObject:filePath];
             }
-            response(contractCode,projectName,jiaFangName,yiFangName,diSanFangName,contractType,amount,finalQianYueDate, creator,fileTypeMArray,fileNameMArray,filePathMArray);
+            response(contractCode,projectName,jiaFangName,yiFangName,diSanFangName,contractType,amount,finalQianYueDate, creator,contentAndRange,fuKuanTiaoKuan,otherTiaoKuan,fileTypeMArray,fileNameMArray,filePathMArray);
             
         } else {
             errorInfo();
