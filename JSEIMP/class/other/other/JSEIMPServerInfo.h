@@ -14,6 +14,7 @@
 //#define IP @"api.jaso.com"
 //正式API
 #define IP @"192.168.2.55:6002"
+//#define IP @"api.jaso.com.cn:6002"
 //hamazon登录API
 #define HALOGINIP @"sso.jaso.com.cn:83"
 //hamazon工作流正式API
@@ -90,3 +91,13 @@
 #define API_POSTCOMEBACK @"http://"HAWORKIP"/api/services/wf/Instance/ActivityReturnAsync"
 //撤回操作
 #define API_POSTCHEHUI @"http://"HAWORKIP"/api/services/wf/Instance/ActivityRevokeBackAsync"
+//取消操作
+#define API_POSTCANCEL @"http://"HAWORKIP"/api/services/wf/Instance/ActivityDestroyAsync"
+//获得部门列表
+#define API_GETBUMENLIST @"http://"HAWORKIP"/api/services/wf/User/GetUnits"
+//获得全部用户列表
+#define API_GETUSERLIST @"http://"HAWORKIP"/api/services/wf/User/GetUsers"
+//抄送操作
+#define API_POSTCHAOSONG @"http://"HAWORKIP"/api/services/wf/Instance/ActivityExpandCopyAsync"
+//转签操作
+#define API_POSTZHUANQIAN @"http://"HAWORKIP"/api/services/wf/Instance/ActivityTransferVerifyAsync"

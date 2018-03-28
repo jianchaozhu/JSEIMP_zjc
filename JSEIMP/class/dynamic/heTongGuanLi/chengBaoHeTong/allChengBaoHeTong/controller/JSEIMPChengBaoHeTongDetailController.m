@@ -579,6 +579,8 @@
         _cursor.frame = CGRectMake(0, 650, self.view.width, 45);
     }else if (_heTongNameLabel.text.length <= 13 && _jiaFangLabel.text.length > 13 && _jiaFangLabel.text.length <= 26){
         _cursor.frame = CGRectMake(0, 610, self.view.width, 45);
+    }else if (_heTongNameLabel.text.length <= 13 && _projectNameLabel.text.length <= 13){
+        _cursor.frame = CGRectMake(0, 600, self.view.width, 45);
     }
     _cursor.titles = self.titles;
     _cursor.pageViews = [self createPageViews];

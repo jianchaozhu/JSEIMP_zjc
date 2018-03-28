@@ -33,6 +33,8 @@
 @property(nonatomic,strong)NSString *creator;
 //状态
 @property(nonatomic,strong)NSString *status;
+//撤回
+@property(nonatomic,assign)NSInteger canRevokeBack;
 
 @end
 
@@ -129,7 +131,7 @@
         
         dispatch_async(dispatch_get_main_queue(), ^{
             
-            [self setupUI];
+            [self isShowButtons];
         });
         
     } onErrorInfo:nil];
@@ -198,20 +200,34 @@
         _statusLabel.textColor = [UIColor greenColor];
     }
     
-    [_cheHuiButton mas_makeConstraints:^(MASConstraintMaker *make) {
+    if (_canRevokeBack == 1) {
         
-        make.top.mas_equalTo(_view.mas_top).offset(16);
-        make.right.mas_equalTo(_view.mas_right).offset(-16);
-        make.width.mas_equalTo(50);
-        make.height.mas_equalTo(20);
-    }];
-    
-    [_label1 mas_makeConstraints:^(MASConstraintMaker *make) {
+        [_cheHuiButton mas_makeConstraints:^(MASConstraintMaker *make) {
+            
+            make.top.mas_equalTo(_view.mas_top).offset(16);
+            make.right.mas_equalTo(_view.mas_right).offset(-16);
+            make.width.mas_equalTo(50);
+            make.height.mas_equalTo(20);
+        }];
         
-        make.top.mas_equalTo(_view).offset(52);
-        make.left.mas_equalTo(_view).offset(16);
-        make.width.mas_equalTo(82);
-    }];
+        [_label1 mas_makeConstraints:^(MASConstraintMaker *make) {
+            
+            make.top.mas_equalTo(_view).offset(52);
+            make.left.mas_equalTo(_view).offset(16);
+            make.width.mas_equalTo(82);
+        }];
+    }else if (_canRevokeBack == 0){
+        
+        [_cheHuiButton removeFromSuperview];
+        
+        [_label1 mas_makeConstraints:^(MASConstraintMaker *make) {
+            
+            make.top.mas_equalTo(_view).offset(16);
+            make.left.mas_equalTo(_view).offset(16);
+            make.width.mas_equalTo(82);
+        }];
+    }
+
     [_heTongBianHaoLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         
         make.left.mas_equalTo(_label1.mas_right).offset(16);
@@ -377,11 +393,25 @@
     }];
 }
 
+-(void)isShowButtons{
+    
+    [JSEIMPNetWorking getUserIdAndReturnTargetActivityInstanceIdWithActivityId:_activityId OnSuccess:^(NSInteger canReturnPrevious,NSInteger canRevokeBack,NSInteger canDestroy,NSInteger canSend,NSInteger canSignup,NSInteger canExpandCopy,NSInteger canTransferVerify,NSInteger returnTargetActivityInstanceId,NSMutableArray *userIdMArray){
+        
+        _canRevokeBack = canRevokeBack;//撤回按钮判断
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            
+            [self setupUI];
+        });
+    } onErrorInfo:nil];
+}
+
 -(void)clickButton:(UIButton *)button{
     
     if (button.tag == 1) {
         
         [self goToCheHuiReasonVC];
+    
     }
 }
 

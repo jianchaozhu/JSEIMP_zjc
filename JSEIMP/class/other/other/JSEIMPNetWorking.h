@@ -129,6 +129,24 @@
 //撤回操作
 +(void)PostCheHuikStepWithActivityId:(NSInteger)activityId RevokeBackReason:(NSString *)revokeBackReason OnSuccess:(void(^)())response onErrorInfo:(void(^)())errorInfo;
 
+//取消操作
++(void)PostCancelStepWithActivityId:(NSInteger)activityId OnSuccess:(void(^)())response onErrorInfo:(void(^)())errorInfo;
+
+//获得部门列表
++(void)getBuMenListWithShangJiBuMen:(NSString *)shangJiBuMen IsIncludeZiJieDian:(NSString *)isIncludeZiJieDian SkipCount:(NSInteger)skipCount MaxResultCount:(NSInteger)maxResultCount OnSuccess:(void(^)())response onErrorInfo:(void(^)())errorInfo;
+
+//获得全部用户列表
++(void)getUserListWithSkipCount:(NSInteger)skipCount MaxResultCount:(NSInteger)maxResultCount OnSuccess:(void(^)())response onErrorInfo:(void(^)())errorInfo;
+
+//获得无岗位用户列表
++(void)getUserListWithStationIdIfNull:(NSString *)stationIdIfNull SkipCount:(NSInteger)skipCount MaxResultCount:(NSInteger)maxResultCount OnSuccess:(void(^)())response onErrorInfo:(void(^)())errorInfo;
+
+//抄送操作
++(void)PostChaoSongStepWithActivityInstanceId:(NSInteger)activityInstanceId TargetUsers:(NSMutableArray *)targetUsers OnSuccess:(void(^)())response onErrorInfo:(void(^)())errorInfo;
+
+//转签操作
++(void)PostZhuanQianStepWithReason:(NSString *)reason ActivityInstanceId:(NSInteger)activityInstanceId TargetUsers:(NSMutableArray *)targetUsers OnSuccess:(void(^)())response onErrorInfo:(void(^)())errorInfo;
+
 //获得大象云Token
 +(void)getDaXiangYunTokenwithSuccessBlock:(void(^)())response;
 

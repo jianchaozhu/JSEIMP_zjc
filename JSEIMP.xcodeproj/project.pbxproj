@@ -19,6 +19,12 @@
 		C13921A62056258E0004BEB3 /* JSEIMPOtherShouRuHeTongDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = C13921A52056258E0004BEB3 /* JSEIMPOtherShouRuHeTongDetailController.m */; };
 		C13921A920564E7A0004BEB3 /* JSEIMPOtherShouRuHeTongDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C13921A820564E7A0004BEB3 /* JSEIMPOtherShouRuHeTongDetailModel.m */; };
 		C13921AF2057A59C0004BEB3 /* JSEIMPContentAndRangeView.m in Sources */ = {isa = PBXBuildFile; fileRef = C13921AE2057A59C0004BEB3 /* JSEIMPContentAndRangeView.m */; };
+		C13921B22060AEA80004BEB3 /* JSEIMPChaoSongController.m in Sources */ = {isa = PBXBuildFile; fileRef = C13921B12060AEA50004BEB3 /* JSEIMPChaoSongController.m */; };
+		C13921B52060F19E0004BEB3 /* JSEIMPBuMenModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C13921B42060F19E0004BEB3 /* JSEIMPBuMenModel.m */; };
+		C13921B82060F7B10004BEB3 /* JSEIMPAllGangWeiPersonController.m in Sources */ = {isa = PBXBuildFile; fileRef = C13921B72060F7B10004BEB3 /* JSEIMPAllGangWeiPersonController.m */; };
+		C13921BB206103660004BEB3 /* JSEIMPUserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C13921BA206103660004BEB3 /* JSEIMPUserModel.m */; };
+		C13921BE206242BD0004BEB3 /* JSEIMPSureChaoSongPersonController.m in Sources */ = {isa = PBXBuildFile; fileRef = C13921BD206242BD0004BEB3 /* JSEIMPSureChaoSongPersonController.m */; };
+		C15192D9206A37AB00592481 /* JSEIMPNoGangWeiPersonController.m in Sources */ = {isa = PBXBuildFile; fileRef = C15192D8206A37AB00592481 /* JSEIMPNoGangWeiPersonController.m */; };
 		C196BB06202414C8006F6B3D /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = C196BA212023FF27006F6B3D /* libz.tbd */; };
 		C196BB07202414ED006F6B3D /* libbz2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = C196BA232023FF52006F6B3D /* libbz2.tbd */; };
 		C196BB092024154E006F6B3D /* libiconv.2.4.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = C196BA2A2023FFFD006F6B3D /* libiconv.2.4.0.tbd */; };
@@ -296,6 +302,8 @@
 		C1AC87A2204D35D400E884E1 /* JSEIMPGetTargetActivityIdModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C1AC8699204D35D300E884E1 /* JSEIMPGetTargetActivityIdModel.m */; };
 		C1AC87A3204D35D400E884E1 /* JSEIMPGetUserIdModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C1AC869B204D35D300E884E1 /* JSEIMPGetUserIdModel.m */; };
 		C1AC87A4204D35D400E884E1 /* JSEIMPZaiBanItemsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C1AC869D204D35D300E884E1 /* JSEIMPZaiBanItemsModel.m */; };
+		C1EE1BBE206893EF00F0E9BD /* JSEIMPZhuanQianReasonController.m in Sources */ = {isa = PBXBuildFile; fileRef = C1EE1BBD206893EF00F0E9BD /* JSEIMPZhuanQianReasonController.m */; };
+		C1EE1BC120689B8D00F0E9BD /* JSEIMPSureZhuanQianPersonController.m in Sources */ = {isa = PBXBuildFile; fileRef = C1EE1BC020689B8D00F0E9BD /* JSEIMPSureZhuanQianPersonController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -323,6 +331,18 @@
 		C13921A820564E7A0004BEB3 /* JSEIMPOtherShouRuHeTongDetailModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JSEIMPOtherShouRuHeTongDetailModel.m; sourceTree = "<group>"; };
 		C13921AD2057A59C0004BEB3 /* JSEIMPContentAndRangeView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JSEIMPContentAndRangeView.h; sourceTree = "<group>"; };
 		C13921AE2057A59C0004BEB3 /* JSEIMPContentAndRangeView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JSEIMPContentAndRangeView.m; sourceTree = "<group>"; };
+		C13921B02060AEA50004BEB3 /* JSEIMPChaoSongController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JSEIMPChaoSongController.h; sourceTree = "<group>"; };
+		C13921B12060AEA50004BEB3 /* JSEIMPChaoSongController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JSEIMPChaoSongController.m; sourceTree = "<group>"; };
+		C13921B32060F19E0004BEB3 /* JSEIMPBuMenModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JSEIMPBuMenModel.h; sourceTree = "<group>"; };
+		C13921B42060F19E0004BEB3 /* JSEIMPBuMenModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JSEIMPBuMenModel.m; sourceTree = "<group>"; };
+		C13921B62060F7B10004BEB3 /* JSEIMPAllGangWeiPersonController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JSEIMPAllGangWeiPersonController.h; sourceTree = "<group>"; };
+		C13921B72060F7B10004BEB3 /* JSEIMPAllGangWeiPersonController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JSEIMPAllGangWeiPersonController.m; sourceTree = "<group>"; };
+		C13921B9206103660004BEB3 /* JSEIMPUserModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JSEIMPUserModel.h; sourceTree = "<group>"; };
+		C13921BA206103660004BEB3 /* JSEIMPUserModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JSEIMPUserModel.m; sourceTree = "<group>"; };
+		C13921BC206242BD0004BEB3 /* JSEIMPSureChaoSongPersonController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JSEIMPSureChaoSongPersonController.h; sourceTree = "<group>"; };
+		C13921BD206242BD0004BEB3 /* JSEIMPSureChaoSongPersonController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JSEIMPSureChaoSongPersonController.m; sourceTree = "<group>"; };
+		C15192D7206A37AB00592481 /* JSEIMPNoGangWeiPersonController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JSEIMPNoGangWeiPersonController.h; sourceTree = "<group>"; };
+		C15192D8206A37AB00592481 /* JSEIMPNoGangWeiPersonController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JSEIMPNoGangWeiPersonController.m; sourceTree = "<group>"; };
 		C196BA122023FC32006F6B3D /* JSEIMP.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JSEIMP.pch; sourceTree = "<group>"; };
 		C196BA172023FED6006F6B3D /* libstdc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libstdc++.tbd"; path = "usr/lib/libstdc++.tbd"; sourceTree = SDKROOT; };
 		C196BA192023FEE4006F6B3D /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
@@ -966,6 +986,10 @@
 		C1AC869D204D35D300E884E1 /* JSEIMPZaiBanItemsModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSEIMPZaiBanItemsModel.m; sourceTree = "<group>"; };
 		C1C6EC131FBEC09500FDA439 /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
 		C1C6EC561FCD55C400FDA439 /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
+		C1EE1BBC206893EF00F0E9BD /* JSEIMPZhuanQianReasonController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JSEIMPZhuanQianReasonController.h; sourceTree = "<group>"; };
+		C1EE1BBD206893EF00F0E9BD /* JSEIMPZhuanQianReasonController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JSEIMPZhuanQianReasonController.m; sourceTree = "<group>"; };
+		C1EE1BBF20689B8D00F0E9BD /* JSEIMPSureZhuanQianPersonController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JSEIMPSureZhuanQianPersonController.h; sourceTree = "<group>"; };
+		C1EE1BC020689B8D00F0E9BD /* JSEIMPSureZhuanQianPersonController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JSEIMPSureZhuanQianPersonController.m; sourceTree = "<group>"; };
 		E49184B2F529332E524E6306 /* Pods-JSEIMP.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JSEIMP.debug.xcconfig"; path = "Pods/Target Support Files/Pods-JSEIMP/Pods-JSEIMP.debug.xcconfig"; sourceTree = "<group>"; };
 		E6C22083F882A16F454660EA /* Pods-JSEIMP.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JSEIMP.release.xcconfig"; path = "Pods/Target Support Files/Pods-JSEIMP/Pods-JSEIMP.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -1127,8 +1151,8 @@
 		C1AC8341204D35D200E884E1 /* class */ = {
 			isa = PBXGroup;
 			children = (
-				C1AC8342204D35D200E884E1 /* application */,
 				C1AC8475204D35D300E884E1 /* dynamic */,
+				C1AC8342204D35D200E884E1 /* application */,
 				C1AC863F204D35D300E884E1 /* mine */,
 				C1AC8649204D35D300E884E1 /* other */,
 				C1AC8664204D35D300E884E1 /* workDesktop */,
@@ -2580,19 +2604,19 @@
 		C1AC854E204D35D300E884E1 /* touBiaoGuanli */ = {
 			isa = PBXGroup;
 			children = (
+				C1AC85EC204D35D300E884E1 /* model */,
+				C1AC8638204D35D300E884E1 /* view */,
+				C1AC85CF204D35D300E884E1 /* controller */,
 				C1AC854F204D35D300E884E1 /* baoBiao */,
 				C1AC8558204D35D300E884E1 /* beforeTouBiao */,
 				C1AC85B9204D35D300E884E1 /* biaoHouAnalyze */,
 				C1AC85C4204D35D300E884E1 /* biaoShuInfo */,
-				C1AC85CF204D35D300E884E1 /* controller */,
 				C1AC85D2204D35D300E884E1 /* farmerBaoZhengJin */,
 				C1AC85E1204D35D300E884E1 /* lvYueBaiZhengJin */,
-				C1AC85EC204D35D300E884E1 /* model */,
 				C1AC85ED204D35D300E884E1 /* projectJiangXiang */,
 				C1AC85FC204D35D300E884E1 /* projectShouXuDeal */,
 				C1AC861F204D35D300E884E1 /* staffBeiAn */,
 				C1AC862A204D35D300E884E1 /* touBiaoBaoZhengJin */,
-				C1AC8638204D35D300E884E1 /* view */,
 			);
 			path = touBiaoGuanli;
 			sourceTree = "<group>";
@@ -3484,13 +3508,13 @@
 		C1AC8664204D35D300E884E1 /* workDesktop */ = {
 			isa = PBXGroup;
 			children = (
-				C1AC8665204D35D300E884E1 /* controller */,
 				C1AC8668204D35D300E884E1 /* daiBanItems */,
+				C1AC8685204D35D300E884E1 /* zaiBanItems */,
+				C1AC8678204D35D300E884E1 /* yiBanItems */,
+				C1AC8665204D35D300E884E1 /* controller */,
 				C1AC8675204D35D300E884E1 /* model */,
 				C1AC8676204D35D300E884E1 /* other */,
 				C1AC8677204D35D300E884E1 /* view */,
-				C1AC8678204D35D300E884E1 /* yiBanItems */,
-				C1AC8685204D35D300E884E1 /* zaiBanItems */,
 			);
 			path = workDesktop;
 			sourceTree = "<group>";
@@ -3645,6 +3669,18 @@
 				C1AC8690204D35D300E884E1 /* JSEIMPZaiBanItemsController.m */,
 				C1AC8691204D35D300E884E1 /* JSEIMPZaiBanItemsDetailController.h */,
 				C1AC8692204D35D300E884E1 /* JSEIMPZaiBanItemsDetailController.m */,
+				C13921B02060AEA50004BEB3 /* JSEIMPChaoSongController.h */,
+				C13921B12060AEA50004BEB3 /* JSEIMPChaoSongController.m */,
+				C13921B62060F7B10004BEB3 /* JSEIMPAllGangWeiPersonController.h */,
+				C13921B72060F7B10004BEB3 /* JSEIMPAllGangWeiPersonController.m */,
+				C15192D7206A37AB00592481 /* JSEIMPNoGangWeiPersonController.h */,
+				C15192D8206A37AB00592481 /* JSEIMPNoGangWeiPersonController.m */,
+				C13921BC206242BD0004BEB3 /* JSEIMPSureChaoSongPersonController.h */,
+				C13921BD206242BD0004BEB3 /* JSEIMPSureChaoSongPersonController.m */,
+				C1EE1BBC206893EF00F0E9BD /* JSEIMPZhuanQianReasonController.h */,
+				C1EE1BBD206893EF00F0E9BD /* JSEIMPZhuanQianReasonController.m */,
+				C1EE1BBF20689B8D00F0E9BD /* JSEIMPSureZhuanQianPersonController.h */,
+				C1EE1BC020689B8D00F0E9BD /* JSEIMPSureZhuanQianPersonController.m */,
 			);
 			path = controller;
 			sourceTree = "<group>";
@@ -3662,6 +3698,10 @@
 				C1AC869B204D35D300E884E1 /* JSEIMPGetUserIdModel.m */,
 				C1AC869C204D35D300E884E1 /* JSEIMPZaiBanItemsModel.h */,
 				C1AC869D204D35D300E884E1 /* JSEIMPZaiBanItemsModel.m */,
+				C13921B32060F19E0004BEB3 /* JSEIMPBuMenModel.h */,
+				C13921B42060F19E0004BEB3 /* JSEIMPBuMenModel.m */,
+				C13921B9206103660004BEB3 /* JSEIMPUserModel.h */,
+				C13921BA206103660004BEB3 /* JSEIMPUserModel.m */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -3916,6 +3956,7 @@
 				C1AC878A204D35D400E884E1 /* JSEIMPNavigationController.m in Sources */,
 				C1AC86EE204D35D400E884E1 /* JSEIMPJianSheOptionController.m in Sources */,
 				C1AC86CB204D35D400E884E1 /* UIViewController+DDKit.m in Sources */,
+				C1EE1BC120689B8D00F0E9BD /* JSEIMPSureZhuanQianPersonController.m in Sources */,
 				C1AC8789204D35D400E884E1 /* JSEIMPLoginController.m in Sources */,
 				C1AC8705204D35D400E884E1 /* JSEIMPNewWenMingShiGongTiaoKuanView.m in Sources */,
 				C1AC8782204D35D400E884E1 /* JSEIMPTouBiaoBaoZhengJinModel.m in Sources */,
@@ -3933,6 +3974,7 @@
 				C1AC8755204D35D400E884E1 /* JSEIMPNewXianChangCheckController.m in Sources */,
 				C1AC872E204D35D400E884E1 /* JSProjectDynamicImageViewController.m in Sources */,
 				C1AC86BB204D35D300E884E1 /* UIViewController+EZBackPop.m in Sources */,
+				C13921B52060F19E0004BEB3 /* JSEIMPBuMenModel.m in Sources */,
 				C1AC872B204D35D400E884E1 /* JSEIMPProjectListController.m in Sources */,
 				C1AC86E3204D35D400E884E1 /* HIKLoadView.m in Sources */,
 				C1AC86FD204D35D400E884E1 /* JSEIMPFuJianView.m in Sources */,
@@ -3964,6 +4006,7 @@
 				C1AC870D204D35D400E884E1 /* JSEIMPZhuanYeChengBaoHeTongController.m in Sources */,
 				C1AC86A4204D35D300E884E1 /* EZAddByQRCodeViewController.m in Sources */,
 				C1AC8791204D35D400E884E1 /* JSEIMPWorkDesktopController.m in Sources */,
+				C13921B82060F7B10004BEB3 /* JSEIMPAllGangWeiPersonController.m in Sources */,
 				C1AC8724204D35D400E884E1 /* JSEIMPSheBeiZuLinHeTongModel.m in Sources */,
 				C1AC86C6204D35D400E884E1 /* UIImage+DDKit.m in Sources */,
 				C1AC8744204D35D400E884E1 /* JSEIMPNewTouBiaoController.m in Sources */,
@@ -3992,6 +4035,7 @@
 				C1AC871B204D35D400E884E1 /* JSEIMPChildLaoWuFenBaoHeTongController.m in Sources */,
 				C1AC8701204D35D400E884E1 /* JSEIMPNewHeTongZhiFuTiaoKuanView.m in Sources */,
 				C1AC8778204D35D400E884E1 /* JSEIMPShiGongXuKeZhengBanLiController.m in Sources */,
+				C1EE1BBE206893EF00F0E9BD /* JSEIMPZhuanQianReasonController.m in Sources */,
 				C1AC8737204D35D400E884E1 /* HAItemManager.m in Sources */,
 				C1AC8793204D35D400E884E1 /* JSEIMPDaiBanItemsDetailController.m in Sources */,
 				C1AC875F204D35D400E884E1 /* JSEIMPFarmerBaoZhengJinDetailController.m in Sources */,
@@ -4007,6 +4051,7 @@
 				C1AC86C9204D35D400E884E1 /* UISegmentedControl+DDKit.m in Sources */,
 				C1AC8792204D35D400E884E1 /* JSEIMPDaiBanItemsController.m in Sources */,
 				C1AC86A0204D35D300E884E1 /* JSEIMPAplicationController.m in Sources */,
+				C15192D9206A37AB00592481 /* JSEIMPNoGangWeiPersonController.m in Sources */,
 				C1AC8735204D35D400E884E1 /* HAAnimationTool.m in Sources */,
 				C1AC878F204D35D400E884E1 /* LCNewFeatureVC.m in Sources */,
 				C1AC8746204D35D400E884E1 /* JSEIMPProjectInfoView.m in Sources */,
@@ -4041,7 +4086,9 @@
 				C1AC8722204D35D400E884E1 /* JSEIMPChildSheBeiZuLinHeTongDetailController.m in Sources */,
 				C1AC8750204D35D400E884E1 /* JSEIMPProjectStaffStoreController.m in Sources */,
 				C1AC86E5204D35D400E884E1 /* HIKLoadViewItem.m in Sources */,
+				C13921BB206103660004BEB3 /* JSEIMPUserModel.m in Sources */,
 				C1AC8768204D35D400E884E1 /* JSEIMPPorjectJiangXiangController.m in Sources */,
+				C13921B22060AEA80004BEB3 /* JSEIMPChaoSongController.m in Sources */,
 				C1AC86B5204D35D300E884E1 /* EZPlaybackViewController.m in Sources */,
 				C1AC86E2204D35D400E884E1 /* HIKLoadPercentView.m in Sources */,
 				C1AC8756204D35D400E884E1 /* JSEIMPXianChangCheckController.m in Sources */,
@@ -4056,6 +4103,7 @@
 				C1AC879B204D35D400E884E1 /* JSEIMPBackReasonController.m in Sources */,
 				C13921A62056258E0004BEB3 /* JSEIMPOtherShouRuHeTongDetailController.m in Sources */,
 				C1AC86C3204D35D300E884E1 /* NSString+DDKit.m in Sources */,
+				C13921BE206242BD0004BEB3 /* JSEIMPSureChaoSongPersonController.m in Sources */,
 				C1AC8709204D35D400E884E1 /* JSEIMPShouKuanJieDianView.m in Sources */,
 				C1AC8726204D35D400E884E1 /* JSEIMPSheBeiZuLinHeTongController.m in Sources */,
 				C1AC86A5204D35D300E884E1 /* EZCalendarViewController.m in Sources */,

@@ -423,6 +423,8 @@ static NSString *cellID = @"cellID";
         _cell.detailTextLabel.textColor = [UIColor orangeColor];
     }else if ([_statusMArray[indexPath.row] isEqualToString:@"已审"]){
         _cell.detailTextLabel.textColor = [UIColor greenColor];
+    }else if ([_statusMArray[indexPath.row] isEqualToString:@"作废"]){
+        _cell.detailTextLabel.textColor = [UIColor redColor];
     }
     
     return _cell;

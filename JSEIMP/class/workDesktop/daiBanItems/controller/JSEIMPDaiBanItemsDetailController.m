@@ -33,6 +33,8 @@
 @property(nonatomic,strong)NSString *creator;
 //状态
 @property(nonatomic,strong)NSString *status;
+//canSignup(可签收)
+@property(nonatomic,assign)NSInteger canSignup;
 
 @end
 
@@ -128,7 +130,7 @@
         
         dispatch_async(dispatch_get_main_queue(), ^{
             
-            [self setupUI];
+            [self isShowButtons];
         });
         
     } onErrorInfo:nil];
@@ -197,13 +199,16 @@
         _statusLabel.textColor = [UIColor greenColor];
     }
     
-    [_qianShouButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        
-        make.top.mas_equalTo(_view.mas_top).offset(16);
-        make.right.mas_equalTo(_view.mas_right).offset(-16);
-        make.width.mas_equalTo(50);
-        make.height.mas_equalTo(20);
-    }];
+    if (_canSignup == 1) {
+     
+        [_qianShouButton mas_makeConstraints:^(MASConstraintMaker *make) {
+            
+            make.top.mas_equalTo(_view.mas_top).offset(16);
+            make.right.mas_equalTo(_view.mas_right).offset(-16);
+            make.width.mas_equalTo(50);
+            make.height.mas_equalTo(20);
+        }];
+    }
     
     [_label1 mas_makeConstraints:^(MASConstraintMaker *make) {
         
@@ -341,6 +346,19 @@
         make.width.mas_equalTo(UIScreenW);
         make.bottom.mas_equalTo(_label10.mas_bottom).offset(16);
     }];
+}
+
+-(void)isShowButtons{
+    
+    [JSEIMPNetWorking getUserIdAndReturnTargetActivityInstanceIdWithActivityId:_activityId OnSuccess:^(NSInteger canReturnPrevious,NSInteger *canRevokeBack,NSInteger canDestroy,NSInteger canSend,NSInteger canSignup,NSInteger canExpandCopy,NSInteger canTransferVerify,NSInteger returnTargetActivityInstanceId,NSMutableArray *userIdMArray){
+        
+        _canSignup = canSignup;//签收按钮判断
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            
+            [self setupUI];
+        });
+    } onErrorInfo:nil];
 }
 
 -(void)clickButton:(UIButton *)button{

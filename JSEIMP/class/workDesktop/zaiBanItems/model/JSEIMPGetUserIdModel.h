@@ -27,7 +27,18 @@
 @property(nonatomic,strong)GetInComeActivityModel *inComeActivity;
 
 @property(nonatomic,assign)NSInteger canReturnPrevious;
-
+//撤回
+@property(nonatomic,assign)NSInteger canRevokeBack;
+//取消
+@property(nonatomic,assign)NSInteger canDestroy;
+//发送
+@property(nonatomic,assign)NSInteger canSend;
+//签收
+@property(nonatomic,assign)NSInteger canSignup;
+//抄送
+@property(nonatomic,assign)NSInteger canExpandCopy;
+//转签
+@property(nonatomic,assign)NSInteger canTransferVerify;
 
 @end
 

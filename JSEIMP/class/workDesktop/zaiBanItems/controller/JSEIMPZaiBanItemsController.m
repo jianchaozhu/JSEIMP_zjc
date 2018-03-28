@@ -62,7 +62,10 @@ static NSString *cellID = @"cellID";
         _contractIdMArray = contractIdMArray.copy;
         _processInstanceIdMArray = processInstanceIdMArray.copy;
         
-        [_tableView reloadData];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            
+           [_tableView reloadData];
+        });
         
     } onErrorInfo:nil];
 }

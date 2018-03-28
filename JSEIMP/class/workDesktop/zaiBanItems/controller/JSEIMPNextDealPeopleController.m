@@ -86,26 +86,34 @@
     for (int i = 0; i < _userNameMArray.count; i++) {
         
         _button = [self setButtonWithTag:i Action:@selector(clickButton:)];
-        _button.frame = CGRectMake(16, 80 + 30 * i, 30, 30);
+        _button.frame = CGRectMake(16, 80 + 50 * i, 30, 30);
         
         _userNameLabel = [self setupLabelWithText:_userNameMArray[i] TextColor:[UIColor darkTextColor] Font:[UIFont systemFontOfSize:26]];
         _userNameLabel.textAlignment = NSTextAlignmentRight;
-        _userNameLabel.frame = CGRectMake(self.view.center.x, 80 + 30 * i, self.view.bounds.size.width / 2 - 16, 30);
+        _userNameLabel.frame = CGRectMake(self.view.center.x, 80 + 50 * i, self.view.bounds.size.width / 2 - 16, 30);
         
     }
 }
 
 -(void)clickButton:(UIButton *)button{
     
-    if (button.tag == 0 && button.selected == NO) {
+    [self buttonClickWithTag:button.tag Status:button.selected Button:button];
+
+}
+#pragma mark - 单选按钮的封装方法
+-(void)buttonClickWithTag:(NSInteger)buttonTag Status:(BOOL)buttonStatus Button:(UIButton *)button{
+    
+    NSLog(@"%zd,%zd",button.tag,buttonTag);
+    
+    if (button.tag == buttonTag && buttonStatus == NO) {
         
         _buttonView = [self setButtonView];
         _buttonView.frame = CGRectMake(8, 8, 14, 14);
         [button addSubview:_buttonView];
         button.selected = YES;
         _sureButton.enabled = YES;
-    }else if (button.tag == 0 && button.selected == YES){
-
+    }else if (button.tag == buttonTag && button.selected == YES){
+        
         [_buttonView removeFromSuperview];
         button.selected = NO;
         _sureButton.enabled = NO;

@@ -38,6 +38,8 @@
 #import "JSEIMPSheBeiZuLinHeTongDetailModel.h"
 #import "JSEIMPOtherShouRuHeTongModel.h"
 #import "JSEIMPOtherShouRuHeTongDetailModel.h"
+#import "JSEIMPBuMenModel.h"
+#import "JSEIMPUserModel.h"
 #import "JSEIMPError.h"
 
 @implementation JSEIMPNetWorking
@@ -273,6 +275,8 @@
     [manager POST:API_TOUBIAOBAOZHENJIN parameters:paramaters progress:^(NSProgress * _Nonnull uploadProgress) {
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         
+        NSLog(@"%@",responseObject);
+        
         if (responseObject != nil) {
             
             NSDictionary *dict = (NSDictionary *)responseObject;
@@ -378,6 +382,8 @@
     [manager POST:API_FARMERBAOZHENJIN parameters:paramaters progress:^(NSProgress * _Nonnull uploadProgress) {
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
 
+        NSLog(@"%@",responseObject);
+        
         if (responseObject != nil) {
             
             NSDictionary *dict = (NSDictionary *)responseObject;
@@ -1963,6 +1969,12 @@
             
             NSInteger returnTargetActivityInstanceId = model.result.inComeActivity.ID;
             NSInteger canReturnPrevious = model.result.canReturnPrevious;
+            NSInteger canRevokeBack = model.result.canRevokeBack;//撤回
+            NSInteger canDestroy = model.result.canDestroy;//取消
+            NSInteger canSend = model.result.canSend;//发送
+            NSInteger canSignup = model.result.canSignup;//签收
+            NSInteger canExpandCopy = model.result.canExpandCopy;//抄送
+            NSInteger canTransferVerify = model.result.canTransferVerify;//转签
             
             NSMutableArray *userIdMArray = [NSMutableArray array];
             for (int i = 0; i < model.result.inComeActivity.workItems.count; i++) {
@@ -1972,7 +1984,7 @@
                 [userIdMArray addObject:userId];
             }
             
-            response(canReturnPrevious,returnTargetActivityInstanceId,userIdMArray);
+            response(canReturnPrevious,canRevokeBack,canDestroy,canSend,canSignup,canExpandCopy,canTransferVerify,returnTargetActivityInstanceId,userIdMArray);
         } else {
             
             errorInfo(noData);
@@ -2093,6 +2105,187 @@
     }];
 }
 
+//取消操作
++(void)PostCancelStepWithActivityId:(NSInteger)activityId OnSuccess:(void (^)())response onErrorInfo:(void (^)())errorInfo{
+    
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    manager.responseSerializer = [AFJSONResponseSerializer serializer];
+//    manager.requestSerializer = [AFJSONRequestSerializer serializer];
+        manager.requestSerializer = [AFHTTPRequestSerializer serializer];
+    
+    NSDictionary *parameters = @{@"activityId":@(activityId)};
+    
+    [self setPublicHeader:manager];
+    [manager POST:API_POSTCANCEL parameters:parameters progress:^(NSProgress * _Nonnull uploadProgress) {
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        
+        NSLog(@"%@",responseObject);
+        
+        if (responseObject != nil) {
+            
+            response();
+        } else {
+            errorInfo();
+        }
+        
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        
+        NSLog(@"%@",error);
+    }];
+}
+
+//获得部门列表
++(void)getBuMenListWithShangJiBuMen:(NSString *)shangJiBuMen IsIncludeZiJieDian:(NSString *)isIncludeZiJieDian SkipCount:(NSInteger)skipCount MaxResultCount:(NSInteger)maxResultCount OnSuccess:(void (^)())response onErrorInfo:(void (^)())errorInfo{
+    
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    manager.responseSerializer = [AFJSONResponseSerializer serializer];
+    manager.requestSerializer = [AFJSONRequestSerializer serializer];
+    
+    NSDictionary *parameters = @{@"ParentId":shangJiBuMen,
+                                 @"IncludeOffspring":isIncludeZiJieDian,
+                                 @"SkipCount":@(skipCount),
+                                 @"MaxResultCount":@(maxResultCount)
+                                 };
+    
+    [self setPublicHeader:manager];
+    [manager GET:API_GETBUMENLIST parameters:parameters progress:^(NSProgress * _Nonnull uploadProgress) {
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        
+        NSLog(@"%@",responseObject);
+        
+        if (responseObject != nil) {
+            
+            NSDictionary *dict = (NSDictionary *)responseObject;
+            
+            JSEIMPBuMenModel *model = [JSEIMPBuMenModel mj_objectWithKeyValues:dict];
+            
+            NSMutableArray *buMenNameMArray = [NSMutableArray array];
+            for (int i = 0; i < model.result.count; i++) {
+                
+                NSString *buMenName = model.result[i].unitName;
+                
+                [buMenNameMArray addObject:buMenName];
+            }
+            
+            response(buMenNameMArray);
+        } else {
+            
+            errorInfo(noData);
+        }
+        
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        
+        NSLog(@"%@",error);
+    }];
+}
+
+//获得全部用户列表
++(void)getUserListWithSkipCount:(NSInteger)skipCount MaxResultCount:(NSInteger)maxResultCount OnSuccess:(void (^)())response onErrorInfo:(void (^)())errorInfo{
+    
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    manager.responseSerializer = [AFJSONResponseSerializer serializer];
+    manager.requestSerializer = [AFJSONRequestSerializer serializer];
+    
+    NSDictionary *parameters = @{@"SkipCount":@(skipCount),
+                                 @"MaxResultCount":@(maxResultCount)
+                                 };
+    
+    [self setPublicHeader:manager];
+    [manager GET:API_GETUSERLIST parameters:parameters progress:^(NSProgress * _Nonnull uploadProgress) {
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        
+        NSLog(@"%@",responseObject);
+        
+        if (responseObject != nil) {
+            
+            NSDictionary *dict = (NSDictionary *)responseObject;
+            
+            JSEIMPUserModel *model = [JSEIMPUserModel mj_objectWithKeyValues:dict];
+            
+            NSMutableArray *userNameMArray = [NSMutableArray array];
+            NSMutableArray *userIdMArray = [NSMutableArray array];
+            for (int i = 0; i < model.result.count; i++) {
+                
+                NSString *userName = model.result[i].userName;
+                NSString *userId = model.result[i].userId;
+                
+                if (userName == nil) {
+                 
+                    userName = @"";
+                }if (userId == nil) {
+                    
+                    userId = @"";
+                }
+                [userNameMArray addObject:userName];
+                [userIdMArray addObject:userId];
+            }
+
+            response(userNameMArray,userIdMArray);
+        } else {
+            
+            errorInfo(noData);
+        }
+        
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        
+        NSLog(@"%@",error);
+    }];
+}
+
+//获得无岗位用户列表
++(void)getUserListWithStationIdIfNull:(NSString *)stationIdIfNull SkipCount:(NSInteger)skipCount MaxResultCount:(NSInteger)maxResultCount OnSuccess:(void (^)())response onErrorInfo:(void (^)())errorInfo{
+    
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    manager.responseSerializer = [AFJSONResponseSerializer serializer];
+    manager.requestSerializer = [AFJSONRequestSerializer serializer];
+    
+    NSDictionary *parameters = @{@"tationIdIfNull":stationIdIfNull,
+                                 @"SkipCount":@(skipCount),
+                                 @"MaxResultCount":@(maxResultCount)
+                                 };
+    
+    [self setPublicHeader:manager];
+    [manager GET:API_GETUSERLIST parameters:parameters progress:^(NSProgress * _Nonnull uploadProgress) {
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        
+        NSLog(@"%@",responseObject);
+        
+        if (responseObject != nil) {
+            
+            NSDictionary *dict = (NSDictionary *)responseObject;
+            
+            JSEIMPUserModel *model = [JSEIMPUserModel mj_objectWithKeyValues:dict];
+            
+            NSMutableArray *userNameMArray = [NSMutableArray array];
+            NSMutableArray *userIdMArray = [NSMutableArray array];
+            for (int i = 0; i < model.result.count; i++) {
+                
+                NSString *userName = model.result[i].userName;
+                NSString *userId = model.result[i].userId;
+                
+                if (userName == nil) {
+                    
+                    userName = @"";
+                }if (userId == nil) {
+                    
+                    userId = @"";
+                }
+                [userNameMArray addObject:userName];
+                [userIdMArray addObject:userId];
+            }
+            
+            response(userNameMArray,userIdMArray);
+        } else {
+            
+            errorInfo(noData);
+        }
+        
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        
+        NSLog(@"%@",error);
+    }];
+}
+
 //获得大象云Token
 +(void)getDaXiangYunTokenwithSuccessBlock:(void (^)())response{
     
@@ -2128,6 +2321,71 @@
             
         }
 
+        NSLog(@"%@",error);
+    }];
+}
+
+//抄送操作
++(void)PostChaoSongStepWithActivityInstanceId:(NSInteger)activityInstanceId TargetUsers:(NSMutableArray *)targetUsers OnSuccess:(void (^)())response onErrorInfo:(void (^)())errorInfo{
+    
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    manager.responseSerializer = [AFJSONResponseSerializer serializer];
+    manager.requestSerializer = [AFJSONRequestSerializer serializer];
+//    manager.requestSerializer = [AFHTTPRequestSerializer serializer];
+    
+    NSDictionary *parameters = @{@"activityInstanceId":@(activityInstanceId),
+                                 @"targetUsers":targetUsers
+                                 };
+    NSLog(@"targetUsers：%@",targetUsers);
+    
+    [self setPublicHeader:manager];
+    [manager POST:API_POSTCHAOSONG parameters:parameters progress:^(NSProgress * _Nonnull uploadProgress) {
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        
+        NSLog(@"%@",responseObject);
+        
+        if (responseObject != nil) {
+            
+            response();
+        } else {
+            errorInfo();
+        }
+        
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        
+        NSLog(@"%@",error);
+    }];
+}
+
+//转签操作
++(void)PostZhuanQianStepWithReason:(NSString *)reason ActivityInstanceId:(NSInteger)activityInstanceId TargetUsers:(NSMutableArray *)targetUsers OnSuccess:(void (^)())response onErrorInfo:(void (^)())errorInfo{
+    
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    manager.responseSerializer = [AFJSONResponseSerializer serializer];
+    manager.requestSerializer = [AFJSONRequestSerializer serializer];
+    //    manager.requestSerializer = [AFHTTPRequestSerializer serializer];
+    
+    NSDictionary *parameters = @{@"reason":reason,
+                                 @"activityInstanceId":@(activityInstanceId),
+                                 @"targetUsers":targetUsers
+                                 };
+    NSLog(@"targetUsers：%@",targetUsers);
+    
+    [self setPublicHeader:manager];
+    [manager POST:API_POSTZHUANQIAN parameters:parameters progress:^(NSProgress * _Nonnull uploadProgress) {
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        
+        NSLog(@"%@",responseObject);
+        
+        if (responseObject != nil) {
+            
+            response();
+        } else {
+            errorInfo();
+        }
+        
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        
         NSLog(@"%@",error);
     }];
 }
