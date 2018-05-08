@@ -13,7 +13,7 @@
 @property(nonatomic,strong)NSString *loginId;
 
 @property(nonatomic,strong)NSString *userId;
-//部门名称
+//用户名称
 @property(nonatomic,strong)NSString *userName;
 
 @end

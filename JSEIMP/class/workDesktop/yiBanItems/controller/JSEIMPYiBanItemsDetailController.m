@@ -192,7 +192,14 @@
     _creatorLabel.textAlignment = NSTextAlignmentRight;
     
     _label10 = [self setupLabelWithText:@"合同状态" TextColor:[UIColor darkTextColor] Font:[UIFont systemFontOfSize:20]];
-    _statusLabel = [self setupLabelWithText:_status TextColor:[UIColor darkGrayColor] Font:[UIFont boldSystemFontOfSize:16]];
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    
+    NSLog(@"%@",[defaults valueForKey:@"status"]);
+    if ([[defaults valueForKey:@"status"] isEqualToString:@"已审"]) {
+        _statusLabel = [self setupLabelWithText:@"已审" TextColor:[UIColor darkGrayColor] Font:[UIFont boldSystemFontOfSize:16]];
+    }else{
+        _statusLabel = [self setupLabelWithText:_status TextColor:[UIColor darkGrayColor] Font:[UIFont boldSystemFontOfSize:16]];
+    }
     _statusLabel.textAlignment = NSTextAlignmentRight;
     if ([_statusLabel.text isEqualToString:@"待审"] || [_statusLabel.text    isEqualToString:@"审批中"]) {
         _statusLabel.textColor = [UIColor orangeColor];
@@ -395,7 +402,7 @@
 
 -(void)isShowButtons{
     
-    [JSEIMPNetWorking getUserIdAndReturnTargetActivityInstanceIdWithActivityId:_activityId OnSuccess:^(NSInteger canReturnPrevious,NSInteger canRevokeBack,NSInteger canDestroy,NSInteger canSend,NSInteger canSignup,NSInteger canExpandCopy,NSInteger canTransferVerify,NSInteger returnTargetActivityInstanceId,NSMutableArray *userIdMArray){
+    [JSEIMPNetWorking getUserIdAndReturnTargetActivityInstanceIdWithActivityId:_activityId OnSuccess:^(NSInteger canReturnPrevious,NSInteger canRevokeBack,NSInteger canDestroy,NSInteger canSend,NSInteger canSignup,NSInteger canExpandCopy,NSInteger canTransferVerify,NSInteger canExpandVerify,NSInteger returnTargetActivityInstanceId,NSMutableArray *userIdMArray){
         
         _canRevokeBack = canRevokeBack;//撤回按钮判断
         

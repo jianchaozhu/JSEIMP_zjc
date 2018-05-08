@@ -39,6 +39,8 @@
 @property(nonatomic,assign)NSInteger canExpandCopy;
 //转签
 @property(nonatomic,assign)NSInteger canTransferVerify;
+//加签
+@property(nonatomic,assign)NSInteger canExpandVerify;
 
 @end
 

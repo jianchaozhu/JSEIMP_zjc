@@ -10,7 +10,6 @@
 #import "JSEIMPTouBiaoGuanLiController.h"
 #import "JSEIMPHeTongGuanLiController.h"
 #import "JSEIMPQualityGuanLiController.h"
-#import <SVProgressHUD.h>
 
 static NSString *cellID = @"cellID";
 
@@ -34,14 +33,6 @@ static NSString *cellID = @"cellID";
     self.title = @"动态";
     
     [self setupUI];
-    
-    dispatch_async(dispatch_get_global_queue(0, 0), ^{
-        
-        [NSThread sleepForTimeInterval:0.5];
-        
-        [SVProgressHUD dismiss];
-        
-    });
     
 }
 

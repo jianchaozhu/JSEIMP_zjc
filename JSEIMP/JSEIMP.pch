@@ -17,6 +17,8 @@
 #import "EZOpenSDK.h"
 #import "EZGlobalSDK.h"
 #import "GlobalKit.h"
+#import "JSEIMPLoginController.h"
+#import <SVProgressHUD.h>
 
 #define EZOPENSDK [EZOpenSDK class]
 

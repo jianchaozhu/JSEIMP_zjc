@@ -12,13 +12,18 @@
 #define FIlEIP @"http://192.168.2.53:9003/"
 //周军本地API
 //#define IP @"api.jaso.com"
+
+//#define IP @"192.168.2.55:6002"
 //正式API
-#define IP @"192.168.2.55:6002"
+#define IP @"101.95.142.42:6002"
 //#define IP @"api.jaso.com.cn:6002"
+
 //hamazon登录API
+//#define HALOGINIP @"192.168.2.53:8020"
 #define HALOGINIP @"sso.jaso.com.cn:83"
 //hamazon工作流正式API
 #define HAWORKIP @"wf.jaso.com.cn:84/app"
+//#define HAWORKIP @"192.168.2.53:8030/app"
 //hamazon工作流测试API
 //#define HAWORKIP @"192.168.2.53:8030/app"
 //登录

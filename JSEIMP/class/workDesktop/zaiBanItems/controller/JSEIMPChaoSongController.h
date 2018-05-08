@@ -12,8 +12,8 @@
 
 @property(nonatomic,assign)NSInteger activityId;
 
-@property(nonatomic,strong)NSString *buttonText;
-
 @property(nonatomic,strong)NSString *option;
+
+@property(nonatomic,strong)NSString *buttonText;
 
 @end

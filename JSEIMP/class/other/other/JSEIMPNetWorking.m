@@ -668,14 +668,15 @@
             NSString *qianYueDate = model.ContractDetails.CONTRACTDATE;
             NSString *startDate = model.ContractDetails.STARTDATE;
             NSString *endDate = model.ContractDetails.ENDDATE;
-            NSString *days = model.ContractDetails.DAYS;
-            NSString *qualityBaoXiuMoney = [NSString stringWithFormat:@"%@ %%",model.ContractDetails.REPAIEFEE];
-            NSString *wenMingShiGongMoney = model.ContractDetails.CIVILIZATIONFEE;
+            NSString *days = model.ContractDetails.DAYS != nil ? model.ContractDetails.DAYS : @"";
+        
+            NSString *qualityBaoXiuMoney = model.ContractDetails.REPAIEFEE != nil ? [NSString stringWithFormat:@"%@ %%",model.ContractDetails.REPAIEFEE] : @"";
+            NSString *wenMingShiGongMoney = model.ContractDetails.CIVILIZATIONFEE != nil ? model.ContractDetails.CIVILIZATIONFEE : @"";
             NSString *creator = model.ContractDetails.CREATOR;
-            NSString *chengBaoFanWei = model.ContractDetails.CONTENTTERM;
-            NSString *qualityTiaoKuan = model.ContractDetails.QUALITYTERM;
-            NSString *shiGongTiaoKuan = model.ContractDetails.CIVILTERM;
-            NSString *otherTiaoKuan = model.ContractDetails.OTHERTERM;
+            NSString *chengBaoFanWei = model.ContractDetails.CONTENTTERM != nil ? model.ContractDetails.CONTENTTERM : @"";
+            NSString *qualityTiaoKuan = model.ContractDetails.QUALITYTERM != nil ? model.ContractDetails.QUALITYTERM : @"";
+            NSString *shiGongTiaoKuan = model.ContractDetails.CIVILTERM != nil ? model.ContractDetails.CIVILTERM : @"";
+            NSString *otherTiaoKuan = model.ContractDetails.OTHERTERM != nil ? model.ContractDetails.OTHERTERM : @"";
             
             NSString *finalQianYueDate = [qianYueDate stringByReplacingOccurrencesOfString:@"T00:00:00" withString:@""];
             NSString *finalStartDate = [startDate stringByReplacingOccurrencesOfString:@"T00:00:00" withString:@""];
@@ -1838,14 +1839,17 @@
             JSEIMPGetTargetActivityIdModel *model = [JSEIMPGetTargetActivityIdModel mj_objectWithKeyValues:dict];
             
             NSMutableArray *targetActivityIdMArray = [NSMutableArray array];
+            NSMutableArray *nameMArray = [NSMutableArray array];
             for (int i = 0; i < model.result.items.count; i++) {
                 
                 NSString *targetActivityId = model.result.items[i].to;
+                NSString *name = model.result.items[i].name;
                 
                 [targetActivityIdMArray addObject:targetActivityId];
+                [nameMArray addObject:name];
             }
             
-            response(targetActivityIdMArray);
+            response(targetActivityIdMArray,nameMArray);
         } else {
             
             errorInfo(noData);
@@ -1891,7 +1895,7 @@
                 NSString *loginId = model.result.items[i].loginId;
                 NSString *roleId = model.result.items[i].roleId;
                 NSString *userId = model.result.items[i].userId;
-                NSString *userName = model.result.items[i].userName;
+                NSString *userName = model.result.items[i].userName != nil ?  model.result.items[i].userName : @"";
                 NSString *userSatationId = model.result.items[i].userStationId;
                 NSString *userUnitId = model.result.items[i].userUnitId;
                 
@@ -1921,29 +1925,56 @@
     manager.responseSerializer = [AFJSONResponseSerializer serializer];
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
 //    manager.requestSerializer = [AFHTTPRequestSerializer serializer];
-    
-    NSDictionary *parameters = @{@"currentActivityId":@(currentActivityId),
-                                 @"targetActivityId":targetActivityId,
-                                 @"targetActivityPerformers":@[@{@"activityId":activityId,@"performers":@[@{@"userId":userId,@"loginId":loginId,@"userName":userName,@"userStationId":userStationId,@"userUnitId":userUnitId,@"roleId":roleId}]}],@"opinion":opinion
-                                 };
-    
-    [self setPublicHeader:manager];
-    [manager POST:API_AGREETONEXTSTEP parameters:parameters progress:^(NSProgress * _Nonnull uploadProgress) {
-    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+    if (userId != nil) {
         
-        NSLog(@"%@",responseObject);
+        NSDictionary *parameters = @{@"currentActivityId":@(currentActivityId),
+                                     @"targetActivityId":targetActivityId,
+                                     @"targetActivityPerformers":@[@{@"activityId":activityId,@"performers":@[@{@"userId":userId,@"loginId":loginId,@"userName":userName,@"userStationId":userStationId,@"userUnitId":userUnitId,@"roleId":roleId}]}],@"opinion":opinion
+                                     };
         
-        if (responseObject != nil) {
+        [self setPublicHeader:manager];
+        [manager POST:API_AGREETONEXTSTEP parameters:parameters progress:^(NSProgress * _Nonnull uploadProgress) {
+        } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
             
-            response();
-        } else {
-            errorInfo();
-        }
+            NSLog(@"%@",responseObject);
+            
+            if (responseObject != nil) {
+                
+                response();
+            } else {
+                errorInfo();
+            }
+            
+        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+            
+            NSLog(@"%@",error);
+        }];
+    }else if (userId == nil){
         
-    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        NSDictionary *parameters = @{@"currentActivityId":@(currentActivityId),
+                                     @"targetActivityId":targetActivityId,
+                                     @"targetActivityPerformers":@[@{@"activityId":activityId,@"performers":@""}],
+                                     @"opinion":opinion
+                                     };
         
-        NSLog(@"%@",error);
-    }];
+        [self setPublicHeader:manager];
+        [manager POST:API_AGREETONEXTSTEP parameters:parameters progress:^(NSProgress * _Nonnull uploadProgress) {
+        } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+            
+            NSLog(@"%@",responseObject);
+            
+            if (responseObject != nil) {
+                
+                response();
+            } else {
+                errorInfo();
+            }
+            
+        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+            
+            NSLog(@"%@",error);
+        }];
+    }
 }
 
 //在办中点击退回上一步，获得userId和returnTargetActivityInstanceId
@@ -1975,6 +2006,7 @@
             NSInteger canSignup = model.result.canSignup;//签收
             NSInteger canExpandCopy = model.result.canExpandCopy;//抄送
             NSInteger canTransferVerify = model.result.canTransferVerify;//转签
+            NSInteger canExpandVerify = model.result.canExpandVerify;//加签
             
             NSMutableArray *userIdMArray = [NSMutableArray array];
             for (int i = 0; i < model.result.inComeActivity.workItems.count; i++) {
@@ -1984,7 +2016,7 @@
                 [userIdMArray addObject:userId];
             }
             
-            response(canReturnPrevious,canRevokeBack,canDestroy,canSend,canSignup,canExpandCopy,canTransferVerify,returnTargetActivityInstanceId,userIdMArray);
+            response(canReturnPrevious,canRevokeBack,canDestroy,canSend,canSignup,canExpandCopy,canTransferVerify,canExpandVerify,returnTargetActivityInstanceId,userIdMArray);
         } else {
             
             errorInfo(noData);
@@ -2160,14 +2192,488 @@
             JSEIMPBuMenModel *model = [JSEIMPBuMenModel mj_objectWithKeyValues:dict];
             
             NSMutableArray *buMenNameMArray = [NSMutableArray array];
+            NSMutableArray *buMenInJiaShiGroupMArray = [NSMutableArray array];
             for (int i = 0; i < model.result.count; i++) {
                 
                 NSString *buMenName = model.result[i].unitName;
+                NSString *buMenNameInJiaShiGroup = model.result[i].unitName;
+                NSString *unitId = model.result[i].unitId;
+                
+                if ([buMenNameInJiaShiGroup isEqualToString:@"集团管理部门"] && [unitId isEqualToString:@"001_01"]) {
+                    
+                    [buMenInJiaShiGroupMArray addObject:buMenNameInJiaShiGroup];
+                }if ([buMenNameInJiaShiGroup isEqualToString:@"嘉实建设"] && [unitId isEqualToString:@"001_02"]) {
+                    
+                    [buMenInJiaShiGroupMArray addObject:buMenNameInJiaShiGroup];
+                }if ([buMenNameInJiaShiGroup isEqualToString:@"嘉实房产置业"] && [unitId isEqualToString:@"001_03"]) {
+                    
+                    [buMenInJiaShiGroupMArray addObject:buMenNameInJiaShiGroup];
+                }if ([buMenNameInJiaShiGroup isEqualToString:@"嘉实旅业"] && [unitId isEqualToString:@"001_04"]) {
+                    
+                    [buMenInJiaShiGroupMArray addObject:buMenNameInJiaShiGroup];
+                }if ([buMenNameInJiaShiGroup isEqualToString:@"项目经理"] && [unitId isEqualToString:@"60dd67ab-9ef1-4400-90ac-6a273b7a38af"]) {
+                    
+                    [buMenInJiaShiGroupMArray addObject:buMenNameInJiaShiGroup];
+                }if ([buMenNameInJiaShiGroup isEqualToString:@"董事长"] && [unitId isEqualToString:@"a30dd3e4-8326-4c52-91e7-2e62a9e4b1e2"]) {
+                    
+                    [buMenInJiaShiGroupMArray addObject:buMenNameInJiaShiGroup];
+                }if ([buMenNameInJiaShiGroup isEqualToString:@"集团执行总裁"] && [unitId isEqualToString:@"8ac05a2e-5b0a-4adf-9a7a-74ed78e5aeac"]) {
+                    
+                    [buMenInJiaShiGroupMArray addObject:buMenNameInJiaShiGroup];
+                }
                 
                 [buMenNameMArray addObject:buMenName];
             }
             
-            response(buMenNameMArray);
+            NSLog(@"%@",buMenInJiaShiGroupMArray);
+            response(buMenNameMArray,buMenInJiaShiGroupMArray);
+        } else {
+            
+            errorInfo(noData);
+        }
+        
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        
+        NSLog(@"%@",error);
+    }];
+}
+
+//获得集团管理部门列表
++(void)getBuMenListWithGroupManageBuMen:(NSString *)shangJiBuMen IsIncludeZiJieDian:(NSString *)isIncludeZiJieDian SkipCount:(NSInteger)skipCount MaxResultCount:(NSInteger)maxResultCount OnSuccess:(void (^)())response onErrorInfo:(void (^)())errorInfo{
+    
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    manager.responseSerializer = [AFJSONResponseSerializer serializer];
+    manager.requestSerializer = [AFJSONRequestSerializer serializer];
+    
+    NSDictionary *parameters = @{@"ParentId":shangJiBuMen,
+                                 @"IncludeOffspring":isIncludeZiJieDian,
+                                 @"SkipCount":@(skipCount),
+                                 @"MaxResultCount":@(maxResultCount)
+                                 };
+    
+    [self setPublicHeader:manager];
+    [manager GET:API_GETBUMENLIST parameters:parameters progress:^(NSProgress * _Nonnull uploadProgress) {
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        
+        NSLog(@"%@",responseObject);
+        
+        if (responseObject != nil) {
+            
+            NSDictionary *dict = (NSDictionary *)responseObject;
+            
+            JSEIMPBuMenModel *model = [JSEIMPBuMenModel mj_objectWithKeyValues:dict];
+  
+            NSMutableArray *buMenInGroupManageBuMenMArray = [NSMutableArray array];
+            for (int i = 0; i < model.result.count; i++) {
+                
+                NSString *buMenNameInGroupManageBuMen = model.result[i].unitName;
+                NSString *unitId = model.result[i].unitId;
+                
+                if ([buMenNameInGroupManageBuMen isEqualToString:@"集团管委会"] && [unitId isEqualToString:@"001_01_001"]) {
+                    
+                    [buMenInGroupManageBuMenMArray addObject:buMenNameInGroupManageBuMen];
+                }if ([buMenNameInGroupManageBuMen isEqualToString:@"安全委员会"] && [unitId isEqualToString:@"001_01_002"]) {
+                    
+                    [buMenInGroupManageBuMenMArray addObject:buMenNameInGroupManageBuMen];
+                }if ([buMenNameInGroupManageBuMen isEqualToString:@"薪酬委员会"] && [unitId isEqualToString:@"001_01_003"]) {
+                    
+                    [buMenInGroupManageBuMenMArray addObject:buMenNameInGroupManageBuMen];
+                }if ([buMenNameInGroupManageBuMen isEqualToString:@"战略投资管理部"] && [unitId isEqualToString:@"001_01_004"]) {
+                    
+                    [buMenInGroupManageBuMenMArray addObject:buMenNameInGroupManageBuMen];
+                }if ([buMenNameInGroupManageBuMen isEqualToString:@"绩效薪酬管理中心"] && [unitId isEqualToString:@"001_01_005"]) {
+                    
+                    [buMenInGroupManageBuMenMArray addObject:buMenNameInGroupManageBuMen];
+                }if ([buMenNameInGroupManageBuMen isEqualToString:@"信息化管理中心"] && [unitId isEqualToString:@"001_01_006"]) {
+                    
+                    [buMenInGroupManageBuMenMArray addObject:buMenNameInGroupManageBuMen];
+                }if ([buMenNameInGroupManageBuMen isEqualToString:@"人力资源管理中心"] && [unitId isEqualToString:@"001_01_007"]) {
+                    
+                    [buMenInGroupManageBuMenMArray addObject:buMenNameInGroupManageBuMen];
+                }if ([buMenNameInGroupManageBuMen isEqualToString:@"招投标管理中心"] && [unitId isEqualToString:@"001_01_008"]) {
+                    
+                    [buMenInGroupManageBuMenMArray addObject:buMenNameInGroupManageBuMen];
+                }if ([buMenNameInGroupManageBuMen isEqualToString:@"人才开发中心"] && [unitId isEqualToString:@"001_01_009"]) {
+                    
+                    [buMenInGroupManageBuMenMArray addObject:buMenNameInGroupManageBuMen];
+                }if ([buMenNameInGroupManageBuMen isEqualToString:@"财务管理中心"] && [unitId isEqualToString:@"001_01_010"]) {
+                    
+                    [buMenInGroupManageBuMenMArray addObject:buMenNameInGroupManageBuMen];
+                }if ([buMenNameInGroupManageBuMen isEqualToString:@"JASO智慧建造创新与  引领中心"] && [unitId isEqualToString:@"001_01_011"]) {
+                    
+                    [buMenInGroupManageBuMenMArray addObject:buMenNameInGroupManageBuMen];
+                }if ([buMenNameInGroupManageBuMen isEqualToString:@"总裁办公室"] && [unitId isEqualToString:@"001_01_012"]) {
+                    
+                    [buMenInGroupManageBuMenMArray addObject:buMenNameInGroupManageBuMen];
+                }if ([buMenNameInGroupManageBuMen isEqualToString:@"审计监察部"] && [unitId isEqualToString:@"001_01_013"]) {
+                    
+                    [buMenInGroupManageBuMenMArray addObject:buMenNameInGroupManageBuMen];
+                }if ([buMenNameInGroupManageBuMen isEqualToString:@"资金管理中心"] && [unitId isEqualToString:@"001_01_014"]) {
+                    
+                    [buMenInGroupManageBuMenMArray addObject:buMenNameInGroupManageBuMen];
+                }if ([buMenNameInGroupManageBuMen isEqualToString:@"嘉实董事会"] && [unitId isEqualToString:@"001_01_015"]) {
+                    
+                    [buMenInGroupManageBuMenMArray addObject:buMenNameInGroupManageBuMen];
+                }if ([buMenNameInGroupManageBuMen isEqualToString:@"嘉实建设客服部"] && [unitId isEqualToString:@"29a6eba0-c65c-49eb-b192-a6c09d2fa325"]) {
+                    
+                    [buMenInGroupManageBuMenMArray addObject:buMenNameInGroupManageBuMen];
+                }if ([buMenNameInGroupManageBuMen isEqualToString:@"人才开发中心主任"] && [unitId isEqualToString:@"79256e31-b777-42b6-b1cb-a88fa355b2a5"]) {
+                    
+                    [buMenInGroupManageBuMenMArray addObject:buMenNameInGroupManageBuMen];
+                }if ([buMenNameInGroupManageBuMen isEqualToString:@"人力资源中心主任"] && [unitId isEqualToString:@"a2cd66df-6511-4f77-9ed5-b240f727ace3"]) {
+                    
+                    [buMenInGroupManageBuMenMArray addObject:buMenNameInGroupManageBuMen];
+                }if ([buMenNameInGroupManageBuMen isEqualToString:@"人事薪资"] && [unitId isEqualToString:@"5c1cbcaf-e9f0-4189-8b85-d55bae824cce"]) {
+                    
+                    [buMenInGroupManageBuMenMArray addObject:buMenNameInGroupManageBuMen];
+                }if ([buMenNameInGroupManageBuMen isEqualToString:@"安全总监"] && [unitId isEqualToString:@"f287dc2f-b374-4c5d-842a-4dfd89163a71"]) {
+                    
+                    [buMenInGroupManageBuMenMArray addObject:buMenNameInGroupManageBuMen];
+                }
+        
+            }
+
+            response(buMenInGroupManageBuMenMArray);
+        } else {
+            
+            errorInfo(noData);
+        }
+        
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        
+        NSLog(@"%@",error);
+    }];
+}
+
+//获得信息化管理中心列表
++(void)getBuMenListWithXinXiHuaManageCenter:(NSString *)shangJiBuMen IsIncludeZiJieDian:(NSString *)isIncludeZiJieDian SkipCount:(NSInteger)skipCount MaxResultCount:(NSInteger)maxResultCount OnSuccess:(void (^)())response onErrorInfo:(void (^)())errorInfo{
+    
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    manager.responseSerializer = [AFJSONResponseSerializer serializer];
+    manager.requestSerializer = [AFJSONRequestSerializer serializer];
+    
+    NSDictionary *parameters = @{@"ParentId":shangJiBuMen,
+                                 @"IncludeOffspring":isIncludeZiJieDian,
+                                 @"SkipCount":@(skipCount),
+                                 @"MaxResultCount":@(maxResultCount)
+                                 };
+    
+    [self setPublicHeader:manager];
+    [manager GET:API_GETBUMENLIST parameters:parameters progress:^(NSProgress * _Nonnull uploadProgress) {
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        
+        NSLog(@"%@",responseObject);
+        
+        if (responseObject != nil) {
+            
+            NSDictionary *dict = (NSDictionary *)responseObject;
+            
+            JSEIMPBuMenModel *model = [JSEIMPBuMenModel mj_objectWithKeyValues:dict];
+            
+            NSMutableArray *buMenInXinXiHuaManageCenterMArray = [NSMutableArray array];
+            for (int i = 0; i < model.result.count; i++) {
+                
+                NSString *buMenInXinXiHuaManageCenter = model.result[i].unitName;
+                NSString *unitId = model.result[i].unitId;
+                
+                
+                [buMenInXinXiHuaManageCenterMArray addObject:buMenInXinXiHuaManageCenter];
+            }
+            
+            response(buMenInXinXiHuaManageCenterMArray);
+        } else {
+            
+            errorInfo(noData);
+        }
+        
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        
+        NSLog(@"%@",error);
+    }];
+}
+//获得JASO智慧建造创新与引领中心列表
++(void)getBuMenListWithZHJZAndYLCenter:(NSString *)shangJiBuMen IsIncludeZiJieDian:(NSString *)isIncludeZiJieDian SkipCount:(NSInteger)skipCount MaxResultCount:(NSInteger)maxResultCount OnSuccess:(void (^)())response onErrorInfo:(void (^)())errorInfo{
+    
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    manager.responseSerializer = [AFJSONResponseSerializer serializer];
+    manager.requestSerializer = [AFJSONRequestSerializer serializer];
+    
+    NSDictionary *parameters = @{@"ParentId":shangJiBuMen,
+                                 @"IncludeOffspring":isIncludeZiJieDian,
+                                 @"SkipCount":@(skipCount),
+                                 @"MaxResultCount":@(maxResultCount)
+                                 };
+    
+    [self setPublicHeader:manager];
+    [manager GET:API_GETBUMENLIST parameters:parameters progress:^(NSProgress * _Nonnull uploadProgress) {
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        
+        NSLog(@"%@",responseObject);
+        
+        if (responseObject != nil) {
+            
+            NSDictionary *dict = (NSDictionary *)responseObject;
+            
+            JSEIMPBuMenModel *model = [JSEIMPBuMenModel mj_objectWithKeyValues:dict];
+            
+            NSMutableArray *buMenInZHJZAndYLCenterMArray = [NSMutableArray array];
+            for (int i = 0; i < model.result.count; i++) {
+                
+                NSString *buMenNameInZHJZAndYLCenter = model.result[i].unitName;
+                NSString *unitId = model.result[i].unitId;
+                
+                if ([buMenNameInZHJZAndYLCenter isEqualToString:@"资讯管理部"] && [unitId isEqualToString:@"001_01_011_001"]) {
+                    
+                    [buMenInZHJZAndYLCenterMArray addObject:buMenNameInZHJZAndYLCenter];
+                }if ([buMenNameInZHJZAndYLCenter isEqualToString:@"建筑设计研究院"] && [unitId isEqualToString:@"001_01_011_002"]) {
+                    
+                    [buMenInZHJZAndYLCenterMArray addObject:buMenNameInZHJZAndYLCenter];
+                }if ([buMenNameInZHJZAndYLCenter isEqualToString:@"博士后站"] && [unitId isEqualToString:@"001_01_011_003"]) {
+                    
+                    [buMenInZHJZAndYLCenterMArray addObject:buMenNameInZHJZAndYLCenter];
+                }if ([buMenNameInZHJZAndYLCenter isEqualToString:@"工程研究总院"] && [unitId isEqualToString:@"001_01_011_004"]) {
+                    
+                    [buMenInZHJZAndYLCenterMArray addObject:buMenNameInZHJZAndYLCenter];
+                }if ([buMenNameInZHJZAndYLCenter isEqualToString:@"标准管理部"] && [unitId isEqualToString:@"001_01_011_005"]) {
+                    
+                    [buMenInZHJZAndYLCenterMArray addObject:buMenNameInZHJZAndYLCenter];
+                }if ([buMenNameInZHJZAndYLCenter isEqualToString:@"管理创新部"] && [unitId isEqualToString:@"001_01_011_006"]) {
+                    
+                    [buMenInZHJZAndYLCenterMArray addObject:buMenNameInZHJZAndYLCenter];
+                }
+                
+            }
+            
+            response(buMenInZHJZAndYLCenterMArray);
+        } else {
+            
+            errorInfo(noData);
+        }
+        
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        
+        NSLog(@"%@",error);
+    }];
+}
+
+//获得嘉实建设列表
++(void)getBuMenListWithJiaShiBuild:(NSString *)shangJiBuMen IsIncludeZiJieDian:(NSString *)isIncludeZiJieDian SkipCount:(NSInteger)skipCount MaxResultCount:(NSInteger)maxResultCount OnSuccess:(void (^)())response onErrorInfo:(void (^)())errorInfo{
+    
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    manager.responseSerializer = [AFJSONResponseSerializer serializer];
+    manager.requestSerializer = [AFJSONRequestSerializer serializer];
+    
+    NSDictionary *parameters = @{@"ParentId":shangJiBuMen,
+                                 @"IncludeOffspring":isIncludeZiJieDian,
+                                 @"SkipCount":@(skipCount),
+                                 @"MaxResultCount":@(maxResultCount)
+                                 };
+    
+    [self setPublicHeader:manager];
+    [manager GET:API_GETBUMENLIST parameters:parameters progress:^(NSProgress * _Nonnull uploadProgress) {
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        
+        NSLog(@"%@",responseObject);
+        
+        if (responseObject != nil) {
+            
+            NSDictionary *dict = (NSDictionary *)responseObject;
+            
+            JSEIMPBuMenModel *model = [JSEIMPBuMenModel mj_objectWithKeyValues:dict];
+            
+            NSMutableArray *buMenInJiaShiBuildMArray = [NSMutableArray array];
+            for (int i = 0; i < model.result.count; i++) {
+                
+                NSString *buMenNameInJiaShiBuild = model.result[i].unitName;
+                NSString *unitId = model.result[i].unitId;
+                
+                if ([buMenNameInJiaShiBuild isEqualToString:@"经营管理中心"] && [unitId isEqualToString:@"001_02_001"]) {
+                    
+                    [buMenInJiaShiBuildMArray addObject:buMenNameInJiaShiBuild];
+                }if ([buMenNameInJiaShiBuild isEqualToString:@"工程监管中心"] && [unitId isEqualToString:@"001_02_002"]) {
+                    
+                    [buMenInJiaShiBuildMArray addObject:buMenNameInJiaShiBuild];
+                }if ([buMenNameInJiaShiBuild isEqualToString:@"总承包管理中心"] && [unitId isEqualToString:@"001_02_003"]) {
+                    
+                    [buMenInJiaShiBuildMArray addObject:buMenNameInJiaShiBuild];
+                }if ([buMenNameInJiaShiBuild isEqualToString:@"无锡分公司"] && [unitId isEqualToString:@"001_02_004"]) {
+                    
+                    [buMenInJiaShiBuildMArray addObject:buMenNameInJiaShiBuild];
+                }if ([buMenNameInJiaShiBuild isEqualToString:@"南京分公司"] && [unitId isEqualToString:@"001_02_005"]) {
+                    
+                    [buMenInJiaShiBuildMArray addObject:buMenNameInJiaShiBuild];
+                }if ([buMenNameInJiaShiBuild isEqualToString:@"郑州分公司"] && [unitId isEqualToString:@"001_02_006"]) {
+                    
+                    [buMenInJiaShiBuildMArray addObject:buMenNameInJiaShiBuild];
+                }if ([buMenNameInJiaShiBuild isEqualToString:@"苏州嘉实安装工程有限公司"] && [unitId isEqualToString:@"001_02_007"]) {
+                    
+                    [buMenInJiaShiBuildMArray addObject:buMenNameInJiaShiBuild];
+                }if ([buMenNameInJiaShiBuild isEqualToString:@"装饰公司"] && [unitId isEqualToString:@"001_02_008"]) {
+                    
+                    [buMenInJiaShiBuildMArray addObject:buMenNameInJiaShiBuild];
+                }if ([buMenNameInJiaShiBuild isEqualToString:@"机电安装工程公司"] && [unitId isEqualToString:@"001_02_009"]) {
+                    
+                    [buMenInJiaShiBuildMArray addObject:buMenNameInJiaShiBuild];
+                }if ([buMenNameInJiaShiBuild isEqualToString:@"市政公司"] && [unitId isEqualToString:@"001_02_010"]) {
+                    
+                    [buMenInJiaShiBuildMArray addObject:buMenNameInJiaShiBuild];
+                }if ([buMenNameInJiaShiBuild isEqualToString:@"苏州泉能建设技工有限公司"] && [unitId isEqualToString:@"001_02_011"]) {
+                    
+                    [buMenInJiaShiBuildMArray addObject:buMenNameInJiaShiBuild];
+                }if ([buMenNameInJiaShiBuild isEqualToString:@"苏州嘉佳工程设备有限公司"] && [unitId isEqualToString:@"001_02_012"]) {
+                    
+                    [buMenInJiaShiBuildMArray addObject:buMenNameInJiaShiBuild];
+                }
+            }
+            
+            response(buMenInJiaShiBuildMArray);
+        } else {
+            
+            errorInfo(noData);
+        }
+        
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        
+        NSLog(@"%@",error);
+    }];
+}
+
+////获得嘉实房产置业列表
++(void)getBuMenListWithJiaShiFangChanZhiYe:(NSString *)shangJiBuMen IsIncludeZiJieDian:(NSString *)isIncludeZiJieDian SkipCount:(NSInteger)skipCount MaxResultCount:(NSInteger)maxResultCount OnSuccess:(void (^)())response onErrorInfo:(void (^)())errorInfo{
+    
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    manager.responseSerializer = [AFJSONResponseSerializer serializer];
+    manager.requestSerializer = [AFJSONRequestSerializer serializer];
+    
+    NSDictionary *parameters = @{@"ParentId":shangJiBuMen,
+                                 @"IncludeOffspring":isIncludeZiJieDian,
+                                 @"SkipCount":@(skipCount),
+                                 @"MaxResultCount":@(maxResultCount)
+                                 };
+    
+    [self setPublicHeader:manager];
+    [manager GET:API_GETBUMENLIST parameters:parameters progress:^(NSProgress * _Nonnull uploadProgress) {
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        
+        NSLog(@"%@",responseObject);
+        
+        if (responseObject != nil) {
+            
+            NSDictionary *dict = (NSDictionary *)responseObject;
+            
+            JSEIMPBuMenModel *model = [JSEIMPBuMenModel mj_objectWithKeyValues:dict];
+            
+            NSMutableArray *buMenInJiaShiFangChanZhiYeMArray = [NSMutableArray array];
+            for (int i = 0; i < model.result.count; i++) {
+                
+                NSString *buMenNameInJiaShiFangChanZhiYe = model.result[i].unitName;
+                NSString *unitId = model.result[i].unitId;
+                
+                if ([buMenNameInJiaShiFangChanZhiYe isEqualToString:@"房产合约部"] && [unitId isEqualToString:@"001_03_001"]) {
+                    
+                    [buMenInJiaShiFangChanZhiYeMArray addObject:buMenNameInJiaShiFangChanZhiYe];
+                }if ([buMenNameInJiaShiFangChanZhiYe isEqualToString:@"物业公司"] && [unitId isEqualToString:@"001_03_002"]) {
+                    
+                    [buMenInJiaShiFangChanZhiYeMArray addObject:buMenNameInJiaShiFangChanZhiYe];
+                }if ([buMenNameInJiaShiFangChanZhiYe isEqualToString:@"规划设计部"] && [unitId isEqualToString:@"001_03_003"]) {
+                    
+                    [buMenInJiaShiFangChanZhiYeMArray addObject:buMenNameInJiaShiFangChanZhiYe];
+                }if ([buMenNameInJiaShiFangChanZhiYe isEqualToString:@"综合管理部"] && [unitId isEqualToString:@"001_03_004"]) {
+                    
+                    [buMenInJiaShiFangChanZhiYeMArray addObject:buMenNameInJiaShiFangChanZhiYe];
+                }if ([buMenNameInJiaShiFangChanZhiYe isEqualToString:@"工程维修中心"] && [unitId isEqualToString:@"001_03_005"]) {
+                    
+                    [buMenInJiaShiFangChanZhiYeMArray addObject:buMenNameInJiaShiFangChanZhiYe];
+                }if ([buMenNameInJiaShiFangChanZhiYe isEqualToString:@"销售部"] && [unitId isEqualToString:@"001_03_006"]) {
+                    
+                    [buMenInJiaShiFangChanZhiYeMArray addObject:buMenNameInJiaShiFangChanZhiYe];
+                }if ([buMenNameInJiaShiFangChanZhiYe isEqualToString:@"商业公司"] && [unitId isEqualToString:@"001_03_007"]) {
+                    
+                    [buMenInJiaShiFangChanZhiYeMArray addObject:buMenNameInJiaShiFangChanZhiYe];
+                }if ([buMenNameInJiaShiFangChanZhiYe isEqualToString:@"安保中心"] && [unitId isEqualToString:@"001_03_008"]) {
+                    
+                    [buMenInJiaShiFangChanZhiYeMArray addObject:buMenNameInJiaShiFangChanZhiYe];
+                }if ([buMenNameInJiaShiFangChanZhiYe isEqualToString:@"工程管理部"] && [unitId isEqualToString:@"001_03_009"]) {
+                    
+                    [buMenInJiaShiFangChanZhiYeMArray addObject:buMenNameInJiaShiFangChanZhiYe];
+                }if ([buMenNameInJiaShiFangChanZhiYe isEqualToString:@"苏州房产"] && [unitId isEqualToString:@"001_03_010"]) {
+                    
+                    [buMenInJiaShiFangChanZhiYeMArray addObject:buMenNameInJiaShiFangChanZhiYe];
+                }if ([buMenNameInJiaShiFangChanZhiYe isEqualToString:@"景观公司"] && [unitId isEqualToString:@"001_03_011"]) {
+                    
+                    [buMenInJiaShiFangChanZhiYeMArray addObject:buMenNameInJiaShiFangChanZhiYe];
+                }
+            }
+            
+            response(buMenInJiaShiFangChanZhiYeMArray);
+        } else {
+            
+            errorInfo(noData);
+        }
+        
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        
+        NSLog(@"%@",error);
+    }];
+}
+
+//获得嘉实旅业列表
++(void)getBuMenListWithJiaShiLvYe:(NSString *)shangJiBuMen IsIncludeZiJieDian:(NSString *)isIncludeZiJieDian SkipCount:(NSInteger)skipCount MaxResultCount:(NSInteger)maxResultCount OnSuccess:(void (^)())response onErrorInfo:(void (^)())errorInfo{
+    
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    manager.responseSerializer = [AFJSONResponseSerializer serializer];
+    manager.requestSerializer = [AFJSONRequestSerializer serializer];
+    
+    NSDictionary *parameters = @{@"ParentId":shangJiBuMen,
+                                 @"IncludeOffspring":isIncludeZiJieDian,
+                                 @"SkipCount":@(skipCount),
+                                 @"MaxResultCount":@(maxResultCount)
+                                 };
+    
+    [self setPublicHeader:manager];
+    [manager GET:API_GETBUMENLIST parameters:parameters progress:^(NSProgress * _Nonnull uploadProgress) {
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        
+        NSLog(@"%@",responseObject);
+        
+        if (responseObject != nil) {
+            
+            NSDictionary *dict = (NSDictionary *)responseObject;
+            
+            JSEIMPBuMenModel *model = [JSEIMPBuMenModel mj_objectWithKeyValues:dict];
+            
+            NSMutableArray *buMenInJiaShiLvYeMArray = [NSMutableArray array];
+            for (int i = 0; i < model.result.count; i++) {
+                
+                NSString *buMenNameInJiaShiLvYe = model.result[i].unitName;
+                NSString *unitId = model.result[i].unitId;
+                
+                if ([buMenNameInJiaShiLvYe isEqualToString:@"旅业管理中心"] && [unitId isEqualToString:@"001_04_001"]) {
+                    
+                    [buMenInJiaShiLvYeMArray addObject:buMenNameInJiaShiLvYe];
+                }if ([buMenNameInJiaShiLvYe isEqualToString:@"上海驿岛酒店"] && [unitId isEqualToString:@"001_04_002"]) {
+                    
+                    [buMenInJiaShiLvYeMArray addObject:buMenNameInJiaShiLvYe];
+                }if ([buMenNameInJiaShiLvYe isEqualToString:@"太仓嘉礼酒店"] && [unitId isEqualToString:@"001_04_003"]) {
+                    
+                    [buMenInJiaShiLvYeMArray addObject:buMenNameInJiaShiLvYe];
+                }if ([buMenNameInJiaShiLvYe isEqualToString:@"太仓菁英公寓"] && [unitId isEqualToString:@"001_04_004"]) {
+                    
+                    [buMenInJiaShiLvYeMArray addObject:buMenNameInJiaShiLvYe];
+                }if ([buMenNameInJiaShiLvYe isEqualToString:@"苏州嘉实国际酒店公寓"] && [unitId isEqualToString:@"001_04_005"]) {
+                    
+                    [buMenInJiaShiLvYeMArray addObject:buMenNameInJiaShiLvYe];
+                }if ([buMenNameInJiaShiLvYe isEqualToString:@"上海嘉实同济接待中心"] && [unitId isEqualToString:@"001_04_006"]) {
+                    
+                    [buMenInJiaShiLvYeMArray addObject:buMenNameInJiaShiLvYe];
+                }if ([buMenNameInJiaShiLvYe isEqualToString:@"苏州驿岛嘉元酒店"] && [unitId isEqualToString:@"001_04_007"]) {
+                    
+                    [buMenInJiaShiLvYeMArray addObject:buMenNameInJiaShiLvYe];
+                }
+
+            }
+
+            response(buMenInJiaShiLvYeMArray);
         } else {
             
             errorInfo(noData);
@@ -2240,6 +2746,61 @@
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
     
     NSDictionary *parameters = @{@"tationIdIfNull":stationIdIfNull,
+                                 @"SkipCount":@(skipCount),
+                                 @"MaxResultCount":@(maxResultCount)
+                                 };
+    
+    [self setPublicHeader:manager];
+    [manager GET:API_GETUSERLIST parameters:parameters progress:^(NSProgress * _Nonnull uploadProgress) {
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        
+        NSLog(@"%@",responseObject);
+        
+        if (responseObject != nil) {
+            
+            NSDictionary *dict = (NSDictionary *)responseObject;
+            
+            JSEIMPUserModel *model = [JSEIMPUserModel mj_objectWithKeyValues:dict];
+            
+            NSMutableArray *userNameMArray = [NSMutableArray array];
+            NSMutableArray *userIdMArray = [NSMutableArray array];
+            for (int i = 0; i < model.result.count; i++) {
+                
+                NSString *userName = model.result[i].userName;
+                NSString *userId = model.result[i].userId;
+                
+                if (userName == nil) {
+                    
+                    userName = @"";
+                }if (userId == nil) {
+                    
+                    userId = @"";
+                }
+                [userNameMArray addObject:userName];
+                [userIdMArray addObject:userId];
+            }
+            
+            response(userNameMArray,userIdMArray);
+        } else {
+            
+            errorInfo(noData);
+        }
+        
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        
+        NSLog(@"%@",error);
+    }];
+}
+
+//获得嘉实集团下用户列表
++(void)getUserListWithJiaShiGroupWithUnitId:(NSString *)unitId StationIdIfNull:(NSString *)stationIdIfNull SkipCount:(NSInteger)skipCount MaxResultCount:(NSInteger)maxResultCount OnSuccess:(void (^)())response onErrorInfo:(void (^)())errorInfo{
+    
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    manager.responseSerializer = [AFJSONResponseSerializer serializer];
+    manager.requestSerializer = [AFJSONRequestSerializer serializer];
+    
+    NSDictionary *parameters = @{@"UnitId":unitId,
+                                 @"tationIdIfNull":stationIdIfNull,
                                  @"SkipCount":@(skipCount),
                                  @"MaxResultCount":@(maxResultCount)
                                  };

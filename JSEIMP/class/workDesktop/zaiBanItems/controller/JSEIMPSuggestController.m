@@ -82,6 +82,7 @@
     nextDealPeopleController.activityDefinitionId = _targetActivityId;
     nextDealPeopleController.activityId = _activityId;
     nextDealPeopleController.option = _textViewText;
+    nextDealPeopleController.name = _name;
     
     [self.navigationController pushViewController:nextDealPeopleController animated:YES];
 }

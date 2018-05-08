@@ -15,5 +15,7 @@
 @property(nonatomic,strong)NSString *targetActivityId;
 
 @property(nonatomic,assign)NSInteger activityId;
+//下移节点岗位名
+@property(nonatomic,strong)NSString *name;
 
 @end

@@ -53,7 +53,7 @@ static NSString *cellID = @"cellID";
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.title = @"工程总承包合同";
+    self.title = @"施工总承包合同";
     
     self.view.backgroundColor = [UIColor whiteColor];
     
@@ -70,18 +70,18 @@ static NSString *cellID = @"cellID";
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-//UISearchBar作为tableview的头部
--(UIView *)headView{
-    
-    _searchBar = [[UISearchBar alloc]initWithFrame:CGRectMake(0, 64, 100, 44)];
-    _searchBar.keyboardType = UIKeyboardAppearanceDefault;
-    _searchBar.placeholder = @"请输入搜索关键字";
-    _searchBar.delegate = self;
-    //底部的颜色
-    _searchBar.searchBarStyle = UISearchBarStyleDefault;
-    _searchBar.barStyle = UIBarStyleDefault;
-    return _searchBar;
-}
+////UISearchBar作为tableview的头部
+//-(UIView *)headView{
+//
+//    _searchBar = [[UISearchBar alloc]initWithFrame:CGRectMake(0, 64, 100, 44)];
+//    _searchBar.keyboardType = UIKeyboardAppearanceDefault;
+//    _searchBar.placeholder = @"请输入搜索关键字";
+//    _searchBar.delegate = self;
+//    //底部的颜色
+//    _searchBar.searchBarStyle = UISearchBarStyleDefault;
+//    _searchBar.barStyle = UIBarStyleDefault;
+//    return _searchBar;
+//}
 
 //在搜索框中修改搜索内容时，自动触发下面的方法
 -(BOOL)searchBarShouldEndEditing:(UISearchBar *)searchBar{
@@ -344,7 +344,7 @@ static NSString *cellID = @"cellID";
     _tableView.dataSource = self;
     _tableView.keyboardDismissMode = UIScrollViewKeyboardDismissModeOnDrag;
     [_tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:cellID];
-    _tableView.tableHeaderView = [self headView];
+//    _tableView.tableHeaderView = [self headView];
     _tableView.tableFooterView = [[UIView alloc]init];
     
     [self.view addSubview:_tableView];

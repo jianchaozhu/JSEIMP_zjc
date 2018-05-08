@@ -34,6 +34,13 @@ static NSString *cellID = @"cellID";
     
     [self setupUI];
     
+    dispatch_async(dispatch_get_global_queue(0, 0), ^{
+        
+        [NSThread sleepForTimeInterval:0.5];
+        
+        [SVProgressHUD dismiss];
+        
+    });
 }
 
 -(void)setupUI{
@@ -66,7 +73,7 @@ static NSString *cellID = @"cellID";
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     
-    return 3;
+    return 4;
     
 }
 
@@ -92,6 +99,28 @@ static NSString *cellID = @"cellID";
         JSEIMPYiBanItemsController *yiBanItemsController = [JSEIMPYiBanItemsController new];
         
         [self.navigationController pushViewController:yiBanItemsController animated:YES];
+    }else if (indexPath.section == 3){
+        
+        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"提示" message:@"是否退出当前账号？" preferredStyle:UIAlertControllerStyleAlert];
+        
+        [self presentViewController:alertController animated:YES completion:nil];
+        
+        //添加取消
+        [alertController addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil]];
+        
+        //添加确定
+        [alertController addAction:[UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
+            
+            JSEIMPLoginController *loginController = [JSEIMPLoginController new];
+            
+            [self.navigationController pushViewController:loginController animated:YES];
+            
+            NSUserDefaults *data = [NSUserDefaults standardUserDefaults];
+            
+            [data removeObjectForKey:@"username"];
+            [data removeObjectForKey:@"password"];
+            [data removeObjectForKey:@"userToken"];
+        }]];
     }
 }
 
@@ -114,6 +143,11 @@ static NSString *cellID = @"cellID";
     }else if (indexPath.section == 2){
     
         [self setImageViewWithName:@"isDone" Text:@"已办事项" TextColor:[UIColor darkTextColor]];
+    }else if (indexPath.section == 3){
+        
+        _cell.textLabel.text = @"退出当前账号";
+        _cell.textLabel.textAlignment  =NSTextAlignmentCenter;
+        _cell.textLabel.textColor = [UIColor redColor];
     }
     
     _cell.selectionStyle = UITableViewCellSelectionStyleNone;

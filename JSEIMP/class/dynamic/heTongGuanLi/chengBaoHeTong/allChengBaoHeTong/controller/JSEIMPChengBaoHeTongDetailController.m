@@ -227,6 +227,8 @@
         _fileNameMArray = fileNameMArray.copy;
         _filePathMArray = filePathMArray.copy;
         
+        NSLog(@"%zd,%zd",_contractName.length,_projectName.length);
+        
         dispatch_async(dispatch_get_main_queue(), ^{
             
             [self setupUI];
@@ -574,13 +576,29 @@
     if (_heTongNameLabel.text.length > 26 && _heTongNameLabel.text.length < 39) {
         _cursor.frame = CGRectMake(0, 645, self.view.width, 45);
     }else if(_heTongNameLabel.text.length > 13 && _heTongNameLabel.text.length <= 26){
-        _cursor.frame = CGRectMake(0, 600, self.view.width, 45);
+        _cursor.frame = CGRectMake(0, 620, self.view.width, 45);
     }else if (_heTongNameLabel.text.length <= 13 && _projectNameLabel.text.length > 26 && _projectNameLabel.text.length < 39){
         _cursor.frame = CGRectMake(0, 650, self.view.width, 45);
     }else if (_heTongNameLabel.text.length <= 13 && _jiaFangLabel.text.length > 13 && _jiaFangLabel.text.length <= 26){
         _cursor.frame = CGRectMake(0, 610, self.view.width, 45);
     }else if (_heTongNameLabel.text.length <= 13 && _projectNameLabel.text.length <= 13){
         _cursor.frame = CGRectMake(0, 600, self.view.width, 45);
+    }else if (_heTongNameLabel.text.length > 39 && _heTongNameLabel.text.length  <= 52){
+        _cursor.frame = CGRectMake(0, 670, self.view.width, 45);
+    }else if(_heTongNameLabel.text.length <= 13 && _projectNameLabel.text.length > 13 && _projectNameLabel.text.length <= 26){
+        _cursor.frame = CGRectMake(0, 650, self.view.width, 45);
+    }else if (_heTongNameLabel.text.length > 26 && _heTongNameLabel.text.length < 39 && _projectNameLabel.text.length > 39 && _projectNameLabel.text.length <= 52){
+        _cursor.frame = CGRectMake(0, 690, self.view.width, 45);
+    }else if (_heTongNameLabel.text.length > 13 && _heTongNameLabel.text.length <= 26 && _projectNameLabel.text.length > 39 && _projectNameLabel.text.length <= 52){
+        _cursor.frame = CGRectMake(0, 650, self.view.width, 45);
+    }else if (_heTongNameLabel.text.length > 13 && _heTongNameLabel.text.length <= 26 && _projectNameLabel.text.length > 13 && _projectNameLabel.text.length <= 26){
+        _cursor.frame = CGRectMake(0, 650, self.view.width, 45);
+    }else if (_heTongNameLabel.text.length > 52 && _heTongNameLabel.text.length <= 65 && _projectNameLabel.text.length > 39 && _projectNameLabel.text.length <= 52){
+        _cursor.frame = CGRectMake(0, 710, self.view.width, 45);
+    }else if (_heTongNameLabel.text.length > 26 && _heTongNameLabel.text.length < 39 && _projectNameLabel.text.length > 39 && _projectNameLabel.text.length <= 52){
+        _cursor.frame = CGRectMake(0, 680, self.view.width, 45);
+    }else if (_heTongNameLabel.text.length > 13 && _heTongNameLabel.text.length <= 26 && _projectNameLabel.text.length >=39 && _projectNameLabel.text.length < 52){
+        _cursor.frame = CGRectMake(0, 670, self.view.width, 45);
     }
     _cursor.titles = self.titles;
     _cursor.pageViews = [self createPageViews];

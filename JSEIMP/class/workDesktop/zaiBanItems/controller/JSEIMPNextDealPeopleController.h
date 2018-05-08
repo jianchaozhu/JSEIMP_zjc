@@ -17,5 +17,7 @@
 @property(nonatomic,assign)NSInteger activityId;
 
 @property(nonatomic,strong)NSString *option;
+//下一节点岗位名
+@property(nonatomic,strong)NSString *name;
 
 @end

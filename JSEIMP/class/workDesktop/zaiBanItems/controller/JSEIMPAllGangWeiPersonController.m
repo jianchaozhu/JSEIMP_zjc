@@ -10,10 +10,14 @@
 #import "JSEIMPNetWorking.h"
 #import "JSEIMPSureChaoSongPersonController.h"
 #import "JSEIMPSureZhuanQianPersonController.h"
+#import "JSEIMPSureJiaQianPersonController.h"
+#import "JSEIMPBuMenInJiaShiGroupController.h"
 
 static NSString *cellID = @"cellID";
 
 @interface JSEIMPAllGangWeiPersonController ()<UITableViewDelegate,UITableViewDataSource>
+
+@property(nonatomic,strong)NSMutableArray *buMenNameMArray;
 
 @property(nonatomic,strong)NSMutableArray *userNameMArray;
 
@@ -60,7 +64,7 @@ static NSString *cellID = @"cellID";
     _editButton = [[UIBarButtonItem alloc] initWithTitle:@"编辑" style:UIBarButtonItemStylePlain target:self action:@selector(clickEditButton:)];
     self.navigationItem.rightBarButtonItem = _editButton;
     
-    [self getData];
+    [self getBuMenData];
     
     [self setupUI];
 }
@@ -78,6 +82,9 @@ static NSString *cellID = @"cellID";
         }else if (self.selectUserNameMArray.count > 0 && [_buttonText isEqualToString:@"转签"]){
             
             [self goToSureZhuanQianPersonVC];
+        }else if (self.selectUserNameMArray.count > 0 && [_buttonText isEqualToString:@"加签"]){
+            
+            [self goToSureJiaQianPersonVC];
         }
     } else {
         
@@ -114,6 +121,17 @@ static NSString *cellID = @"cellID";
     [self.navigationController pushViewController:sureChaoSongPersonController animated:YES];
 }
 
+-(void)goToSureJiaQianPersonVC{
+    
+    JSEIMPSureJiaQianPersonController *sureJiaQianPersonController = [JSEIMPSureJiaQianPersonController new];
+    
+    sureJiaQianPersonController.selectUserNameMArray = self.selectUserNameMArray;
+    sureJiaQianPersonController.selectUserIdMArray = self.selectUserIdMArray;
+    sureJiaQianPersonController.activityId = _activityId;
+    
+    [self.navigationController pushViewController:sureJiaQianPersonController animated:YES];
+}
+
 - (void)returnAction {
     
     //移除之前选中的内容
@@ -124,7 +142,21 @@ static NSString *cellID = @"cellID";
     [self.navigationController popViewControllerAnimated:YES];
 }
 
--(void)getData{
+-(void)getBuMenData{
+    
+    [JSEIMPNetWorking getBuMenListWithShangJiBuMen:@"0" IsIncludeZiJieDian:@"false" SkipCount:0 MaxResultCount:10000 OnSuccess:^(NSMutableArray *buMenNameMArray,NSMutableArray *buMenInJiaShiGroupMArray){
+        
+        _buMenNameMArray = buMenNameMArray.copy;
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            
+            [self getUserData];
+        });
+        
+    } onErrorInfo:nil];
+}
+
+-(void)getUserData{
     
 //    [JSEIMPNetWorking getUserListWithSkipCount:0 MaxResultCount:10000 OnSuccess:^(NSMutableArray *userNameMArray,NSMutableArray *userIdMArray){
 //
@@ -159,24 +191,51 @@ static NSString *cellID = @"cellID";
     _tableView.allowsSelectionDuringEditing = YES;
     [_tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:cellID];
     _tableView.tableFooterView = [[UIView alloc]init];
-    _tableView.allowsSelection = NO;
+    _tableView.allowsSelection = YES;
     
     [self.view addSubview:_tableView];
 }
 
+-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+    
+    return 2;
+}
+
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     
-    NSLog(@"%zd",_userNameMArray.count);
-    return _userNameMArray.count;
-    
+    if (section == 0) {
+        
+        return _buMenNameMArray.count;
+    }else if (section == 1){
+        
+        NSLog(@"%zd",_userNameMArray.count);
+        return _userNameMArray.count;
+    }
+    return 0;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     //选中数据
-    [self.selectUserNameMArray addObject:_userNameMArray[indexPath.row]];
-    [self.selectUserIdMArray addObject:_userIdMArray[indexPath.row]];
-    
-    NSLog(@"%@",_selectUserNameMArray);
+    if (indexPath.section == 0) {
+        
+        JSEIMPBuMenInJiaShiGroupController *buMenInJiaShiGroupController = [JSEIMPBuMenInJiaShiGroupController new];
+        
+        buMenInJiaShiGroupController.vcTitle = _buMenNameMArray[indexPath.row];
+        buMenInJiaShiGroupController.buttonText = _buttonText;
+        buMenInJiaShiGroupController.activityId = _activityId;
+        buMenInJiaShiGroupController.option = _option;
+        buMenInJiaShiGroupController.selectUserNameMArray = self.selectUserNameMArray;
+        buMenInJiaShiGroupController.selectUserIdMArray = self.selectUserIdMArray;
+        
+        [self.navigationController pushViewController:buMenInJiaShiGroupController animated:YES];
+
+    }else if (indexPath.section == 1){
+        
+        [self.selectUserNameMArray addObject:_userNameMArray[indexPath.row]];
+        [self.selectUserIdMArray addObject:_userIdMArray[indexPath.row]];
+        
+        NSLog(@"%@",_selectUserNameMArray);
+    }
 }
 
 - (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -199,8 +258,18 @@ static NSString *cellID = @"cellID";
         _cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellID];
     }
     
-    _cell.textLabel.text = _userNameMArray[indexPath.row];
-    _cell.textLabel.lineBreakMode = NSLineBreakByWordWrapping;
+    if (indexPath.section == 0) {
+        
+        _cell.textLabel.text = _buMenNameMArray[indexPath.row];
+        _cell.textLabel.lineBreakMode = NSLineBreakByWordWrapping;
+        _cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        _cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    }else if (indexPath.section == 1){
+        
+        _cell.textLabel.text = _userNameMArray[indexPath.row];
+        _cell.textLabel.lineBreakMode = NSLineBreakByWordWrapping;
+//        _cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    }
     
     return _cell;
     

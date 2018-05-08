@@ -102,7 +102,7 @@ static NSString *cellID = @"cellID";
     
     if (indexPath.row == 0) {
         
-        [self setImageViewWithName:@"allChengBaoHeTong" Text:@"工程总承包合同"];
+        [self setImageViewWithName:@"allChengBaoHeTong" Text:@"施工总承包合同"];
     }else if (indexPath.row == 1){
         
         [self setImageViewWithName:@"zhuanYeChengBaoHeTong" Text:@"专业承包合同"];

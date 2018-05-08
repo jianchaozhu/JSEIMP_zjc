@@ -135,11 +135,32 @@
 //获得部门列表
 +(void)getBuMenListWithShangJiBuMen:(NSString *)shangJiBuMen IsIncludeZiJieDian:(NSString *)isIncludeZiJieDian SkipCount:(NSInteger)skipCount MaxResultCount:(NSInteger)maxResultCount OnSuccess:(void(^)())response onErrorInfo:(void(^)())errorInfo;
 
+//获得集团管理部门列表
++(void)getBuMenListWithGroupManageBuMen:(NSString *)shangJiBuMen IsIncludeZiJieDian:(NSString *)isIncludeZiJieDian SkipCount:(NSInteger)skipCount MaxResultCount:(NSInteger)maxResultCount OnSuccess:(void(^)())response onErrorInfo:(void(^)())errorInfo;
+
+//获得信息化管理中心列表
++(void)getBuMenListWithXinXiHuaManageCenter:(NSString *)shangJiBuMen IsIncludeZiJieDian:(NSString *)isIncludeZiJieDian SkipCount:(NSInteger)skipCount MaxResultCount:(NSInteger)maxResultCount OnSuccess:(void(^)())response onErrorInfo:(void(^)())errorInfo;
+
+//获得JASO智慧建造创新与引领中心列表
++(void)getBuMenListWithZHJZAndYLCenter:(NSString *)shangJiBuMen IsIncludeZiJieDian:(NSString *)isIncludeZiJieDian SkipCount:(NSInteger)skipCount MaxResultCount:(NSInteger)maxResultCount OnSuccess:(void(^)())response onErrorInfo:(void(^)())errorInfo;
+
+//获得嘉实建设列表
++(void)getBuMenListWithJiaShiBuild:(NSString *)shangJiBuMen IsIncludeZiJieDian:(NSString *)isIncludeZiJieDian SkipCount:(NSInteger)skipCount MaxResultCount:(NSInteger)maxResultCount OnSuccess:(void(^)())response onErrorInfo:(void(^)())errorInfo;
+
+//获得嘉实房产置业列表
++(void)getBuMenListWithJiaShiFangChanZhiYe:(NSString *)shangJiBuMen IsIncludeZiJieDian:(NSString *)isIncludeZiJieDian SkipCount:(NSInteger)skipCount MaxResultCount:(NSInteger)maxResultCount OnSuccess:(void(^)())response onErrorInfo:(void(^)())errorInfo;
+
+//获得嘉实旅业列表
++(void)getBuMenListWithJiaShiLvYe:(NSString *)shangJiBuMen IsIncludeZiJieDian:(NSString *)isIncludeZiJieDian SkipCount:(NSInteger)skipCount MaxResultCount:(NSInteger)maxResultCount OnSuccess:(void(^)())response onErrorInfo:(void(^)())errorInfo;
+
 //获得全部用户列表
 +(void)getUserListWithSkipCount:(NSInteger)skipCount MaxResultCount:(NSInteger)maxResultCount OnSuccess:(void(^)())response onErrorInfo:(void(^)())errorInfo;
 
 //获得无岗位用户列表
 +(void)getUserListWithStationIdIfNull:(NSString *)stationIdIfNull SkipCount:(NSInteger)skipCount MaxResultCount:(NSInteger)maxResultCount OnSuccess:(void(^)())response onErrorInfo:(void(^)())errorInfo;
+
+//获得嘉实集团下用户列表
++(void)getUserListWithJiaShiGroupWithUnitId:(NSString *)unitId StationIdIfNull:(NSString *)stationIdIfNull SkipCount:(NSInteger)skipCount MaxResultCount:(NSInteger)maxResultCount OnSuccess:(void(^)())response onErrorInfo:(void(^)())errorInfo;
 
 //抄送操作
 +(void)PostChaoSongStepWithActivityInstanceId:(NSInteger)activityInstanceId TargetUsers:(NSMutableArray *)targetUsers OnSuccess:(void(^)())response onErrorInfo:(void(^)())errorInfo;

@@ -53,6 +53,10 @@
 @property(nonatomic,assign)NSInteger canExpandCopy;
 //canTransferVerify(可转签)
 @property(nonatomic,assign)NSInteger canTransferVerify;
+//canExpandVerify(可加签)
+@property(nonatomic,assign)NSInteger canExpandVerify;
+//下一节点岗位
+@property(nonatomic,strong)NSMutableArray *nameMArray;
 
 @end
 
@@ -115,6 +119,8 @@
     UIButton *_canExpandCopyButton;//抄送按钮
     
     UIButton *_canTransferVerifyButton;//转签按钮
+    
+    UIButton *_canExpandVerifyButton;//加签按钮
 }
 
 - (void)viewDidLoad {
@@ -182,6 +188,7 @@
     _canSendButton = [self setButtonWithBackgroundColor:[UIColor colorWithRed:51.0 / 255.0 green:122.0 / 255.0 blue:183.0 / 255.0 alpha:1] Title:@"发送" Tag:4 TitleColor:[UIColor whiteColor] Target:@selector(clickButton:)];
     _canExpandCopyButton = [self setButtonWithBackgroundColor:[UIColor colorWithRed:51.0 / 255.0 green:122.0 / 255.0 blue:183.0 / 255.0 alpha:1] Title:@"抄送" Tag:5 TitleColor:[UIColor whiteColor] Target:@selector(clickButton:)];
     _canTransferVerifyButton = [self setButtonWithBackgroundColor:[UIColor colorWithRed:51.0 / 255.0 green:122.0 / 255.0 blue:183.0 / 255.0 alpha:1] Title:@"转签" Tag:6 TitleColor:[UIColor whiteColor] Target:@selector(clickButton:)];
+    _canExpandVerifyButton = [self setButtonWithBackgroundColor:[UIColor colorWithRed:51.0 / 255.0 green:122.0 / 255.0 blue:183.0 / 255.0 alpha:1] Title:@"加签" Tag:7 TitleColor:[UIColor whiteColor] Target:@selector(clickButton:)];
     
     _label1 = [self setupLabelWithText:@"合同编号" TextColor:[UIColor darkTextColor] Font:[UIFont systemFontOfSize:20]];
     _heTongBianHaoLabel = [self setupLabelWithText:_contractCode TextColor:[UIColor darkGrayColor] Font:[UIFont boldSystemFontOfSize:16]];
@@ -260,40 +267,42 @@
 //        }];
 //    }
     
-    NSLog(@"%zd,%zd",_canSend,_canExpandCopy);
-    if (_canDestroy == 1 && _canSend == 1 && _canExpandCopy == 1 && _canTransferVerify == 1) {
-        
-        [_canTransferVerifyButton mas_makeConstraints:^(MASConstraintMaker *make) {
-            
-            make.top.mas_equalTo(_view.mas_top).offset(16);
-            make.right.mas_equalTo(_view.mas_right).offset(-16);
-            make.width.mas_equalTo(50);
-            make.height.mas_equalTo(20);
-        }];
-        [_canExpandCopyButton mas_makeConstraints:^(MASConstraintMaker *make) {
-            
-            make.top.mas_equalTo(_canTransferVerifyButton.mas_top);
-            make.right.mas_equalTo(_canTransferVerifyButton.mas_left);
-            make.width.mas_equalTo(_canTransferVerifyButton.mas_width);
-            make.height.mas_equalTo(_canTransferVerifyButton.mas_height);
-        }];
-        [_canSendButton mas_makeConstraints:^(MASConstraintMaker *make) {
-            
-            make.top.mas_equalTo(_canExpandCopyButton.mas_top);
-            make.right.mas_equalTo(_canExpandCopyButton.mas_left);
-            make.width.mas_equalTo(_canExpandCopyButton.mas_width);
-            make.height.mas_equalTo(_canExpandCopyButton.mas_height);
-        }];
-        [_cancelButton mas_makeConstraints:^(MASConstraintMaker *make) {
-            
-            make.top.mas_equalTo(_canSendButton.mas_top);
-            make.right.mas_equalTo(_canSendButton.mas_left);
-            make.width.mas_equalTo(_canSendButton.mas_width);
-            make.height.mas_equalTo(_canSendButton.mas_height);
-        }];
-        
-    }else if (_canDestroy == 0 && _canSend == 1 && _canReturnPrevious == 1 && _canTransferVerify == 1){
-        
+    NSLog(@"抄送：%zd,转签：%zd,加签：%zd 取消：%zd,退回上一步：%zd",_canExpandCopy,_canTransferVerify,_canExpandVerify,_canDestroy,_canReturnPrevious);
+//    if (_canDestroy == 1 && _canSend == 1 && _canExpandCopy == 1 && _canTransferVerify == 1) {
+//        //转签
+//        [_canTransferVerifyButton mas_makeConstraints:^(MASConstraintMaker *make) {
+//
+//            make.top.mas_equalTo(_view.mas_top).offset(16);
+//            make.right.mas_equalTo(_view.mas_right).offset(-16);
+//            make.width.mas_equalTo(50);
+//            make.height.mas_equalTo(20);
+//        }];
+//        //抄送
+//        [_canExpandCopyButton mas_makeConstraints:^(MASConstraintMaker *make) {
+//
+//            make.top.mas_equalTo(_canTransferVerifyButton.mas_top);
+//            make.right.mas_equalTo(_canTransferVerifyButton.mas_left);
+//            make.width.mas_equalTo(_canTransferVerifyButton.mas_width);
+//            make.height.mas_equalTo(_canTransferVerifyButton.mas_height);
+//        }];
+//        [_canSendButton mas_makeConstraints:^(MASConstraintMaker *make) {
+//
+//            make.top.mas_equalTo(_canExpandCopyButton.mas_top);
+//            make.right.mas_equalTo(_canExpandCopyButton.mas_left);
+//            make.width.mas_equalTo(_canExpandCopyButton.mas_width);
+//            make.height.mas_equalTo(_canExpandCopyButton.mas_height);
+//        }];
+//        [_cancelButton mas_makeConstraints:^(MASConstraintMaker *make) {
+//
+//            make.top.mas_equalTo(_canSendButton.mas_top);
+//            make.right.mas_equalTo(_canSendButton.mas_left);
+//            make.width.mas_equalTo(_canSendButton.mas_width);
+//            make.height.mas_equalTo(_canSendButton.mas_height);
+//        }];
+//
+//    }else
+    if (_canSend == 1 && _canReturnPrevious == 1 && _canExpandCopy == 1){
+        //退回上一步按钮
         [_canReturnPreviousButton mas_makeConstraints:^(MASConstraintMaker *make) {
             
             make.top.mas_equalTo(_view.mas_top).offset(16);
@@ -301,14 +310,73 @@
             make.width.mas_equalTo(102);
             make.height.mas_equalTo(20);
         }];
-        [_agreeButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        //抄送按钮
+        [_canExpandCopyButton mas_makeConstraints:^(MASConstraintMaker *make) {
             
             make.centerY.mas_equalTo(_canReturnPreviousButton.mas_centerY);
             make.right.mas_equalTo(_canReturnPreviousButton.mas_left);
             make.width.mas_equalTo(50);
             make.height.mas_equalTo(20);
         }];
+        //同意按钮
+        [_agreeButton mas_makeConstraints:^(MASConstraintMaker *make) {
+            
+            make.centerY.mas_equalTo(_canExpandCopyButton.mas_centerY);
+            make.right.mas_equalTo(_canExpandCopyButton.mas_left);
+            make.width.mas_equalTo(50);
+            make.height.mas_equalTo(20);
+        }];
+    }else if (_canSend == 1 && _canReturnPrevious == 0 && _canExpandCopy == 1){
+        //抄送按钮
+        [_canExpandCopyButton mas_makeConstraints:^(MASConstraintMaker *make) {
+            
+            make.top.mas_equalTo(_view.mas_top).offset(16);
+            make.right.mas_equalTo(_view.mas_right).offset(-16);
+            make.width.mas_equalTo(50);
+            make.height.mas_equalTo(20);
+        }];
+        //同意按钮
+        [_agreeButton mas_makeConstraints:^(MASConstraintMaker *make) {
+            
+            make.centerY.mas_equalTo(_canExpandCopyButton.mas_centerY);
+            make.right.mas_equalTo(_canExpandCopyButton.mas_left);
+            make.width.mas_equalTo(50);
+            make.height.mas_equalTo(20);
+        }];
     }
+//    else if (_canExpandCopy == 1 && _canTransferVerify == 1 && _canExpandVerify == 1){
+//        //转签
+//        [_canTransferVerifyButton mas_makeConstraints:^(MASConstraintMaker *make) {
+//
+//            make.top.mas_equalTo(_view.mas_top).offset(16);
+//            make.right.mas_equalTo(_view.mas_right).offset(-16);
+//            make.width.mas_equalTo(50);
+//            make.height.mas_equalTo(20);
+//        }];
+//        //抄送
+//        [_canExpandCopyButton mas_makeConstraints:^(MASConstraintMaker *make) {
+//
+//            make.top.mas_equalTo(_canTransferVerifyButton.mas_top);
+//            make.right.mas_equalTo(_canTransferVerifyButton.mas_left);
+//            make.width.mas_equalTo(_canTransferVerifyButton.mas_width);
+//            make.height.mas_equalTo(_canTransferVerifyButton.mas_height);
+//        }];
+//        //加签
+//        [_canExpandVerifyButton mas_makeConstraints:^(MASConstraintMaker *make) {
+//
+//            make.top.mas_equalTo(_canExpandCopyButton.mas_top);
+//            make.right.mas_equalTo(_canExpandCopyButton.mas_left);
+//            make.width.mas_equalTo(_canExpandCopyButton.mas_width);
+//            make.height.mas_equalTo(_canExpandCopyButton.mas_height);
+//        }];
+//        [_agreeButton mas_makeConstraints:^(MASConstraintMaker *make) {
+//
+//            make.top.mas_equalTo(_canExpandVerifyButton.mas_top);
+//            make.right.mas_equalTo(_canExpandVerifyButton.mas_left);
+//            make.width.mas_equalTo(_canExpandVerifyButton.mas_width);
+//            make.height.mas_equalTo(_canExpandVerifyButton.mas_height);
+//        }];
+//    }
     
     [_label1 mas_makeConstraints:^(MASConstraintMaker *make) {
         
@@ -483,13 +551,14 @@
 
 -(void)isShowButtons{
     
-    [JSEIMPNetWorking getUserIdAndReturnTargetActivityInstanceIdWithActivityId:_activityId OnSuccess:^(NSInteger canReturnPrevious,NSInteger canRevokeBack,NSInteger canDestroy,NSInteger canSend,NSInteger canSignup,NSInteger canExpandCopy,NSInteger canTransferVerify,NSInteger returnTargetActivityInstanceId,NSMutableArray *userIdMArray){
+    [JSEIMPNetWorking getUserIdAndReturnTargetActivityInstanceIdWithActivityId:_activityId OnSuccess:^(NSInteger canReturnPrevious,NSInteger canRevokeBack,NSInteger canDestroy,NSInteger canSend,NSInteger canSignup,NSInteger canExpandCopy,NSInteger canTransferVerify,NSInteger canExpandVerify,NSInteger returnTargetActivityInstanceId,NSMutableArray *userIdMArray){
         
         _canReturnPrevious = canReturnPrevious;//退回上一步按钮判断
         _canDestroy = canDestroy;//取消按钮判断
         _canSend = canSend;//发送按钮判断
         _canExpandCopy = canExpandCopy;//抄送按钮判断
         _canTransferVerify = canTransferVerify;//转签按钮判断
+        _canExpandVerify = canExpandVerify;//加签按钮判断
         
         dispatch_async(dispatch_get_main_queue(), ^{
             
@@ -514,10 +583,13 @@
         [self sendMethod];
     }else if (button.tag == 5){
         
-        [self goToChaoSongVC];
+        [self goToChaoSongVCWithButton:button];
     }else if (button.tag == 6){
         
         [self goToZhuanQianReasonVC];
+    }else if (button.tag == 7){
+        
+        [self goToChaoSongVCWithButton:button];
     }
 }
 
@@ -533,23 +605,36 @@
 }
 
 //跳转到抄送控制器
--(void)goToChaoSongVC{
+-(void)goToChaoSongVCWithButton:(UIButton *)button{
     
     JSEIMPChaoSongController *chaoSongController = [JSEIMPChaoSongController new];
     
     chaoSongController.activityId = _activityId;
-    chaoSongController.buttonText = _canExpandCopyButton.titleLabel.text;
+    if (button.tag == 5) {
+     
+        chaoSongController.buttonText = _canExpandCopyButton.titleLabel.text;
+    }else if (button.tag == 7){
+        
+        chaoSongController.buttonText = _canExpandVerifyButton.titleLabel.text;
+    }
     
     [self.navigationController pushViewController:chaoSongController animated:YES];
 }
 
+//跳转到加签控制器
+-(void)goJiaQianVC{
+    
+    
+}
+
 -(void)sendMethod{
     
-    [JSEIMPNetWorking GetTatgetActivityIdWithActivityId:_activityId OnSuccess:^(NSMutableArray *targetActivityIdMArray){
+    [JSEIMPNetWorking GetTatgetActivityIdWithActivityId:_activityId OnSuccess:^(NSMutableArray *targetActivityIdMArray,NSMutableArray *nameMArray){
         
         _targetActivityIdMArray = targetActivityIdMArray.copy;
+        _nameMArray = nameMArray.copy;
         
-        [self goToSuggestVC];
+        [self goToSuggestVCWithName:_nameMArray[0]];
     } onErrorInfo:nil];
 }
 //警告提示框
@@ -576,7 +661,7 @@
 
 -(void)comeBackMethod{
     
-    [JSEIMPNetWorking getUserIdAndReturnTargetActivityInstanceIdWithActivityId:_activityId OnSuccess:^(NSInteger canReturnPrevious,NSInteger canRevokeBack,NSInteger canDestroy,NSInteger canSend,NSInteger canSignup,NSInteger canExpandCopy,NSInteger canTransferVerify,NSInteger returnTargetActivityInstanceId,NSMutableArray *userIdMArray){
+    [JSEIMPNetWorking getUserIdAndReturnTargetActivityInstanceIdWithActivityId:_activityId OnSuccess:^(NSInteger canReturnPrevious,NSInteger canRevokeBack,NSInteger canDestroy,NSInteger canSend,NSInteger canSignup,NSInteger canExpandCopy,NSInteger canTransferVerify,NSInteger canExpandVerify,NSInteger returnTargetActivityInstanceId,NSMutableArray *userIdMArray){
         
         _canReturnPrevious = canReturnPrevious;
         _returnTargetActivityInstanceId = returnTargetActivityInstanceId;
@@ -588,11 +673,12 @@
 
 -(void)agreeMethod{
 
-    [JSEIMPNetWorking GetTatgetActivityIdWithActivityId:_activityId OnSuccess:^(NSMutableArray *targetActivityIdMArray){
+    [JSEIMPNetWorking GetTatgetActivityIdWithActivityId:_activityId OnSuccess:^(NSMutableArray *targetActivityIdMArray,NSMutableArray *nameMArray){
 
         _targetActivityIdMArray = targetActivityIdMArray.copy;
+        _nameMArray = nameMArray.copy;
 
-        [self goToSuggestVC];
+        [self goToSuggestVCWithName:_nameMArray[0]];
     } onErrorInfo:nil];
 }
 
@@ -622,13 +708,14 @@
     [self.navigationController pushViewController:backReasonController animated:YES];
 }
 
--(void)goToSuggestVC{
+-(void)goToSuggestVCWithName:(NSString *)name{
     
     JSEIMPSuggestController *suggestController = [JSEIMPSuggestController new];
     
     suggestController.targetActivityId = _targetActivityIdMArray[0];
     suggestController.processInstanceId = _processInstanceId;
     suggestController.activityId = _activityId;
+    suggestController.name = name;
     
     [self.navigationController pushViewController:suggestController animated:YES];
 }

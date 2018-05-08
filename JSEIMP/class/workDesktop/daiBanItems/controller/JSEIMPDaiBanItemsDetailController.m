@@ -235,13 +235,22 @@
         make.top.mas_equalTo(_label2.mas_top);
         make.right.mas_equalTo(_heTongBianHaoLabel.mas_right);
     }];
-    
-    [_label3 mas_makeConstraints:^(MASConstraintMaker *make) {
+    if (_projectNameLabel.text.length > 0) {
         
-        make.top.mas_equalTo(_projectNameLabel.mas_bottom).offset(16);
-        make.left.mas_equalTo(_label2.mas_left);
-        make.right.mas_equalTo(_label2.mas_right);
-    }];
+        [_label3 mas_makeConstraints:^(MASConstraintMaker *make) {
+            
+            make.top.mas_equalTo(_projectNameLabel.mas_bottom).offset(16);
+            make.left.mas_equalTo(_label2.mas_left);
+            make.right.mas_equalTo(_label2.mas_right);
+        }];
+    }else{
+        [_label3 mas_makeConstraints:^(MASConstraintMaker *make) {
+            
+            make.top.mas_equalTo(_label2.mas_bottom).offset(16);
+            make.left.mas_equalTo(_label2.mas_left);
+            make.right.mas_equalTo(_label2.mas_right);
+        }];
+    }
     [_heTongNameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         
         make.left.mas_equalTo(_label3.mas_right).offset(16);
@@ -262,12 +271,23 @@
         make.right.mas_equalTo(_heTongNameLabel.mas_right);
     }];
     
-    [_label5 mas_makeConstraints:^(MASConstraintMaker *make) {
+    if (_jiaFangLabel.text.length > 0) {
         
-        make.top.mas_equalTo(_jiaFangLabel.mas_bottom).offset(16);
-        make.left.mas_equalTo(_label4.mas_left);
-        make.right.mas_equalTo(_label4.mas_right);
-    }];
+        [_label5 mas_makeConstraints:^(MASConstraintMaker *make) {
+            
+            make.top.mas_equalTo(_jiaFangLabel.mas_bottom).offset(16);
+            make.left.mas_equalTo(_label4.mas_left);
+            make.right.mas_equalTo(_label4.mas_right);
+        }];
+    }else{
+        
+        [_label5 mas_makeConstraints:^(MASConstraintMaker *make) {
+            
+            make.top.mas_equalTo(_label4.mas_bottom).offset(16);
+            make.left.mas_equalTo(_label4.mas_left);
+            make.right.mas_equalTo(_label4.mas_right);
+        }];
+    }
     [_yiFangLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         
         make.left.mas_equalTo(_label5.mas_right).offset(16);
@@ -275,12 +295,23 @@
         make.right.mas_equalTo(_jiaFangLabel.mas_right);
     }];
     
-    [_label6 mas_makeConstraints:^(MASConstraintMaker *make) {
+    if (_yiFangLabel.text.length > 0) {
         
-        make.top.mas_equalTo(_yiFangLabel.mas_bottom).offset(16);
-        make.left.mas_equalTo(_label5.mas_left);
-        make.right.mas_equalTo(_label3.mas_right);
-    }];
+        [_label6 mas_makeConstraints:^(MASConstraintMaker *make) {
+            
+            make.top.mas_equalTo(_yiFangLabel.mas_bottom).offset(16);
+            make.left.mas_equalTo(_label5.mas_left);
+            make.right.mas_equalTo(_label3.mas_right);
+        }];
+    }else{
+        
+        [_label6 mas_makeConstraints:^(MASConstraintMaker *make) {
+            
+            make.top.mas_equalTo(_label5.mas_bottom).offset(16);
+            make.left.mas_equalTo(_label5.mas_left);
+            make.right.mas_equalTo(_label3.mas_right);
+        }];
+    }
     [_heTongStyleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         
         make.left.mas_equalTo(_label6.mas_right).offset(16);
@@ -350,7 +381,7 @@
 
 -(void)isShowButtons{
     
-    [JSEIMPNetWorking getUserIdAndReturnTargetActivityInstanceIdWithActivityId:_activityId OnSuccess:^(NSInteger canReturnPrevious,NSInteger *canRevokeBack,NSInteger canDestroy,NSInteger canSend,NSInteger canSignup,NSInteger canExpandCopy,NSInteger canTransferVerify,NSInteger returnTargetActivityInstanceId,NSMutableArray *userIdMArray){
+    [JSEIMPNetWorking getUserIdAndReturnTargetActivityInstanceIdWithActivityId:_activityId OnSuccess:^(NSInteger canReturnPrevious,NSInteger *canRevokeBack,NSInteger canDestroy,NSInteger canSend,NSInteger canSignup,NSInteger canExpandCopy,NSInteger canTransferVerify,NSInteger canExpandVerify,NSInteger returnTargetActivityInstanceId,NSMutableArray *userIdMArray){
         
         _canSignup = canSignup;//签收按钮判断
         

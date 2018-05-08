@@ -42,6 +42,10 @@
     
     self.view.backgroundColor = [UIColor whiteColor];
     
+    self.navigationController.navigationBarHidden = YES;
+    
+    self.tabBarController.tabBar.hidden = YES;
+    
     [self setupUI];
     
 }
@@ -293,7 +297,7 @@
         [SVProgressHUD showWithStatus:@"正在检查用户名和密码..."];
         
         //登录
-        dispatch_async(dispatch_get_global_queue(0, 0), ^{
+        dispatch_async(dispatch_get_main_queue(), ^{
             
             [NSThread sleepForTimeInterval:1.5];
             
@@ -345,27 +349,21 @@
         make.centerX.mas_equalTo(self.view.mas_centerX);
         make.centerY.mas_equalTo(self.view.mas_centerY).offset(200);
         make.height.mas_equalTo(30);
-        
     }];
     
     [UIView animateWithDuration:0.5 animations:^{
         
         label.alpha = 0.3;
-        
     } completion:^(BOOL finished) {
         
         [UIView animateWithDuration:0.5 delay:1.0 options:UIViewAnimationOptionCurveLinear animations:^{
             
             label.alpha = 0;
-            
         } completion:^(BOOL finished) {
             
             [label removeFromSuperview];
-            
         }];
-        
     }];
-    
 }
 
 //按钮的封装

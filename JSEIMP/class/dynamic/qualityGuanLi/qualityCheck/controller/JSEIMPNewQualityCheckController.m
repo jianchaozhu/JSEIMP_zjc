@@ -95,6 +95,8 @@
     //添加右边的按钮
     UIBarButtonItem *sendButton = [[UIBarButtonItem alloc] initWithTitle:@"发布" style:UIBarButtonItemStyleDone target:self action:@selector(clickSendButton:)];
     
+    sendButton.enabled = NO;
+    
     UIBarButtonItem *modelButton = [[UIBarButtonItem alloc] initWithTitle:@"模型" style:UIBarButtonItemStyleDone target:self action:@selector(clickModelButton:)];
     
     NSArray *buttonArray = [NSArray arrayWithObjects:sendButton,modelButton, nil];

@@ -9,7 +9,7 @@
 #import "JSEIMPChaoSongController.h"
 #import "JSEIMPNetWorking.h"
 #import "JSEIMPAllGangWeiPersonController.h"
-#import "JSEIMPNoGangWeiPersonController.h"
+#import "JSEIMPBuMenInJiaShiGroupController.h"
 
 static NSString *cellID = @"cellID";
 
@@ -38,7 +38,7 @@ static NSString *cellID = @"cellID";
     self.navigationItem.rightBarButtonItem = stopButton;
     self.navigationItem.hidesBackButton = YES;
     
-    [self getData];
+//    [self getData];
     
     [self setupUI];
 }
@@ -48,19 +48,19 @@ static NSString *cellID = @"cellID";
     [self.navigationController popViewControllerAnimated:YES];
 }
 
--(void)getData{
-    
-    [JSEIMPNetWorking getBuMenListWithShangJiBuMen:@"0" IsIncludeZiJieDian:@"false" SkipCount:0 MaxResultCount:10000 OnSuccess:^(NSMutableArray *buMenNameMArray){
-        
-        _buMenNameMArray = buMenNameMArray.copy;
-        
-        dispatch_async(dispatch_get_main_queue(), ^{
-            
-            [_tableView reloadData];
-        });
-        
-    } onErrorInfo:nil];
-}
+//-(void)getData{
+//    
+//    [JSEIMPNetWorking getBuMenListWithShangJiBuMen:@"0" IsIncludeZiJieDian:@"false" SkipCount:0 MaxResultCount:10000 OnSuccess:^(NSMutableArray *buMenNameMArray,NSMutableArray *buMenInJiaShiGroupMArray){
+//        
+//        _buMenNameMArray = buMenNameMArray.copy;
+//        
+//        dispatch_async(dispatch_get_main_queue(), ^{
+//            
+//            [_tableView reloadData];
+//        });
+//        
+//    } onErrorInfo:nil];
+//}
 
 -(void)setupUI{
     
@@ -77,7 +77,8 @@ static NSString *cellID = @"cellID";
     
 //    return 3;
     
-    return 2;
+//    return 2;
+    return 1;
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
@@ -93,14 +94,18 @@ static NSString *cellID = @"cellID";
 //        return _buMenNameMArray.count;
 //    }
     
+//    if (section == 0) {
+//
+//        return 1;
+//    }else if (section == 1){
+//
+//        return _buMenNameMArray.count;
+//    }
+    
     if (section == 0) {
         
         return 1;
-    }else if (section == 1){
-        
-        return _buMenNameMArray.count;
     }
-    
     return 0;
 }
 
@@ -116,6 +121,18 @@ static NSString *cellID = @"cellID";
         
         [self.navigationController pushViewController:allGangWeiPersonController animated:YES];
     }
+    
+//    else if (indexPath.section == 1){
+//
+//        JSEIMPBuMenInJiaShiGroupController *buMenInJiaShiGroupController = [JSEIMPBuMenInJiaShiGroupController new];
+//
+//        buMenInJiaShiGroupController.vcTitle = _buMenNameMArray[indexPath.row];
+//        buMenInJiaShiGroupController.buttonText = _buttonText;
+//        buMenInJiaShiGroupController.activityId = _activityId;
+//        buMenInJiaShiGroupController.option = _option;
+//
+//        [self.navigationController pushViewController:buMenInJiaShiGroupController animated:YES];
+//    }
 //    else if (indexPath.section == 1){
 //
 //        JSEIMPNoGangWeiPersonController *noGangWeiPersonController = [JSEIMPNoGangWeiPersonController new];
@@ -151,10 +168,11 @@ static NSString *cellID = @"cellID";
     if (indexPath.section == 0) {
         
         _cell.textLabel.text = @"全部";
-    }else if (indexPath.section == 1){
-        
-        _cell.textLabel.text = _buMenNameMArray[indexPath.row];
     }
+//    else if (indexPath.section == 1){
+//        
+//        _cell.textLabel.text = _buMenNameMArray[indexPath.row];
+//    }
     _cell.selectionStyle = UITableViewCellSelectionStyleNone;
     _cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     _cell.textLabel.lineBreakMode = NSLineBreakByWordWrapping;

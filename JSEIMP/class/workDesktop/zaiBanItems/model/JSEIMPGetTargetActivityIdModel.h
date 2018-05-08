@@ -12,6 +12,8 @@
 
 //targetActivityId
 @property(nonatomic,strong)NSString *to;
+//下一节点岗位
+@property(nonatomic,strong)NSString *name;
 
 @end
 

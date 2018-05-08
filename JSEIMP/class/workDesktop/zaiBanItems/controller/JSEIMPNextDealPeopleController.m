@@ -26,17 +26,27 @@
 //用户单位ID
 @property(nonatomic,strong)NSMutableArray *userUnitIdMArray;
 
+@property(nonatomic,strong)UIButton *tempButton;
+//合同状态
+@property(nonatomic,strong)NSString *status;
+
 @end
 
 @implementation JSEIMPNextDealPeopleController{
     
     UIButton *_button;
     
-    UIView *_buttonView;
+    UIView *_buttonView1;
+    
+    UIView *_buttonView2;
     
     UILabel *_userNameLabel;
     
     UIBarButtonItem *_sureButton;
+    
+    NSInteger _buttonTag;
+    
+    NSUserDefaults *_defaults;
 }
 
 - (void)viewDidLoad {
@@ -48,15 +58,19 @@
     titleViewLabel.frame = CGRectMake(0, 0, 180, 40);
     titleViewLabel.numberOfLines = 0;
     titleViewLabel.font = [UIFont systemFontOfSize:16];
-    titleViewLabel.text = @"选择下一节点处理人:项目经理";
+    titleViewLabel.text = [NSString stringWithFormat:@"选择下一节点处理人:%@",_name];
     titleViewLabel.textAlignment = NSTextAlignmentCenter;
     
     self.navigationItem.titleView = titleViewLabel;
     
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"关闭" style:UIBarButtonItemStylePlain target:self action:@selector(returnAction)];
     
-    _sureButton = [[UIBarButtonItem alloc] initWithTitle:@"确定" style:UIBarButtonItemStyleDone target:self action:@selector(clickSureButton:)];
-    _sureButton.enabled = NO;
+    _sureButton = [[UIBarButtonItem alloc] initWithTitle:@"确定" style:UIBarButtonItemStyleDone target:self action:@selector(clickSureButtonWithTag:)];
+    if ([_name isEqualToString:@"送结束"]) {
+        _sureButton.enabled = YES;
+    }else{
+        _sureButton.enabled = NO;
+    }
     self.navigationItem.rightBarButtonItem = _sureButton;
     
     [self getData];
@@ -85,53 +99,104 @@
     
     for (int i = 0; i < _userNameMArray.count; i++) {
         
-        _button = [self setButtonWithTag:i Action:@selector(clickButton:)];
-        _button.frame = CGRectMake(16, 80 + 50 * i, 30, 30);
+        _button = [self setButtonWithTag:i + 1 Action:@selector(clickButton:)];
+        _button.frame = CGRectMake(self.view.center.x + 50, 80 + 50 * i, 40, 40);
         
         _userNameLabel = [self setupLabelWithText:_userNameMArray[i] TextColor:[UIColor darkTextColor] Font:[UIFont systemFontOfSize:26]];
-        _userNameLabel.textAlignment = NSTextAlignmentRight;
-        _userNameLabel.frame = CGRectMake(self.view.center.x, 80 + 50 * i, self.view.bounds.size.width / 2 - 16, 30);
+        _userNameLabel.textAlignment = NSTextAlignmentCenter;
+        _userNameLabel.frame = CGRectMake(16, 80 + 50 * i, self.view.bounds.size.width / 2 - 16, 40);
         
     }
 }
 
 -(void)clickButton:(UIButton *)button{
     
-    [self buttonClickWithTag:button.tag Status:button.selected Button:button];
-
-}
-#pragma mark - 单选按钮的封装方法
--(void)buttonClickWithTag:(NSInteger)buttonTag Status:(BOOL)buttonStatus Button:(UIButton *)button{
-    
-    NSLog(@"%zd,%zd",button.tag,buttonTag);
-    
-    if (button.tag == buttonTag && buttonStatus == NO) {
-        
-        _buttonView = [self setButtonView];
-        _buttonView.frame = CGRectMake(8, 8, 14, 14);
-        [button addSubview:_buttonView];
+    _buttonTag = button.tag;
+    if (_tempButton == nil){
         button.selected = YES;
+        _tempButton = button;
+        _buttonView1 = [self setButtonView];
+        _buttonView1.frame = CGRectMake(8, 8, 24, 24);
+        [button addSubview:_buttonView1];
+        [_buttonView2 removeFromSuperview];
         _sureButton.enabled = YES;
-    }else if (button.tag == buttonTag && button.selected == YES){
-        
-        [_buttonView removeFromSuperview];
-        button.selected = NO;
-        _sureButton.enabled = NO;
     }
-}
+    else if (_tempButton != nil && _tempButton == button){
+        button.selected = YES;
+        [_buttonView1 removeFromSuperview];
+        _sureButton.enabled = NO;
+        _tempButton = nil;
+    }
+    else if (_tempButton != button && _tempButton != nil){
+        _tempButton.selected = NO;
+        button.selected = YES;
+        _tempButton = nil;
+        [_buttonView1 removeFromSuperview];
+        _buttonView2 = [self setButtonView];
+        _buttonView2.frame = CGRectMake(8, 8, 24, 24);
+        [button addSubview:_buttonView2];
+    }
+//    [self buttonClickWithTag:button.tag Status:button.selected Button:button];
 
--(void)clickSureButton:(UIButton *)button{
+}
+//#pragma mark - 单选按钮的封装方法
+//-(void)buttonClickWithTag:(NSInteger)buttonTag Status:(BOOL)buttonStatus Button:(UIButton *)button{
+//
+//    NSLog(@"%zd,%zd",button.tag,buttonTag);
+//
+//    if (_tempButton == nil && button.tag == buttonTag && buttonStatus == NO) {
+//
+//        _buttonView = [self setButtonView];
+//        _buttonView.frame = CGRectMake(8, 8, 14, 14);
+//        [button addSubview:_buttonView];
+//        button.selected = YES;
+//        _tempButton = button;
+//        _sureButton.enabled = YES;
+//    }else if (_tempButton!= nil &&  button.tag == buttonTag && buttonStatus == YES){
+//
+//        [_buttonView removeFromSuperview];
+//        button.selected = NO;
+//        _sureButton.enabled = NO;
+//    }
+//}
+
+-(void)clickSureButtonWithTag:(NSInteger)tag{
     
-    [JSEIMPNetWorking PostToNextStepWithCurrentActivityId:_activityId TargetActivityId:_activityDefinitionId ActivityId:_activityDefinitionId UserId:_userIdMArray[_button.tag] LoginId:_loginIdMArray[_button.tag] UserName:_userNameMArray[_button.tag] UserStationId:_userStationIdMArray[_button.tag] UserUnitId:_userUnitIdMArray[_button.tag] RoleId:_roleIdMArray[_button.tag] Opinion:_option OnSuccess:^{
+    tag = _buttonTag;
+    
+    if (tag == 0) {
         
-        for(UIViewController *controller in self.navigationController.viewControllers) {
+        [JSEIMPNetWorking PostToNextStepWithCurrentActivityId:_activityId TargetActivityId:_activityDefinitionId ActivityId:_activityDefinitionId UserId:nil LoginId:nil UserName:nil UserStationId:nil UserUnitId:nil RoleId:nil Opinion:_option OnSuccess:^{
             
-            if([controller isKindOfClass:[JSEIMPWorkDesktopController class]]) {
+            for(UIViewController *controller in self.navigationController.viewControllers) {
                 
-                [self.navigationController popToViewController:controller animated:YES];
+                if([controller isKindOfClass:[JSEIMPWorkDesktopController class]]) {
+                    
+                    if ([_name isEqualToString:@"送结束"]) {
+                        
+                        _status = @"已审";
+                        NSLog(@"%@",_status);
+                        _defaults = [NSUserDefaults standardUserDefaults];
+                        [_defaults setValue:_status forKey:@"status"];
+                    }
+                    
+                    [self.navigationController popToViewController:controller animated:YES];
+                }
             }
-        }
-    } onErrorInfo:nil];
+        } onErrorInfo:nil];
+    }else if (tag != 0){
+        
+        [JSEIMPNetWorking PostToNextStepWithCurrentActivityId:_activityId TargetActivityId:_activityDefinitionId ActivityId:_activityDefinitionId UserId:_userIdMArray[tag - 1] LoginId:_loginIdMArray[tag - 1] UserName:_userNameMArray[tag - 1] UserStationId:_userStationIdMArray[tag - 1] UserUnitId:_userUnitIdMArray[tag - 1] RoleId:_roleIdMArray[tag - 1] Opinion:_option OnSuccess:^{
+            
+            for(UIViewController *controller in self.navigationController.viewControllers) {
+                
+                if([controller isKindOfClass:[JSEIMPWorkDesktopController class]]) {
+                    
+                    [self.navigationController popToViewController:controller animated:YES];
+                }
+            }
+        } onErrorInfo:nil];
+    }
 }
 
 -(void)returnAction{
@@ -149,8 +214,9 @@
     
     UIView *view = [UIView new];
     view.backgroundColor = [UIColor blackColor];
-    view.layer.cornerRadius = 7;
+    view.layer.cornerRadius = 12;
     view.clipsToBounds = YES;
+    view.userInteractionEnabled = NO;
     
     return view;
 }
@@ -163,7 +229,7 @@
     [button setTitleColor:nil forState:UIControlStateNormal];
     [button setTag:tag];
     button.layer.borderWidth = 1.0;
-    button.layer.cornerRadius = 15;
+    button.layer.cornerRadius = 20;
     button.clipsToBounds = YES;
     [self.view addSubview:button];
     

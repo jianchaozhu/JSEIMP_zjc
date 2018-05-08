@@ -26,7 +26,7 @@
     
 //    UIViewController *mineViewController = [self controllerWithName:@"JSEIMPMineController" Title:@"我的" ImageName:@"me"];
     
-    self.viewControllers = @[dynamicViewController,applicationViewController,workDesktopController];
+    self.viewControllers = @[workDesktopController,dynamicViewController,applicationViewController];
     
 //    self.viewControllers = @[applicationViewController];
 }
